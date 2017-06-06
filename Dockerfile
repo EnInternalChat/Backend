@@ -1,4 +1,5 @@
 FROM freedomkk/tomcat-maven
+ENV MYSQL_ROOT_PASSWORD 123456
 RUN mkdir /usr/local/tomcat/db
 ADD ./BackContent/ /usr/local/tomcat/
 ADD ./db/ /usr/local/tomcat/db/
