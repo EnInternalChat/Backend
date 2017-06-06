@@ -4,15 +4,14 @@ services:
     build: .
     ports:
      - "8080:8080"
-    volumes:
-     - ./BackContent/target:/usr/local/tomcat/webapps
+    #volumes:
+     #- ./BackContent:/usr/local/tomcat/content
     links:
      - redis
      - mongo
      - mysql
     environment:
      MYSQL_ROOT_PASSWORD: 123456
-     AUTO_RUN_DIR: "/docker-entrypoint-initdb.d"
 
   redis:
     image: redis
@@ -23,4 +22,4 @@ services:
   mysql:
     image: mysql
     volumes:
-     - /usr/local/tomcat/db: $AUTO_RUN_DIR
+     - /usr/local/tomcat/db:/docker-entrypoint-initdb.d
