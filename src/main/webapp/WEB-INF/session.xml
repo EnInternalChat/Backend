@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!--<bean id="redisOperationsSessionRepository" class="org.springframework.session.data.redis.RedisOperationsSessionRepository">-->
+        <!--<constructor-arg ref="lettuceConnectionFactory"/>-->
+    <!--</bean>-->
+    <context:annotation-config/>
+    <!--<security:http>-->
+        <!--<security:session-management>-->
+            <!--<security:concurrency-control max-sessions="64" session-registry-ref="sessionRegistry" />-->
+        <!--</security:session-management>-->
+    <!--</security:http>-->
+    <bean id="lettuceConnectionFactory"
+          class="org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory"
+          p:host-name="10.0.0.102" p:port="6379"/>
+    <bean id="redisHttpSessionConfiguration"  class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
+        <property name="httpSessionListeners">
+            <list>
+                <ref bean="sessionMonitorListener" />
+            </list>
+        </property>
+        <property name="httpSessionStrategy" ref="httpSessionStrategy" />
+    </bean>
+    <bean id="sessionMonitorListener" class="backend.service.SessionMonitorListener" />
+
+    <!--<bean id="springSession" class="org.springframework.session.web.http.SessionRepositoryFilter">-->
+        <!--<constructor-arg>-->
+            <!--<bean class="org.springframework.session.data.redis.RedisOperationsSessionRepository">-->
+                <!--<constructor-arg ref="lettuceConnectionFactory"/>-->
+            <!--</bean>-->
+        <!--</constructor-arg>-->
+    <!--</bean>-->
+    <bean id="httpSessionStrategy" class="org.springframework.session.web.http.HeaderHttpSessionStrategy" />
+    <!--<bean id="sessionRegistry" class="org.springframework.session.security.SpringSessionBackedSessionRegistry">-->
+        <!--<constructor-arg ref="redisOperationsSessionRepository" />-->
+    <!--</bean>-->
+</beans>
