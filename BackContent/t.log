@@ -1,0 +1,42 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building EnInternalChat 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ EnInternalChat ---
+[WARNING] Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 69 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ EnInternalChat ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 37 source files to G:\RANDOM\SoftwareEngineering\EnInternalChat\BackContent\target\classes
+[WARNING] /G:/RANDOM/SoftwareEngineering/EnInternalChat/BackContent/src/main/java/backend/service/DatabaseService.java: G:\RANDOM\SoftwareEngineering\EnInternalChat\BackContent\src\main\java\backend\service\DatabaseService.java使用或覆盖了已过时的 API。
+[WARNING] /G:/RANDOM/SoftwareEngineering/EnInternalChat/BackContent/src/main/java/backend/service/DatabaseService.java: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ EnInternalChat ---
+[WARNING] Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory G:\RANDOM\SoftwareEngineering\EnInternalChat\BackContent\src\test\resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ EnInternalChat ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ EnInternalChat ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-war-plugin:2.1.1:war (default-war) @ EnInternalChat ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [EnInternalChat] in [G:\RANDOM\SoftwareEngineering\EnInternalChat\BackContent\target\EnInternalChat]
+[INFO] Processing war project
+[INFO] Copying webapp resources [G:\RANDOM\SoftwareEngineering\EnInternalChat\BackContent\src\main\webapp]
+[INFO] Webapp assembled in [15198 msecs]
+[INFO] Building war: G:\RANDOM\SoftwareEngineering\EnInternalChat\BackContent\target\EnInternalChat.war
+[WARNING] Warning: selected war files include a WEB-INF/web.xml which will be ignored 
+(webxml attribute is missing from war task, or ignoreWebxml attribute is specified as 'true')
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 01:03 min
+[INFO] Finished at: 2017-06-07T07:14:26+08:00
+[INFO] Final Memory: 25M/127M
+[INFO] ------------------------------------------------------------------------
