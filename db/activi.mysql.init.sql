@@ -1,4 +1,5 @@
 CREATE DATABASE activiti;
+USE activiti;
 
 create table ACT_GE_PROPERTY (
     NAME_ varchar(64),

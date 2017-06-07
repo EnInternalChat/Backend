@@ -1,10 +1,9 @@
 FROM freedomkk/tomcat-maven
-RUN mkdir /usr/local/tomcat/db
 ADD ./BackContent/ /usr/local/tomcat/
-ADD ./db/ /usr/local/tomcat/db/
 RUN cd /usr/local/tomcat
-RUN ls /usr/local/tomcat
 RUN mvn package
+RUN ls ./target
 RUN mv ./target/*.war /usr/local/tomcat/webapps
 EXPOSE 8080
-CMD "/usr/local/tomcat/bin/startup.sh"
+ENTRYPOINT ["/usr/local/tomcat/bin/catalina.sh", "run" ]
+#CMD /usr/local/tomcat/bin/startup.sh
