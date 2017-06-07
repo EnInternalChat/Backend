@@ -11,7 +11,7 @@ services:
      - mongo
      - mysql
     environment:
-     #MYSQL_ROOT_PASSWORD: 123456
+     MYSQL_ROOT_PASSWORD: 123456
      AUTO_RUN_DIR: /docker-entrypoint-initdb.d
 
   redis:
