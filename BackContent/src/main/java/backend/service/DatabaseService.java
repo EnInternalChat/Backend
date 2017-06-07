@@ -2,7 +2,6 @@ package backend.service;
 
 import backend.mdoel.*;
 import backend.repository.*;
-import backend.util.IdManager;
 import com.mongodb.DBRef;
 import org.activiti.engine.impl.util.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,15 +35,17 @@ public class DatabaseService {
     private final TaskStageRepository taskStageRepository;
     private final InstanceOfProcessRepository instanceOfProcessRepository;
     private final MongoTemplate mongoTemplate;
+    private final IdMangerRepository idMangerRepository;
 
     private final Map<Long,Employee> userActive;
+    private IdManger idManger;
 
     @Autowired
     public DatabaseService(EmployeeRepository employeeRepository, NotificationRepository notificationRepository,
                            DeployOfProcessRepository deployOfProcessRepository, ChatRepository chatRepository,
                            CompanyRepository companyRepository, SectionRepository sectionRepository,
                            SessionRepository sessionRepository, TaskStageRepository taskStageRepository,
-                           InstanceOfProcessRepository instanceOfProcessRepository,
+                           InstanceOfProcessRepository instanceOfProcessRepository, IdMangerRepository idMangerRepository,
                            MongoTemplate mongoTemplate) {
         userActive=new HashMap<>();
         this.employeeRepository = employeeRepository;
@@ -57,14 +58,13 @@ public class DatabaseService {
         this.taskStageRepository=taskStageRepository;
         this.instanceOfProcessRepository=instanceOfProcessRepository;
         this.mongoTemplate=mongoTemplate;
-        IdManager.IdForChat=chatRepository.findAll().size();
-        IdManager.IdForCompanty=companyRepository.findAll().size();
-        IdManager.IdForInstanceOfProcess=instanceOfProcessRepository.findAll().size();
-        IdManager.IdForDeployOfProcess=deployOfProcessRepository.findAll().size();
-        IdManager.IdForEmployee=employeeRepository.findAll().size();
-        IdManager.IdForTaskStage=taskStageRepository.findAll().size();
-        IdManager.IdForNotification=notificationRepository.findAll().size();
-        IdManager.IdForSection=sectionRepository.findAll().size();
+        this.idMangerRepository=idMangerRepository;
+        idManger=idMangerRepository.findOne(0);
+        if(idManger == null) {
+            idManger=new IdManger(0,0,0,0,0,0,0);
+            idMangerRepository.save(idManger);
+            //TODO fix all id bug
+        }
     }
 
     public void updateEmployeeCollectionData(Employee employee, Chat chat) {
@@ -149,9 +149,9 @@ public class DatabaseService {
         return companyRepository.findOne(id);
     }
 
-    public JSONObject findLoginEmployee(long companyId, String name, String password, HttpServletRequest httpServletRequest) {
+    public JSONObject findLoginEmployee(String name, String password, HttpServletRequest httpServletRequest) {
         JSONObject jsonObject=new JSONObject();
-        List<Employee> employees=employeeRepository.findByCompanyIDAndName(companyId, name);
+        List<Employee> employees=employeeRepository.findByName(name);
         if(employees.size() == 0) {
             jsonObject.put("status",false);
             jsonObject.put("info","此公司当前不存在该用户");

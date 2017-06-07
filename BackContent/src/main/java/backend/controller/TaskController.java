@@ -1,23 +1,25 @@
 package backend.controller;
 
+import backend.mdoel.DeployOfProcess;
 import backend.mdoel.Employee;
 import backend.service.ActivitiService;
 import backend.service.DatabaseService;
 import backend.util.ResponseJsonObj;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.activiti.engine.impl.util.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,6 +27,7 @@ import java.util.Map;
  */
 
 @Controller
+@CrossOrigin
 @RequestMapping(value = "/tasks")
 public class TaskController {
     DatabaseService databaseService;
@@ -71,6 +74,8 @@ public class TaskController {
         }
     }
 
+    @ApiOperation(value = "部署流程", notes = "上传合法xml文件")
+    @ApiImplicitParam(name = "newTaskFile", value = "流程文件", required = true, dataType = "CommonsMultipartFile", paramType = "body")
     @ResponseBody
     @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Map<String, Object> uploadProcess(@RequestParam("newTaskFile")CommonsMultipartFile file, HttpServletRequest request) {
@@ -86,10 +91,15 @@ public class TaskController {
         return infoType(type,name);
     }
 
+    @ApiOperation(value = "启动流程", notes = "启动指定类型的流程")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "processKey", value = "流程id", required = true, dataType = "String", paramType = "path"),
+            @ApiImplicitParam(name = "content", value = "备注信息json数组", dataType = "Collection<Map<String,String>>", paramType = "body")
+    })
     @ResponseBody
-    @RequestMapping(value = "/start", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/start/{processKey}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void process(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
-                        @RequestParam("processKey") String processKey,
+                        @PathVariable("processKey") String processKey,
                         @RequestParam(value = "content", required = false) Collection<Map<String,String>> content) {
         //TODO content
         long id=(long) httpServletRequest.getSession().getAttribute("user");
@@ -98,16 +108,58 @@ public class TaskController {
         ResponseJsonObj.write(httpServletResponse,jsonObject);
     }
 
+    @ApiOperation(value = "处理任务", notes = "对任务进行操作处理")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "processKey", value = "流程id", required = true, dataType = "String", paramType = "body"),
+            @ApiImplicitParam(name = "processID", value = "流程实例id", required = true, dataType = "String", paramType = "body"),
+            @ApiImplicitParam(name = "operationID", value = "操作id(对此步骤的操作)", required = true, dataType = "String", paramType = "path"),
+            @ApiImplicitParam(name = "content", value = "备注信息json数组", dataType = "Collection<Map<String,String>>", paramType = "body")
+    })
     @ResponseBody
-    @RequestMapping(value = "/operate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/operate/{processID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void process(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
                         @RequestParam("processKey") String processKey,
-                        @RequestParam("processID") Long processID,
+                        @PathVariable("processID") Long processID,
                         @RequestParam("operationID") String operationID,
-                        @RequestParam(value = "content", required = false) Collection<Map<String,String>> content
-                        ) {
+                        @RequestParam(value = "content", required = false) Collection<Map<String,String>> content) {
         long id=(long) httpServletRequest.getSession().getAttribute("user");
         Employee operator=databaseService.activeUserById(id);
         activitiService.processOperation(processKey,processID.toString(),operationID,operator);
+    }
+
+    @ApiOperation(value = "流程列表", notes = "根据公司id获取已部署流程")
+    @ApiImplicitParam(name = "companyID", value = "公司id", required = true, dataType = "Long", paramType = "path")
+    @ResponseBody
+    @RequestMapping(value = "/all/{companyID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<DeployOfProcess> processes(@PathVariable("companyID") Long companyID) {
+        return null;
+        //TODO list
+    }
+
+    @ApiOperation(value = "删除流程部署", notes = "根据id删除流程")
+    @ApiImplicitParam(name = "processKey", value = "流程id", required = true, dataType = "String", paramType = "path")
+    @ResponseBody
+    @RequestMapping(value = "/{processKey}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void deleteProcess(@PathVariable("processKey") String processKey) {
+        return;
+        //TODO del
+    }
+
+    @ApiOperation(value = "修改流程信息", notes = "根据流程id改名")
+    @ApiImplicitParam(name = "processKey", value = "流程id", required = true, dataType = "String", paramType = "path")
+    @ResponseBody
+    @RequestMapping(value = "/{processKey}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void updateProcess(@PathVariable("processKey") String processKey) {
+        return;
+        //TODO put
+    }
+
+    @ApiOperation(value = "查看流程信息", notes = "根据流程id")
+    @ApiImplicitParam(name = "processKey", value = "流程id", required = true, dataType = "String", paramType = "path")
+    @ResponseBody
+    @RequestMapping(value = "/{processKey}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void getProcess(@PathVariable("processKey") String processKey) {
+        return;
+        //TODO get
     }
 }
