@@ -19,6 +19,7 @@ backend\repository\IdManagerRepository.class
 backend\controller\EmployeeController.class
 backend\security\GlobalInterceptor.class
 backend\controller\CompanyController.class
+backend\controller\ChatController.class
 backend\repository\SectionRepository.class
 backend\repository\InstanceOfProcessRepository.class
 backend\repository\NotificationRepository.class

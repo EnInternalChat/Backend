@@ -118,11 +118,4 @@ public class TestController {
         diagramFile(xmlFile, response.getOutputStream());
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/login", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void helloUser(HttpServletResponse response) {
-
-    }
-
-
 }
