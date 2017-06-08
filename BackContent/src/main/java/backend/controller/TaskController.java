@@ -5,6 +5,7 @@ import backend.mdoel.Employee;
 import backend.service.ActivitiService;
 import backend.service.DatabaseService;
 import backend.util.ResponseJsonObj;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -26,6 +27,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin
+@Api(description = "任务流程")
 @RequestMapping(value = "/tasks")
 public class TaskController {
     DatabaseService databaseService;
@@ -147,7 +149,7 @@ public class TaskController {
     @ApiOperation(value = "修改流程信息", notes = "根据流程id改名")
     @ApiImplicitParam(name = "processKey", value = "流程id", required = true, dataType = "String", paramType = "path")
     @ResponseBody
-    @RequestMapping(value = "/{processKey}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/{processKey}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void updateProcess(@PathVariable("processKey") String processKey) {
         return;
         //TODO put

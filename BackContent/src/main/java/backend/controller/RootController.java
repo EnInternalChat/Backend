@@ -2,6 +2,7 @@ package backend.controller;
 
 import backend.service.DatabaseService;
 import backend.util.ResponseJsonObj;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @CrossOrigin
+@Api(description = "出入验证")
 @RequestMapping(value = "")
 public class RootController {
     @Autowired
@@ -27,12 +29,11 @@ public class RootController {
     @ApiOperation(value = "登录", notes = "用户登录")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "name", value = "用户名", required = true, dataType = "String", paramType = "body"),
-            @ApiImplicitParam(name = "password", value = "用户密码", required = true, dataType = "String", paramType = "body"),
+            @ApiImplicitParam(name = "password", value = "用户密码", required = true, dataType = "String", paramType = "body")
     })
     @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void logindo(@RequestParam("name") String name,
-                        @RequestParam("password") String password,
+    public void login(@RequestParam("name") String name, @RequestParam("password") String password,
                         HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         JSONObject jsonObject=databaseService.findLoginEmployee(name,password,httpServletRequest);
         ResponseJsonObj.write(httpServletResponse,jsonObject);

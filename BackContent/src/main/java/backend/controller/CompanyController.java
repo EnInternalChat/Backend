@@ -3,7 +3,9 @@ package backend.controller;
 import backend.mdoel.Company;
 import backend.mdoel.Section;
 import backend.service.DatabaseService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -15,13 +17,16 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
+@Api(description = "公司数据")
 @RequestMapping(value = "/company")
 public class CompanyController {
     @Autowired
     DatabaseService databaseService;
 
-    @ApiOperation(value = "获取公司整体信息", notes = "根据公司id获取公司信息")
-    @ApiImplicitParam(name = "companyID", value = "公司id", required = true, dataType = "Long", paramType = "path")
+    @ApiOperation(value = "获取公司整体信息", notes = "根据公司id获取公司信息", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "companyID", value = "公司id", required = true, dataType = "Long", paramType = "path")
+    })
     @ResponseBody
     @RequestMapping(value = "/{companyID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Company companyData(@PathVariable("companyID") Long companyID) {

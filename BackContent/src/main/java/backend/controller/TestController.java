@@ -3,6 +3,7 @@ package backend.controller;
 import backend.mdoel.Company;
 import backend.mdoel.Section;
 import backend.service.DatabaseService;
+import io.swagger.annotations.Api;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngineConfiguration;
 import org.activiti.engine.RepositoryService;
@@ -30,6 +31,7 @@ import java.util.Map;
  */
 
 @RestController
+@Api(description = "后端测试接口，前端无法使用")
 public class TestController {
     RepositoryService repositoryService;
     ProcessDefinition processDefinition;
