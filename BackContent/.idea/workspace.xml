@@ -23,72 +23,75 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="IdManger.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/IdManger.java">
+      <file leaf-file-name="InstanceOfProcess.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/InstanceOfProcess.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="22" column="15" lean-forward="false" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
-              <folding>
-                <element signature="e#846#847#0" expanded="true" />
-                <element signature="e#874#875#0" expanded="true" />
-                <element signature="e#913#914#0" expanded="true" />
-                <element signature="e#947#948#0" expanded="true" />
-                <element signature="e#979#980#0" expanded="true" />
-                <element signature="e#1010#1011#0" expanded="true" />
-                <element signature="e#1055#1056#0" expanded="true" />
-                <element signature="e#1095#1096#0" expanded="true" />
-                <element signature="e#1128#1129#0" expanded="true" />
-                <element signature="e#1160#1161#0" expanded="true" />
-                <element signature="e#1207#1208#0" expanded="true" />
-                <element signature="e#1249#1250#0" expanded="true" />
-                <element signature="e#1291#1292#0" expanded="true" />
-                <element signature="e#1332#1333#0" expanded="true" />
-                <element signature="e#1397#1398#0" expanded="true" />
-                <element signature="e#1457#1458#0" expanded="true" />
-                <element signature="e#1494#1495#0" expanded="true" />
-                <element signature="e#1530#1531#0" expanded="true" />
-                <element signature="e#1585#1586#0" expanded="true" />
-                <element signature="e#1635#1636#0" expanded="true" />
-                <element signature="e#1667#1668#0" expanded="true" />
-                <element signature="e#1698#1699#0" expanded="true" />
-                <element signature="e#1743#1744#0" expanded="true" />
-                <element signature="e#1783#1784#0" expanded="true" />
-                <element signature="e#1817#1818#0" expanded="true" />
-                <element signature="e#1850#1851#0" expanded="true" />
-                <element signature="e#1899#1900#0" expanded="true" />
-                <element signature="e#1943#1944#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IdMangerRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/backend/repository/IdMangerRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="8" column="77" lean-forward="false" selection-start-line="8" selection-start-column="70" selection-end-line="8" selection-end-column="77" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DatabaseService.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/backend/service/DatabaseService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="65" column="33" lean-forward="false" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
+            <state relative-caret-position="147">
+              <caret line="26" column="32" lean-forward="false" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EmployeeRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/backend/repository/EmployeeRepository.java">
+      <file leaf-file-name="Employee.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Employee.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="20" column="43" lean-forward="false" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+            <state relative-caret-position="199">
+              <caret line="36" column="23" lean-forward="false" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IdManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/IdManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="249">
+              <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#505#506#0" expanded="true" />
+                <element signature="e#525#526#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DeployOfProcess.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/DeployOfProcess.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="117">
+              <caret line="20" column="30" lean-forward="false" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Notification.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Notification.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Company.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Company.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="27" column="22" lean-forward="false" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Section.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Section.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="32" column="22" lean-forward="false" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -97,65 +100,32 @@
       <file leaf-file-name="TaskStage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/TaskStage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="15" column="22" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="22" />
+            <state relative-caret-position="241">
+              <caret line="25" column="24" lean-forward="false" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CompanyController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/CompanyController.java">
+      <file leaf-file-name="ActivitiService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/service/ActivitiService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="24" column="113" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="113" />
+            <state relative-caret-position="227">
+              <caret line="148" column="27" lean-forward="false" selection-start-line="148" selection-start-column="27" selection-end-line="148" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#deployProcess#0;class#ActivitiService#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EmployeeController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/EmployeeController.java">
+      <file leaf-file-name="DatabaseService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/service/DatabaseService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="33" column="46" lean-forward="false" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="87" />
+            <state relative-caret-position="152">
+              <caret line="142" column="67" lean-forward="false" selection-start-line="142" selection-start-column="67" selection-end-line="142" selection-end-column="67" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NotificationController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/NotificationController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="34" column="32" lean-forward="true" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RootController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/RootController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="45" column="51" lean-forward="true" selection-start-line="45" selection-start-column="51" selection-end-line="45" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TaskController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/TaskController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="138" column="33" lean-forward="false" selection-start-line="138" selection-start-column="33" selection-end-line="138" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#infoType#0;class#TaskController#0" expanded="false" />
-                <element signature="method#infoType#1;class#TaskController#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -190,6 +160,8 @@
       <find>mongo</find>
       <find>jpu</find>
       <find>请假开始</find>
+      <find>servlet</find>
+      <find>swa</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -203,13 +175,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/backend/config/HttpSessionConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/springmvc.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/java/backend/controller/DataProcessCenter.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/serial/NotificationSerializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/serial/EmployeeSerializer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/controller/TestController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/test.bpmn20.xml" />
         <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/SimpleStatus.java" />
         <option value="$PROJECT_DIR$/src/main/resources/bpmn/timerExample.bpmn.xml" />
@@ -228,32 +197,35 @@
         <option value="$PROJECT_DIR$/src/main/java/backend/repository/TaskStage.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/util/responseJsonObj.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/security/GlobalInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/Company.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/DeployOfProcess.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/Section.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/util/IdManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/Notification.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/Chat.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/Employee.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/TaskStage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/InstanceOfProcess.java" />
         <option value="$PROJECT_DIR$/src/main/resources/bpmn/AutoExecuteTask.bpmn20.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/service/ActivitiService.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/bpmn/leave-dynamic-from.bpmn20.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/session.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/activiti.xml" />
         <option value="$PROJECT_DIR$/src/main/java/backend/repository/EmployeeRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/controller/RootController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/controller/EmployeeController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/controller/CompanyController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/controller/TaskController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/controller/NotificationController.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/IdMange.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/IdManger.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/repository/IdMangerRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/activiti.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/session.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/controller/CompanyController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/controller/EmployeeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/controller/NotificationController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/controller/RootController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/controller/TestController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/config/Swagger2Config.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/backend/service/DatabaseService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/IdManger.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/IdManager.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/bpmn/leave-dynamic-from.bpmn20.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/controller/TaskController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/service/ActivitiService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/Chat.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/Company.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/InstanceOfProcess.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/Employee.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/DeployOfProcess.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/Notification.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/Section.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/TaskStage.java" />
       </list>
     </option>
   </component>
@@ -273,6 +245,20 @@
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="EnInternalChat" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Dependencies" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependenciesNode" />
+        </PATH_ELEMENT>
+      </PATH>
       <PATH>
         <PATH_ELEMENT>
           <option name="myItemId" value="" />
@@ -327,6 +313,7 @@
       </profile-state>
     </entry>
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -444,6 +431,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bpmn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BackContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BackContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -483,6 +496,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BackContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BackContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="serial" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -602,6 +645,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BackContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BackContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane">
@@ -629,8 +702,8 @@
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.30232558" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://G:/RANDOM/SoftwareEngineering/se2017/EnInternalChat/src/main/java/backend/service/DatabaseService.java" />
   </component>
   <component name="RecentsManager">
@@ -1169,7 +1242,7 @@
       <workItem from="1496755535741" duration="803000" />
       <workItem from="1496758599805" duration="1426000" />
       <workItem from="1496790770484" duration="3115000" />
-      <workItem from="1496832195300" duration="8649000" />
+      <workItem from="1496832195300" duration="23561000" />
     </task>
     <servers />
   </component>
@@ -1179,7 +1252,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="334844000" />
+    <option name="totallyTimeSpent" value="349756000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1196,7 +1269,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27540985" sideWeight="0.5234493" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30983606" sideWeight="0.43419063" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32829046" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1212,7 +1285,7 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3065574" sideWeight="0.49319214" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30983606" sideWeight="0.56580937" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871974" sideWeight="0.49303135" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2557377" sideWeight="0.47806355" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2677761" sideWeight="0.48292682" order="0" side_tool="false" content_ui="combo" />
@@ -1236,7 +1309,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
-      <path value="$PROJECT_DIR$/.." />
+      <path value="$PROJECT_DIR$" />
     </ignored-roots>
   </component>
   <component name="XDebuggerManager">
@@ -1257,49 +1330,12 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/RoleType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/bpmn/dispatch.bpmn20.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/service/SessionMonitorListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="17" column="69" lean-forward="false" selection-start-line="17" selection-start-column="69" selection-end-line="17" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/activiti/activiti-engine/5.22.0/activiti-engine-5.22.0.jar!/org/activiti/engine/runtime/ProcessInstance.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="12" column="38" lean-forward="true" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/SimpleStatus.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/serial/SimpleStatusSerializer.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/serial/EmployeeSerializer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/util/StandardTimeFormat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1359,24 +1395,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/DeployOfProcess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-296">
-          <caret line="22" column="18" lean-forward="false" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/serial/SectionSerializer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-336">
           <caret line="18" column="13" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Company.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="29" column="11" lean-forward="true" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -1427,17 +1449,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/bpmn/leave.bpmn20.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="32" lean-forward="false" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="com.intellij.jboss.jbpm.chart.editor.BpmnDesignerFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/bpmn/timerExample.bpmn20.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -1449,164 +1460,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="35" column="27" lean-forward="false" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mvc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1197">
-          <caret line="57" column="8" lean-forward="false" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/session.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="38" column="31" lean-forward="false" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4263">
-          <caret line="203" column="0" lean-forward="false" selection-start-line="203" selection-start-column="0" selection-end-line="203" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/activiti.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/bpmn/leave-dynamic-from.bpmn20.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="com.intellij.jboss.jbpm.chart.editor.BpmnDesignerFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Chat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="31" column="25" lean-forward="false" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
-          <folding>
-            <element signature="e#760#761#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Notification.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="16" column="20" lean-forward="true" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Section.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="20" column="20" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/TestController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1575">
-          <caret line="102" column="53" lean-forward="true" selection-start-line="102" selection-start-column="53" selection-end-line="102" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/InstanceOfProcess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="16" column="30" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/service/ActivitiService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="139" column="61" lean-forward="true" selection-start-line="139" selection-start-column="61" selection-end-line="139" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#deployProcess#0;class#ActivitiService#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/EmployeeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="33" column="46" lean-forward="false" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="87" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/CompanyController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="24" column="113" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="113" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/RootController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="45" column="51" lean-forward="true" selection-start-line="45" selection-start-column="51" selection-end-line="45" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/TaskController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="138" column="33" lean-forward="false" selection-start-line="138" selection-start-column="33" selection-end-line="138" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#infoType#0;class#TaskController#0" expanded="false" />
-            <element signature="method#infoType#1;class#TaskController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/NotificationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="34" column="32" lean-forward="true" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/TaskStage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="15" column="22" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/repository/EmployeeRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -1615,57 +1468,448 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/IdManger.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/util/StandardTimeFormat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="22" column="15" lean-forward="false" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
-          <folding>
-            <element signature="e#846#847#0" expanded="true" />
-            <element signature="e#874#875#0" expanded="true" />
-            <element signature="e#913#914#0" expanded="true" />
-            <element signature="e#947#948#0" expanded="true" />
-            <element signature="e#979#980#0" expanded="true" />
-            <element signature="e#1010#1011#0" expanded="true" />
-            <element signature="e#1055#1056#0" expanded="true" />
-            <element signature="e#1095#1096#0" expanded="true" />
-            <element signature="e#1128#1129#0" expanded="true" />
-            <element signature="e#1160#1161#0" expanded="true" />
-            <element signature="e#1207#1208#0" expanded="true" />
-            <element signature="e#1249#1250#0" expanded="true" />
-            <element signature="e#1291#1292#0" expanded="true" />
-            <element signature="e#1332#1333#0" expanded="true" />
-            <element signature="e#1397#1398#0" expanded="true" />
-            <element signature="e#1457#1458#0" expanded="true" />
-            <element signature="e#1494#1495#0" expanded="true" />
-            <element signature="e#1530#1531#0" expanded="true" />
-            <element signature="e#1585#1586#0" expanded="true" />
-            <element signature="e#1635#1636#0" expanded="true" />
-            <element signature="e#1667#1668#0" expanded="true" />
-            <element signature="e#1698#1699#0" expanded="true" />
-            <element signature="e#1743#1744#0" expanded="true" />
-            <element signature="e#1783#1784#0" expanded="true" />
-            <element signature="e#1817#1818#0" expanded="true" />
-            <element signature="e#1850#1851#0" expanded="true" />
-            <element signature="e#1899#1900#0" expanded="true" />
-            <element signature="e#1943#1944#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="147">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/repository/IdMangerRepository.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/serial/NotificationSerializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/session.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="18" column="40" lean-forward="false" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mvc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="50" column="62" lean-forward="false" selection-start-line="50" selection-start-column="62" selection-end-line="50" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/activiti.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="8" column="76" lean-forward="false" selection-start-line="8" selection-start-column="76" selection-end-line="8" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="26" column="10" lean-forward="false" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/config/SecurityConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/CompanyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/EmployeeController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
-          <caret line="8" column="77" lean-forward="false" selection-start-line="8" selection-start-column="70" selection-end-line="8" selection-end-column="77" />
+          <caret line="18" column="15" lean-forward="false" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/NotificationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="17" column="15" lean-forward="false" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://MAVEN/njucs:EnInternalChat:1.0-SNAPSHOT">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>MAVEN</ID>
+          <OriginalElement>njucs:EnInternalChat:1.0-SNAPSHOT</OriginalElement>
+          <nodes>
+            <node x="" y="">njucs:EnInternalChat:1.0-SNAPSHOT</node>
+            <node x="" y="">org.springframework:spring-context:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.springframework:spring-context:jar:4.3.8.RELEASE/org.springframework:spring-aop:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.springframework:spring-context:jar:4.3.8.RELEASE/org.springframework:spring-expression:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.springframework:spring-jdbc:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.springframework:spring-tx:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.springframework:spring-core:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.springframework:spring-core:jar:4.3.8.RELEASE/commons-logging:commons-logging:jar:1.2</node>
+            <node x="" y="">org.springframework:spring-orm:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.springframework.data:spring-data-mongodb:jar:1.10.3.RELEASE</node>
+            <node x="" y="">org.springframework.data:spring-data-mongodb:jar:1.10.3.RELEASE/org.springframework.data:spring-data-commons:jar:1.13.3.RELEASE</node>
+            <node x="" y="">org.springframework.data:spring-data-mongodb:jar:1.10.3.RELEASE/org.mongodb:mongo-java-driver:jar:2.14.3</node>
+            <node x="" y="">org.springframework.data:spring-data-mongodb:jar:1.10.3.RELEASE/org.slf4j:slf4j-api:jar:1.7.24</node>
+            <node x="" y="">org.springframework.data:spring-data-mongodb:jar:1.10.3.RELEASE/org.slf4j:jcl-over-slf4j:jar:1.7.24</node>
+            <node x="" y="">org.springframework.data:spring-data-mongodb:jar:1.10.3.RELEASE/org.slf4j:jcl-over-slf4j:jar:1.7.24/org.slf4j:slf4j-api:jar:1.7.21</node>
+            <node x="" y="">org.springframework.data:spring-data-commons:jar:1.13.1.RELEASE</node>
+            <node x="" y="">org.springframework.data:spring-data-commons:jar:1.13.1.RELEASE/org.springframework:spring-core:jar:4.3.7.RELEASE</node>
+            <node x="" y="">org.springframework.data:spring-data-commons:jar:1.13.1.RELEASE/org.springframework:spring-beans:jar:4.3.7.RELEASE</node>
+            <node x="" y="">org.springframework.data:spring-data-commons:jar:1.13.1.RELEASE/org.slf4j:slf4j-api:jar:1.7.21</node>
+            <node x="" y="">org.springframework.session:spring-session-data-redis:pom:1.3.1.RELEASE</node>
+            <node x="" y="">org.springframework.session:spring-session-data-redis:pom:1.3.1.RELEASE/org.apache.commons:commons-pool2:jar:2.4.2</node>
+            <node x="" y="">org.springframework.session:spring-session-data-redis:pom:1.3.1.RELEASE/org.springframework.data:spring-data-redis:jar:1.7.10.RELEASE</node>
+            <node x="" y="">org.springframework.session:spring-session-data-redis:pom:1.3.1.RELEASE/org.springframework.data:spring-data-redis:jar:1.7.10.RELEASE/org.springframework.data:spring-data-keyvalue:jar:1.1.10.RELEASE</node>
+            <node x="" y="">org.springframework.session:spring-session-data-redis:pom:1.3.1.RELEASE/org.springframework.data:spring-data-redis:jar:1.7.10.RELEASE/org.springframework.data:spring-data-keyvalue:jar:1.1.10.RELEASE/org.springframework.data:spring-data-commons:jar:1.12.10.RELEASE</node>
+            <node x="" y="">org.springframework.session:spring-session-data-redis:pom:1.3.1.RELEASE/org.springframework.data:spring-data-redis:jar:1.7.10.RELEASE/org.springframework.data:spring-data-keyvalue:jar:1.1.10.RELEASE/org.springframework:spring-context:jar:4.2.9.RELEASE</node>
+            <node x="" y="">org.springframework.session:spring-session-data-redis:pom:1.3.1.RELEASE/org.springframework.data:spring-data-redis:jar:1.7.10.RELEASE/org.springframework.data:spring-data-keyvalue:jar:1.1.10.RELEASE/org.springframework:spring-tx:jar:4.2.9.RELEASE</node>
+            <node x="" y="">org.springframework.session:spring-session-data-redis:pom:1.3.1.RELEASE/org.springframework.data:spring-data-redis:jar:1.7.10.RELEASE/org.springframework:spring-tx:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.springframework.session:spring-session-data-redis:pom:1.3.1.RELEASE/org.springframework.data:spring-data-redis:jar:1.7.10.RELEASE/org.springframework:spring-oxm:jar:4.2.9.RELEASE</node>
+            <node x="" y="">org.springframework.session:spring-session-data-redis:pom:1.3.1.RELEASE/org.springframework.data:spring-data-redis:jar:1.7.10.RELEASE/org.springframework:spring-oxm:jar:4.2.9.RELEASE/org.springframework:spring-beans:jar:4.2.9.RELEASE</node>
+            <node x="" y="">org.springframework.session:spring-session-data-redis:pom:1.3.1.RELEASE/org.springframework.data:spring-data-redis:jar:1.7.10.RELEASE/org.springframework:spring-oxm:jar:4.2.9.RELEASE/org.springframework:spring-core:jar:4.2.9.RELEASE</node>
+            <node x="" y="">org.springframework.session:spring-session-data-redis:pom:1.3.1.RELEASE/org.springframework.data:spring-data-redis:jar:1.7.10.RELEASE/org.springframework:spring-aop:jar:4.2.9.RELEASE</node>
+            <node x="" y="">org.springframework.session:spring-session-data-redis:pom:1.3.1.RELEASE/org.springframework.data:spring-data-redis:jar:1.7.10.RELEASE/org.springframework:spring-context-support:jar:4.2.9.RELEASE</node>
+            <node x="" y="">org.springframework.session:spring-session-data-redis:pom:1.3.1.RELEASE/org.springframework.session:spring-session:jar:1.3.1.RELEASE</node>
+            <node x="" y="">org.springframework.session:spring-session-data-redis:pom:1.3.1.RELEASE/redis.clients:jedis:jar:2.8.1</node>
+            <node x="" y="">org.apache.tomcat:tomcat-jdbc:jar:8.0.15</node>
+            <node x="" y="">org.apache.tomcat:tomcat-jdbc:jar:8.0.15/org.apache.tomcat:tomcat-juli:jar:8.0.15</node>
+            <node x="" y="">biz.paluch.redis:lettuce:jar:3.5.0.Final</node>
+            <node x="" y="">biz.paluch.redis:lettuce:jar:3.5.0.Final/io.reactivex:rxjava:jar:1.1.6</node>
+            <node x="" y="">biz.paluch.redis:lettuce:jar:3.5.0.Final/io.netty:netty-common:jar:4.0.37.Final</node>
+            <node x="" y="">biz.paluch.redis:lettuce:jar:3.5.0.Final/io.netty:netty-transport:jar:4.0.37.Final</node>
+            <node x="" y="">biz.paluch.redis:lettuce:jar:3.5.0.Final/io.netty:netty-transport:jar:4.0.37.Final/io.netty:netty-buffer:jar:4.0.37.Final</node>
+            <node x="" y="">biz.paluch.redis:lettuce:jar:3.5.0.Final/io.netty:netty-handler:jar:4.0.37.Final</node>
+            <node x="" y="">biz.paluch.redis:lettuce:jar:3.5.0.Final/io.netty:netty-handler:jar:4.0.37.Final/io.netty:netty-codec:jar:4.0.37.Final</node>
+            <node x="" y="">biz.paluch.redis:lettuce:jar:3.5.0.Final/com.google.guava:guava:jar:17.0</node>
+            <node x="" y="">org.springframework:spring-context-support:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.springframework:spring-aspects:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.springframework:spring-aspects:jar:4.3.8.RELEASE/org.aspectj:aspectjweaver:jar:1.8.9</node>
+            <node x="" y="">org.springframework:spring-test:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.springframework:spring-web:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.springframework:spring-webmvc:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.springframework:spring-beans:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.apache.tomcat:tomcat-catalina:jar:7.0.39</node>
+            <node x="" y="">org.apache.tomcat:tomcat-catalina:jar:7.0.39/org.apache.tomcat:tomcat-servlet-api:jar:7.0.39</node>
+            <node x="" y="">org.apache.tomcat:tomcat-catalina:jar:7.0.39/org.apache.tomcat:tomcat-juli:jar:7.0.39</node>
+            <node x="" y="">org.apache.tomcat:tomcat-catalina:jar:7.0.39/org.apache.tomcat:tomcat-annotations-api:jar:7.0.39</node>
+            <node x="" y="">org.apache.tomcat:tomcat-catalina:jar:7.0.39/org.apache.tomcat:tomcat-api:jar:7.0.39</node>
+            <node x="" y="">org.apache.tomcat:tomcat-catalina:jar:7.0.39/org.apache.tomcat:tomcat-util:jar:7.0.39</node>
+            <node x="" y="">org.apache.tomcat:tomcat-catalina:jar:7.0.39/org.apache.tomcat:tomcat-util:jar:7.0.39/org.apache.tomcat:tomcat-juli:jar:8.0.15</node>
+            <node x="" y="">org.apache.tomcat:tomcat-coyote:jar:7.0.39</node>
+            <node x="" y="">org.apache.tomcat:tomcat-coyote:jar:7.0.39/org.apache.tomcat:tomcat-juli:jar:8.0.15</node>
+            <node x="" y="">com.fasterxml.jackson.core:jackson-databind:jar:2.8.0</node>
+            <node x="" y="">com.fasterxml.jackson.core:jackson-databind:jar:2.8.0/com.fasterxml.jackson.core:jackson-annotations:jar:2.8.0</node>
+            <node x="" y="">com.fasterxml.jackson.core:jackson-databind:jar:2.8.0/com.fasterxml.jackson.core:jackson-core:jar:2.8.0</node>
+            <node x="" y="">org.glassfish.hk2.external:cglib:jar:2.2.0-b23</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/org.activiti:activiti-bpmn-converter:jar:5.22.0</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/org.activiti:activiti-bpmn-converter:jar:5.22.0/org.activiti:activiti-bpmn-model:jar:5.22.0</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/org.activiti:activiti-bpmn-converter:jar:5.22.0/org.activiti:activiti-bpmn-model:jar:5.22.0/com.fasterxml.jackson.core:jackson-core:jar:2.2.3</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/org.activiti:activiti-bpmn-converter:jar:5.22.0/org.activiti:activiti-bpmn-model:jar:5.22.0/com.fasterxml.jackson.core:jackson-databind:jar:2.2.3</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/org.activiti:activiti-bpmn-converter:jar:5.22.0/org.slf4j:slf4j-api:jar:1.7.6</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/org.activiti:activiti-bpmn-converter:jar:5.22.0/org.slf4j:jcl-over-slf4j:jar:1.7.6</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/org.activiti:activiti-process-validation:jar:5.22.0</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/org.activiti:activiti-image-generator:jar:5.22.0</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/org.activiti:activiti-image-generator:jar:5.22.0/org.slf4j:slf4j-api:jar:1.7.21</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/org.apache.commons:commons-email:jar:1.4</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/org.apache.commons:commons-email:jar:1.4/com.sun.mail:javax.mail:jar:1.5.2</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/org.apache.commons:commons-email:jar:1.4/com.sun.mail:javax.mail:jar:1.5.2/javax.activation:activation:jar:1.1</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/org.apache.commons:commons-email:jar:1.4/javax.activation:activation:jar:1.1.1</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/org.apache.commons:commons-lang3:jar:3.3.2</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/org.mybatis:mybatis:jar:3.3.0</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/org.springframework:spring-beans:jar:4.1.5.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/joda-time:joda-time:jar:2.6</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/org.slf4j:slf4j-api:jar:1.7.21</node>
+            <node x="" y="">org.activiti:activiti-engine:jar:5.22.0/org.slf4j:jcl-over-slf4j:jar:1.7.24</node>
+            <node x="" y="">org.activiti:activiti-spring:jar:5.22.0</node>
+            <node x="" y="">org.activiti:activiti-spring:jar:5.22.0/org.springframework:spring-context:jar:4.1.5.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-spring:jar:5.22.0/org.springframework:spring-jdbc:jar:4.1.5.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-spring:jar:5.22.0/org.springframework:spring-tx:jar:4.1.5.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-spring:jar:5.22.0/org.springframework:spring-orm:jar:4.1.5.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-spring:jar:5.22.0/org.slf4j:slf4j-api:jar:1.7.21</node>
+            <node x="" y="">org.activiti:activiti-spring:jar:5.22.0/org.slf4j:jcl-over-slf4j:jar:1.7.24</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.activiti:activiti-common-rest:jar:5.22.0</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.activiti:activiti-common-rest:jar:5.22.0/com.fasterxml.jackson.core:jackson-core:jar:2.8.0</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.activiti:activiti-common-rest:jar:5.22.0/com.fasterxml.jackson.core:jackson-databind:jar:2.8.0</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.activiti:activiti-simple-workflow:jar:5.22.0</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.activiti:activiti-simple-workflow:jar:5.22.0/org.activiti:activiti-bpmn-layout:jar:5.22.0</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.activiti:activiti-simple-workflow:jar:5.22.0/org.activiti:activiti-bpmn-layout:jar:5.22.0/org.slf4j:slf4j-api:jar:1.7.21</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.activiti:activiti-simple-workflow:jar:5.22.0/org.activiti:activiti-bpmn-layout:jar:5.22.0/org.slf4j:jcl-over-slf4j:jar:1.7.24</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.activiti:activiti-simple-workflow:jar:5.22.0/org.activiti:activiti-bpmn-layout:jar:5.22.0/org.tinyjee.jgraphx:jgraphx:jar:1.10.4.1</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.activiti:activiti-simple-workflow:jar:5.22.0/com.fasterxml.jackson.core:jackson-core:jar:2.8.0</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.activiti:activiti-simple-workflow:jar:5.22.0/com.fasterxml.jackson.core:jackson-databind:jar:2.8.0</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.activiti:activiti-simple-workflow:jar:5.22.0/com.fasterxml.jackson.core:jackson-annotations:jar:2.2.3</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.activiti:activiti-simple-workflow:jar:5.22.0/org.slf4j:slf4j-api:jar:1.7.21</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.activiti:activiti-simple-workflow:jar:5.22.0/org.slf4j:jcl-over-slf4j:jar:1.7.24</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.slf4j:slf4j-log4j12:jar:1.7.6</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/commons-io:commons-io:jar:2.0.1</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/commons-fileupload:commons-fileupload:jar:1.2.2</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/javax.annotation:jsr250-api:jar:1.0</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework:spring-beans:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework:spring-context:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework:spring-core:jar:4.1.5.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework:spring-tx:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework:spring-web:jar:4.1.5.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework:spring-webmvc:jar:4.1.5.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-core:jar:3.2.3.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-core:jar:3.2.3.RELEASE/aopalliance:aopalliance:jar:1.0</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-core:jar:3.2.3.RELEASE/org.springframework:spring-aop:jar:3.2.8.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-core:jar:3.2.3.RELEASE/org.springframework:spring-beans:jar:3.2.8.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-core:jar:3.2.3.RELEASE/org.springframework:spring-context:jar:3.2.8.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-core:jar:3.2.3.RELEASE/org.springframework:spring-core:jar:3.2.8.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-core:jar:3.2.3.RELEASE/org.springframework:spring-expression:jar:3.2.8.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-config:jar:3.2.3.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-config:jar:3.2.3.RELEASE/org.springframework:spring-aop:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-config:jar:3.2.3.RELEASE/org.springframework:spring-beans:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-config:jar:3.2.3.RELEASE/org.springframework:spring-context:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-config:jar:3.2.3.RELEASE/org.springframework:spring-core:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-crypto:jar:3.2.3.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-crypto:jar:3.2.3.RELEASE/org.springframework:spring-core:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-web:jar:3.2.3.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-web:jar:3.2.3.RELEASE/org.springframework:spring-beans:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-web:jar:3.2.3.RELEASE/org.springframework:spring-context:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-web:jar:3.2.3.RELEASE/org.springframework:spring-core:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-web:jar:3.2.3.RELEASE/org.springframework:spring-expression:jar:4.3.8.RELEASE</node>
+            <node x="" y="">org.activiti:activiti-rest:jar:5.22.0/org.springframework.security:spring-security-web:jar:3.2.3.RELEASE/org.springframework:spring-web:jar:3.2.8.RELEASE</node>
+            <node x="" y="">commons-dbcp:commons-dbcp:jar:1.4</node>
+            <node x="" y="">commons-dbcp:commons-dbcp:jar:1.4/commons-pool:commons-pool:jar:1.5.4</node>
+            <node x="" y="">mysql:mysql-connector-java:jar:5.1.34</node>
+            <node x="" y="">org.slf4j:slf4j-api:jar:1.7.21</node>
+            <node x="" y="">org.slf4j:slf4j-log4j12:jar:1.7.21</node>
+            <node x="" y="">org.slf4j:slf4j-log4j12:jar:1.7.21/log4j:log4j:jar:1.2.17</node>
+            <node x="" y="">com.h2database:h2:jar:1.4.193</node>
+            <node x="" y="">commons-io:commons-io:jar:1.3.2</node>
+            <node x="" y="">commons-fileupload:commons-fileupload:jar:1.2.1</node>
+            <node x="" y="">junit:junit:jar:3.8.2</node>
+            <node x="" y="">cn.jpush.api:jpush-client:jar:3.2.17</node>
+            <node x="" y="">cn.jpush.api:jpush-client:jar:3.2.17/cn.jpush.api:jiguang-common:jar:1.0.3</node>
+            <node x="" y="">cn.jpush.api:jpush-client:jar:3.2.17/cn.jpush.api:jiguang-common:jar:1.0.3/com.squareup.okhttp3:okhttp:jar:3.3.1</node>
+            <node x="" y="">cn.jpush.api:jpush-client:jar:3.2.17/cn.jpush.api:jiguang-common:jar:1.0.3/com.squareup.okhttp3:okhttp:jar:3.3.1/com.squareup.okio:okio:jar:1.8.0</node>
+            <node x="" y="">cn.jpush.api:jpush-client:jar:3.2.17/cn.jpush.api:jiguang-common:jar:1.0.3/org.slf4j:slf4j-api:jar:1.7.7</node>
+            <node x="" y="">cn.jpush.api:jpush-client:jar:3.2.17/io.netty:netty-all:jar:4.1.6.Final</node>
+            <node x="" y="">cn.jpush.api:jpush-client:jar:3.2.17/com.google.code.gson:gson:jar:2.3</node>
+            <node x="" y="">cn.jpush.api:jpush-client:jar:3.2.17/org.slf4j:slf4j-api:jar:1.7.21</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/io.swagger:swagger-annotations:jar:1.5.10</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/io.swagger:swagger-models:jar:1.5.10</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/io.swagger:swagger-models:jar:1.5.10/com.fasterxml.jackson.core:jackson-annotations:jar:2.4.5</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/io.swagger:swagger-models:jar:1.5.10/org.slf4j:slf4j-api:jar:1.6.3</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/io.springfox:springfox-spi:jar:2.6.1</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/io.springfox:springfox-spi:jar:2.6.1/io.springfox:springfox-core:jar:2.6.1</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/io.springfox:springfox-spi:jar:2.6.1/io.springfox:springfox-core:jar:2.6.1/com.google.guava:guava:jar:18.0</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/io.springfox:springfox-schema:jar:2.6.1</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/io.springfox:springfox-swagger-common:jar:2.6.1</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/io.springfox:springfox-swagger-common:jar:2.6.1/com.google.guava:guava:jar:17.0</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/io.springfox:springfox-spring-web:jar:2.6.1</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/io.springfox:springfox-spring-web:jar:2.6.1/com.google.guava:guava:jar:17.0</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/com.google.guava:guava:jar:17.0</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/com.fasterxml:classmate:jar:1.3.1</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/org.springframework.plugin:spring-plugin-core:jar:1.2.0.RELEASE</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/org.springframework.plugin:spring-plugin-core:jar:1.2.0.RELEASE/org.springframework:spring-beans:jar:4.0.9.RELEASE</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/org.springframework.plugin:spring-plugin-core:jar:1.2.0.RELEASE/org.springframework:spring-context:jar:4.0.9.RELEASE</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/org.springframework.plugin:spring-plugin-core:jar:1.2.0.RELEASE/org.springframework:spring-aop:jar:4.0.9.RELEASE</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/org.springframework.plugin:spring-plugin-core:jar:1.2.0.RELEASE/org.slf4j:slf4j-api:jar:1.7.10</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/org.springframework.plugin:spring-plugin-metadata:jar:1.2.0.RELEASE</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/org.springframework.plugin:spring-plugin-metadata:jar:1.2.0.RELEASE/org.slf4j:slf4j-api:jar:1.7.21</node>
+            <node x="" y="">io.springfox:springfox-swagger2:jar:2.6.1/org.mapstruct:mapstruct:jar:1.0.0.Final</node>
+            <node x="" y="">io.springfox:springfox-swagger-ui:jar:2.6.1</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.9676293182233594" x="-2417.808458792195" y="2648.6387351480007" />
+          <SelectedNodes />
+          <Categories />
+          <VISIBILITY>All</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/config/Swagger2Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="21" column="63" lean-forward="false" selection-start-line="21" selection-start-column="63" selection-end-line="21" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/TestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/repository/IdManagerRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="8" column="79" lean-forward="false" selection-start-line="8" selection-start-column="72" selection-end-line="8" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/bpmn/leave-dynamic-from.bpmn20.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.jboss.jbpm.chart.editor.BpmnDesignerFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/bpmn/leave.bpmn20.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="32" lean-forward="false" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.jboss.jbpm.chart.editor.BpmnDesignerFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/TaskController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="122" column="0" lean-forward="false" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#infoType#0;class#TaskController#0" expanded="false" />
+            <element signature="method#infoType#1;class#TaskController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/RootController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Chat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="24" column="19" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Company.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="27" column="22" lean-forward="false" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/InstanceOfProcess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="26" column="32" lean-forward="false" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/DeployOfProcess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="20" column="30" lean-forward="false" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="36" column="23" lean-forward="false" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/IdManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#505#506#0" expanded="true" />
+            <element signature="e#525#526#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Notification.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Section.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="32" column="22" lean-forward="false" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/TaskStage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="25" column="24" lean-forward="false" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/service/ActivitiService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="148" column="27" lean-forward="false" selection-start-line="148" selection-start-column="27" selection-end-line="148" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#deployProcess#0;class#ActivitiService#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/service/DatabaseService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="65" column="33" lean-forward="false" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
+        <state relative-caret-position="152">
+          <caret line="142" column="67" lean-forward="false" selection-start-line="142" selection-start-column="67" selection-end-line="142" selection-end-column="67" />
           <folding />
         </state>
       </provider>

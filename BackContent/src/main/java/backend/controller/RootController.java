@@ -8,7 +8,6 @@ import io.swagger.annotations.ApiOperation;
 import org.activiti.engine.impl.util.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by lenovo on 2017/5/2.
  */
 
-@Controller
+@RestController
 @CrossOrigin
 @RequestMapping(value = "")
 public class RootController {

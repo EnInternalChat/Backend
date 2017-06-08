@@ -16,7 +16,7 @@ import java.util.Collection;
  * Created by lenovo on 2017/5/2.
  */
 
-@Controller
+@RestController
 @CrossOrigin
 @RequestMapping(value = "/employees")
 public class EmployeeController {

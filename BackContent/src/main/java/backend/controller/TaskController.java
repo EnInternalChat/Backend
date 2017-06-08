@@ -11,13 +11,11 @@ import io.swagger.annotations.ApiOperation;
 import org.activiti.engine.impl.util.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +24,7 @@ import java.util.Map;
  * Created by lenovo on 2017/5/2.
  */
 
-@Controller
+@RestController
 @CrossOrigin
 @RequestMapping(value = "/tasks")
 public class TaskController {
@@ -94,13 +92,13 @@ public class TaskController {
     @ApiOperation(value = "启动流程", notes = "启动指定类型的流程")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "processKey", value = "流程id", required = true, dataType = "String", paramType = "path"),
-            @ApiImplicitParam(name = "content", value = "备注信息json数组", dataType = "Collection<Map<String,String>>", paramType = "body")
+            @ApiImplicitParam(name = "content", value = "备注信息", dataType = "String", paramType = "body")
     })
     @ResponseBody
     @RequestMapping(value = "/start/{processKey}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void process(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
                         @PathVariable("processKey") String processKey,
-                        @RequestParam(value = "content", required = false) Collection<Map<String,String>> content) {
+                        @RequestParam(value = "content", required = false) String content) {
         //TODO content
         long id=(long) httpServletRequest.getSession().getAttribute("user");
         Employee starter=databaseService.activeUserById(id);
@@ -113,7 +111,7 @@ public class TaskController {
             @ApiImplicitParam(name = "processKey", value = "流程id", required = true, dataType = "String", paramType = "body"),
             @ApiImplicitParam(name = "processID", value = "流程实例id", required = true, dataType = "String", paramType = "body"),
             @ApiImplicitParam(name = "operationID", value = "操作id(对此步骤的操作)", required = true, dataType = "String", paramType = "path"),
-            @ApiImplicitParam(name = "content", value = "备注信息json数组", dataType = "Collection<Map<String,String>>", paramType = "body")
+            @ApiImplicitParam(name = "content", value = "备注信息json数组", dataType = "String", paramType = "body")
     })
     @ResponseBody
     @RequestMapping(value = "/operate/{processID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -121,10 +119,11 @@ public class TaskController {
                         @RequestParam("processKey") String processKey,
                         @PathVariable("processID") Long processID,
                         @RequestParam("operationID") String operationID,
-                        @RequestParam(value = "content", required = false) Collection<Map<String,String>> content) {
+                        @RequestParam(value = "content", required = false) String content) {
         long id=(long) httpServletRequest.getSession().getAttribute("user");
         Employee operator=databaseService.activeUserById(id);
-        activitiService.processOperation(processKey,processID.toString(),operationID,operator);
+        JSONObject jsonObject=activitiService.processOperation(processKey,processID.toString(),operationID,content,operator);
+        ResponseJsonObj.write(httpServletResponse,jsonObject);
     }
 
     @ApiOperation(value = "流程列表", notes = "根据公司id获取已部署流程")

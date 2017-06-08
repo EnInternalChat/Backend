@@ -1,6 +1,5 @@
 package backend.mdoel;
 
-import backend.util.IdManager;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -26,14 +25,17 @@ public class InstanceOfProcess {
     private Collection<TaskStage> stages;
 
     public InstanceOfProcess() {
-        ID=IdManager.IdForInstanceOfProcess++;
+    }
+
+    public InstanceOfProcess(long ID) {
+        this.ID=ID;
         this.startPerson = new ArrayList<>();
         this.stages = new ArrayList<>();
         over=false;
     }
 
-    public InstanceOfProcess(String processKey, String processID, String processName, Employee starter) {
-        this();
+    public InstanceOfProcess(long ID, String processKey, String processID, String processName, Employee starter) {
+        this(ID);
         this.processKey = processKey;
         this.processID = processID;
         this.processName = processName;

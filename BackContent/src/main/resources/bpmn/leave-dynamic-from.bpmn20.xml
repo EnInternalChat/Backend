@@ -4,15 +4,13 @@
         <documentation>请假流程演示-动态表单</documentation>
         <startEvent id="startevent1" name="Start" activiti:initiator="applyUserId">
             <extensionElements>
-                <activiti:formProperty id="startDate" name="开始日期" type="date" datePattern="yyyy-MM-dd" required="true" readable="true" writable="true"></activiti:formProperty>
-                <activiti:formProperty id="endDate" name="结束日期" type="date" datePattern="yyyy-MM-dd" required="true" readable="true" writable="true"></activiti:formProperty>
+                <activiti:formProperty id="date" name="开始日期" type="date" datePattern="yyyy-MM-dd" required="true" readable="true" writable="true"></activiti:formProperty>
                 <activiti:formProperty id="reason" name="请假原因" type="string" required="true" readable="true" writable="true"></activiti:formProperty>
             </extensionElements>
         </startEvent>
         <userTask id="deptLeaderAudit" name="部门领导审批" activiti:candidateGroups="deptLeader">
             <extensionElements>
-                <activiti:formProperty id="startDate" name="开始日期" type="date" value="${startDate}" datePattern="yyyy-MM-dd" readable="true" writable="false"></activiti:formProperty>
-                <activiti:formProperty id="endDate" name="结束日期" type="date" value="${endDAte}" datePattern="yyyy-MM-dd" readable="true" writable="false"></activiti:formProperty>
+                <activiti:formProperty id="date" name="日期" type="date" value="${endDAte}" datePattern="yyyy-MM-dd" readable="true" writable="false"></activiti:formProperty>
                 <activiti:formProperty id="reason" name="请假原因" type="string" value="${reason}" readable="true" writable="false"></activiti:formProperty>
                 <activiti:formProperty id="deptLeaderPass" name="审批意见" type="enum" required="true" writable="true">
                     <activiti:value id="true" name="同意"></activiti:value>
@@ -23,8 +21,7 @@
         <exclusiveGateway id="exclusivegateway5" name="Exclusive Gateway"></exclusiveGateway>
         <userTask id="modifyApply" name="调整申请" activiti:assignee="${applyUserId}">
             <extensionElements>
-                <activiti:formProperty id="startDate" name="开始日期" type="date" value="${startDate}" datePattern="yyyy-MM-dd" required="true" readable="true" writable="true"></activiti:formProperty>
-                <activiti:formProperty id="endDate" name="结束日期" type="date" value="${endDAte}" datePattern="yyyy-MM-dd" required="true" readable="true" writable="true"></activiti:formProperty>
+                <activiti:formProperty id="date" name="日期" type="date" value="${endDAte}" datePattern="yyyy-MM-dd" required="true" readable="true" writable="true"></activiti:formProperty>
                 <activiti:formProperty id="reason" name="请假原因" type="string" value="${reason}" required="true" readable="true" writable="true"></activiti:formProperty>
                 <activiti:formProperty id="reApply" name="重新申请" type="enum" required="true" writable="true">
                     <activiti:value id="true" name="重新申请"></activiti:value>
@@ -34,8 +31,7 @@
         </userTask>
         <userTask id="hrAudit" name="人事审批" activiti:candidateGroups="hr">
             <extensionElements>
-                <activiti:formProperty id="startDate" name="开始日期" type="date" value="${startDate}" datePattern="yyyy-MM-dd" readable="true" writable="false"></activiti:formProperty>
-                <activiti:formProperty id="endDate" name="结束日期" type="date" value="${endDAte}" datePattern="yyyy-MM-dd" readable="true" writable="false"></activiti:formProperty>
+                <activiti:formProperty id="date" name="日期" type="date" value="${endDAte}" datePattern="yyyy-MM-dd" readable="true" writable="false"></activiti:formProperty>
                 <activiti:formProperty id="reason" name="请假原因" type="string" value="${reason}" readable="true" writable="false"></activiti:formProperty>
                 <activiti:formProperty id="hrPass" name="审批意见" type="enum" required="true" writable="true">
                     <activiti:value id="true" name="同意"></activiti:value>
@@ -46,8 +42,7 @@
         <exclusiveGateway id="exclusivegateway6" name="Exclusive Gateway"></exclusiveGateway>
         <userTask id="reportBack" name="销假" activiti:assignee="${applyUserId}">
             <extensionElements>
-                <activiti:formProperty id="startDate" name="开始日期" type="date" value="${startDate}" datePattern="yyyy-MM-dd" readable="true" writable="false"></activiti:formProperty>
-                <activiti:formProperty id="endDate" name="结束日期" type="date" value="${endDAte}" datePattern="yyyy-MM-dd" readable="true" writable="false"></activiti:formProperty>
+                <activiti:formProperty id="date" name="结束日期" type="date" value="${endDAte}" datePattern="yyyy-MM-dd" readable="true" writable="false"></activiti:formProperty>
                 <activiti:formProperty id="reason" name="请假原因" type="string" value="${reason}" readable="true" writable="false"></activiti:formProperty>
                 <activiti:formProperty id="comeback" name="结束假期" type="enum" required="true" writable="true">
                     <activiti:value id="true" name="回公司卖命"></activiti:value>

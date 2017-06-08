@@ -35,17 +35,17 @@ public class DatabaseService {
     private final TaskStageRepository taskStageRepository;
     private final InstanceOfProcessRepository instanceOfProcessRepository;
     private final MongoTemplate mongoTemplate;
-    private final IdMangerRepository idMangerRepository;
+    private final IdManagerRepository idManagerRepository;
 
     private final Map<Long,Employee> userActive;
-    private IdManger idManger;
+    private IdManager idManager;
 
     @Autowired
     public DatabaseService(EmployeeRepository employeeRepository, NotificationRepository notificationRepository,
                            DeployOfProcessRepository deployOfProcessRepository, ChatRepository chatRepository,
                            CompanyRepository companyRepository, SectionRepository sectionRepository,
                            SessionRepository sessionRepository, TaskStageRepository taskStageRepository,
-                           InstanceOfProcessRepository instanceOfProcessRepository, IdMangerRepository idMangerRepository,
+                           InstanceOfProcessRepository instanceOfProcessRepository, IdManagerRepository idManagerRepository,
                            MongoTemplate mongoTemplate) {
         userActive=new HashMap<>();
         this.employeeRepository = employeeRepository;
@@ -58,13 +58,61 @@ public class DatabaseService {
         this.taskStageRepository=taskStageRepository;
         this.instanceOfProcessRepository=instanceOfProcessRepository;
         this.mongoTemplate=mongoTemplate;
-        this.idMangerRepository=idMangerRepository;
-        idManger=idMangerRepository.findOne(0);
-        if(idManger == null) {
-            idManger=new IdManger(0,0,0,0,0,0,0);
-            idMangerRepository.save(idManger);
+        this.idManagerRepository = idManagerRepository;
+        idManager = idManagerRepository.findOne(0);
+        if(idManager == null) {
+            idManager =new IdManager(0,0,0,0,0,0,0,0);
+            idManagerRepository.save(idManager);
             //TODO fix all id bug
         }
+    }
+
+    public long getIDeployOfProcess() {
+        long id= idManager.getIDeployOfProcess();
+        idManagerRepository.save(idManager);
+        return id;
+    }
+
+    private long getIChat() {
+        long id= idManager.getIChat();
+        idManagerRepository.save(idManager);
+        return id;
+    }
+
+    private long getICompany() {
+        long id= idManager.getICompany();
+        idManagerRepository.save(idManager);
+        return id;
+    }
+
+    private long getIEmployee() {
+        long id= idManager.getIEmployee();
+        idManagerRepository.save(idManager);
+        return id;
+    }
+
+    private long getIInstanceOfProcess() {
+        long id= idManager.getIInstanceOfProcess();
+        idManagerRepository.save(idManager);
+        return id;
+    }
+
+    private long getINotification() {
+        long id= idManager.getINotification();
+        idManagerRepository.save(idManager);
+        return id;
+    }
+
+    private long getISection() {
+        long id= idManager.getISection();
+        idManagerRepository.save(idManager);
+        return id;
+    }
+
+    private long getITaskStage() {
+        long id= idManager.getITaskStage();
+        idManagerRepository.save(idManager);
+        return id;
     }
 
     public void updateEmployeeCollectionData(Employee employee, Chat chat) {
@@ -91,8 +139,10 @@ public class DatabaseService {
         mongoTemplate.updateFirst(query,update,Employee.class);
     }
 
-    public void saveProcessInstance(InstanceOfProcess instanceOfProcess) {
+    public InstanceOfProcess saveProcessInstance(String processKey, String processID, String processName, Employee starter) {
+        InstanceOfProcess instanceOfProcess=new InstanceOfProcess(getIInstanceOfProcess(),processKey,processID,processName,starter);
         instanceOfProcessRepository.insert(instanceOfProcess);
+        return instanceOfProcess;
     }
 
     public Employee activeUserById(long id) {
@@ -127,7 +177,7 @@ public class DatabaseService {
         long timestamp=System.currentTimeMillis();
         long companyID=0;
         //TODO getid
-        DeployOfProcess processDeploy =new DeployOfProcess(companyID,name,path,timestamp,timestamp,0);
+        DeployOfProcess processDeploy =new DeployOfProcess(getIDeployOfProcess(),companyID,name,path,timestamp,timestamp,0);
         deployOfProcessRepository.save(processDeploy);
         return true;
     }
@@ -186,19 +236,19 @@ public class DatabaseService {
     }
 
     public void testNewStruc() {
-        Company company=new Company();
+        Company company=new Company(getICompany());
         company.setName("google");
         company.setIntroduction("nihao");
-        Employee employee=new Employee();
+        Employee employee=new Employee(getIEmployee());
         employee.setName("dog");
         employee.setPassword("dog");
         employee.setCompanyID(1);
-        Section section1=new Section(0,employee,"ass","note");
-        Section section2=new Section(0,employee,"fsdf","note");
-        Section section3=new Section(0,employee,"afsfs","note");
-        Section section4=new Section(0,employee,"dsfsss","note");
-        Section section5=new Section(0,employee,"aeyys","note");
-        Section section6=new Section(0,employee,"asyqq","note");
+        Section section1=new Section(getISection(),0,employee,"ass","note");
+        Section section2=new Section(getISection(),0,employee,"fsdf","note");
+        Section section3=new Section(getISection(),0,employee,"afsfs","note");
+        Section section4=new Section(getISection(),0,employee,"dsfsss","note");
+        Section section5=new Section(getISection(),0,employee,"aeyys","note");
+        Section section6=new Section(getISection(),0,employee,"asyqq","note");
         company.setHeadSec(section1);
         section1.addChildSec(section2);
         section1.addChildSec(section3);
@@ -206,19 +256,19 @@ public class DatabaseService {
         section3.addChildSec(section5);
         section3.addChildSec(section6);
         employeeRepository.insert(employee);
-        employeeRepository.insert(new Employee());
-        employeeRepository.insert(new Employee());
-        employeeRepository.insert(new Employee());
-        employeeRepository.insert(new Employee());
-        employeeRepository.insert(new Employee());
-        employeeRepository.insert(new Employee());
-        employeeRepository.insert(new Employee());
-        employeeRepository.insert(new Employee());
-        employee.addTask(new InstanceOfProcess());
-        employee.addChat(new Chat());
+        employeeRepository.insert(new Employee(getIEmployee()));
+        employeeRepository.insert(new Employee(getIEmployee()));
+        employeeRepository.insert(new Employee(getIEmployee()));
+        employeeRepository.insert(new Employee(getIEmployee()));
+        employeeRepository.insert(new Employee(getIEmployee()));
+        employeeRepository.insert(new Employee(getIEmployee()));
+        employeeRepository.insert(new Employee(getIEmployee()));
+        employeeRepository.insert(new Employee(getIEmployee()));
+        employee.addTask(new InstanceOfProcess(getIInstanceOfProcess()));
+        employee.addChat(new Chat(getIChat()));
         employee.addMail("ss");
         employee.addPhone("s");
-        employee.addNotification(new Notification());
+        employee.addNotification(new Notification(getINotification()));
         employeeRepository.save(employee);
         sectionRepository.insert(section2);
         sectionRepository.insert(section1);
@@ -227,10 +277,8 @@ public class DatabaseService {
         sectionRepository.insert(section6);
         sectionRepository.insert(section4);
         companyRepository.save(company);
-        instanceOfProcessRepository.save(new InstanceOfProcess());
-        deployOfProcessRepository.save(new DeployOfProcess());
-        taskStageRepository.save(new TaskStage());
-        Company result=companyRepository.findOne((long) 0);
-        System.out.println(result.getHeadSec().getChildrenSections().size());
+        instanceOfProcessRepository.save(new InstanceOfProcess(getIInstanceOfProcess()));
+        deployOfProcessRepository.save(new DeployOfProcess(getIDeployOfProcess()));
+        taskStageRepository.save(new TaskStage(getITaskStage()));
     }
 }

@@ -1,6 +1,5 @@
 package backend.mdoel;
 
-import backend.util.IdManager;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -24,7 +23,10 @@ public class Chat {
     private Collection<Map<String, Object>> messageList;
 
     public Chat() {
-        ID=IdManager.IdForChat++;
+    }
+
+    public Chat(long ID) {
+        this.ID=ID;
         membersID=new ArrayList<>();
         messageList=new ArrayList<>();
     }

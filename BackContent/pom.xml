@@ -12,7 +12,7 @@
     <!--4.3.8.RELEASE-->
     <!--4.0.9.RELEASE-->
     <springdata.version>1.10.3.RELEASE</springdata.version>
-    <swaggerVersion>2.6.1</swaggerVersion>
+    <swaggerVersion>2.5.0</swaggerVersion>
     <activiti.version>5.22.0</activiti.version>
   </properties>
   <dependencies>
@@ -253,8 +253,6 @@
       <version>${swaggerVersion}</version>
     </dependency>
 
-
-
   </dependencies>
   <build>
     <finalName>EnInternalChat</finalName>
@@ -286,7 +284,8 @@
           <encoding>UTF-8</encoding>
           <compilerArguments>
             <verbose/>
-            <bootclasspath>${java.home}/lib/rt.jar</bootclasspath>
+            <bootclasspath>${java.home}\lib\rt.jar</bootclasspath>
+            <!--<bootclasspath>${java.home}/lib/rt.jar</bootclasspath>-->
           </compilerArguments>
         </configuration>
       </plugin>

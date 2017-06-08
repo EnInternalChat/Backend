@@ -1,6 +1,5 @@
 package backend.mdoel;
 
-import backend.util.IdManager;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -25,13 +24,16 @@ public class TaskStage {
     private Collection<Map<String,String>> choices;
 
     public TaskStage() {
-        ID=IdManager.IdForTaskStage++;
+    }
+
+    public TaskStage(long ID) {
+        this.ID=ID;
         person=new ArrayList<>();
         choices=new ArrayList<>();
     }
 
-    public TaskStage(String activityID, long startTime, Collection<Map<String, String>> choices) {
-        this();
+    public TaskStage(long ID, String activityID, long startTime, Collection<Map<String, String>> choices) {
+        this(ID);
         this.activityID = activityID;
         this.startTime = startTime;
         this.choices = choices;

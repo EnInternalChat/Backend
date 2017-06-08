@@ -1,7 +1,6 @@
 package backend.mdoel;
 
 import backend.serial.CompanySerializer;
-import backend.util.IdManager;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -27,7 +26,10 @@ public class Company {
     private Collection<DeployOfProcess> deployOfProcesses;
 
     public Company() {
-        ID=IdManager.IdForCompanty++;
+    }
+
+    public Company(long ID) {
+        this.ID=ID;
         deployOfProcesses=new ArrayList<>();
     }
 

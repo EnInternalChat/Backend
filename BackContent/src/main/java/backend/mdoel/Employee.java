@@ -1,6 +1,5 @@
 package backend.mdoel;
 
-import backend.util.IdManager;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -36,19 +35,16 @@ public class Employee {
     private boolean active;
 
     public Employee() {
-        ID=IdManager.IdForEmployee++;
-        companyID=233;
+    }
+
+    public Employee(long ID) {
+        this.ID = ID;
         avatar=2;
-        password=position=name="dfsgsdfhfgjdfj";
         phone=new ArrayList<>();
         email=new ArrayList<>();
         chats=new ArrayList<>();
         notifications=new ArrayList<>();
         instanceOfProcesses =new ArrayList<>();
-    }
-
-    public Employee(long ID) {
-        this.ID = ID;
     }
 
     public boolean isActive() {

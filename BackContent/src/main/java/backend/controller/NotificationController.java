@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * Created by lenovo on 2017/5/2.
  */
-@Controller
+@RestController
 @CrossOrigin
 @RequestMapping(value = "/notifications")
 public class NotificationController {

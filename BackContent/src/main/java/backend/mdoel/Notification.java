@@ -1,6 +1,5 @@
 package backend.mdoel;
 
-import backend.util.IdManager;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -24,8 +23,11 @@ public class Notification {
     private Collection<Employee> rcvSecID;
 
     public Notification() {
+    }
+
+    public Notification(long ID) {
         sentTime=System.currentTimeMillis();
-        ID=IdManager.IdForNotification++;
+        this.ID=ID;
         this.sentTime = sentTime;
         rcvSecID=new ArrayList<>();
     }
