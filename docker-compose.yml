@@ -1,7 +1,7 @@
 version: '2'
 services:
   web:
-    build: .
+    build: ./webStart
     ports:
      - "8080:8080"
     #volumes:
@@ -10,12 +10,13 @@ services:
      - redis
      - mongo
      - mysql
+     
 
   redis:
     image: redis
 
   mongo:
-    image: mongo
+    build: ./mongoStart
 
   mysql:
     image: mysql
