@@ -153,16 +153,6 @@ public class DatabaseService {
         //TODO
     }
 
-    public void updateEmployeeCollectionData(Employee employee, Notification notification) {
-        employee.addNotification(notification);
-        String colName=new BasicMongoPersistentEntity<>(ClassTypeInformation.from(Notification.class)).getCollection();
-        DBRef notificationRef=new DBRef(mongoTemplate.getDb(),colName,notification.getID());
-        Query query=Query.query(Criteria.where("_id").is(employee.getID()));
-        Update update=new Update();
-        update.addToSet("notifications",notificationRef);
-        mongoTemplate.updateFirst(query,update,Employee.class);
-    }
-
     public void updateEmployeeCollectionData(Employee employee, InstanceOfProcess instanceOfProcess) {
         employee.addTask(instanceOfProcess);
         String colName=new BasicMongoPersistentEntity<>(ClassTypeInformation.from(InstanceOfProcess.class)).getCollection();
@@ -267,52 +257,5 @@ public class DatabaseService {
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("info",name+":退出成功！");
         return jsonObject;
-    }
-
-    public void testNewStruc() {
-        Company company=new Company(getICompany());
-        company.setName("google");
-        company.setIntroduction("nihao");
-        Employee employee=new Employee(getIEmployee());
-        employee.setName("dog");
-        employee.setPassword("dog");
-        employee.setCompanyID(1);
-        Section section1=new Section(getISection(),0,employee,"ass","note");
-        Section section2=new Section(getISection(),0,employee,"fsdf","note");
-        Section section3=new Section(getISection(),0,employee,"afsfs","note");
-        Section section4=new Section(getISection(),0,employee,"dsfsss","note");
-        Section section5=new Section(getISection(),0,employee,"aeyys","note");
-        Section section6=new Section(getISection(),0,employee,"asyqq","note");
-        company.setHeadSec(section1);
-        section1.addChildSec(section2);
-        section1.addChildSec(section3);
-        section2.addChildSec(section4);
-        section3.addChildSec(section5);
-        section3.addChildSec(section6);
-        employeeRepository.insert(employee);
-        employeeRepository.insert(new Employee(getIEmployee()));
-        employeeRepository.insert(new Employee(getIEmployee()));
-        employeeRepository.insert(new Employee(getIEmployee()));
-        employeeRepository.insert(new Employee(getIEmployee()));
-        employeeRepository.insert(new Employee(getIEmployee()));
-        employeeRepository.insert(new Employee(getIEmployee()));
-        employeeRepository.insert(new Employee(getIEmployee()));
-        employeeRepository.insert(new Employee(getIEmployee()));
-        employee.addTask(new InstanceOfProcess(getIInstanceOfProcess()));
-        employee.addChat(new Chat(getIChat()));
-        employee.addMail("ss");
-        employee.addPhone("s");
-        employee.addNotification(new Notification(getINotification()));
-        employeeRepository.save(employee);
-        sectionRepository.insert(section2);
-        sectionRepository.insert(section1);
-        sectionRepository.insert(section3);
-        sectionRepository.insert(section5);
-        sectionRepository.insert(section6);
-        sectionRepository.insert(section4);
-        companyRepository.save(company);
-        instanceOfProcessRepository.save(new InstanceOfProcess(getIInstanceOfProcess()));
-        deployOfProcessRepository.save(new DeployOfProcess(getIDeployOfProcess()));
-        taskStageRepository.save(new TaskStage(getITaskStage()));
     }
 }

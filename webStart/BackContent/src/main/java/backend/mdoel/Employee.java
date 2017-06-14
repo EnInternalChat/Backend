@@ -132,10 +132,6 @@ public class Employee {
         this.password = password;
     }
 
-    public Collection<Chat> getChats() {
-        return chats;
-    }
-
     public Collection<Notification> getNotificationsSent() {
         return notificationsSent;
     }
@@ -154,11 +150,6 @@ public class Employee {
 
     public Collection<InstanceOfProcess> getProcessDeploys() {
         return instanceOfProcesses;
-    }
-
-    public boolean addChat(Chat newChat) {
-        chats.add(newChat);
-        return true;
     }
 
     public boolean addTask(InstanceOfProcess newProcessDeploy) {

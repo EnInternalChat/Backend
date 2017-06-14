@@ -22,7 +22,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -79,12 +78,6 @@ public class TestController {
         Map<String,Object> resMap = new HashMap<>();
         resMap.put("user","name");
         return resMap;
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/testMongo", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void mongoBug() throws UnknownHostException {
-        databaseService.testNewStruc();
     }
 
     @ResponseBody
