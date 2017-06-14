@@ -4661,4 +4661,12 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+    <web-resource-collection >
+        <web-resource-name >SSL</web-resource-name>
+        <url-pattern>/*</url-pattern>
+    </web-resource-collection>
+    <user-data-constraint>
+        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    </user-data-constraint>
+    
 </web-app>
