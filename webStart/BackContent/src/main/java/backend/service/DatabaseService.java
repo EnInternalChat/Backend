@@ -7,11 +7,11 @@ import cn.jiguang.common.resp.APIConnectionException;
 import cn.jiguang.common.resp.APIRequestException;
 import cn.jpush.api.JPushClient;
 import cn.jpush.api.push.PushResult;
+import cn.jpush.api.push.model.Platform;
 import cn.jpush.api.push.model.PushPayload;
+import cn.jpush.api.push.model.audience.Audience;
 import com.mongodb.DBRef;
 import org.activiti.engine.impl.util.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -48,10 +48,9 @@ public class DatabaseService {
     private final Map<Long,Employee> userActive;
     private IdManager idManager;
 
-    private static String APP_KEY="b6874276bb3fdcafbdf553d3";
-    private static String MASTER_SECRET="a62d5a8d825ec96bddb50fdb";
+    private static String APP_KEY="f784911007eb5e69ef4a773f";
+    private static String MASTER_SECRET="d4c4f6da868458e48f4de0e8";
     private JPushClient jPushClient;
-    private Logger log = LoggerFactory.getLogger(DatabaseService.class);
 
     @Autowired
     public DatabaseService(EmployeeRepository employeeRepository, NotificationRepository notificationRepository,
@@ -130,7 +129,11 @@ public class DatabaseService {
     }
 
     public void sendAlertNtf() {
-        PushPayload payload = PushPayload.alertAll("9999999");
+        PushPayload payload = PushPayload.newBuilder()
+                .setPlatform(Platform.all())
+                .setAudience(Audience.alias("testuser"))
+                .setNotification(cn.jpush.api.push.model.notification.Notification.alert("您有一条消息来自服务器后台"))
+                .build();
         try {
             PushResult result = jPushClient.sendPush(payload);
             System.out.println("Got result - " + result);
