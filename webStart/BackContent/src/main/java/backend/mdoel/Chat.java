@@ -1,7 +1,6 @@
 package backend.mdoel;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
@@ -17,8 +16,7 @@ public class Chat {
     @Id
     private long ID;
     private long companyID;
-    @DBRef
-    private Employee owner;
+    private long ownerID;
     private Collection<Long> membersID;
     private Collection<Map<String, Object>> messageList;
 

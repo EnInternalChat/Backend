@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * Created by lenovo on 2017/5/7.
@@ -16,8 +17,7 @@ public class Employee {
     @Id
     private long ID;
     private long companyID;
-    @DBRef
-    private Section section;
+    private long sectionID;
     private int avatar;
     private String name;
     private String password;
@@ -25,10 +25,13 @@ public class Employee {
     private Collection<String> phone;
     private Collection<String> email;
     @DBRef
-    private Collection<Chat> chats;
-    private RoleType roleType;
+    private Collection<Map<String,Object>> chats;
     @DBRef
-    private Collection<Notification> notifications;
+    private Collection<Notification> notificationsSent;
+    @DBRef
+    private Collection<Notification> notificationsRcvdUnread;
+    @DBRef
+    private Collection<Notification> notificationsRcvdRead;
     @DBRef
     private Collection<InstanceOfProcess> instanceOfProcesses;
     private boolean gender;
@@ -43,7 +46,9 @@ public class Employee {
         phone=new ArrayList<>();
         email=new ArrayList<>();
         chats=new ArrayList<>();
-        notifications=new ArrayList<>();
+        notificationsSent=new ArrayList<>();
+        notificationsRcvdRead=new ArrayList<>();
+        notificationsRcvdUnread=new ArrayList<>();
         instanceOfProcesses =new ArrayList<>();
     }
 
@@ -72,7 +77,7 @@ public class Employee {
     }
 
     public long getSectionID() {
-        return section.getID();
+        return sectionID;
     }
 
     public int getAvatar() {
@@ -131,8 +136,20 @@ public class Employee {
         return chats;
     }
 
-    public Collection<Notification> getNotifications() {
-        return notifications;
+    public Collection<Notification> getNotificationsSent() {
+        return notificationsSent;
+    }
+
+    public Collection<Notification> getNotificationsRcvdUnread() {
+        return notificationsRcvdUnread;
+    }
+
+    public Collection<Notification> getNotificationsRcvdRead() {
+        return notificationsRcvdRead;
+    }
+
+    public Collection<InstanceOfProcess> getInstanceOfProcesses() {
+        return instanceOfProcesses;
     }
 
     public Collection<InstanceOfProcess> getProcessDeploys() {
@@ -141,11 +158,6 @@ public class Employee {
 
     public boolean addChat(Chat newChat) {
         chats.add(newChat);
-        return true;
-    }
-
-    public boolean addNotification(Notification newNotification) {
-        notifications.add(newNotification);
         return true;
     }
 

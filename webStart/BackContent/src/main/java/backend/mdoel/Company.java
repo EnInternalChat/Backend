@@ -20,6 +20,8 @@ public class Company {
     private long ID;
     @DBRef
     private Section headSec;
+    @DBRef
+    private Employee admin;
     private String name;
     private String introduction;
     @DBRef
@@ -31,6 +33,10 @@ public class Company {
     public Company(long ID) {
         this.ID=ID;
         deployOfProcesses=new ArrayList<>();
+    }
+
+    public Employee getAdmin() {
+        return admin;
     }
 
     public Section getHeadSec() {

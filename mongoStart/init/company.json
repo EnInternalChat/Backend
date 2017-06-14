@@ -1,0 +1,14 @@
+{
+	"_id":0,
+	"name":"Tencent",
+	"introduction":"We are the best one!",
+	"admin":{
+		"$ref":"employee",
+		"$id":NumberLong(16)
+	},
+	"headSec":{
+		"$ref":"instanceOfProcess",
+		"$id":NumberLong(0)
+	},
+	"deployOfProcesses":[]
+}
