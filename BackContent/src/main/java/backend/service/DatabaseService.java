@@ -2,8 +2,16 @@ package backend.service;
 
 import backend.mdoel.*;
 import backend.repository.*;
+import cn.jiguang.common.ClientConfig;
+import cn.jiguang.common.resp.APIConnectionException;
+import cn.jiguang.common.resp.APIRequestException;
+import cn.jpush.api.JPushClient;
+import cn.jpush.api.push.PushResult;
+import cn.jpush.api.push.model.PushPayload;
 import com.mongodb.DBRef;
 import org.activiti.engine.impl.util.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -40,6 +48,11 @@ public class DatabaseService {
     private final Map<Long,Employee> userActive;
     private IdManager idManager;
 
+    private static String APP_KEY="b6874276bb3fdcafbdf553d3";
+    private static String MASTER_SECRET="a62d5a8d825ec96bddb50fdb";
+    private JPushClient jPushClient;
+    private Logger log = LoggerFactory.getLogger(DatabaseService.class);
+
     @Autowired
     public DatabaseService(EmployeeRepository employeeRepository, NotificationRepository notificationRepository,
                            DeployOfProcessRepository deployOfProcessRepository, ChatRepository chatRepository,
@@ -59,6 +72,7 @@ public class DatabaseService {
         this.instanceOfProcessRepository=instanceOfProcessRepository;
         this.mongoTemplate=mongoTemplate;
         this.idManagerRepository = idManagerRepository;
+        jPushClient=new JPushClient(MASTER_SECRET,APP_KEY,null, ClientConfig.getInstance());
         idManager = idManagerRepository.findOne(0);
         if(idManager == null) {
             idManager =new IdManager(0,0,0,0,0,0,0,0);
@@ -113,6 +127,23 @@ public class DatabaseService {
         long id= idManager.getITaskStage();
         idManagerRepository.save(idManager);
         return id;
+    }
+
+    public void sendAlertNtf() {
+        PushPayload payload = PushPayload.alertAll("9999999");
+        try {
+            PushResult result = jPushClient.sendPush(payload);
+            System.out.println("Got result - " + result);
+        } catch (APIConnectionException e) {
+            // Connection error, should retry later
+            System.out.println("Connection error, should retry later");
+        } catch (APIRequestException e) {
+            // Should review the error, and fix the request
+            System.out.println("Should review the error, and fix the request");
+            System.out.println("HTTP Status: " + e.getStatus());
+            System.out.println("Error Code: " + e.getErrorCode());
+            System.out.println("Error Message: " + e.getErrorMessage());
+        }
     }
 
     public void updateEmployeeCollectionData(Employee employee, Chat chat) {

@@ -47,8 +47,7 @@ public class NotificationController {
     @ApiImplicitParam(name = "receivers", value = "接收部门id列表", required = true, dataType = "List<Long>", paramType = "body")
     @ResponseBody
     @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void sendNotification(@RequestParam("receivers") List<Long> receivers) {
-
+    public void sendNotification(@RequestParam("receivers") List<Long> receivers){
     }
 
     @ApiOperation(value = "查看通知", notes = "未读通知状态会变为已读")

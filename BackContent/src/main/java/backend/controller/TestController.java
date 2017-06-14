@@ -102,6 +102,12 @@ public class TestController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/testSent", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void testSentNtf() {
+        databaseService.sendAlertNtf();
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/modelToDiagram", method = RequestMethod.POST)
     public void diagram(@RequestParam("file")CommonsMultipartFile file, HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("image/png");
