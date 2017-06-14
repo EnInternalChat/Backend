@@ -5,7 +5,7 @@ services:
     volumes:
      - ./encrypt:/usr/local/tomcat/conf
     ports:
-     - "8080:8080"
+     - "80:8080"
     depends_on:
      - certbot
     links:
