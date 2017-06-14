@@ -1,21 +1,30 @@
 version: '2'
 services:
   web:
-    build: .
+    build: ./webStart
+    volumes:
+     - ./encrypt:/usr/local/tomcat/conf
     ports:
-     - "8080:8080"
-    #volumes:
-     #- ./BackContent:/usr/local/tomcat/content
+     - "80:8080"
+    depends_on:
+     - certbot
     links:
      - redis
      - mongo
      - mysql
+    restart: always
+  
+  certbot:
+    image: certbot/certbot
+    volumes:
+     - ./encrypt:/etc/letsencrypt
+    command: renew
 
   redis:
     image: redis
 
   mongo:
-    image: mongo
+    build: ./mongoStart
 
   mysql:
     image: mysql
