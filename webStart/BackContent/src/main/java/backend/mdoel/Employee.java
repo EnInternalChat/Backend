@@ -38,11 +38,6 @@ public class Employee {
     private boolean active;
 
     public Employee() {
-    }
-
-    public Employee(long ID) {
-        this.ID = ID;
-        avatar=2;
         phone=new ArrayList<>();
         email=new ArrayList<>();
         chats=new ArrayList<>();
@@ -50,6 +45,27 @@ public class Employee {
         notificationsRcvdRead=new ArrayList<>();
         notificationsRcvdUnread=new ArrayList<>();
         instanceOfProcesses =new ArrayList<>();
+    }
+
+    //add new formal
+    public Employee(long ID, long companyID, long sectionID, String name, String password, String position, boolean gender, String mail, String number) {
+        this();
+        this.ID = ID;
+        this.companyID = companyID;
+        this.sectionID = sectionID;
+        this.name = name;
+        this.password = password;
+        this.position = position;
+        this.gender = gender;
+        active=true;
+        email.add(mail);
+        phone.add(number);
+    }
+
+    public Employee(long ID) {
+        this();
+        this.ID = ID;
+        avatar=2;
     }
 
     public boolean isActive() {

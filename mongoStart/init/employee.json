@@ -1,7 +1,7 @@
 {
 	"_id":0,
 	"name":"caocun",
-	"pwd":"",
+	"pwd":"60ed7ebb60f7320349843364a64ea6bb",
 	"sectionID":0,
 	"position":"A product manager",
 	"companyID":0,
@@ -15,14 +15,13 @@
 	],
 	"notificationsRcvdRead":[
 	],
-	"chats":[],
 	"phone":["13838472290","026-33324444"],
 	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
 }
 {
 	"_id":1,
-	"name":"",
-	"pwd":"",
+	"name":"PonyMa",
+	"pwd":"d5f2e93d7e2eecd7dd30747cd22119cf",
 	"sectionID":1,
 	"position":"A product manager",
 	"companyID":0,
@@ -36,14 +35,13 @@
 		{ "$ref":"notifications", "$id":NumberLong(0) }
 	],
 	"notificationsRcvdRead":[],
-	"chats":[],
 	"phone":["13838472290","026-33324444"],
 	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
 }
 {
 	"_id":2,
-	"name":"",
-	"pwd":"",
+	"name":"dogli",
+	"pwd":"b5ab92e1947c3c81559ead9fd8aa523f",
 	"sectionID":2,
 	"position":"A product manager",
 	"companyID":0,
@@ -57,14 +55,13 @@
 		{ "$ref":"notifications", "$id":NumberLong(0) }
 	],
 	"notificationsRcvdRead":[],
-	"chats":[],
 	"phone":["13838472290","026-33324444"],
 	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
 }
 {
 	"_id":3,
-	"name":"",
-	"pwd":"",
+	"name":"zeus",
+	"pwd":"098ef03a15eaf14dfe66a596cf0eb510",
 	"sectionID":3,
 	"position":"A product manager",
 	"companyID":0,
@@ -78,14 +75,13 @@
 		{ "$ref":"notifications", "$id":NumberLong(0) }
 	],
 	"notificationsRcvdRead":[],
-	"chats":[],
 	"phone":["13838472290","026-33324444"],
 	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
 }
 {
 	"_id":4,
-	"name":"",
-	"pwd":"",
+	"name":"mysql",
+	"pwd":"81c3b080dad537de7e10e0987a4bf52e",
 	"sectionID":4,
 	"position":"A product manager",
 	"companyID":0,
@@ -99,13 +95,12 @@
 		{ "$ref":"notifications", "$id":NumberLong(0) }
 	],
 	"notificationsRcvdRead":[],
-	"chats":[],
 	"phone":["13838472290","026-33324444"],
 	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
 }
 {
 	"_id":5,
-	"name":"",
+	"name":"garenfeather",
 	"pwd":"",
 	"sectionID":5,
 	"position":"A product manager",
@@ -120,14 +115,13 @@
 		{ "$ref":"notifications", "$id":NumberLong(0) }
 	],
 	"notificationsRcvdRead":[],
-	"chats":[],
 	"phone":["13838472290","026-33324444"],
 	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
 }
 {
 	"_id":6,
-	"name":"",
-	"pwd":"",
+	"name":"noah",
+	"pwd":"40564e4dd4cd0fc21e980d8eb05d15ee",
 	"sectionID":6,
 	"position":"A product manager",
 	"companyID":0,
@@ -141,14 +135,13 @@
 		{ "$ref":"notifications", "$id":NumberLong(0) }
 	],
 	"notificationsRcvdRead":[],
-	"chats":[],
 	"phone":["13838472290","026-33324444"],
 	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
 }
 {
 	"_id":7,
-	"name":"",
-	"pwd":"",
+	"name":"spring",
+	"pwd":"2a2d595e6ed9a0b24f027f2b63b134d6",
 	"sectionID":7,
 	"position":"A product manager",
 	"companyID":0,
@@ -162,14 +155,13 @@
 		{ "$ref":"notifications", "$id":NumberLong(0) }
 	],
 	"notificationsRcvdRead":[],
-	"chats":[],
 	"phone":["13838472290","026-33324444"],
 	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
 }
 {
 	"_id":8,
-	"name":"",
-	"pwd":"",
+	"name":"javadoc",
+	"pwd":"2b9fcb3b391260f7131d5bb997f44122",
 	"sectionID":8,
 	"position":"A product manager",
 	"companyID":0,
@@ -183,14 +175,13 @@
 		{ "$ref":"notifications", "$id":NumberLong(0) }
 	],
 	"notificationsRcvdRead":[],
-	"chats":[],
 	"phone":["13838472290","026-33324444"],
 	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
 }
 {
 	"_id":9,
-	"name":"",
-	"pwd":"",
+	"name":"hibernate",
+	"pwd":"2b9fcb3b391260f7131d5bb997f44122",
 	"sectionID":9,
 	"position":"A product manager",
 	"companyID":0,
@@ -204,14 +195,13 @@
 		{ "$ref":"notifications", "$id":NumberLong(0) }
 	],
 	"notificationsRcvdRead":[],
-	"chats":[],
 	"phone":["13838472290","026-33324444"],
 	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
 }
 {
 	"_id":10,
-	"name":"",
-	"pwd":"",
+	"name":"orientation",
+	"pwd":"da1639422ad8f355d2371428471379b5",
 	"sectionID":10,
 	"position":"A product manager",
 	"companyID":0,
@@ -225,7 +215,6 @@
 		{ "$ref":"notifications", "$id":NumberLong(0) }
 	],
 	"notificationsRcvdRead":[],
-	"chats":[],
 	"phone":["13838472290","026-33324444"],
 	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
 }
@@ -246,14 +235,13 @@
 		{ "$ref":"notifications", "$id":NumberLong(0) }
 	],
 	"notificationsRcvdRead":[],
-	"chats":[],
 	"phone":["13838472290","026-33324444"],
 	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
 }
 {
 	"_id":12,
-	"name":"",
-	"pwd":"",
+	"name":"goo",
+	"pwd":"6cdcbae015da6f882373107c90209267",
 	"sectionID":12,
 	"position":"A product manager",
 	"companyID":0,
@@ -267,14 +255,13 @@
 		{ "$ref":"notifications", "$id":NumberLong(0) }
 	],
 	"notificationsRcvdRead":[],
-	"chats":[],
 	"phone":["13838472290","026-33324444"],
 	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
 }
 {
 	"_id":13,
-	"name":"",
-	"pwd":"",
+	"name":"menya",
+	"pwd":"015f39cc5a24d5f8f6ea1e0a4a67893e",
 	"sectionID":13,
 	"position":"A product manager",
 	"companyID":0,
@@ -288,14 +275,13 @@
 		{ "$ref":"notifications", "$id":NumberLong(0) }
 	],
 	"notificationsRcvdRead":[],
-	"chats":[],
 	"phone":["13838472290","026-33324444"],
 	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
 }
 {
 	"_id":14,
-	"name":"",
-	"pwd":"",
+	"name":"Jason",
+	"pwd":"472d46cb829018f9dbd65fb8479a49bb",
 	"sectionID":14,
 	"position":"A product manager",
 	"companyID":0,
@@ -309,15 +295,14 @@
 		{ "$ref":"notifications", "$id":NumberLong(0) }
 	],
 	"notificationsRcvdRead":[],
-	"chats":[],
 	"phone":["13838472290","026-33324444"],
 	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
 }
 {
 	"_id":15,
-	"name":"",
-	"pwd":"",
-	"sectionID":15,
+	"name":"jason",
+	"pwd":"2b877b4b825b48a9a0950dd5bd1f264d",
+	"sectionID":0,
 	"position":"A product manager",
 	"companyID":0,
 	"gender":true,
@@ -330,15 +315,14 @@
 		{ "$ref":"notifications", "$id":NumberLong(0) }
 	],
 	"notificationsRcvdRead":[],
-	"chats":[],
 	"phone":["13838472290","026-33324444"],
 	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
 }
 {
 	"_id":16,
-	"name":"",
-	"pwd":"",
-	"sectionID":16,
+	"name":"jag",
+	"pwd":"6d3b29d3effedec81efd70167d6bf670",
+	"sectionID":1,
 	"position":"A product manager",
 	"companyID":0,
 	"gender":true,
@@ -351,7 +335,86 @@
 		{ "$ref":"notifications", "$id":NumberLong(0) }
 	],
 	"notificationsRcvdRead":[],
-	"chats":[],
+	"phone":["13838472290","026-33324444"],
+	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
+}
+{
+	"_id":17,
+	"name":"tomcat",
+	"pwd":"1b359d8753858b55befa0441067aaed3",
+	"sectionID":2,
+	"position":"A product manager",
+	"companyID":0,
+	"gender":true,
+	"avator":1,
+	"notificationsSent":[
+	],
+	"notificationsRcvdUnread":[
+		{ "$ref":"notifications", "$id":NumberLong(1) },
+		{ "$ref":"notifications", "$id":NumberLong(2) },
+		{ "$ref":"notifications", "$id":NumberLong(0) }
+	],
+	"notificationsRcvdRead":[],
+	"phone":["13838472290","026-33324444"],
+	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
+}
+{
+	"_id":18,
+	"name":"wong",
+	"pwd":"76f5d947149185d77a1fa1a114b3fb30",
+	"sectionID":3,
+	"position":"A product manager",
+	"companyID":0,
+	"gender":true,
+	"avator":1,
+	"notificationsSent":[
+	],
+	"notificationsRcvdUnread":[
+		{ "$ref":"notifications", "$id":NumberLong(1) },
+		{ "$ref":"notifications", "$id":NumberLong(2) },
+		{ "$ref":"notifications", "$id":NumberLong(0) }
+	],
+	"notificationsRcvdRead":[],
+	"phone":["13838472290","026-33324444"],
+	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
+}
+{
+	"_id":19,
+	"name":"amano",
+	"pwd":"392e26f6b5c48e3cc04e1dad5d03cc06",
+	"sectionID":4,
+	"position":"A product manager",
+	"companyID":0,
+	"gender":true,
+	"avator":1,
+	"notificationsSent":[
+	],
+	"notificationsRcvdUnread":[
+		{ "$ref":"notifications", "$id":NumberLong(1) },
+		{ "$ref":"notifications", "$id":NumberLong(2) },
+		{ "$ref":"notifications", "$id":NumberLong(0) }
+	],
+	"notificationsRcvdRead":[],
+	"phone":["13838472290","026-33324444"],
+	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
+}
+{
+	"_id":20,
+	"name":"administrator",
+	"pwd":"200ceb26807d6bf99fd6f4f0d1ca54d4",
+	"sectionID":-1,//admin
+	"position":"A product manager",
+	"companyID":0,
+	"gender":true,
+	"avator":1,
+	"notificationsSent":[
+	],
+	"notificationsRcvdUnread":[
+		{ "$ref":"notifications", "$id":NumberLong(1) },
+		{ "$ref":"notifications", "$id":NumberLong(2) },
+		{ "$ref":"notifications", "$id":NumberLong(0) }
+	],
+	"notificationsRcvdRead":[],
 	"phone":["13838472290","026-33324444"],
 	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
 }

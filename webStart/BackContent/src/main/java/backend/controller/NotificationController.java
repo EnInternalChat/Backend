@@ -3,6 +3,7 @@ package backend.controller;
 import backend.service.DatabaseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -44,7 +45,11 @@ public class NotificationController {
     }
 
     @ApiOperation(value = "发布通知", notes = "向下级部门发送通知")
-    @ApiImplicitParam(name = "receivers", value = "接收部门id列表", required = true, dataType = "List<Long>", paramType = "body")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "receivers", value = "接收部门id列表", required = true, dataType = "List<Long>", paramType = "body"),
+            @ApiImplicitParam(name = "title", value = "标题", required = true, dataType = "String", paramType = "body"),
+            @ApiImplicitParam(name = "content", value = "内容", required = true, dataType = "String", paramType = "body")
+    })
     @ResponseBody
     @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void sendNotification(@RequestParam("receivers") List<Long> receivers){

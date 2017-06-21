@@ -147,10 +147,13 @@ public class TaskController {
     }
 
     @ApiOperation(value = "修改流程信息", notes = "根据流程id改名")
-    @ApiImplicitParam(name = "processKey", value = "流程id", required = true, dataType = "String", paramType = "path")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "processKey", value = "流程id", required = true, dataType = "String", paramType = "path"),
+            @ApiImplicitParam(name = "newName", value = "新名", required = true, dataType = "String", paramType = "body")
+    })
     @ResponseBody
     @RequestMapping(value = "/{processKey}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void updateProcess(@PathVariable("processKey") String processKey) {
+    public void updateProcess(@PathVariable("processKey") String processKey, @RequestParam("newName") String newName) {
         return;
         //TODO put
     }

@@ -84,9 +84,41 @@ public class DatabaseService {
         jMessageClient=new JMessageClient(APP_KEY,MASTER_SECRET);
         idManager = idManagerRepository.findOne(0);
         if(idManager == null) {
-            idManager =new IdManager(0,0,0,0,0,0,0,0);
+            int ICompany=companyRepository.findAll().size();
+            int IEmployee=employeeRepository.findAll().size();
+            int INotification=notificationRepository.findAll().size();
+            int ISection=sectionRepository.findAll().size();
+            idManager =new IdManager(0,0,ICompany,IEmployee,0,INotification,ISection,0);
             idManagerRepository.save(idManager);
             //TODO fix all id bug
+        }
+        //chat server user set
+        try {
+            UserListResult userList=jMessageClient.getUserList(0,200);//TODO 200?
+            UserInfoResult[] userListUsers=userList.getUsers();
+            for(UserInfoResult info:userListUsers) {
+                if(info.getUsername().contains("testuser")) continue;
+                jMessageClient.deleteUser(info.getUsername());
+            }
+            List<Employee> employeeList=employeeRepository.findAll();
+            List<RegisterInfo> users = new ArrayList<>();
+            for(Employee employee:employeeList) {
+                RegisterInfo user = RegisterInfo.newBuilder()
+                        .setUsername(employee.getName())
+                        .setPassword(employee.getPassword())
+                        .build();
+                users.add(user);
+            }
+            if(users.size() != 0) {
+                RegisterInfo[] regUsers = new RegisterInfo[users.size()];
+                jMessageClient.registerUsers(users.toArray(regUsers));
+            }
+        } catch (APIConnectionException e) {
+            System.out.println("Connection error, should retry later");
+        } catch (APIRequestException e) {
+            System.out.println("HTTP Status: " + e.getStatus());
+            System.out.println("Error Code: " + e.getErrorCode());
+            System.out.println("Error Message: " + e.getErrorMessage());
         }
     }
 
@@ -146,12 +178,7 @@ public class DatabaseService {
             for(GroupInfoResult infoResult:groupInfoResultList) {
                 jMessageClient.deleteGroup(infoResult.getGid());
             }
-            UserListResult userList=jMessageClient.getUserList(0,100);
-            UserInfoResult[] userListUsers=userList.getUsers();
-            for(UserInfoResult info:userListUsers) {
-                if(info.getUsername().contains("testuser")) continue;
-                jMessageClient.deleteUser(info.getUsername());
-            }
+
             List<RegisterInfo> users = new ArrayList<>();
 
             RegisterInfo user = RegisterInfo.newBuilder()
@@ -172,8 +199,6 @@ public class DatabaseService {
             RegisterInfo[] regUsers = new RegisterInfo[users.size()];
             String res = jMessageClient.registerUsers(users.toArray(regUsers));
             System.out.println(res);
-
-            System.out.println(jMessageClient.registerAdmins("admin","123456"));
 
             UserInfoResult res1 = jMessageClient.getUserInfo("caocun");
             System.out.println(res1.getUsername()+" "+res1.getAppkey());
