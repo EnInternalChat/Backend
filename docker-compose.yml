@@ -23,7 +23,9 @@ services:
     image: redis
 
   mongo:
-    build: ./mongoStart
+    image: mongo
+    volumes:
+     - ./mongoStart:/docker-entrypoint-initdb.d
 
   mysql:
     image: mysql
