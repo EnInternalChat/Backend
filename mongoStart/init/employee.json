@@ -402,7 +402,7 @@
 	"_id":20,
 	"name":"administrator",
 	"pwd":"200ceb26807d6bf99fd6f4f0d1ca54d4",
-	"sectionID":-1,//admin
+	"sectionID":-1,
 	"position":"A product manager",
 	"companyID":0,
 	"gender":true,

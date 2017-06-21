@@ -4,7 +4,7 @@
 	"name":"董事会",
 	"leader":{
 		"$ref":"employee",
-		"$id":NumberLong(0),
+		"$id":NumberLong(0)
 	},
 	"members":[
 		{"$ref":"employee", "$id":NumberLong(0)}, 
@@ -21,7 +21,7 @@
 	"name":"总经理",
 	"leader":{
 		"$ref":"employee",
-		"$id":NumberLong(1),
+		"$id":NumberLong(1)
 	},
 	"members":[
 		{"$ref":"employee", "$id":NumberLong(1)}, 
@@ -41,7 +41,7 @@
 	"name":"分公司",
 	"leader":{
 		"$ref":"employee",
-		"$id":NumberLong(2),
+		"$id":NumberLong(2)
 	},
 	"members":[
 		{"$ref":"employee", "$id":NumberLong(2)},
@@ -56,7 +56,7 @@
 	"name":"副总经理1",
 	"leader":{
 		"$ref":"employee",
-		"$id":NumberLong(3),
+		"$id":NumberLong(3)
 	},
 	"members":[
 		{"$ref":"employee", "$id":NumberLong(3)},
@@ -75,7 +75,7 @@
 	"name":"副总经理2",
 	"leader":{
 		"$ref":"employee",
-		"$id":NumberLong(4),
+		"$id":NumberLong(4)
 	},
 	"members":[
 		{"$ref":"employee", "$id":NumberLong(4)},
@@ -94,10 +94,10 @@
 	"name":"副总经理3",
 	"leader":{
 		"$ref":"employee",
-		"$id":NumberLong(5),
+		"$id":NumberLong(5)
 	},
 	"members":[
-		{"$ref":"employee", "$id":NumberLong(5)},
+		{"$ref":"employee", "$id":NumberLong(5)}
 	],
 	"note":"It's core production developing center.",
 	"childrenSections":[ 
@@ -111,7 +111,7 @@
 	"name":"市场部",
 	"leader":{
 		"$ref":"employee",
-		"$id":NumberLong(6),
+		"$id":NumberLong(6)
 	},
 	"members":[
 		{"$ref":"employee", "$id":NumberLong(6)}
@@ -125,7 +125,7 @@
 	"name":"设计部",
 	"leader":{
 		"$ref":"employee",
-		"$id":NumberLong(7),
+		"$id":NumberLong(7)
 	},
 	"members":[
 		{"$ref":"employee", "$id":NumberLong(7)}
@@ -139,7 +139,7 @@
 	"name":"业务部",
 	"leader":{
 		"$ref":"employee",
-		"$id":NumberLong(8),
+		"$id":NumberLong(8)
 	},
 	"members":[
 		{"$ref":"employee", "$id":NumberLong(8)}
@@ -153,7 +153,7 @@
 	"name":"网络部",
 	"leader":{
 		"$ref":"employee",
-		"$id":NumberLong(9),
+		"$id":NumberLong(9)
 	},
 	"members":[
 		{"$ref":"employee", "$id":NumberLong(9)}
@@ -167,7 +167,7 @@
 	"name":"开发部",
 	"leader":{
 		"$ref":"employee",
-		"$id":NumberLong(10),
+		"$id":NumberLong(10)
 	},
 	"members":[
 		{"$ref":"employee", "$id":NumberLong(10)}
@@ -181,7 +181,7 @@
 	"name":"技术部",
 	"leader":{
 		"$ref":"employee",
-		"$id":NumberLong(11),
+		"$id":NumberLong(11)
 	},
 	"members":[
 		{"$ref":"employee", "$id":NumberLong(11)}
@@ -195,7 +195,7 @@
 	"name":"财务部",
 	"leader":{
 		"$ref":"employee",
-		"$id":NumberLong(12),
+		"$id":NumberLong(12)
 	},
 	"members":[
 		{"$ref":"employee", "$id":NumberLong(12)}
@@ -209,7 +209,7 @@
 	"name":"客服部",
 	"leader":{
 		"$ref":"employee",
-		"$id":NumberLong(13),
+		"$id":NumberLong(13)
 	},
 	"members":[
 		{"$ref":"employee", "$id":NumberLong(13)}
@@ -223,7 +223,7 @@
 	"name":"行政部",
 	"leader":{
 		"$ref":"employee",
-		"$id":NumberLong(14),
+		"$id":NumberLong(14)
 	},
 	"members":[
 		{"$ref":"employee", "$id":NumberLong(14)}
