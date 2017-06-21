@@ -117,4 +117,9 @@ public class TestController {
         diagramFile(xmlFile, response.getOutputStream());
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/chatTest", method = RequestMethod.GET)
+    public void chat() {
+        databaseService.testChat();
+    }
 }

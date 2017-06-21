@@ -5,6 +5,14 @@ import backend.repository.*;
 import cn.jiguang.common.ClientConfig;
 import cn.jiguang.common.resp.APIConnectionException;
 import cn.jiguang.common.resp.APIRequestException;
+import cn.jmessage.api.JMessageClient;
+import cn.jmessage.api.common.model.RegisterInfo;
+import cn.jmessage.api.group.CreateGroupResult;
+import cn.jmessage.api.group.GroupInfoResult;
+import cn.jmessage.api.group.GroupListResult;
+import cn.jmessage.api.user.UserInfoResult;
+import cn.jmessage.api.user.UserListResult;
+import cn.jmessage.api.user.UserStateResult;
 import cn.jpush.api.JPushClient;
 import cn.jpush.api.push.PushResult;
 import cn.jpush.api.push.model.Platform;
@@ -51,6 +59,7 @@ public class DatabaseService {
     private static String APP_KEY="f784911007eb5e69ef4a773f";
     private static String MASTER_SECRET="d4c4f6da868458e48f4de0e8";
     private JPushClient jPushClient;
+    private JMessageClient jMessageClient;
 
     @Autowired
     public DatabaseService(EmployeeRepository employeeRepository, NotificationRepository notificationRepository,
@@ -72,6 +81,7 @@ public class DatabaseService {
         this.mongoTemplate=mongoTemplate;
         this.idManagerRepository = idManagerRepository;
         jPushClient=new JPushClient(MASTER_SECRET,APP_KEY,null, ClientConfig.getInstance());
+        jMessageClient=new JMessageClient(APP_KEY,MASTER_SECRET);
         idManager = idManagerRepository.findOne(0);
         if(idManager == null) {
             idManager =new IdManager(0,0,0,0,0,0,0,0);
@@ -126,6 +136,105 @@ public class DatabaseService {
         long id= idManager.getITaskStage();
         idManagerRepository.save(idManager);
         return id;
+    }
+
+    public void testChat() {
+        CreateGroupResult createGroupResult=null;
+        try {
+            GroupListResult groupListResult=jMessageClient.getGroupListByAppkey(0,100);
+            List<GroupInfoResult> groupInfoResultList=groupListResult.getGroups();
+            for(GroupInfoResult infoResult:groupInfoResultList) {
+                jMessageClient.deleteGroup(infoResult.getGid());
+            }
+            UserListResult userList=jMessageClient.getUserList(0,100);
+            UserInfoResult[] userListUsers=userList.getUsers();
+            for(UserInfoResult info:userListUsers) {
+                if(info.getUsername().contains("testuser")) continue;
+                jMessageClient.deleteUser(info.getUsername());
+            }
+            List<RegisterInfo> users = new ArrayList<>();
+
+            RegisterInfo user = RegisterInfo.newBuilder()
+                    .setUsername("caocun")
+                    .setPassword("60ed7ebb60f7320349843364a64ea6bb")
+                    .build();
+            RegisterInfo user1 = RegisterInfo.newBuilder()
+                    .setUsername("adminfdafdaf")
+                    .setPassword("21232f297a57a5a743894a0e4a801fc3")
+                    .build();
+            RegisterInfo user2 = RegisterInfo.newBuilder()
+                    .setUsername("llllll")
+                    .setPassword("21232f297a57a5a743894a0e4a801fc3")
+                    .build();
+            users.add(user);
+            users.add(user1);
+            users.add(user2);
+            RegisterInfo[] regUsers = new RegisterInfo[users.size()];
+            String res = jMessageClient.registerUsers(users.toArray(regUsers));
+            System.out.println(res);
+
+            System.out.println(jMessageClient.registerAdmins("admin","123456"));
+
+            UserInfoResult res1 = jMessageClient.getUserInfo("caocun");
+            System.out.println(res1.getUsername()+" "+res1.getAppkey());
+
+            UserStateResult result = jMessageClient.getUserState("caocun");
+            System.out.println(result.getLogin()+" "+result.getOnline());
+
+            UserListResult listResult=jMessageClient.getUserList(0,20);
+            System.out.println("user total:"+listResult.getTotal());
+
+            jMessageClient.deleteUser("caocun");
+            System.out.println("delete:"+res1.getUsername()+" "+res1.getAppkey());
+
+            user = RegisterInfo.newBuilder()
+                    .setUsername("caocun")
+                    .setPassword("60ed7ebb60f7320349843364a64ea6bb")
+                    .build();
+            users.clear();
+            users.add(user);
+            regUsers = new RegisterInfo[users.size()];
+            jMessageClient.registerUsers(users.toArray(regUsers));
+            res1 = jMessageClient.getUserInfo("caocun");
+            System.out.println(res1);
+
+            jMessageClient.addFriends("caocun","adminfdafdaf","llllll","testuser");
+            UserInfoResult[] userInfoArray=jMessageClient.getFriendsInfo("caocun");
+            System.out.println("len 0:"+userInfoArray.length);
+            jMessageClient.deleteFriends("caocun","adminfdafdaf");
+            userInfoArray=jMessageClient.getFriendsInfo("caocun");
+            System.out.println("len 1:"+userInfoArray.length);
+
+            createGroupResult=jMessageClient.createGroup("caocun","testQun","none","adminfdafdaf","llllll");
+            System.out.println(createGroupResult.getGid());
+
+            ArrayList<String> add=new ArrayList<>();
+            ArrayList<String> del=new ArrayList<>();
+            add.add("admin");
+            del.add("llllll");
+            String[] addList=new String[add.size()];
+            String[] delList=new String[del.size()];
+            jMessageClient.addOrRemoveMembers(createGroupResult.getGid(),add.toArray(addList),del.toArray(delList));
+            del.clear();
+            del.add("caocun");
+            delList=new String[del.size()];
+            jMessageClient.addOrRemoveMembers(createGroupResult.getGid(),null,del.toArray(delList));
+        } catch (APIConnectionException e) {
+            System.out.println("Connection error. Should retry later. ");
+        } catch (APIRequestException | NullPointerException e) {
+            System.out.println("Error response from JPush server. Should review and fix it. ");
+            System.out.println("Error Message: " + e.getMessage());
+            try {
+                jMessageClient.deleteUser("adminfdafdaf");
+                jMessageClient.deleteUser("llllll");
+                jMessageClient.deleteUser("caocun");
+                if(createGroupResult != null) {
+                    jMessageClient.deleteGroup(createGroupResult.getGid());
+                }
+            } catch (Exception eee) {
+                System.out.println("end error");
+            }
+        }
     }
 
     public void sendAlertNtf() {
