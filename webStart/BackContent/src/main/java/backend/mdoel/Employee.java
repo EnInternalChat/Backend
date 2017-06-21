@@ -20,7 +20,7 @@ public class Employee {
     private long sectionID;
     private int avatar;
     private String name;
-    private String password;
+    private String pwd;
     private String position;
     private Collection<String> phone;
     private Collection<String> email;
@@ -54,7 +54,7 @@ public class Employee {
         this.companyID = companyID;
         this.sectionID = sectionID;
         this.name = name;
-        this.password = password;
+        this.pwd = password;
         this.position = position;
         this.gender = gender;
         active=true;
@@ -141,11 +141,11 @@ public class Employee {
     }
 
     public String getPassword() {
-        return password;
+        return pwd;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.pwd = password;
     }
 
     public Collection<Notification> getNotificationsSent() {
@@ -184,5 +184,15 @@ public class Employee {
         if(!email.contains(newEmail)) return false;
         email.add(newEmail);
         return true;
+    }
+
+    @Override
+    public String toString() {
+        String result="[ID:"+ID+"|comp:"+companyID+"|"
+                +"secID:"+sectionID+"|name: "+name+"|password: "+pwd+"|pos:"+position+"|"
+                +"emailSize:"+email.size()+"|phonesize:"+phone.size()+"|"
+                +"sentNoteSize:"+notificationsSent.size()+"|unread:"+notificationsRcvdUnread.size()
+                +"|read:"+notificationsRcvdRead.size()+"]";
+        return result;
     }
 }

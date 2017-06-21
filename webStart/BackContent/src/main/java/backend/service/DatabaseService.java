@@ -102,7 +102,9 @@ public class DatabaseService {
             }
             List<Employee> employeeList=employeeRepository.findAll();
             List<RegisterInfo> users = new ArrayList<>();
+            System.out.println(employeeList.size());
             for(Employee employee:employeeList) {
+                System.out.println(employee);
                 RegisterInfo user = RegisterInfo.newBuilder()
                         .setUsername(employee.getName())
                         .setPassword(employee.getPassword())
@@ -120,6 +122,10 @@ public class DatabaseService {
             System.out.println("Error Code: " + e.getErrorCode());
             System.out.println("Error Message: " + e.getErrorMessage());
         }
+    }
+
+    public Collection<Employee> em() {
+        return employeeRepository.findAll();
     }
 
     public long getIDeployOfProcess() {

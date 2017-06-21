@@ -7,7 +7,7 @@
 		"$id":NumberLong(20)
 	},
 	"headSec":{
-		"$ref":"instanceOfProcess",
+		"$ref":"section",
 		"$id":NumberLong(0)
 	},
 	"deployOfProcesses":[]

@@ -1,6 +1,7 @@
 package backend.controller;
 
 import backend.mdoel.Company;
+import backend.mdoel.Employee;
 import backend.mdoel.Section;
 import backend.service.DatabaseService;
 import io.swagger.annotations.Api;
@@ -22,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -122,4 +124,11 @@ public class TestController {
     public void chat() {
         databaseService.testChat();
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/testEmployee", method = RequestMethod.GET)
+    public Collection<Employee> testEmployee() {
+        return databaseService.em();
+    }
+
 }

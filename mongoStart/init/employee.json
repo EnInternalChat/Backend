@@ -101,7 +101,7 @@
 {
 	"_id":5,
 	"name":"garenfeather",
-	"pwd":"",
+	"pwd":"e0a92376d921f85197dded5c8950cf61",
 	"sectionID":5,
 	"position":"A product manager",
 	"companyID":0,
@@ -220,8 +220,8 @@
 }
 {
 	"_id":11,
-	"name":"",
-	"pwd":"",
+	"name":"iforgotyou",
+	"pwd":"735ee54402087583ceb451fe4dbdb924",
 	"sectionID":11,
 	"position":"A product manager",
 	"companyID":0,
@@ -240,8 +240,8 @@
 }
 {
 	"_id":12,
-	"name":"goo",
-	"pwd":"6cdcbae015da6f882373107c90209267",
+	"name":"goooooo",
+	"pwd":"6abef4ba28293113c1f2948a8b70d20c",
 	"sectionID":12,
 	"position":"A product manager",
 	"companyID":0,

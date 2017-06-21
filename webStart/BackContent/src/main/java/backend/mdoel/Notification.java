@@ -15,14 +15,18 @@ public class Notification {
     @Id
     private long ID;
     private long companyID;
-    private Employee senderID;
+    private long senderID;
     private long sentTime;
     private String content;
     private String senderName;
     private String title;
-    private Collection<Employee> rcvSecID;
+    private Collection<Long> rcvSecID;
 
     public Notification() {
+    }
+
+    public Collection<Long> getRcvSecID() {
+        return rcvSecID;
     }
 
     public Notification(long ID) {
@@ -52,7 +56,7 @@ public class Notification {
         this.ID = ID;
     }
 
-    public void setSenderID(Employee senderID) {
+    public void setSenderID(long senderID) {
         this.senderID = senderID;
     }
 
@@ -68,7 +72,7 @@ public class Notification {
         return ID;
     }
 
-    public Employee getSenderID() {
+    public long getSenderID() {
         return senderID;
     }
 

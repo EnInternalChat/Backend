@@ -9,9 +9,13 @@ import java.time.ZoneOffset;
  */
 public class StandardTimeFormat {
     private static SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-    public static String getCurrentTimeStr() {
+
+    public static String parse(long current) {
         OffsetDateTime odt = OffsetDateTime.now ();
         ZoneOffset zoneOffset = odt.getOffset ();
-        return formatter.format(System.currentTimeMillis())+zoneOffset;
+        return formatter.format(current)+zoneOffset;
+    }
+    public static String getCurrentTimeStr() {
+        return parse(System.currentTimeMillis());
     }
 }
