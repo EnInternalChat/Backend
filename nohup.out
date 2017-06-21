@@ -2709,4 +2709,1108 @@ Creating backend_web_1
 [33mmysql_1    |[0m 2017-06-21T18:20:41.214381Z 0 [Note] mysqld: Shutdown complete
 [33mmysql_1    |[0m 
 [33mbackend_mysql_1 exited with code 0
-[0m
+[0mCreating network "backend_default" with the default driver
+Building web
+Step 1 : FROM freedomkk/tomcat-maven
+ ---> b67aea784f80
+Step 2 : ADD ./BackContent/ /usr/local/tomcat/
+ ---> Using cache
+ ---> 7c75d383d364
+Step 3 : RUN cd /usr/local/tomcat
+ ---> Using cache
+ ---> 2611a39ad184
+Step 4 : RUN rm -f ./conf/server.xml ./conf/web.xml
+ ---> Using cache
+ ---> a62388f8afbf
+Step 5 : ADD ./server.xml /usr/local/tomcat/conf/
+ ---> Using cache
+ ---> 937c7cad125e
+Step 6 : ADD ./web.xml /usr/local/tomcat/conf/
+ ---> Using cache
+ ---> 4e8f229ff2ba
+Step 7 : ADD ./ice.garenfeather.cn.jks /usr/local/tomcat/conf/
+ ---> Using cache
+ ---> ef95b5717aed
+Step 8 : RUN mvn package
+ ---> Using cache
+ ---> 7e50e805674a
+Step 9 : RUN ls ./target
+ ---> Using cache
+ ---> 4187c478bfed
+Step 10 : RUN mv ./target/*.war /usr/local/tomcat/webapps
+ ---> Using cache
+ ---> 563f49e1ec2f
+Step 11 : EXPOSE 8080
+ ---> Using cache
+ ---> 5e13d7a43856
+Step 12 : ENTRYPOINT /usr/local/tomcat/bin/catalina.sh run
+ ---> Using cache
+ ---> 5b7690fd4982
+Successfully built 5b7690fd4982
+Creating backend_mongo_1 ... 
+Creating backend_mysql_1 ... 
+Creating backend_certbot_1 ... 
+Creating backend_certbot_1
+Creating backend_mongo_1
+Creating backend_redis_1 ... 
+Creating backend_mysql_1
+Creating backend_redis_1
+[1A[2KCreating backend_mongo_1 ... [32mdone[0m[1B[1A[2KCreating backend_certbot_1 ... [32mdone[0m[1B[1A[2KCreating backend_mysql_1 ... [32mdone[0m[1B[1A[2KCreating backend_redis_1 ... [32mdone[0m[1BCreating backend_web_1 ... 
+Creating backend_web_1
+[1A[2KCreating backend_web_1 ... [32mdone[0m[1BAttaching to backend_mongo_1, backend_certbot_1, backend_mysql_1, backend_redis_1, backend_web_1
+[36mmongo_1    |[0m about to fork child process, waiting until server is ready for connections.
+[36mmongo_1    |[0m forked process: 18
+[36mmongo_1    |[0m 2017-06-21T18:28:18.407+0000 I CONTROL  [main] ***** SERVER RESTARTED *****
+[36mmongo_1    |[0m 2017-06-21T18:28:18.414+0000 I CONTROL  [initandlisten] MongoDB starting : pid=18 port=27017 dbpath=/data/db 64-bit host=c51f80db120a
+[36mmongo_1    |[0m 2017-06-21T18:28:18.414+0000 I CONTROL  [initandlisten] db version v3.4.4
+[36mmongo_1    |[0m 2017-06-21T18:28:18.414+0000 I CONTROL  [initandlisten] git version: 888390515874a9debd1b6c5d36559ca86b44babd
+[36mmongo_1    |[0m 2017-06-21T18:28:18.414+0000 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1t  3 May 2016
+[36mmongo_1    |[0m 2017-06-21T18:28:18.414+0000 I CONTROL  [initandlisten] allocator: tcmalloc
+[36mmongo_1    |[0m 2017-06-21T18:28:18.414+0000 I CONTROL  [initandlisten] modules: none
+[36mmongo_1    |[0m 2017-06-21T18:28:18.414+0000 I CONTROL  [initandlisten] build environment:
+[36mmongo_1    |[0m 2017-06-21T18:28:18.414+0000 I CONTROL  [initandlisten]     distmod: debian81
+[36mmongo_1    |[0m 2017-06-21T18:28:18.414+0000 I CONTROL  [initandlisten]     distarch: x86_64
+[36mmongo_1    |[0m 2017-06-21T18:28:18.414+0000 I CONTROL  [initandlisten]     target_arch: x86_64
+[36mmongo_1    |[0m 2017-06-21T18:28:18.414+0000 I CONTROL  [initandlisten] options: { net: { bindIp: "127.0.0.1", port: 27017, ssl: { mode: "disabled" } }, processManagement: { fork: true, pidFilePath: "/tmp/tmp.7uQB6WdA82" }, systemLog: { destination: "file", logAppend: true, path: "/proc/1/fd/1" } }
+[36mmongo_1    |[0m 2017-06-21T18:28:18.431+0000 I STORAGE  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:28:18.431+0000 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+[36mmongo_1    |[0m 2017-06-21T18:28:18.431+0000 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+[36mmongo_1    |[0m 2017-06-21T18:28:18.431+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=407M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+[36mmongo_1    |[0m 2017-06-21T18:28:19.564+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:28:19.565+0000 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+[36mmongo_1    |[0m 2017-06-21T18:28:19.565+0000 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+[36mmongo_1    |[0m 2017-06-21T18:28:19.565+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:28:19.565+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:28:19.565+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+[36mmongo_1    |[0m 2017-06-21T18:28:19.565+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+[36mmongo_1    |[0m 2017-06-21T18:28:19.565+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:28:19.565+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'.
+[36mmongo_1    |[0m 2017-06-21T18:28:19.565+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+[36mmongo_1    |[0m 2017-06-21T18:28:19.565+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:28:19.672+0000 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/db/diagnostic.data'
+[36mmongo_1    |[0m 2017-06-21T18:28:20.107+0000 I INDEX    [initandlisten] build index on: admin.system.version properties: { v: 2, key: { version: 1 }, name: "incompatible_with_version_32", ns: "admin.system.version" }
+[36mmongo_1    |[0m 2017-06-21T18:28:20.108+0000 I INDEX    [initandlisten] 	 building index using bulk method; build may temporarily use up to 500 megabytes of RAM
+[36mmongo_1    |[0m 2017-06-21T18:28:20.109+0000 I INDEX    [initandlisten] build index done.  scanned 0 total records. 0 secs
+[36mmongo_1    |[0m 2017-06-21T18:28:20.109+0000 I COMMAND  [initandlisten] setting featureCompatibilityVersion to 3.4
+[36mmongo_1    |[0m child process started successfully, parent exiting
+[36mmongo_1    |[0m 2017-06-21T18:28:20.111+0000 I NETWORK  [thread1] waiting for connections on port 27017
+[36mmongo_1    |[0m 2017-06-21T18:28:20.505+0000 I NETWORK  [thread1] connection accepted from 127.0.0.1:48664 #1 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:28:20.506+0000 I NETWORK  [conn1] received client metadata from 127.0.0.1:48664 conn1: { application: { name: "MongoDB Shell" }, driver: { name: "MongoDB Internal Client", version: "3.4.4" }, os: { type: "Linux", name: "PRETTY_NAME="Debian GNU/Linux 8 (jessie)"", architecture: "x86_64", version: "Kernel 3.10.0-514.21.1.el7.x86_64" } }
+[36mmongo_1    |[0m 
+[36mmongo_1    |[0m /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/0-company.json
+[36mmongo_1    |[0m 
+[36mmongo_1    |[0m /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/0-employee.json
+[36mmongo_1    |[0m 
+[36mmongo_1    |[0m /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/0-notification.json
+[36mmongo_1    |[0m 
+[36mmongo_1    |[0m /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/0-section.json
+[36mmongo_1    |[0m 
+[36mmongo_1    |[0m /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/initMongo.sh
+[36mmongo_1    |[0m 2017-06-21T18:28:20.509+0000 I -        [conn1] end connection 127.0.0.1:48664 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:28:20.630+0000	connected to: localhost
+[36mmongo_1    |[0m 2017-06-21T18:28:20.640+0000	imported 1 document
+[36mmongo_1    |[0m 2017-06-21T18:28:20.652+0000	connected to: localhost
+[36mmongo_1    |[0m 2017-06-21T18:28:20.663+0000	imported 21 documents
+[36mmongo_1    |[0m 2017-06-21T18:28:20.628+0000 I NETWORK  [thread1] connection accepted from 127.0.0.1:48666 #2 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:28:20.641+0000 I -        [conn2] end connection 127.0.0.1:48666 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:28:20.651+0000 I NETWORK  [thread1] connection accepted from 127.0.0.1:48668 #3 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:28:20.664+0000 I -        [conn3] end connection 127.0.0.1:48668 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:28:20.675+0000 I NETWORK  [thread1] connection accepted from 127.0.0.1:48670 #4 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:28:20.679+0000	connected to: localhost
+[36mmongo_1    |[0m 2017-06-21T18:28:20.692+0000	imported 15 documents
+[36mmongo_1    |[0m 2017-06-21T18:28:20.699+0000 I -        [conn4] end connection 127.0.0.1:48670 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:28:20.712+0000 I NETWORK  [thread1] connection accepted from 127.0.0.1:48672 #5 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:28:20.713+0000	connected to: localhost
+[36mmongo_1    |[0m 2017-06-21T18:28:20.721+0000	imported 3 documents
+[36mmongo_1    |[0m 2017-06-21T18:28:20.722+0000 I -        [conn5] end connection 127.0.0.1:48672 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:28:20.733+0000	connected to: localhost
+[36mmongo_1    |[0m 2017-06-21T18:28:20.732+0000 I NETWORK  [thread1] connection accepted from 127.0.0.1:48674 #6 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:28:20.740+0000	imported 1 document
+[36mmongo_1    |[0m 2017-06-21T18:28:20.741+0000 I -        [conn6] end connection 127.0.0.1:48674 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:28:20.750+0000 I NETWORK  [thread1] connection accepted from 127.0.0.1:48676 #7 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:28:20.751+0000	connected to: localhost
+[36mmongo_1    |[0m 2017-06-21T18:28:20.769+0000	imported 21 documents
+[36mmongo_1    |[0m 2017-06-21T18:28:20.770+0000 I -        [conn7] end connection 127.0.0.1:48676 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:28:20.784+0000 I NETWORK  [thread1] connection accepted from 127.0.0.1:48678 #8 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:28:20.785+0000	connected to: localhost
+[36mmongo_1    |[0m 2017-06-21T18:28:20.800+0000	imported 15 documents
+[36mmongo_1    |[0m 2017-06-21T18:28:20.801+0000 I -        [conn8] end connection 127.0.0.1:48678 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:28:20.827+0000 I NETWORK  [thread1] connection accepted from 127.0.0.1:48680 #9 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:28:20.828+0000	connected to: localhost
+[36mmongo_1    |[0m 2017-06-21T18:28:20.845+0000	imported 3 documents
+[36mmongo_1    |[0m 
+[36mmongo_1    |[0m 2017-06-21T18:28:20.847+0000 I -        [conn9] end connection 127.0.0.1:48680 (1 connection now open)
+[36mmongo_1    |[0m killing process with pid: 18
+[36mmongo_1    |[0m 2017-06-21T18:28:20.877+0000 I CONTROL  [signalProcessingThread] got signal 15 (Terminated), will terminate after current cmd ends
+[36mmongo_1    |[0m 2017-06-21T18:28:20.877+0000 I NETWORK  [signalProcessingThread] shutdown: going to close listening sockets...
+[36mmongo_1    |[0m 2017-06-21T18:28:20.877+0000 I NETWORK  [signalProcessingThread] closing listening socket: 7
+[36mmongo_1    |[0m 2017-06-21T18:28:20.877+0000 I NETWORK  [signalProcessingThread] closing listening socket: 8
+[36mmongo_1    |[0m 2017-06-21T18:28:20.877+0000 I NETWORK  [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+[36mmongo_1    |[0m 2017-06-21T18:28:20.877+0000 I NETWORK  [signalProcessingThread] shutdown: going to flush diaglog...
+[36mmongo_1    |[0m 2017-06-21T18:28:20.877+0000 I FTDC     [signalProcessingThread] Shutting down full-time diagnostic data capture
+[36mmongo_1    |[0m 2017-06-21T18:28:20.879+0000 I STORAGE  [signalProcessingThread] WiredTigerKVEngine shutting down
+[36mmongo_1    |[0m 2017-06-21T18:28:21.023+0000 I STORAGE  [signalProcessingThread] shutdown: removing fs lock...
+[36mmongo_1    |[0m 2017-06-21T18:28:21.023+0000 I CONTROL  [signalProcessingThread] now exiting
+[36mmongo_1    |[0m 2017-06-21T18:28:21.024+0000 I CONTROL  [signalProcessingThread] shutting down with code:0
+[36mmongo_1    |[0m 
+[36mmongo_1    |[0m MongoDB init process complete; ready for start up.
+[36mmongo_1    |[0m 
+[36mmongo_1    |[0m 2017-06-21T18:28:21.962+0000 I CONTROL  [initandlisten] MongoDB starting : pid=1 port=27017 dbpath=/data/db 64-bit host=c51f80db120a
+[36mmongo_1    |[0m 2017-06-21T18:28:21.962+0000 I CONTROL  [initandlisten] db version v3.4.4
+[36mmongo_1    |[0m 2017-06-21T18:28:21.962+0000 I CONTROL  [initandlisten] git version: 888390515874a9debd1b6c5d36559ca86b44babd
+[36mmongo_1    |[0m 2017-06-21T18:28:21.962+0000 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1t  3 May 2016
+[36mmongo_1    |[0m 2017-06-21T18:28:21.962+0000 I CONTROL  [initandlisten] allocator: tcmalloc
+[36mmongo_1    |[0m 2017-06-21T18:28:21.962+0000 I CONTROL  [initandlisten] modules: none
+[36mmongo_1    |[0m 2017-06-21T18:28:21.962+0000 I CONTROL  [initandlisten] build environment:
+[36mmongo_1    |[0m 2017-06-21T18:28:21.962+0000 I CONTROL  [initandlisten]     distmod: debian81
+[36mmongo_1    |[0m 2017-06-21T18:28:21.962+0000 I CONTROL  [initandlisten]     distarch: x86_64
+[36mmongo_1    |[0m 2017-06-21T18:28:21.962+0000 I CONTROL  [initandlisten]     target_arch: x86_64
+[36mmongo_1    |[0m 2017-06-21T18:28:21.962+0000 I CONTROL  [initandlisten] options: {}
+[36mmongo_1    |[0m 2017-06-21T18:28:21.967+0000 I -        [initandlisten] Detected data files in /data/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+[36mmongo_1    |[0m 2017-06-21T18:28:21.967+0000 I STORAGE  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:28:21.967+0000 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+[36mmongo_1    |[0m 2017-06-21T18:28:21.967+0000 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+[36mmongo_1    |[0m 2017-06-21T18:28:21.967+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=407M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+[36mmongo_1    |[0m 2017-06-21T18:28:23.057+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:28:23.057+0000 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+[36mmongo_1    |[0m 2017-06-21T18:28:23.057+0000 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+[36mmongo_1    |[0m 2017-06-21T18:28:23.057+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:28:23.057+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:28:23.057+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+[36mmongo_1    |[0m 2017-06-21T18:28:23.057+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+[36mmongo_1    |[0m 2017-06-21T18:28:23.057+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:28:23.057+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'.
+[36mmongo_1    |[0m 2017-06-21T18:28:23.057+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+[36mmongo_1    |[0m 2017-06-21T18:28:23.057+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:28:23.069+0000 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/db/diagnostic.data'
+[36mmongo_1    |[0m 2017-06-21T18:28:23.074+0000 I NETWORK  [thread1] waiting for connections on port 27017
+[32mmysql_1    |[0m Initializing database
+[32mmysql_1    |[0m 2017-06-21T18:28:21.233013Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+[32mmysql_1    |[0m 2017-06-21T18:28:21.770230Z 0 [Warning] InnoDB: New log files created, LSN=45790
+[32mmysql_1    |[0m 2017-06-21T18:28:21.920141Z 0 [Warning] InnoDB: Creating foreign key constraint system tables.
+[32mmysql_1    |[0m 2017-06-21T18:28:22.005978Z 0 [Warning] No existing UUID has been found, so we assume that this is the first time that this server has been started. Generating a new UUID: 67df8ef7-56af-11e7-a8c8-0242ac120004.
+[32mmysql_1    |[0m 2017-06-21T18:28:22.021125Z 0 [Warning] Gtid table is not ready to be used. Table 'mysql.gtid_executed' cannot be opened.
+[32mmysql_1    |[0m 2017-06-21T18:28:22.021481Z 1 [Warning] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+[35mredis_1    |[0m 1:C 21 Jun 18:28:21.089 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+[35mredis_1    |[0m                 _._                                                  
+[35mredis_1    |[0m            _.-``__ ''-._                                             
+[35mredis_1    |[0m       _.-``    `.  `_.  ''-._           Redis 3.2.9 (00000000/0) 64 bit
+[35mredis_1    |[0m   .-`` .-```.  ```\/    _.,_ ''-._                                   
+[35mredis_1    |[0m  (    '      ,       .-`  | `,    )     Running in standalone mode
+[35mredis_1    |[0m  |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+[35mredis_1    |[0m  |    `-._   `._    /     _.-'    |     PID: 1
+[35mredis_1    |[0m   `-._    `-._  `-./  _.-'    _.-'                                   
+[35mredis_1    |[0m  |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+[35mredis_1    |[0m  |    `-._`-._        _.-'_.-'    |           http://redis.io        
+[35mredis_1    |[0m   `-._    `-._`-.__.-'_.-'    _.-'                                   
+[35mredis_1    |[0m  |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+[35mredis_1    |[0m  |    `-._`-._        _.-'_.-'    |                                  
+[35mredis_1    |[0m   `-._    `-._`-.__.-'_.-'    _.-'                                   
+[35mredis_1    |[0m       `-._    `-.__.-'    _.-'                                       
+[35mredis_1    |[0m           `-._        _.-'                                           
+[35mredis_1    |[0m               `-.__.-'                                               
+[35mredis_1    |[0m 
+[35mredis_1    |[0m 1:M 21 Jun 18:28:21.121 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+[35mredis_1    |[0m 1:M 21 Jun 18:28:21.121 # Server started, Redis version 3.2.9
+[35mredis_1    |[0m 1:M 21 Jun 18:28:21.121 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[35mredis_1    |[0m 1:M 21 Jun 18:28:21.121 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+[35mredis_1    |[0m 1:M 21 Jun 18:28:21.121 * The server is now ready to accept connections on port 6379
+[32mmysql_1    |[0m 2017-06-21T18:28:23.818340Z 1 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 2017-06-21T18:28:23.818387Z 1 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 2017-06-21T18:28:23.818416Z 1 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 2017-06-21T18:28:23.818436Z 1 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 2017-06-21T18:28:23.818508Z 1 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[33mcertbot_1  |[0m Saving debug log to /var/log/letsencrypt/letsencrypt.log
+[33mcertbot_1  |[0m 
+[33mcertbot_1  |[0m -------------------------------------------------------------------------------
+[33mcertbot_1  |[0m Processing /etc/letsencrypt/renewal/eic.garenfeather.cn.conf
+[33mcertbot_1  |[0m -------------------------------------------------------------------------------
+[33mcertbot_1  |[0m Cert not yet due for renewal
+[33mcertbot_1  |[0m 
+[33mcertbot_1  |[0m The following certs are not due for renewal yet:
+[33mcertbot_1  |[0m   /etc/letsencrypt/live/eic.garenfeather.cn/fullchain.pem (skipped)
+[33mcertbot_1  |[0m No renewals were attempted.
+[33mbackend_certbot_1 exited with code 0
+[0m[31mweb_1      |[0m 21-Jun-2017 18:28:25.734 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:        Apache Tomcat/8.0.23
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.735 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          May 19 2015 14:58:38 UTC
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.735 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:         8.0.23.0
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.735 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Linux
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.735 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            3.10.0-514.21.1.el7.x86_64
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.735 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.736 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /usr/lib/jvm/java-8-openjdk-amd64/jre
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.736 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_45-internal-b14
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.736 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.736 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /usr/local/tomcat
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.736 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /usr/local/tomcat
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.736 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/usr/local/tomcat/conf/logging.properties
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.736 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.736 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.endorsed.dirs=/usr/local/tomcat/endorsed
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.736 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/usr/local/tomcat
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.737 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/usr/local/tomcat
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.737 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/usr/local/tomcat/temp
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.737 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.865 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.887 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+[32mmysql_1    |[0m Database initialized
+[31mweb_1      |[0m 21-Jun-2017 18:28:25.891 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-443"]
+[32mmysql_1    |[0m Initializing certificates
+[32mmysql_1    |[0m Generating a 2048 bit RSA private key
+[32mmysql_1    |[0m ...............................................................................................+++
+[32mmysql_1    |[0m .........+++
+[32mmysql_1    |[0m unable to write 'random state'
+[32mmysql_1    |[0m writing new private key to 'ca-key.pem'
+[32mmysql_1    |[0m -----
+[32mmysql_1    |[0m Generating a 2048 bit RSA private key
+[32mmysql_1    |[0m .................+++
+[31mweb_1      |[0m 21-Jun-2017 18:28:26.414 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+[31mweb_1      |[0m 21-Jun-2017 18:28:26.423 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+[31mweb_1      |[0m 21-Jun-2017 18:28:26.425 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+[31mweb_1      |[0m 21-Jun-2017 18:28:26.426 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 1425 ms
+[31mweb_1      |[0m 21-Jun-2017 18:28:26.461 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service Catalina
+[31mweb_1      |[0m 21-Jun-2017 18:28:26.461 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/8.0.23
+[32mmysql_1    |[0m ...............................................................................+++
+[32mmysql_1    |[0m unable to write 'random state'
+[32mmysql_1    |[0m writing new private key to 'server-key.pem'
+[32mmysql_1    |[0m -----
+[32mmysql_1    |[0m Generating a 2048 bit RSA private key
+[32mmysql_1    |[0m ....................+++
+[32mmysql_1    |[0m ............+++
+[32mmysql_1    |[0m unable to write 'random state'
+[32mmysql_1    |[0m writing new private key to 'client-key.pem'
+[32mmysql_1    |[0m -----
+[31mweb_1      |[0m 21-Jun-2017 18:28:26.620 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive /usr/local/tomcat/webapps/EnInternalChat.war
+[32mmysql_1    |[0m Certificates initialized
+[32mmysql_1    |[0m MySQL init process in progress...
+[32mmysql_1    |[0m 2017-06-21T18:28:27.279664Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+[32mmysql_1    |[0m 2017-06-21T18:28:27.281490Z 0 [Note] mysqld (mysqld 5.7.18) starting as process 88 ...
+[32mmysql_1    |[0m 2017-06-21T18:28:27.293674Z 0 [Note] InnoDB: PUNCH HOLE support available
+[32mmysql_1    |[0m 2017-06-21T18:28:27.293698Z 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+[32mmysql_1    |[0m 2017-06-21T18:28:27.293702Z 0 [Note] InnoDB: Uses event mutexes
+[32mmysql_1    |[0m 2017-06-21T18:28:27.293706Z 0 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
+[32mmysql_1    |[0m 2017-06-21T18:28:27.293709Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+[32mmysql_1    |[0m 2017-06-21T18:28:27.293713Z 0 [Note] InnoDB: Using Linux native AIO
+[32mmysql_1    |[0m 2017-06-21T18:28:27.293999Z 0 [Note] InnoDB: Number of pools: 1
+[32mmysql_1    |[0m 2017-06-21T18:28:27.294139Z 0 [Note] InnoDB: Using CPU crc32 instructions
+[32mmysql_1    |[0m 2017-06-21T18:28:27.295799Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+[32mmysql_1    |[0m 2017-06-21T18:28:27.311138Z 0 [Note] InnoDB: Completed initialization of buffer pool
+[32mmysql_1    |[0m 2017-06-21T18:28:27.313364Z 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+[32mmysql_1    |[0m 2017-06-21T18:28:27.326490Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+[32mmysql_1    |[0m 2017-06-21T18:28:27.367418Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+[32mmysql_1    |[0m 2017-06-21T18:28:27.367503Z 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+[32mmysql_1    |[0m 2017-06-21T18:28:27.458145Z 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+[32mmysql_1    |[0m 2017-06-21T18:28:27.459245Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+[32mmysql_1    |[0m 2017-06-21T18:28:27.459256Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+[32mmysql_1    |[0m 2017-06-21T18:28:27.459595Z 0 [Note] InnoDB: Waiting for purge to start
+[32mmysql_1    |[0m 2017-06-21T18:28:27.510770Z 0 [Note] InnoDB: 5.7.18 started; log sequence number 2535558
+[32mmysql_1    |[0m 2017-06-21T18:28:27.511025Z 0 [Note] Plugin 'FEDERATED' is disabled.
+[32mmysql_1    |[0m 2017-06-21T18:28:27.518798Z 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+[32mmysql_1    |[0m 2017-06-21T18:28:27.521859Z 0 [Note] InnoDB: Buffer pool(s) load completed at 170621 18:28:27
+[32mmysql_1    |[0m 2017-06-21T18:28:27.522680Z 0 [Note] Found ca.pem, server-cert.pem and server-key.pem in data directory. Trying to enable SSL support using them.
+[32mmysql_1    |[0m 2017-06-21T18:28:27.522866Z 0 [Warning] CA certificate ca.pem is self signed.
+[32mmysql_1    |[0m 2017-06-21T18:28:27.562247Z 0 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 2017-06-21T18:28:27.562288Z 0 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 2017-06-21T18:28:27.562307Z 0 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 2017-06-21T18:28:27.562317Z 0 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 2017-06-21T18:28:27.563625Z 0 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 2017-06-21T18:28:27.582406Z 0 [Note] Event Scheduler: Loaded 0 events
+[32mmysql_1    |[0m 2017-06-21T18:28:27.586274Z 0 [Note] mysqld: ready for connections.
+[32mmysql_1    |[0m Version: '5.7.18'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server (GPL)
+[32mmysql_1    |[0m 2017-06-21T18:28:27.586295Z 0 [Note] Executing 'SELECT * FROM INFORMATION_SCHEMA.TABLES;' to get a list of tables using the deprecated partition engine. You may use the startup option '--disable-partition-engine-check' to skip this check. 
+[32mmysql_1    |[0m 2017-06-21T18:28:27.586299Z 0 [Note] Beginning of list of non-natively partitioned tables
+[32mmysql_1    |[0m 2017-06-21T18:28:27.602059Z 0 [Note] End of list of non-natively partitioned tables
+[32mmysql_1    |[0m Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
+[32mmysql_1    |[0m Warning: Unable to load '/usr/share/zoneinfo/leap-seconds.list' as time zone. Skipping it.
+[32mmysql_1    |[0m Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
+[32mmysql_1    |[0m 2017-06-21T18:28:31.573654Z 5 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 2017-06-21T18:28:31.573691Z 5 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 2017-06-21T18:28:31.573715Z 5 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 2017-06-21T18:28:31.573727Z 5 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 2017-06-21T18:28:31.573769Z 5 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 
+[32mmysql_1    |[0m /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/activi.mysql.init.sql
+[32mmysql_1    |[0m mysql: [Warning] Using a password on the command line interface can be insecure.
+[31mweb_1      |[0m 21-Jun-2017 18:28:31.627 INFO [localhost-startStop-1] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+[31mweb_1      |[0m log4j:WARN No appenders could be found for logger (org.springframework.web.context.ContextLoader).
+[31mweb_1      |[0m log4j:WARN Please initialize the log4j system properly.
+[31mweb_1      |[0m log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+[32mmysql_1    |[0m 
+[32mmysql_1    |[0m 
+[32mmysql_1    |[0m 2017-06-21T18:28:33.107942Z 0 [Note] Giving 0 client threads a chance to die gracefully
+[32mmysql_1    |[0m 2017-06-21T18:28:33.107964Z 0 [Note] Shutting down slave threads
+[32mmysql_1    |[0m 2017-06-21T18:28:33.107972Z 0 [Note] Forcefully disconnecting 0 remaining clients
+[32mmysql_1    |[0m 2017-06-21T18:28:33.107979Z 0 [Note] Event Scheduler: Purging the queue. 0 events
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108050Z 0 [Note] Binlog end
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108802Z 0 [Note] Shutting down plugin 'ngram'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108813Z 0 [Note] Shutting down plugin 'BLACKHOLE'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108818Z 0 [Note] Shutting down plugin 'partition'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108820Z 0 [Note] Shutting down plugin 'ARCHIVE'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108823Z 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108826Z 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108829Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108832Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108834Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108837Z 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108840Z 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108842Z 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108845Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108847Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108850Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108852Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108855Z 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108857Z 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108860Z 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108863Z 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108865Z 0 [Note] Shutting down plugin 'INNODB_METRICS'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108884Z 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108887Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108890Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108892Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108895Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108897Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108900Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108903Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108905Z 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108908Z 0 [Note] Shutting down plugin 'INNODB_CMP'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108910Z 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108918Z 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108921Z 0 [Note] Shutting down plugin 'INNODB_TRX'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.108924Z 0 [Note] Shutting down plugin 'InnoDB'
+[32mmysql_1    |[0m 2017-06-21T18:28:33.111903Z 0 [Note] InnoDB: FTS optimize thread exiting.
+[32mmysql_1    |[0m 2017-06-21T18:28:33.112815Z 0 [Note] InnoDB: Starting shutdown...
+[32mmysql_1    |[0m 2017-06-21T18:28:33.212990Z 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+[32mmysql_1    |[0m 2017-06-21T18:28:33.213348Z 0 [Note] InnoDB: Buffer pool(s) dump completed at 170621 18:28:33
+[32mmysql_1    |[0m 2017-06-21T18:28:34.473284Z 0 [Note] InnoDB: Shutdown completed; log sequence number 13819029
+[32mmysql_1    |[0m 2017-06-21T18:28:34.475522Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+[32mmysql_1    |[0m 2017-06-21T18:28:34.475538Z 0 [Note] Shutting down plugin 'MRG_MYISAM'
+[32mmysql_1    |[0m 2017-06-21T18:28:34.475546Z 0 [Note] Shutting down plugin 'MyISAM'
+[32mmysql_1    |[0m 2017-06-21T18:28:34.475563Z 0 [Note] Shutting down plugin 'CSV'
+[32mmysql_1    |[0m 2017-06-21T18:28:34.475568Z 0 [Note] Shutting down plugin 'MEMORY'
+[32mmysql_1    |[0m 2017-06-21T18:28:34.475572Z 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+[32mmysql_1    |[0m 2017-06-21T18:28:34.475597Z 0 [Note] Shutting down plugin 'sha256_password'
+[32mmysql_1    |[0m 2017-06-21T18:28:34.475600Z 0 [Note] Shutting down plugin 'mysql_native_password'
+[32mmysql_1    |[0m 2017-06-21T18:28:34.475733Z 0 [Note] Shutting down plugin 'binlog'
+[32mmysql_1    |[0m 2017-06-21T18:28:34.477661Z 0 [Note] mysqld: Shutdown complete
+[32mmysql_1    |[0m 
+[32mmysql_1    |[0m 
+[32mmysql_1    |[0m MySQL init process done. Ready for start up.
+[32mmysql_1    |[0m 
+[32mmysql_1    |[0m 2017-06-21T18:28:35.049222Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+[32mmysql_1    |[0m 2017-06-21T18:28:35.050752Z 0 [Note] mysqld (mysqld 5.7.18) starting as process 1 ...
+[32mmysql_1    |[0m 2017-06-21T18:28:35.053912Z 0 [Note] InnoDB: PUNCH HOLE support available
+[32mmysql_1    |[0m 2017-06-21T18:28:35.053932Z 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+[32mmysql_1    |[0m 2017-06-21T18:28:35.053938Z 0 [Note] InnoDB: Uses event mutexes
+[32mmysql_1    |[0m 2017-06-21T18:28:35.053942Z 0 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
+[32mmysql_1    |[0m 2017-06-21T18:28:35.053945Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+[32mmysql_1    |[0m 2017-06-21T18:28:35.053949Z 0 [Note] InnoDB: Using Linux native AIO
+[32mmysql_1    |[0m 2017-06-21T18:28:35.054195Z 0 [Note] InnoDB: Number of pools: 1
+[32mmysql_1    |[0m 2017-06-21T18:28:35.054295Z 0 [Note] InnoDB: Using CPU crc32 instructions
+[32mmysql_1    |[0m 2017-06-21T18:28:35.055744Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+[32mmysql_1    |[0m 2017-06-21T18:28:35.063908Z 0 [Note] InnoDB: Completed initialization of buffer pool
+[32mmysql_1    |[0m 2017-06-21T18:28:35.066135Z 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+[32mmysql_1    |[0m 2017-06-21T18:28:35.079757Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+[32mmysql_1    |[0m 2017-06-21T18:28:35.159379Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+[32mmysql_1    |[0m 2017-06-21T18:28:35.159447Z 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+[32mmysql_1    |[0m 2017-06-21T18:28:35.209920Z 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+[32mmysql_1    |[0m 2017-06-21T18:28:35.210754Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+[32mmysql_1    |[0m 2017-06-21T18:28:35.210763Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+[32mmysql_1    |[0m 2017-06-21T18:28:35.211053Z 0 [Note] InnoDB: Waiting for purge to start
+[32mmysql_1    |[0m 2017-06-21T18:28:35.261982Z 0 [Note] InnoDB: 5.7.18 started; log sequence number 13819029
+[32mmysql_1    |[0m 2017-06-21T18:28:35.262228Z 0 [Note] Plugin 'FEDERATED' is disabled.
+[32mmysql_1    |[0m 2017-06-21T18:28:35.264085Z 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+[32mmysql_1    |[0m 2017-06-21T18:28:35.268619Z 0 [Note] InnoDB: Buffer pool(s) load completed at 170621 18:28:35
+[32mmysql_1    |[0m 2017-06-21T18:28:35.272358Z 0 [Note] Found ca.pem, server-cert.pem and server-key.pem in data directory. Trying to enable SSL support using them.
+[32mmysql_1    |[0m 2017-06-21T18:28:35.272548Z 0 [Warning] CA certificate ca.pem is self signed.
+[32mmysql_1    |[0m 2017-06-21T18:28:35.274171Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+[32mmysql_1    |[0m 2017-06-21T18:28:35.274209Z 0 [Note] IPv6 is available.
+[32mmysql_1    |[0m 2017-06-21T18:28:35.274217Z 0 [Note]   - '::' resolves to '::';
+[32mmysql_1    |[0m 2017-06-21T18:28:35.274233Z 0 [Note] Server socket created on IP: '::'.
+[32mmysql_1    |[0m 2017-06-21T18:28:35.289175Z 0 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 2017-06-21T18:28:35.289215Z 0 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 2017-06-21T18:28:35.289240Z 0 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 2017-06-21T18:28:35.289250Z 0 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 2017-06-21T18:28:35.291860Z 0 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[32mmysql_1    |[0m 2017-06-21T18:28:35.299435Z 0 [Note] Event Scheduler: Loaded 0 events
+[32mmysql_1    |[0m 2017-06-21T18:28:35.300184Z 0 [Note] mysqld: ready for connections.
+[32mmysql_1    |[0m Version: '5.7.18'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
+[32mmysql_1    |[0m 2017-06-21T18:28:35.300198Z 0 [Note] Executing 'SELECT * FROM INFORMATION_SCHEMA.TABLES;' to get a list of tables using the deprecated partition engine. You may use the startup option '--disable-partition-engine-check' to skip this check. 
+[32mmysql_1    |[0m 2017-06-21T18:28:35.300201Z 0 [Note] Beginning of list of non-natively partitioned tables
+[32mmysql_1    |[0m 2017-06-21T18:28:35.312914Z 0 [Note] End of list of non-natively partitioned tables
+[31mweb_1      |[0m 21-Jun-2017 18:31:21.959 INFO [localhost-startStop-1] org.apache.catalina.util.SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [163,001] milliseconds.
+[31mweb_1      |[0m 21-Jun-2017 18:31:22.000 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive /usr/local/tomcat/webapps/EnInternalChat.war has finished in 175,380 ms
+[31mweb_1      |[0m 21-Jun-2017 18:31:22.003 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory /usr/local/tomcat/webapps/ROOT
+[31mweb_1      |[0m 21-Jun-2017 18:31:22.024 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory /usr/local/tomcat/webapps/ROOT has finished in 21 ms
+[31mweb_1      |[0m 21-Jun-2017 18:31:22.025 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory /usr/local/tomcat/webapps/docs
+[31mweb_1      |[0m 21-Jun-2017 18:31:22.040 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory /usr/local/tomcat/webapps/docs has finished in 15 ms
+[31mweb_1      |[0m 21-Jun-2017 18:31:22.040 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory /usr/local/tomcat/webapps/examples
+[31mweb_1      |[0m 21-Jun-2017 18:31:22.370 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory /usr/local/tomcat/webapps/examples has finished in 330 ms
+[31mweb_1      |[0m 21-Jun-2017 18:31:22.371 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory /usr/local/tomcat/webapps/host-manager
+[31mweb_1      |[0m 21-Jun-2017 18:31:22.389 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory /usr/local/tomcat/webapps/host-manager has finished in 18 ms
+[31mweb_1      |[0m 21-Jun-2017 18:31:22.390 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory /usr/local/tomcat/webapps/manager
+[31mweb_1      |[0m 21-Jun-2017 18:31:22.420 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory /usr/local/tomcat/webapps/manager has finished in 30 ms
+[31mweb_1      |[0m 21-Jun-2017 18:31:22.426 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+[31mweb_1      |[0m 21-Jun-2017 18:31:22.449 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-443"]
+[31mweb_1      |[0m 21-Jun-2017 18:31:22.452 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-nio-8009"]
+[31mweb_1      |[0m 21-Jun-2017 18:31:22.456 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 176030 ms
+[36mmongo_1    |[0m 2017-06-21T18:31:27.383+0000 I NETWORK  [thread1] connection accepted from 172.18.0.6:33254 #1 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:31:28.144+0000 I NETWORK  [thread1] connection accepted from 172.18.0.6:33256 #2 (2 connections now open)
+[31mweb_1      |[0m 21
+[31mweb_1      |[0m [ID:0|comp:0|secID:0|name: caocun|password: 60ed7ebb60f7320349843364a64ea6bb|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:1|comp:0|secID:1|name: PonyMa|password: d5f2e93d7e2eecd7dd30747cd22119cf|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:1|unread:0|read:0]
+[31mweb_1      |[0m [ID:2|comp:0|secID:2|name: dogli|password: b5ab92e1947c3c81559ead9fd8aa523f|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:3|comp:0|secID:3|name: zeus|password: 098ef03a15eaf14dfe66a596cf0eb510|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:4|comp:0|secID:4|name: mysql|password: 81c3b080dad537de7e10e0987a4bf52e|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:5|comp:0|secID:5|name: garenfeather|password: e0a92376d921f85197dded5c8950cf61|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:6|comp:0|secID:6|name: noah|password: 40564e4dd4cd0fc21e980d8eb05d15ee|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:7|comp:0|secID:7|name: spring|password: 2a2d595e6ed9a0b24f027f2b63b134d6|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:8|comp:0|secID:8|name: javadoc|password: 2b9fcb3b391260f7131d5bb997f44122|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:9|comp:0|secID:9|name: hibernate|password: 2b9fcb3b391260f7131d5bb997f44122|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:10|comp:0|secID:10|name: orientation|password: da1639422ad8f355d2371428471379b5|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:11|comp:0|secID:11|name: iforgotyou|password: 735ee54402087583ceb451fe4dbdb924|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:12|comp:0|secID:12|name: goooooo|password: 6abef4ba28293113c1f2948a8b70d20c|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:13|comp:0|secID:13|name: menya|password: 015f39cc5a24d5f8f6ea1e0a4a67893e|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:14|comp:0|secID:14|name: Jason|password: 472d46cb829018f9dbd65fb8479a49bb|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:15|comp:0|secID:0|name: jason|password: 2b877b4b825b48a9a0950dd5bd1f264d|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:16|comp:0|secID:1|name: jag|password: 6d3b29d3effedec81efd70167d6bf670|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[36mmongo_1    |[0m 2017-06-21T18:31:28.961+0000 I -        [conn1] end connection 172.18.0.6:33254 (2 connections now open)
+[36mmongo_1    |[0m 2017-06-21T18:31:28.962+0000 I -        [conn2] end connection 172.18.0.6:33256 (1 connection now open)
+[31mweb_1      |[0m 21-Jun-2017 18:32:51.916 INFO [Thread-7] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+[31mweb_1      |[0m 21-Jun-2017 18:32:51.968 INFO [Thread-7] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-443"]
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.018 INFO [Thread-7] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["ajp-nio-8009"]
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.069 INFO [Thread-7] org.apache.catalina.core.StandardService.stopInternal Stopping service Catalina
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.174 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [EnInternalChat] registered the JDBC driver [com.mysql.jdbc.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.179 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [EnInternalChat] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+[31mweb_1      |[0m  java.lang.Object.wait(Native Method)
+[31mweb_1      |[0m  java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
+[31mweb_1      |[0m  com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:43)
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.181 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [EnInternalChat] appears to have started a thread named [lettuce-nioEventLoop-3-1] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+[31mweb_1      |[0m  java.lang.Thread.sleep(Native Method)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor.confirmShutdown(SingleThreadEventExecutor.java:650)
+[31mweb_1      |[0m  io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:399)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:112)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:145)
+[31mweb_1      |[0m  java.lang.Thread.run(Thread.java:745)
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.182 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [EnInternalChat] appears to have started a thread named [threadDeathWatcher-4-1] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+[31mweb_1      |[0m  java.lang.Thread.sleep(Native Method)
+[31mweb_1      |[0m  io.netty.util.ThreadDeathWatcher$Watcher.run(ThreadDeathWatcher.java:147)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:145)
+[31mweb_1      |[0m  java.lang.Thread.run(Thread.java:745)
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.183 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [EnInternalChat] appears to have started a thread named [lettuce-nioEventLoop-3-2] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+[31mweb_1      |[0m  java.lang.Thread.sleep(Native Method)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor.confirmShutdown(SingleThreadEventExecutor.java:650)
+[31mweb_1      |[0m  io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:399)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:112)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:145)
+[31mweb_1      |[0m  java.lang.Thread.run(Thread.java:745)
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.183 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [EnInternalChat] appears to have started a thread named [lettuce-nioEventLoop-3-3] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+[31mweb_1      |[0m  java.lang.Thread.sleep(Native Method)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor.confirmShutdown(SingleThreadEventExecutor.java:650)
+[31mweb_1      |[0m  io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:399)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:112)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:145)
+[31mweb_1      |[0m  java.lang.Thread.run(Thread.java:745)
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.184 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [EnInternalChat] appears to have started a thread named [lettuce-eventExecutorLoop-1-1] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+[31mweb_1      |[0m  java.lang.Thread.sleep(Native Method)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor.confirmShutdown(SingleThreadEventExecutor.java:650)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultEventExecutor.run(DefaultEventExecutor.java:40)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:112)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:145)
+[31mweb_1      |[0m  java.lang.Thread.run(Thread.java:745)
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.187 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [EnInternalChat] appears to have started a thread named [lettuce-eventExecutorLoop-1-2] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+[31mweb_1      |[0m  java.lang.Thread.sleep(Native Method)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor.confirmShutdown(SingleThreadEventExecutor.java:650)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultEventExecutor.run(DefaultEventExecutor.java:40)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:112)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:145)
+[31mweb_1      |[0m  java.lang.Thread.run(Thread.java:745)
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.188 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [EnInternalChat] appears to have started a thread named [lettuce-eventExecutorLoop-1-3] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+[31mweb_1      |[0m  java.lang.Thread.sleep(Native Method)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor.confirmShutdown(SingleThreadEventExecutor.java:650)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultEventExecutor.run(DefaultEventExecutor.java:40)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:112)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:145)
+[31mweb_1      |[0m  java.lang.Thread.run(Thread.java:745)
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.189 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [EnInternalChat] appears to have started a thread named [globalEventExecutor-2-2] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+[31mweb_1      |[0m  sun.misc.Unsafe.park(Native Method)
+[31mweb_1      |[0m  java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+[31mweb_1      |[0m  java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+[31mweb_1      |[0m  java.util.concurrent.LinkedBlockingQueue.poll(LinkedBlockingQueue.java:467)
+[31mweb_1      |[0m  io.netty.util.concurrent.GlobalEventExecutor.takeTask(GlobalEventExecutor.java:90)
+[31mweb_1      |[0m  io.netty.util.concurrent.GlobalEventExecutor$TaskRunner.run(GlobalEventExecutor.java:233)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:145)
+[31mweb_1      |[0m  java.lang.Thread.run(Thread.java:745)
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.191 SEVERE [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalMapForLeaks The web application [EnInternalChat] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@6ad67e87]) and a value of type [io.netty.util.internal.InternalThreadLocalMap] (value [io.netty.util.internal.InternalThreadLocalMap@3373f07d]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.255 INFO [Thread-7] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.256 INFO [Thread-7] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-443"]
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.257 INFO [Thread-7] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["ajp-nio-8009"]
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.271 INFO [Thread-7] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.273 INFO [Thread-7] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-443"]
+[31mweb_1      |[0m 21-Jun-2017 18:32:52.273 INFO [Thread-7] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["ajp-nio-8009"]
+[31mbackend_web_1 exited with code 143
+[0m[35mredis_1    |[0m 1:signal-handler (1498069973) Received SIGTERM scheduling shutdown...
+[36mmongo_1    |[0m 2017-06-21T18:32:53.172+0000 I CONTROL  [signalProcessingThread] got signal 15 (Terminated), will terminate after current cmd ends
+[36mmongo_1    |[0m 2017-06-21T18:32:53.172+0000 I NETWORK  [signalProcessingThread] shutdown: going to close listening sockets...
+[36mmongo_1    |[0m 2017-06-21T18:32:53.173+0000 I NETWORK  [signalProcessingThread] closing listening socket: 6
+[36mmongo_1    |[0m 2017-06-21T18:32:53.173+0000 I NETWORK  [signalProcessingThread] closing listening socket: 7
+[36mmongo_1    |[0m 2017-06-21T18:32:53.173+0000 I NETWORK  [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+[36mmongo_1    |[0m 2017-06-21T18:32:53.173+0000 I NETWORK  [signalProcessingThread] shutdown: going to flush diaglog...
+[36mmongo_1    |[0m 2017-06-21T18:32:53.173+0000 I FTDC     [signalProcessingThread] Shutting down full-time diagnostic data capture
+[36mmongo_1    |[0m 2017-06-21T18:32:53.174+0000 I STORAGE  [signalProcessingThread] WiredTigerKVEngine shutting down
+[32mmysql_1    |[0m 2017-06-21T18:32:53.173700Z 0 [Note] Giving 0 client threads a chance to die gracefully
+[32mmysql_1    |[0m 2017-06-21T18:32:53.173723Z 0 [Note] Shutting down slave threads
+[32mmysql_1    |[0m 2017-06-21T18:32:53.173731Z 0 [Note] Forcefully disconnecting 0 remaining clients
+[32mmysql_1    |[0m 2017-06-21T18:32:53.173736Z 0 [Note] Event Scheduler: Purging the queue. 0 events
+[32mmysql_1    |[0m 2017-06-21T18:32:53.173771Z 0 [Note] Binlog end
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175372Z 0 [Note] Shutting down plugin 'ngram'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175383Z 0 [Note] Shutting down plugin 'BLACKHOLE'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175389Z 0 [Note] Shutting down plugin 'partition'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175391Z 0 [Note] Shutting down plugin 'ARCHIVE'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175394Z 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175397Z 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175400Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175403Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175405Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175408Z 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175410Z 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175413Z 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175416Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175418Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175421Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175423Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175426Z 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175428Z 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175430Z 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175433Z 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175435Z 0 [Note] Shutting down plugin 'INNODB_METRICS'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175437Z 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175440Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175442Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175445Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175447Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175450Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175453Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175457Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175460Z 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175463Z 0 [Note] Shutting down plugin 'INNODB_CMP'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175467Z 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175470Z 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175474Z 0 [Note] Shutting down plugin 'INNODB_TRX'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175477Z 0 [Note] Shutting down plugin 'InnoDB'
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175537Z 0 [Note] InnoDB: FTS optimize thread exiting.
+[32mmysql_1    |[0m 2017-06-21T18:32:53.175681Z 0 [Note] InnoDB: Starting shutdown...
+[35mredis_1    |[0m 1:M 21 Jun 18:32:53.256 # User requested shutdown...
+[35mredis_1    |[0m 1:M 21 Jun 18:32:53.256 * Saving the final RDB snapshot before exiting.
+[35mredis_1    |[0m 1:M 21 Jun 18:32:53.259 * DB saved on disk
+[35mredis_1    |[0m 1:M 21 Jun 18:32:53.259 # Redis is now ready to exit, bye bye...
+[32mmysql_1    |[0m 2017-06-21T18:32:53.275818Z 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+[32mmysql_1    |[0m 2017-06-21T18:32:53.276594Z 0 [Note] InnoDB: Buffer pool(s) dump completed at 170621 18:32:53
+[36mmongo_1    |[0m 2017-06-21T18:32:53.293+0000 I STORAGE  [signalProcessingThread] shutdown: removing fs lock...
+[36mmongo_1    |[0m 2017-06-21T18:32:53.293+0000 I CONTROL  [signalProcessingThread] now exiting
+[36mmongo_1    |[0m 2017-06-21T18:32:53.293+0000 I CONTROL  [signalProcessingThread] shutting down with code:0
+[35mbackend_redis_1 exited with code 0
+[0m[36mbackend_mongo_1 exited with code 0
+[0m[32mmysql_1    |[0m 2017-06-21T18:32:54.788443Z 0 [Note] InnoDB: Shutdown completed; log sequence number 13887405
+[32mmysql_1    |[0m 2017-06-21T18:32:54.789677Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+[32mmysql_1    |[0m 2017-06-21T18:32:54.789690Z 0 [Note] Shutting down plugin 'MRG_MYISAM'
+[32mmysql_1    |[0m 2017-06-21T18:32:54.789698Z 0 [Note] Shutting down plugin 'MyISAM'
+[32mmysql_1    |[0m 2017-06-21T18:32:54.789709Z 0 [Note] Shutting down plugin 'CSV'
+[32mmysql_1    |[0m 2017-06-21T18:32:54.789713Z 0 [Note] Shutting down plugin 'MEMORY'
+[32mmysql_1    |[0m 2017-06-21T18:32:54.789718Z 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+[32mmysql_1    |[0m 2017-06-21T18:32:54.789742Z 0 [Note] Shutting down plugin 'sha256_password'
+[32mmysql_1    |[0m 2017-06-21T18:32:54.789745Z 0 [Note] Shutting down plugin 'mysql_native_password'
+[32mmysql_1    |[0m 2017-06-21T18:32:54.790008Z 0 [Note] Shutting down plugin 'binlog'
+[32mmysql_1    |[0m 2017-06-21T18:32:54.792297Z 0 [Note] mysqld: Shutdown complete
+[32mmysql_1    |[0m 
+[32mbackend_mysql_1 exited with code 0
+[0mCreating network "backend_default" with the default driver
+Building web
+Step 1 : FROM freedomkk/tomcat-maven
+ ---> b67aea784f80
+Step 2 : ADD ./BackContent/ /usr/local/tomcat/
+ ---> Using cache
+ ---> 7c75d383d364
+Step 3 : RUN cd /usr/local/tomcat
+ ---> Using cache
+ ---> 2611a39ad184
+Step 4 : RUN rm -f ./conf/server.xml ./conf/web.xml
+ ---> Using cache
+ ---> a62388f8afbf
+Step 5 : ADD ./server.xml /usr/local/tomcat/conf/
+ ---> Using cache
+ ---> 937c7cad125e
+Step 6 : ADD ./web.xml /usr/local/tomcat/conf/
+ ---> Using cache
+ ---> 4e8f229ff2ba
+Step 7 : ADD ./ice.garenfeather.cn.jks /usr/local/tomcat/conf/
+ ---> Using cache
+ ---> ef95b5717aed
+Step 8 : RUN mvn package
+ ---> Using cache
+ ---> 7e50e805674a
+Step 9 : RUN ls ./target
+ ---> Using cache
+ ---> 4187c478bfed
+Step 10 : RUN mv ./target/*.war /usr/local/tomcat/webapps
+ ---> Using cache
+ ---> 563f49e1ec2f
+Step 11 : EXPOSE 8080
+ ---> Using cache
+ ---> 5e13d7a43856
+Step 12 : ENTRYPOINT /usr/local/tomcat/bin/catalina.sh run
+ ---> Using cache
+ ---> 5b7690fd4982
+Successfully built 5b7690fd4982
+Creating backend_mongo_1 ... 
+Creating backend_mysql_1 ... 
+Creating backend_certbot_1 ... 
+Creating backend_redis_1 ... 
+Creating backend_mongo_1
+Creating backend_mysql_1
+Creating backend_redis_1
+Creating backend_certbot_1
+[1A[2KCreating backend_mongo_1 ... [32mdone[0m[1B[1A[2KCreating backend_mysql_1 ... [32mdone[0m[1B[1A[2KCreating backend_redis_1 ... [32mdone[0m[1B[1A[2KCreating backend_certbot_1 ... [32mdone[0m[1BCreating backend_web_1 ... 
+Creating backend_web_1
+[1A[2KCreating backend_web_1 ... [32mdone[0m[1BAttaching to backend_mongo_1, backend_mysql_1, backend_redis_1, backend_certbot_1, backend_web_1
+[36mmongo_1    |[0m about to fork child process, waiting until server is ready for connections.
+[36mmongo_1    |[0m forked process: 18
+[36mmongo_1    |[0m 2017-06-21T18:35:27.553+0000 I CONTROL  [main] ***** SERVER RESTARTED *****
+[36mmongo_1    |[0m 2017-06-21T18:35:27.563+0000 I CONTROL  [initandlisten] MongoDB starting : pid=18 port=27017 dbpath=/data/db 64-bit host=0a42627ddc57
+[36mmongo_1    |[0m 2017-06-21T18:35:27.563+0000 I CONTROL  [initandlisten] db version v3.4.4
+[36mmongo_1    |[0m 2017-06-21T18:35:27.563+0000 I CONTROL  [initandlisten] git version: 888390515874a9debd1b6c5d36559ca86b44babd
+[36mmongo_1    |[0m 2017-06-21T18:35:27.563+0000 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1t  3 May 2016
+[36mmongo_1    |[0m 2017-06-21T18:35:27.563+0000 I CONTROL  [initandlisten] allocator: tcmalloc
+[36mmongo_1    |[0m 2017-06-21T18:35:27.563+0000 I CONTROL  [initandlisten] modules: none
+[36mmongo_1    |[0m 2017-06-21T18:35:27.563+0000 I CONTROL  [initandlisten] build environment:
+[36mmongo_1    |[0m 2017-06-21T18:35:27.563+0000 I CONTROL  [initandlisten]     distmod: debian81
+[36mmongo_1    |[0m 2017-06-21T18:35:27.563+0000 I CONTROL  [initandlisten]     distarch: x86_64
+[36mmongo_1    |[0m 2017-06-21T18:35:27.563+0000 I CONTROL  [initandlisten]     target_arch: x86_64
+[36mmongo_1    |[0m 2017-06-21T18:35:27.563+0000 I CONTROL  [initandlisten] options: { net: { bindIp: "127.0.0.1", port: 27017, ssl: { mode: "disabled" } }, processManagement: { fork: true, pidFilePath: "/tmp/tmp.Kdgq8g7JfU" }, systemLog: { destination: "file", logAppend: true, path: "/proc/1/fd/1" } }
+[36mmongo_1    |[0m 2017-06-21T18:35:27.570+0000 I STORAGE  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:35:27.570+0000 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+[36mmongo_1    |[0m 2017-06-21T18:35:27.570+0000 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+[36mmongo_1    |[0m 2017-06-21T18:35:27.570+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=407M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+[36mmongo_1    |[0m 2017-06-21T18:35:28.268+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:35:28.268+0000 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+[36mmongo_1    |[0m 2017-06-21T18:35:28.268+0000 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+[36mmongo_1    |[0m 2017-06-21T18:35:28.268+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:35:28.268+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:35:28.268+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+[36mmongo_1    |[0m 2017-06-21T18:35:28.269+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+[36mmongo_1    |[0m 2017-06-21T18:35:28.269+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:35:28.269+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'.
+[36mmongo_1    |[0m 2017-06-21T18:35:28.269+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+[36mmongo_1    |[0m 2017-06-21T18:35:28.269+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:35:28.743+0000 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/db/diagnostic.data'
+[36mmongo_1    |[0m 2017-06-21T18:35:29.131+0000 I INDEX    [initandlisten] build index on: admin.system.version properties: { v: 2, key: { version: 1 }, name: "incompatible_with_version_32", ns: "admin.system.version" }
+[36mmongo_1    |[0m 2017-06-21T18:35:29.131+0000 I INDEX    [initandlisten] 	 building index using bulk method; build may temporarily use up to 500 megabytes of RAM
+[36mmongo_1    |[0m 2017-06-21T18:35:29.132+0000 I INDEX    [initandlisten] build index done.  scanned 0 total records. 0 secs
+[36mmongo_1    |[0m 2017-06-21T18:35:29.133+0000 I COMMAND  [initandlisten] setting featureCompatibilityVersion to 3.4
+[36mmongo_1    |[0m 2017-06-21T18:35:29.133+0000 I NETWORK  [thread1] waiting for connections on port 27017
+[36mmongo_1    |[0m child process started successfully, parent exiting
+[36mmongo_1    |[0m 2017-06-21T18:35:29.392+0000 I NETWORK  [thread1] connection accepted from 127.0.0.1:48958 #1 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:35:29.392+0000 I NETWORK  [conn1] received client metadata from 127.0.0.1:48958 conn1: { application: { name: "MongoDB Shell" }, driver: { name: "MongoDB Internal Client", version: "3.4.4" }, os: { type: "Linux", name: "PRETTY_NAME="Debian GNU/Linux 8 (jessie)"", architecture: "x86_64", version: "Kernel 3.10.0-514.21.1.el7.x86_64" } }
+[36mmongo_1    |[0m 
+[36mmongo_1    |[0m /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/0-company.json
+[36mmongo_1    |[0m 
+[36mmongo_1    |[0m /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/0-employee.json
+[36mmongo_1    |[0m 
+[36mmongo_1    |[0m /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/0-notification.json
+[36mmongo_1    |[0m 
+[36mmongo_1    |[0m /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/0-section.json
+[36mmongo_1    |[0m 
+[36mmongo_1    |[0m /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/initMongo.sh
+[36mmongo_1    |[0m 2017-06-21T18:35:29.411+0000 I -        [conn1] end connection 127.0.0.1:48958 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:35:29.526+0000 I NETWORK  [thread1] connection accepted from 127.0.0.1:48960 #2 (1 connection now open)
+[33mmysql_1    |[0m Initializing database
+[36mmongo_1    |[0m 2017-06-21T18:35:29.528+0000	connected to: localhost
+[33mmysql_1    |[0m 2017-06-21T18:35:29.754090Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+[33mmysql_1    |[0m 2017-06-21T18:35:30.310665Z 0 [Warning] InnoDB: New log files created, LSN=45790
+[33mmysql_1    |[0m 2017-06-21T18:35:30.394250Z 0 [Warning] InnoDB: Creating foreign key constraint system tables.
+[33mmysql_1    |[0m 2017-06-21T18:35:30.460098Z 0 [Warning] No existing UUID has been found, so we assume that this is the first time that this server has been started. Generating a new UUID: 674078ee-56b0-11e7-b14b-0242ac120003.
+[33mmysql_1    |[0m 2017-06-21T18:35:30.462834Z 0 [Warning] Gtid table is not ready to be used. Table 'mysql.gtid_executed' cannot be opened.
+[33mmysql_1    |[0m 2017-06-21T18:35:30.463917Z 1 [Warning] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+[33mmysql_1    |[0m 2017-06-21T18:35:31.589149Z 1 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 2017-06-21T18:35:31.589182Z 1 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 2017-06-21T18:35:31.589196Z 1 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 2017-06-21T18:35:31.589206Z 1 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 2017-06-21T18:35:31.589240Z 1 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[36mmongo_1    |[0m 2017-06-21T18:35:29.539+0000	imported 1 document
+[36mmongo_1    |[0m 2017-06-21T18:35:29.542+0000 I -        [conn2] end connection 127.0.0.1:48960 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:35:29.555+0000 I NETWORK  [thread1] connection accepted from 127.0.0.1:48962 #3 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:35:29.557+0000	connected to: localhost
+[36mmongo_1    |[0m 2017-06-21T18:35:29.569+0000	imported 21 documents
+[36mmongo_1    |[0m 2017-06-21T18:35:29.570+0000 I -        [conn3] end connection 127.0.0.1:48962 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:35:29.583+0000 I NETWORK  [thread1] connection accepted from 127.0.0.1:48964 #4 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:35:29.584+0000	connected to: localhost
+[36mmongo_1    |[0m 2017-06-21T18:35:29.609+0000	imported 15 documents
+[32mredis_1    |[0m 1:C 21 Jun 18:35:29.779 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+[32mredis_1    |[0m                 _._                                                  
+[32mredis_1    |[0m            _.-``__ ''-._                                             
+[32mredis_1    |[0m       _.-``    `.  `_.  ''-._           Redis 3.2.9 (00000000/0) 64 bit
+[32mredis_1    |[0m   .-`` .-```.  ```\/    _.,_ ''-._                                   
+[32mredis_1    |[0m  (    '      ,       .-`  | `,    )     Running in standalone mode
+[32mredis_1    |[0m  |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+[32mredis_1    |[0m  |    `-._   `._    /     _.-'    |     PID: 1
+[32mredis_1    |[0m   `-._    `-._  `-./  _.-'    _.-'                                   
+[32mredis_1    |[0m  |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+[32mredis_1    |[0m  |    `-._`-._        _.-'_.-'    |           http://redis.io        
+[32mredis_1    |[0m   `-._    `-._`-.__.-'_.-'    _.-'                                   
+[32mredis_1    |[0m  |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+[32mredis_1    |[0m  |    `-._`-._        _.-'_.-'    |                                  
+[32mredis_1    |[0m   `-._    `-._`-.__.-'_.-'    _.-'                                   
+[32mredis_1    |[0m       `-._    `-.__.-'    _.-'                                       
+[32mredis_1    |[0m           `-._        _.-'                                           
+[32mredis_1    |[0m               `-.__.-'                                               
+[32mredis_1    |[0m 
+[32mredis_1    |[0m 1:M 21 Jun 18:35:29.782 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+[32mredis_1    |[0m 1:M 21 Jun 18:35:29.782 # Server started, Redis version 3.2.9
+[32mredis_1    |[0m 1:M 21 Jun 18:35:29.782 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[32mredis_1    |[0m 1:M 21 Jun 18:35:29.782 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+[32mredis_1    |[0m 1:M 21 Jun 18:35:29.782 * The server is now ready to accept connections on port 6379
+[36mmongo_1    |[0m 2017-06-21T18:35:29.614+0000 I -        [conn4] end connection 127.0.0.1:48964 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:35:29.627+0000	connected to: localhost
+[36mmongo_1    |[0m 2017-06-21T18:35:29.626+0000 I NETWORK  [thread1] connection accepted from 127.0.0.1:48966 #5 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:35:29.643+0000	imported 3 documents
+[36mmongo_1    |[0m 2017-06-21T18:35:29.649+0000 I -        [conn5] end connection 127.0.0.1:48966 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:35:29.660+0000 I NETWORK  [thread1] connection accepted from 127.0.0.1:48968 #6 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:35:29.661+0000	connected to: localhost
+[36mmongo_1    |[0m 2017-06-21T18:35:29.680+0000	imported 1 document
+[36mmongo_1    |[0m 2017-06-21T18:35:29.682+0000 I -        [conn6] end connection 127.0.0.1:48968 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:35:29.701+0000 I NETWORK  [thread1] connection accepted from 127.0.0.1:48970 #7 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:35:29.702+0000	connected to: localhost
+[36mmongo_1    |[0m 2017-06-21T18:35:29.724+0000	imported 21 documents
+[36mmongo_1    |[0m 2017-06-21T18:35:29.726+0000 I -        [conn7] end connection 127.0.0.1:48970 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:35:29.742+0000 I NETWORK  [thread1] connection accepted from 127.0.0.1:48972 #8 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:35:29.742+0000	connected to: localhost
+[36mmongo_1    |[0m 2017-06-21T18:35:29.753+0000	imported 15 documents
+[36mmongo_1    |[0m 2017-06-21T18:35:29.755+0000 I -        [conn8] end connection 127.0.0.1:48972 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:35:29.766+0000 I NETWORK  [thread1] connection accepted from 127.0.0.1:48974 #9 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:35:29.767+0000	connected to: localhost
+[36mmongo_1    |[0m 2017-06-21T18:35:29.786+0000	imported 3 documents
+[36mmongo_1    |[0m 
+[36mmongo_1    |[0m 2017-06-21T18:35:29.791+0000 I -        [conn9] end connection 127.0.0.1:48974 (1 connection now open)
+[36mmongo_1    |[0m killing process with pid: 18
+[36mmongo_1    |[0m 2017-06-21T18:35:29.812+0000 I CONTROL  [signalProcessingThread] got signal 15 (Terminated), will terminate after current cmd ends
+[36mmongo_1    |[0m 2017-06-21T18:35:29.812+0000 I NETWORK  [signalProcessingThread] shutdown: going to close listening sockets...
+[36mmongo_1    |[0m 2017-06-21T18:35:29.812+0000 I NETWORK  [signalProcessingThread] closing listening socket: 7
+[36mmongo_1    |[0m 2017-06-21T18:35:29.812+0000 I NETWORK  [signalProcessingThread] closing listening socket: 8
+[36mmongo_1    |[0m 2017-06-21T18:35:29.812+0000 I NETWORK  [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+[36mmongo_1    |[0m 2017-06-21T18:35:29.812+0000 I NETWORK  [signalProcessingThread] shutdown: going to flush diaglog...
+[36mmongo_1    |[0m 2017-06-21T18:35:29.812+0000 I FTDC     [signalProcessingThread] Shutting down full-time diagnostic data capture
+[36mmongo_1    |[0m 2017-06-21T18:35:29.816+0000 I STORAGE  [signalProcessingThread] WiredTigerKVEngine shutting down
+[36mmongo_1    |[0m 2017-06-21T18:35:30.319+0000 I STORAGE  [signalProcessingThread] shutdown: removing fs lock...
+[36mmongo_1    |[0m 2017-06-21T18:35:30.319+0000 I CONTROL  [signalProcessingThread] now exiting
+[36mmongo_1    |[0m 2017-06-21T18:35:30.319+0000 I CONTROL  [signalProcessingThread] shutting down with code:0
+[36mmongo_1    |[0m 
+[36mmongo_1    |[0m MongoDB init process complete; ready for start up.
+[36mmongo_1    |[0m 
+[36mmongo_1    |[0m 2017-06-21T18:35:30.851+0000 I CONTROL  [initandlisten] MongoDB starting : pid=1 port=27017 dbpath=/data/db 64-bit host=0a42627ddc57
+[36mmongo_1    |[0m 2017-06-21T18:35:30.851+0000 I CONTROL  [initandlisten] db version v3.4.4
+[36mmongo_1    |[0m 2017-06-21T18:35:30.851+0000 I CONTROL  [initandlisten] git version: 888390515874a9debd1b6c5d36559ca86b44babd
+[36mmongo_1    |[0m 2017-06-21T18:35:30.851+0000 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1t  3 May 2016
+[36mmongo_1    |[0m 2017-06-21T18:35:30.851+0000 I CONTROL  [initandlisten] allocator: tcmalloc
+[36mmongo_1    |[0m 2017-06-21T18:35:30.851+0000 I CONTROL  [initandlisten] modules: none
+[36mmongo_1    |[0m 2017-06-21T18:35:30.851+0000 I CONTROL  [initandlisten] build environment:
+[36mmongo_1    |[0m 2017-06-21T18:35:30.851+0000 I CONTROL  [initandlisten]     distmod: debian81
+[36mmongo_1    |[0m 2017-06-21T18:35:30.851+0000 I CONTROL  [initandlisten]     distarch: x86_64
+[36mmongo_1    |[0m 2017-06-21T18:35:30.851+0000 I CONTROL  [initandlisten]     target_arch: x86_64
+[36mmongo_1    |[0m 2017-06-21T18:35:30.851+0000 I CONTROL  [initandlisten] options: {}
+[36mmongo_1    |[0m 2017-06-21T18:35:30.856+0000 I -        [initandlisten] Detected data files in /data/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+[36mmongo_1    |[0m 2017-06-21T18:35:30.856+0000 I STORAGE  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:35:30.856+0000 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+[36mmongo_1    |[0m 2017-06-21T18:35:30.856+0000 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+[36mmongo_1    |[0m 2017-06-21T18:35:30.856+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=407M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+[36mmongo_1    |[0m 2017-06-21T18:35:31.659+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:35:31.659+0000 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+[36mmongo_1    |[0m 2017-06-21T18:35:31.659+0000 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+[36mmongo_1    |[0m 2017-06-21T18:35:31.659+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:35:31.659+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:35:31.659+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+[36mmongo_1    |[0m 2017-06-21T18:35:31.659+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+[36mmongo_1    |[0m 2017-06-21T18:35:31.659+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:35:31.659+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'.
+[36mmongo_1    |[0m 2017-06-21T18:35:31.659+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+[36mmongo_1    |[0m 2017-06-21T18:35:31.659+0000 I CONTROL  [initandlisten] 
+[36mmongo_1    |[0m 2017-06-21T18:35:31.678+0000 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/db/diagnostic.data'
+[36mmongo_1    |[0m 2017-06-21T18:35:31.683+0000 I NETWORK  [thread1] waiting for connections on port 27017
+[35mcertbot_1  |[0m Saving debug log to /var/log/letsencrypt/letsencrypt.log
+[35mcertbot_1  |[0m 
+[35mcertbot_1  |[0m -------------------------------------------------------------------------------
+[35mcertbot_1  |[0m Processing /etc/letsencrypt/renewal/eic.garenfeather.cn.conf
+[35mcertbot_1  |[0m -------------------------------------------------------------------------------
+[35mcertbot_1  |[0m 
+[35mcertbot_1  |[0m The following certs are not due for renewal yet:
+[35mcertbot_1  |[0m   /etc/letsencrypt/live/eic.garenfeather.cn/fullchain.pem (skipped)
+[35mcertbot_1  |[0m No renewals were attempted.
+[35mcertbot_1  |[0m Cert not yet due for renewal
+[35mbackend_certbot_1 exited with code 0
+[0m[33mmysql_1    |[0m Database initialized
+[33mmysql_1    |[0m Initializing certificates
+[33mmysql_1    |[0m Generating a 2048 bit RSA private key
+[33mmysql_1    |[0m .............................+++
+[33mmysql_1    |[0m .....+++
+[33mmysql_1    |[0m unable to write 'random state'
+[33mmysql_1    |[0m writing new private key to 'ca-key.pem'
+[33mmysql_1    |[0m -----
+[33mmysql_1    |[0m Generating a 2048 bit RSA private key
+[33mmysql_1    |[0m ...........................................+++
+[31mweb_1      |[0m 21-Jun-2017 18:35:34.830 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:        Apache Tomcat/8.0.23
+[31mweb_1      |[0m 21-Jun-2017 18:35:34.833 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          May 19 2015 14:58:38 UTC
+[31mweb_1      |[0m 21-Jun-2017 18:35:34.833 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:         8.0.23.0
+[31mweb_1      |[0m 21-Jun-2017 18:35:34.833 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Linux
+[31mweb_1      |[0m 21-Jun-2017 18:35:34.833 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            3.10.0-514.21.1.el7.x86_64
+[31mweb_1      |[0m 21-Jun-2017 18:35:34.833 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+[31mweb_1      |[0m 21-Jun-2017 18:35:34.833 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /usr/lib/jvm/java-8-openjdk-amd64/jre
+[31mweb_1      |[0m 21-Jun-2017 18:35:34.833 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_45-internal-b14
+[31mweb_1      |[0m 21-Jun-2017 18:35:34.833 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+[31mweb_1      |[0m 21-Jun-2017 18:35:34.834 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /usr/local/tomcat
+[31mweb_1      |[0m 21-Jun-2017 18:35:34.834 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /usr/local/tomcat
+[31mweb_1      |[0m 21-Jun-2017 18:35:34.834 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/usr/local/tomcat/conf/logging.properties
+[31mweb_1      |[0m 21-Jun-2017 18:35:34.834 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+[31mweb_1      |[0m 21-Jun-2017 18:35:34.834 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.endorsed.dirs=/usr/local/tomcat/endorsed
+[31mweb_1      |[0m 21-Jun-2017 18:35:34.834 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/usr/local/tomcat
+[31mweb_1      |[0m 21-Jun-2017 18:35:34.834 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/usr/local/tomcat
+[31mweb_1      |[0m 21-Jun-2017 18:35:34.834 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/usr/local/tomcat/temp
+[31mweb_1      |[0m 21-Jun-2017 18:35:34.835 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+[33mmysql_1    |[0m ........................................................................................................................................................................+++
+[33mmysql_1    |[0m unable to write 'random state'
+[33mmysql_1    |[0m writing new private key to 'server-key.pem'
+[33mmysql_1    |[0m -----
+[31mweb_1      |[0m 21-Jun-2017 18:35:35.069 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+[33mmysql_1    |[0m Generating a 2048 bit RSA private key
+[33mmysql_1    |[0m ....+++
+[31mweb_1      |[0m 21-Jun-2017 18:35:35.090 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+[31mweb_1      |[0m 21-Jun-2017 18:35:35.097 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-443"]
+[33mmysql_1    |[0m .................................................................................................+++
+[33mmysql_1    |[0m unable to write 'random state'
+[33mmysql_1    |[0m writing new private key to 'client-key.pem'
+[33mmysql_1    |[0m -----
+[33mmysql_1    |[0m Certificates initialized
+[31mweb_1      |[0m 21-Jun-2017 18:35:35.538 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+[31mweb_1      |[0m 21-Jun-2017 18:35:35.539 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+[31mweb_1      |[0m 21-Jun-2017 18:35:35.540 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+[31mweb_1      |[0m 21-Jun-2017 18:35:35.541 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 1563 ms
+[31mweb_1      |[0m 21-Jun-2017 18:35:35.572 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service Catalina
+[31mweb_1      |[0m 21-Jun-2017 18:35:35.572 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/8.0.23
+[31mweb_1      |[0m 21-Jun-2017 18:35:35.701 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive /usr/local/tomcat/webapps/EnInternalChat.war
+[33mmysql_1    |[0m MySQL init process in progress...
+[33mmysql_1    |[0m 2017-06-21T18:35:35.957267Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+[33mmysql_1    |[0m 2017-06-21T18:35:35.958790Z 0 [Note] mysqld (mysqld 5.7.18) starting as process 88 ...
+[33mmysql_1    |[0m 2017-06-21T18:35:35.983141Z 0 [Note] InnoDB: PUNCH HOLE support available
+[33mmysql_1    |[0m 2017-06-21T18:35:35.983181Z 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+[33mmysql_1    |[0m 2017-06-21T18:35:35.983186Z 0 [Note] InnoDB: Uses event mutexes
+[33mmysql_1    |[0m 2017-06-21T18:35:35.983190Z 0 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
+[33mmysql_1    |[0m 2017-06-21T18:35:35.983193Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+[33mmysql_1    |[0m 2017-06-21T18:35:35.983197Z 0 [Note] InnoDB: Using Linux native AIO
+[33mmysql_1    |[0m 2017-06-21T18:35:35.983499Z 0 [Note] InnoDB: Number of pools: 1
+[33mmysql_1    |[0m 2017-06-21T18:35:35.983614Z 0 [Note] InnoDB: Using CPU crc32 instructions
+[33mmysql_1    |[0m 2017-06-21T18:35:35.985219Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+[33mmysql_1    |[0m 2017-06-21T18:35:35.995490Z 0 [Note] InnoDB: Completed initialization of buffer pool
+[33mmysql_1    |[0m 2017-06-21T18:35:35.998142Z 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+[33mmysql_1    |[0m 2017-06-21T18:35:36.010400Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+[33mmysql_1    |[0m 2017-06-21T18:35:36.058148Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+[33mmysql_1    |[0m 2017-06-21T18:35:36.058211Z 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+[33mmysql_1    |[0m 2017-06-21T18:35:36.094621Z 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+[33mmysql_1    |[0m 2017-06-21T18:35:36.095716Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+[33mmysql_1    |[0m 2017-06-21T18:35:36.095729Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+[33mmysql_1    |[0m 2017-06-21T18:35:36.096024Z 0 [Note] InnoDB: Waiting for purge to start
+[33mmysql_1    |[0m 2017-06-21T18:35:36.147075Z 0 [Note] InnoDB: 5.7.18 started; log sequence number 2535558
+[33mmysql_1    |[0m 2017-06-21T18:35:36.147355Z 0 [Note] Plugin 'FEDERATED' is disabled.
+[33mmysql_1    |[0m 2017-06-21T18:35:36.153602Z 0 [Note] Found ca.pem, server-cert.pem and server-key.pem in data directory. Trying to enable SSL support using them.
+[33mmysql_1    |[0m 2017-06-21T18:35:36.153821Z 0 [Warning] CA certificate ca.pem is self signed.
+[33mmysql_1    |[0m 2017-06-21T18:35:36.154411Z 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+[33mmysql_1    |[0m 2017-06-21T18:35:36.155888Z 0 [Note] InnoDB: Buffer pool(s) load completed at 170621 18:35:36
+[33mmysql_1    |[0m 2017-06-21T18:35:36.179728Z 0 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 2017-06-21T18:35:36.179770Z 0 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 2017-06-21T18:35:36.179789Z 0 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 2017-06-21T18:35:36.179800Z 0 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 2017-06-21T18:35:36.181107Z 0 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 2017-06-21T18:35:36.190330Z 0 [Note] Event Scheduler: Loaded 0 events
+[33mmysql_1    |[0m 2017-06-21T18:35:36.190531Z 0 [Note] mysqld: ready for connections.
+[33mmysql_1    |[0m Version: '5.7.18'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server (GPL)
+[33mmysql_1    |[0m 2017-06-21T18:35:36.190544Z 0 [Note] Executing 'SELECT * FROM INFORMATION_SCHEMA.TABLES;' to get a list of tables using the deprecated partition engine. You may use the startup option '--disable-partition-engine-check' to skip this check. 
+[33mmysql_1    |[0m 2017-06-21T18:35:36.190548Z 0 [Note] Beginning of list of non-natively partitioned tables
+[33mmysql_1    |[0m 2017-06-21T18:35:36.264458Z 0 [Note] End of list of non-natively partitioned tables
+[33mmysql_1    |[0m Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
+[33mmysql_1    |[0m Warning: Unable to load '/usr/share/zoneinfo/leap-seconds.list' as time zone. Skipping it.
+[33mmysql_1    |[0m Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
+[33mmysql_1    |[0m 2017-06-21T18:35:40.716763Z 5 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 2017-06-21T18:35:40.716805Z 5 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 2017-06-21T18:35:40.716832Z 5 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 2017-06-21T18:35:40.716846Z 5 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 2017-06-21T18:35:40.716909Z 5 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 
+[33mmysql_1    |[0m /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/activi.mysql.init.sql
+[33mmysql_1    |[0m mysql: [Warning] Using a password on the command line interface can be insecure.
+[31mweb_1      |[0m 21-Jun-2017 18:35:40.851 INFO [localhost-startStop-1] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+[31mweb_1      |[0m log4j:WARN No appenders could be found for logger (org.springframework.web.context.ContextLoader).
+[31mweb_1      |[0m log4j:WARN Please initialize the log4j system properly.
+[31mweb_1      |[0m log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+[33mmysql_1    |[0m 
+[33mmysql_1    |[0m 
+[33mmysql_1    |[0m 2017-06-21T18:35:42.432708Z 0 [Note] Giving 0 client threads a chance to die gracefully
+[33mmysql_1    |[0m 2017-06-21T18:35:42.432733Z 0 [Note] Shutting down slave threads
+[33mmysql_1    |[0m 2017-06-21T18:35:42.432743Z 0 [Note] Forcefully disconnecting 0 remaining clients
+[33mmysql_1    |[0m 2017-06-21T18:35:42.432753Z 0 [Note] Event Scheduler: Purging the queue. 0 events
+[33mmysql_1    |[0m 2017-06-21T18:35:42.432897Z 0 [Note] Binlog end
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433815Z 0 [Note] Shutting down plugin 'ngram'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433828Z 0 [Note] Shutting down plugin 'BLACKHOLE'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433836Z 0 [Note] Shutting down plugin 'partition'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433840Z 0 [Note] Shutting down plugin 'ARCHIVE'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433844Z 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433849Z 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433853Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433857Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433861Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433864Z 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433887Z 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433892Z 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433895Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433899Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433903Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433907Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433911Z 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433915Z 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433918Z 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433922Z 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433926Z 0 [Note] Shutting down plugin 'INNODB_METRICS'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433930Z 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433934Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433937Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433941Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433945Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433949Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433952Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433956Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433959Z 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433963Z 0 [Note] Shutting down plugin 'INNODB_CMP'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433967Z 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433970Z 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433974Z 0 [Note] Shutting down plugin 'INNODB_TRX'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.433977Z 0 [Note] Shutting down plugin 'InnoDB'
+[33mmysql_1    |[0m 2017-06-21T18:35:42.440921Z 0 [Note] InnoDB: FTS optimize thread exiting.
+[33mmysql_1    |[0m 2017-06-21T18:35:42.442393Z 0 [Note] InnoDB: Starting shutdown...
+[33mmysql_1    |[0m 2017-06-21T18:35:42.542927Z 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+[33mmysql_1    |[0m 2017-06-21T18:35:42.543241Z 0 [Note] InnoDB: Buffer pool(s) dump completed at 170621 18:35:42
+[33mmysql_1    |[0m 2017-06-21T18:35:44.096146Z 0 [Note] InnoDB: Shutdown completed; log sequence number 13816959
+[33mmysql_1    |[0m 2017-06-21T18:35:44.099121Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+[33mmysql_1    |[0m 2017-06-21T18:35:44.099154Z 0 [Note] Shutting down plugin 'MRG_MYISAM'
+[33mmysql_1    |[0m 2017-06-21T18:35:44.099164Z 0 [Note] Shutting down plugin 'MyISAM'
+[33mmysql_1    |[0m 2017-06-21T18:35:44.099177Z 0 [Note] Shutting down plugin 'CSV'
+[33mmysql_1    |[0m 2017-06-21T18:35:44.099181Z 0 [Note] Shutting down plugin 'MEMORY'
+[33mmysql_1    |[0m 2017-06-21T18:35:44.099185Z 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+[33mmysql_1    |[0m 2017-06-21T18:35:44.099210Z 0 [Note] Shutting down plugin 'sha256_password'
+[33mmysql_1    |[0m 2017-06-21T18:35:44.099213Z 0 [Note] Shutting down plugin 'mysql_native_password'
+[33mmysql_1    |[0m 2017-06-21T18:35:44.099352Z 0 [Note] Shutting down plugin 'binlog'
+[33mmysql_1    |[0m 2017-06-21T18:35:44.101222Z 0 [Note] mysqld: Shutdown complete
+[33mmysql_1    |[0m 
+[33mmysql_1    |[0m 
+[33mmysql_1    |[0m MySQL init process done. Ready for start up.
+[33mmysql_1    |[0m 
+[33mmysql_1    |[0m 2017-06-21T18:35:44.573124Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+[33mmysql_1    |[0m 2017-06-21T18:35:44.574651Z 0 [Note] mysqld (mysqld 5.7.18) starting as process 1 ...
+[33mmysql_1    |[0m 2017-06-21T18:35:44.578336Z 0 [Note] InnoDB: PUNCH HOLE support available
+[33mmysql_1    |[0m 2017-06-21T18:35:44.578358Z 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+[33mmysql_1    |[0m 2017-06-21T18:35:44.578364Z 0 [Note] InnoDB: Uses event mutexes
+[33mmysql_1    |[0m 2017-06-21T18:35:44.578368Z 0 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
+[33mmysql_1    |[0m 2017-06-21T18:35:44.578371Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+[33mmysql_1    |[0m 2017-06-21T18:35:44.578375Z 0 [Note] InnoDB: Using Linux native AIO
+[33mmysql_1    |[0m 2017-06-21T18:35:44.578613Z 0 [Note] InnoDB: Number of pools: 1
+[33mmysql_1    |[0m 2017-06-21T18:35:44.578712Z 0 [Note] InnoDB: Using CPU crc32 instructions
+[33mmysql_1    |[0m 2017-06-21T18:35:44.580281Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+[33mmysql_1    |[0m 2017-06-21T18:35:44.590621Z 0 [Note] InnoDB: Completed initialization of buffer pool
+[33mmysql_1    |[0m 2017-06-21T18:35:44.592791Z 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+[33mmysql_1    |[0m 2017-06-21T18:35:44.604662Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+[33mmysql_1    |[0m 2017-06-21T18:35:44.665036Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+[33mmysql_1    |[0m 2017-06-21T18:35:44.665105Z 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+[33mmysql_1    |[0m 2017-06-21T18:35:44.726966Z 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+[33mmysql_1    |[0m 2017-06-21T18:35:44.727810Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+[33mmysql_1    |[0m 2017-06-21T18:35:44.727819Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+[33mmysql_1    |[0m 2017-06-21T18:35:44.732292Z 0 [Note] InnoDB: Waiting for purge to start
+[33mmysql_1    |[0m 2017-06-21T18:35:44.783001Z 0 [Note] InnoDB: 5.7.18 started; log sequence number 13816959
+[33mmysql_1    |[0m 2017-06-21T18:35:44.783290Z 0 [Note] Plugin 'FEDERATED' is disabled.
+[33mmysql_1    |[0m 2017-06-21T18:35:44.784222Z 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+[33mmysql_1    |[0m 2017-06-21T18:35:44.796718Z 0 [Note] Found ca.pem, server-cert.pem and server-key.pem in data directory. Trying to enable SSL support using them.
+[33mmysql_1    |[0m 2017-06-21T18:35:44.797067Z 0 [Warning] CA certificate ca.pem is self signed.
+[33mmysql_1    |[0m 2017-06-21T18:35:44.800317Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+[33mmysql_1    |[0m 2017-06-21T18:35:44.800367Z 0 [Note] IPv6 is available.
+[33mmysql_1    |[0m 2017-06-21T18:35:44.800375Z 0 [Note]   - '::' resolves to '::';
+[33mmysql_1    |[0m 2017-06-21T18:35:44.800394Z 0 [Note] Server socket created on IP: '::'.
+[33mmysql_1    |[0m 2017-06-21T18:35:44.801316Z 0 [Note] InnoDB: Buffer pool(s) load completed at 170621 18:35:44
+[33mmysql_1    |[0m 2017-06-21T18:35:44.823096Z 0 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 2017-06-21T18:35:44.823137Z 0 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 2017-06-21T18:35:44.823162Z 0 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 2017-06-21T18:35:44.823172Z 0 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 2017-06-21T18:35:44.826127Z 0 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[33mmysql_1    |[0m 2017-06-21T18:35:44.835961Z 0 [Note] Event Scheduler: Loaded 0 events
+[33mmysql_1    |[0m 2017-06-21T18:35:44.840182Z 0 [Note] mysqld: ready for connections.
+[33mmysql_1    |[0m Version: '5.7.18'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
+[33mmysql_1    |[0m 2017-06-21T18:35:44.840208Z 0 [Note] Executing 'SELECT * FROM INFORMATION_SCHEMA.TABLES;' to get a list of tables using the deprecated partition engine. You may use the startup option '--disable-partition-engine-check' to skip this check. 
+[33mmysql_1    |[0m 2017-06-21T18:35:44.840213Z 0 [Note] Beginning of list of non-natively partitioned tables
+[33mmysql_1    |[0m 2017-06-21T18:35:44.867339Z 0 [Note] End of list of non-natively partitioned tables
+[31mweb_1      |[0m 21-Jun-2017 18:36:58.895 INFO [localhost-startStop-1] org.apache.catalina.util.SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [70,353] milliseconds.
+[31mweb_1      |[0m 21-Jun-2017 18:36:58.926 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive /usr/local/tomcat/webapps/EnInternalChat.war has finished in 83,225 ms
+[31mweb_1      |[0m 21-Jun-2017 18:36:58.927 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory /usr/local/tomcat/webapps/ROOT
+[31mweb_1      |[0m 21-Jun-2017 18:36:58.953 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory /usr/local/tomcat/webapps/ROOT has finished in 26 ms
+[31mweb_1      |[0m 21-Jun-2017 18:36:58.954 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory /usr/local/tomcat/webapps/docs
+[31mweb_1      |[0m 21-Jun-2017 18:36:58.982 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory /usr/local/tomcat/webapps/docs has finished in 27 ms
+[31mweb_1      |[0m 21-Jun-2017 18:36:58.982 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory /usr/local/tomcat/webapps/examples
+[31mweb_1      |[0m 21-Jun-2017 18:36:59.243 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory /usr/local/tomcat/webapps/examples has finished in 261 ms
+[31mweb_1      |[0m 21-Jun-2017 18:36:59.243 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory /usr/local/tomcat/webapps/host-manager
+[31mweb_1      |[0m 21-Jun-2017 18:36:59.300 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory /usr/local/tomcat/webapps/host-manager has finished in 57 ms
+[31mweb_1      |[0m 21-Jun-2017 18:36:59.300 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory /usr/local/tomcat/webapps/manager
+[31mweb_1      |[0m 21-Jun-2017 18:36:59.339 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory /usr/local/tomcat/webapps/manager has finished in 39 ms
+[31mweb_1      |[0m 21-Jun-2017 18:36:59.354 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+[31mweb_1      |[0m 21-Jun-2017 18:36:59.365 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-443"]
+[31mweb_1      |[0m 21-Jun-2017 18:36:59.367 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-nio-8009"]
+[31mweb_1      |[0m 21-Jun-2017 18:36:59.369 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 83828 ms
+[36mmongo_1    |[0m 2017-06-21T18:37:01.611+0000 I NETWORK  [thread1] connection accepted from 172.18.0.6:33496 #1 (1 connection now open)
+[36mmongo_1    |[0m 2017-06-21T18:37:02.179+0000 I NETWORK  [thread1] connection accepted from 172.18.0.6:33498 #2 (2 connections now open)
+[31mweb_1      |[0m 21
+[31mweb_1      |[0m [ID:0|comp:0|secID:0|name: caocun|password: 60ed7ebb60f7320349843364a64ea6bb|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:1|comp:0|secID:1|name: PonyMa|password: d5f2e93d7e2eecd7dd30747cd22119cf|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:1|unread:0|read:0]
+[31mweb_1      |[0m [ID:2|comp:0|secID:2|name: dogli|password: b5ab92e1947c3c81559ead9fd8aa523f|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:3|comp:0|secID:3|name: zeus|password: 098ef03a15eaf14dfe66a596cf0eb510|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:4|comp:0|secID:4|name: mysql|password: 81c3b080dad537de7e10e0987a4bf52e|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:5|comp:0|secID:5|name: garenfeather|password: e0a92376d921f85197dded5c8950cf61|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:6|comp:0|secID:6|name: noah|password: 40564e4dd4cd0fc21e980d8eb05d15ee|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:7|comp:0|secID:7|name: spring|password: 2a2d595e6ed9a0b24f027f2b63b134d6|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:8|comp:0|secID:8|name: javadoc|password: 2b9fcb3b391260f7131d5bb997f44122|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:9|comp:0|secID:9|name: hibernate|password: 2b9fcb3b391260f7131d5bb997f44122|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:10|comp:0|secID:10|name: orientation|password: da1639422ad8f355d2371428471379b5|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:11|comp:0|secID:11|name: iforgotyou|password: 735ee54402087583ceb451fe4dbdb924|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:12|comp:0|secID:12|name: goooooo|password: 6abef4ba28293113c1f2948a8b70d20c|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:13|comp:0|secID:13|name: menya|password: 015f39cc5a24d5f8f6ea1e0a4a67893e|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:14|comp:0|secID:14|name: Jason|password: 472d46cb829018f9dbd65fb8479a49bb|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:15|comp:0|secID:0|name: jason|password: 2b877b4b825b48a9a0950dd5bd1f264d|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:16|comp:0|secID:1|name: jaggggggg|password: 6d3b29d3effedec81efd70167d6bf670|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:17|comp:0|secID:2|name: tomcat|password: 1b359d8753858b55befa0441067aaed3|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:18|comp:0|secID:3|name: wong|password: 76f5d947149185d77a1fa1a114b3fb30|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:19|comp:0|secID:4|name: amano|password: 392e26f6b5c48e3cc04e1dad5d03cc06|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m [ID:20|comp:0|secID:-1|name: administrator|password: 200ceb26807d6bf99fd6f4f0d1ca54d4|pos:A product manager|emailSize:0|phonesize:2|sentNoteSize:0|unread:0|read:0]
+[31mweb_1      |[0m GET|/swagger-ui.html|null
+[31mweb_1      |[0m GET|/swagger-ui.html|null
+[31mweb_1      |[0m GET|/webjars/springfox-swagger-ui/css/typography.css|null
+[31mweb_1      |[0m GET|/webjars/springfox-swagger-ui/css/reset.css|null
+[31mweb_1      |[0m GET|/webjars/springfox-swagger-ui/lib/underscore-min.js|null
+[31mweb_1      |[0m GET|/webjars/springfox-swagger-ui/swagger-ui.min.js|null
+[31mweb_1      |[0m GET|/webjars/springfox-swagger-ui/lib/backbone-min.js|null
+[31mweb_1      |[0m GET|/webjars/springfox-swagger-ui/lib/handlebars-2.0.0.js|null
+[31mweb_1      |[0m GET|/webjars/springfox-swagger-ui/css/screen.css|null
+[31mweb_1      |[0m GET|/webjars/springfox-swagger-ui/lib/jquery-1.8.0.min.js|null
+[31mweb_1      |[0m GET|/webjars/springfox-swagger-ui/lib/jquery.slideto.min.js|null
+[31mweb_1      |[0m GET|/webjars/springfox-swagger-ui/lib/jquery.ba-bbq.min.js|null
+[31mweb_1      |[0m GET|/webjars/springfox-swagger-ui/lib/jquery.wiggle.min.js|null
+[31mweb_1      |[0m GET|/webjars/springfox-swagger-ui/lib/jsoneditor.min.js|null
+[31mweb_1      |[0m GET|/webjars/springfox-swagger-ui/lib/marked.js|null
+[31mweb_1      |[0m GET|/webjars/springfox-swagger-ui/springfox.js|null
+[31mweb_1      |[0m GET|/webjars/springfox-swagger-ui/lib/swagger-oauth.js|null
+[31mweb_1      |[0m GET|/webjars/springfox-swagger-ui/lib/highlight.7.3.pack.js|null
+[31mweb_1      |[0m GET|/webjars/springfox-swagger-ui/css/print.css|null
+[31mweb_1      |[0m GET|/configuration/ui|null
+[31mweb_1      |[0m GET|/swagger-resources|null
+[31mweb_1      |[0m GET|/v2/api-docs|null
+[31mweb_1      |[0m GET|/configuration/security|null
+[31mweb_1      |[0m GET|/testSerialize2|null
+[31mweb_1      |[0m GET|/testSerialize1|null
+[31mweb_1      |[0m null
+[31mweb_1      |[0m GET|/testEmployee|null
