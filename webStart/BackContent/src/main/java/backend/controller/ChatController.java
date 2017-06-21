@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by lenovo on 2017/6/9.
  */
@@ -36,9 +38,10 @@ public class ChatController {
     }
 
     @ApiOperation(value = "开启群组聊天", notes = "群聊功能")
+    @ApiImplicitParam(name = "groupIDList", value = "加入群聊的群组的id集合", required = true, dataType = "List", paramType = "body")
     @ResponseBody
     @RequestMapping(value = "/group", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void groupChatStart() {
+    public void groupChatStart(@RequestParam("groupIDList") List<Long> groupIDList) {
 
     }
 

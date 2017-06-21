@@ -34,11 +34,21 @@ public class NotificationController {
         //TODO fix?
     }
 
-    @ApiOperation(value = "查看收到的通知", notes = "根据id查看我收到的通知")
+    @ApiOperation(value = "查看已读(收到)的通知", notes = "根据id查看我已读(收到)的通知")
     @ApiImplicitParam(name = "ID", value = "接收者id", required = true, dataType = "Long", paramType = "path")
     @ResponseBody
-    @RequestMapping(value = "/received/{ID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<Map<String,Object>> rcvdNotifications(@PathVariable("ID") Long id) {
+    @RequestMapping(value = "/received/read/{ID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Map<String,Object>> rcvdReadNotifications(@PathVariable("ID") Long id) {
+        List<Map<String,Object>> notifications=new ArrayList<>();
+        return notifications;
+        //TODO fix it
+    }
+
+    @ApiOperation(value = "查看未读(收到)的通知", notes = "根据id查看我未读(收到)的通知")
+    @ApiImplicitParam(name = "ID", value = "接收者id", required = true, dataType = "Long", paramType = "path")
+    @ResponseBody
+    @RequestMapping(value = "/received/unread/{ID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Map<String,Object>> rcvdUnreadReadNotifications(@PathVariable("ID") Long id) {
         List<Map<String,Object>> notifications=new ArrayList<>();
         return notifications;
         //TODO fix it

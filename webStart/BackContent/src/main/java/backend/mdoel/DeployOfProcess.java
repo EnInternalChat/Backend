@@ -1,5 +1,7 @@
 package backend.mdoel;
 
+import backend.serial.DeployOfProcessSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,12 +10,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 
 @Document
+@JsonSerialize(using = DeployOfProcessSerializer.class)
 public class DeployOfProcess {
     @Id
     private long ID;
     private long companyID;
     private String name;
-    private String path;
     private long uploadTime;
     private long updateTime;
     private long count;
@@ -28,11 +30,10 @@ public class DeployOfProcess {
         updateTime=System.currentTimeMillis();
     }
 
-    public DeployOfProcess(long ID,long companyID, String name, String path, long uploadTime, long updateTime, long count) {
+    public DeployOfProcess(long ID,long companyID, String name, long uploadTime, long updateTime, long count) {
         this(ID);
         this.companyID = companyID;
         this.name = name;
-        this.path = path;
         this.uploadTime = uploadTime;
         this.updateTime = updateTime;
         this.count = count;
@@ -86,11 +87,4 @@ public class DeployOfProcess {
         this.name = name;
     }
 
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
 }

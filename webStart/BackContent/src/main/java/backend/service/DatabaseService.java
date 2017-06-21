@@ -382,6 +382,9 @@ public class DatabaseService {
             System.out.println("employee: "+employee.hashCode()+" "+activeUserById(employee.getID()).hashCode());
             jsonObject.put("status",true);
             jsonObject.put("info","登陆成功");
+            jsonObject.put("companyID",employee.getCompanyID());
+            jsonObject.put("ID",employee.getID());
+            jsonObject.put("sectionID",employee.getSectionID());
         }
         return jsonObject;
     }
