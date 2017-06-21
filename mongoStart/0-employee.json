@@ -7,6 +7,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":true,
 	"notificationsSent":[
 		{ "$ref":"notifications", "$id":NumberLong(0) },
 		{ "$ref":"notifications", "$id":NumberLong(1) }
@@ -27,6 +28,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":true,
 	"notificationsSent":[
 		{ "$ref":"notifications", "$id":NumberLong(2) }
 	],
@@ -47,6 +49,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":true,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -67,6 +70,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":true,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -87,6 +91,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":true,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -107,6 +112,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":true,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -127,6 +133,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":true,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -147,6 +154,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":true,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -167,6 +175,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":true,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -187,6 +196,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":true,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -207,6 +217,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":true,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -227,6 +238,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":true,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -247,6 +259,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":true,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -267,6 +280,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":true,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -287,6 +301,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":true,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -307,6 +322,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":false,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -327,6 +343,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":false,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -347,6 +364,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":false,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -367,6 +385,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":false,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -387,6 +406,7 @@
 	"companyID":0,
 	"gender":true,
 	"avator":1,
+	"leader":false,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -405,8 +425,9 @@
 	"sectionID":-1,
 	"position":"A product manager",
 	"companyID":0,
-	"gender":true,
+	"gender":false,
 	"avator":1,
+	"leader":true,
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[

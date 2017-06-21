@@ -42,6 +42,7 @@ public class EmployeeSerializer extends StdSerializer<Employee> {
         } else {
             jsonGenerator.writeStringField("status","banned");
         }
+        jsonGenerator.writeBooleanField("leader",employee.isLeader());
 
         jsonGenerator.writeArrayFieldStart("phone");
         for(String s:employee.getPhone()) {
