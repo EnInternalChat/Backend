@@ -1,5 +1,8 @@
 package backend.mdoel;
 
+import backend.serial.NotificationSerializer;
+import backend.serial.SectionSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,6 +14,7 @@ import java.util.Collection;
  */
 
 @Document
+@JsonSerialize(using = NotificationSerializer.class)
 public class Notification {
     @Id
     private long ID;

@@ -1,5 +1,8 @@
 package backend.mdoel;
 
+import backend.serial.EmployeeSerializer;
+import backend.serial.SectionSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,6 +16,7 @@ import java.util.Map;
  */
 
 @Document
+@JsonSerialize(using = EmployeeSerializer.class)
 public class Employee {
     @Id
     private long ID;
