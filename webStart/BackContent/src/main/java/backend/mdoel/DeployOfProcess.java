@@ -31,7 +31,7 @@ public class DeployOfProcess {
     }
 
     public DeployOfProcess(long ID,long companyID, String name, long uploadTime, long updateTime, long count) {
-        this(ID);
+        this.ID=ID;
         this.companyID = companyID;
         this.name = name;
         this.uploadTime = uploadTime;
