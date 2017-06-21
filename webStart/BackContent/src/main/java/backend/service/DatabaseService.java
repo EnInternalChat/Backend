@@ -340,9 +340,9 @@ public class DatabaseService {
     public boolean addNewProcess(String token, String name, String path) {
         long timestamp=System.currentTimeMillis();
         long companyID=0;
-        //TODO getid
-        DeployOfProcess processDeploy =new DeployOfProcess(getIDeployOfProcess(),companyID,name,path,timestamp,timestamp,0);
-        deployOfProcessRepository.save(processDeploy);
+        //TODO getid and fixed
+        //DeployOfProcess processDeploy =new DeployOfProcess(getIDeployOfProcess(),companyID,name,path,timestamp,timestamp,0);
+        //deployOfProcessRepository.save(processDeploy);
         return true;
     }
 

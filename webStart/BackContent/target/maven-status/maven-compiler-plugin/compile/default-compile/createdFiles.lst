@@ -1,3 +1,4 @@
+backend\serial\DeployOfProcessSerializer.class
 backend\util\StandardTimeFormat.class
 backend\service\DatabaseService.class
 backend\repository\TaskStageRepository.class

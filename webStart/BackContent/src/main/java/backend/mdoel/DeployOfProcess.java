@@ -23,14 +23,8 @@ public class DeployOfProcess {
     public DeployOfProcess() {
     }
 
-    public DeployOfProcess(long ID) {
-        this.ID=ID;
-        name="leave";
-        uploadTime=System.currentTimeMillis();
-        updateTime=System.currentTimeMillis();
-    }
-
     public DeployOfProcess(long ID,long companyID, String name, long uploadTime, long updateTime, long count) {
+        this();
         this.ID=ID;
         this.companyID = companyID;
         this.name = name;
