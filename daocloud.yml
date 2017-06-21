@@ -1,0 +1,19 @@
+version: 1.0
+
+stages:
+  #- test
+  #- build
+  - deploy
+
+build_all:
+  job_type: default
+  stage: deploy
+  script:
+    - docker-compose down
+    - rm -f nohup.out
+    - nohup docker-compose up --build &
+    - 
+  pull_request: false
+  only:
+    branches:
+      - master

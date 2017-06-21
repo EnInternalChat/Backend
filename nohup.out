@@ -3814,3 +3814,157 @@ Creating backend_web_1
 [31mweb_1      |[0m GET|/testSerialize1|null
 [31mweb_1      |[0m null
 [31mweb_1      |[0m GET|/testEmployee|null
+[32mredis_1    |[0m 1:M 21 Jun 19:35:30.006 * 1 changes in 3600 seconds. Saving...
+[32mredis_1    |[0m 1:M 21 Jun 19:35:30.006 * Background saving started by pid 13
+[32mredis_1    |[0m 13:C 21 Jun 19:35:30.040 * DB saved on disk
+[32mredis_1    |[0m 13:C 21 Jun 19:35:30.041 * RDB: 0 MB of memory used by copy-on-write
+[32mredis_1    |[0m 1:M 21 Jun 19:35:30.106 * Background saving terminated with success
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.019 INFO [Thread-7] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.070 INFO [Thread-7] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-443"]
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.121 INFO [Thread-7] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["ajp-nio-8009"]
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.172 INFO [Thread-7] org.apache.catalina.core.StandardService.stopInternal Stopping service Catalina
+[36mmongo_1    |[0m 2017-06-21T19:35:47.279+0000 I -        [conn2] end connection 172.18.0.6:33498 (2 connections now open)
+[36mmongo_1    |[0m 2017-06-21T19:35:47.279+0000 I -        [conn1] end connection 172.18.0.6:33496 (2 connections now open)
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.350 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [EnInternalChat] registered the JDBC driver [com.mysql.jdbc.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.351 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [EnInternalChat] registered the JDBC driver [org.h2.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.351 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [EnInternalChat] registered the JDBC driver [org.apache.ibatis.datasource.unpooled.UnpooledDataSource.DriverProxy] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.354 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [EnInternalChat] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+[31mweb_1      |[0m  java.lang.Object.wait(Native Method)
+[31mweb_1      |[0m  java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
+[31mweb_1      |[0m  com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:43)
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.355 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [EnInternalChat] appears to have started a thread named [lettuce-nioEventLoop-3-1] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+[31mweb_1      |[0m  java.lang.Thread.sleep(Native Method)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor.confirmShutdown(SingleThreadEventExecutor.java:650)
+[31mweb_1      |[0m  io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:399)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:112)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:145)
+[31mweb_1      |[0m  java.lang.Thread.run(Thread.java:745)
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.356 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [EnInternalChat] appears to have started a thread named [threadDeathWatcher-4-1] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+[31mweb_1      |[0m  java.lang.Thread.sleep(Native Method)
+[31mweb_1      |[0m  io.netty.util.ThreadDeathWatcher$Watcher.run(ThreadDeathWatcher.java:147)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:145)
+[31mweb_1      |[0m  java.lang.Thread.run(Thread.java:745)
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.356 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [EnInternalChat] appears to have started a thread named [lettuce-nioEventLoop-3-2] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+[31mweb_1      |[0m  java.lang.Thread.sleep(Native Method)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor.confirmShutdown(SingleThreadEventExecutor.java:650)
+[31mweb_1      |[0m  io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:399)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:112)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:145)
+[31mweb_1      |[0m  java.lang.Thread.run(Thread.java:745)
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.357 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [EnInternalChat] appears to have started a thread named [H2 Close Delay ACTIVITI] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+[31mweb_1      |[0m  java.lang.Thread.sleep(Native Method)
+[31mweb_1      |[0m  org.h2.engine.DatabaseCloser.run(DatabaseCloser.java:46)
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.357 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [EnInternalChat] appears to have started a thread named [lettuce-nioEventLoop-3-3] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+[31mweb_1      |[0m  java.lang.Thread.sleep(Native Method)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor.confirmShutdown(SingleThreadEventExecutor.java:650)
+[31mweb_1      |[0m  io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:399)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:112)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:145)
+[31mweb_1      |[0m  java.lang.Thread.run(Thread.java:745)
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.358 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [EnInternalChat] appears to have started a thread named [lettuce-eventExecutorLoop-1-1] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+[31mweb_1      |[0m  java.lang.Thread.sleep(Native Method)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor.confirmShutdown(SingleThreadEventExecutor.java:650)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultEventExecutor.run(DefaultEventExecutor.java:40)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:112)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:145)
+[31mweb_1      |[0m  java.lang.Thread.run(Thread.java:745)
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.358 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [EnInternalChat] appears to have started a thread named [lettuce-eventExecutorLoop-1-2] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+[31mweb_1      |[0m  java.lang.Thread.sleep(Native Method)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor.confirmShutdown(SingleThreadEventExecutor.java:650)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultEventExecutor.run(DefaultEventExecutor.java:40)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:112)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:145)
+[31mweb_1      |[0m  java.lang.Thread.run(Thread.java:745)
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.358 WARNING [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [EnInternalChat] appears to have started a thread named [lettuce-eventExecutorLoop-1-3] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+[31mweb_1      |[0m  java.lang.Thread.sleep(Native Method)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor.confirmShutdown(SingleThreadEventExecutor.java:650)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultEventExecutor.run(DefaultEventExecutor.java:40)
+[31mweb_1      |[0m  io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:112)
+[31mweb_1      |[0m  io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:145)
+[31mweb_1      |[0m  java.lang.Thread.run(Thread.java:745)
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.359 SEVERE [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalMapForLeaks The web application [EnInternalChat] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@51170df1]) and a value of type [io.netty.util.internal.InternalThreadLocalMap] (value [io.netty.util.internal.InternalThreadLocalMap@64f1ffe0]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.359 SEVERE [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalMapForLeaks The web application [EnInternalChat] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@51170df1]) and a value of type [io.netty.util.internal.InternalThreadLocalMap] (value [io.netty.util.internal.InternalThreadLocalMap@7052dbc1]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.359 SEVERE [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalMapForLeaks The web application [EnInternalChat] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@51170df1]) and a value of type [io.netty.util.internal.InternalThreadLocalMap] (value [io.netty.util.internal.InternalThreadLocalMap@4802d31b]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.399 INFO [Thread-7] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.472 INFO [Thread-7] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-443"]
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.561 INFO [Thread-7] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["ajp-nio-8009"]
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.576 INFO [Thread-7] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.577 INFO [Thread-7] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-443"]
+[31mweb_1      |[0m 21-Jun-2017 19:35:47.578 INFO [Thread-7] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["ajp-nio-8009"]
+[31mbackend_web_1 exited with code 143
+[0m[32mredis_1    |[0m 1:signal-handler (1498073748) Received SIGTERM scheduling shutdown...
+[36mmongo_1    |[0m 2017-06-21T19:35:48.575+0000 I CONTROL  [signalProcessingThread] got signal 15 (Terminated), will terminate after current cmd ends
+[36mmongo_1    |[0m 2017-06-21T19:35:48.576+0000 I NETWORK  [signalProcessingThread] shutdown: going to close listening sockets...
+[36mmongo_1    |[0m 2017-06-21T19:35:48.576+0000 I NETWORK  [signalProcessingThread] closing listening socket: 6
+[36mmongo_1    |[0m 2017-06-21T19:35:48.576+0000 I NETWORK  [signalProcessingThread] closing listening socket: 7
+[36mmongo_1    |[0m 2017-06-21T19:35:48.576+0000 I NETWORK  [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+[36mmongo_1    |[0m 2017-06-21T19:35:48.576+0000 I NETWORK  [signalProcessingThread] shutdown: going to flush diaglog...
+[36mmongo_1    |[0m 2017-06-21T19:35:48.576+0000 I FTDC     [signalProcessingThread] Shutting down full-time diagnostic data capture
+[36mmongo_1    |[0m 2017-06-21T19:35:48.580+0000 I STORAGE  [signalProcessingThread] WiredTigerKVEngine shutting down
+[33mmysql_1    |[0m 2017-06-21T19:35:48.623727Z 0 [Note] Giving 0 client threads a chance to die gracefully
+[33mmysql_1    |[0m 2017-06-21T19:35:48.623767Z 0 [Note] Shutting down slave threads
+[33mmysql_1    |[0m 2017-06-21T19:35:48.623776Z 0 [Note] Forcefully disconnecting 0 remaining clients
+[33mmysql_1    |[0m 2017-06-21T19:35:48.623784Z 0 [Note] Event Scheduler: Purging the queue. 0 events
+[33mmysql_1    |[0m 2017-06-21T19:35:48.623850Z 0 [Note] Binlog end
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626249Z 0 [Note] Shutting down plugin 'ngram'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626269Z 0 [Note] Shutting down plugin 'BLACKHOLE'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626275Z 0 [Note] Shutting down plugin 'partition'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626279Z 0 [Note] Shutting down plugin 'ARCHIVE'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626283Z 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626287Z 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626291Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626294Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626297Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626300Z 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626304Z 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626307Z 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626311Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626314Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626317Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626321Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626324Z 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626327Z 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626331Z 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626334Z 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626337Z 0 [Note] Shutting down plugin 'INNODB_METRICS'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626340Z 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626344Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626347Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626350Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626354Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626358Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626361Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626364Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626368Z 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626377Z 0 [Note] Shutting down plugin 'INNODB_CMP'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626381Z 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626384Z 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626388Z 0 [Note] Shutting down plugin 'INNODB_TRX'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626392Z 0 [Note] Shutting down plugin 'InnoDB'
+[33mmysql_1    |[0m 2017-06-21T19:35:48.626466Z 0 [Note] InnoDB: FTS optimize thread exiting.
+[33mmysql_1    |[0m 2017-06-21T19:35:48.627119Z 0 [Note] InnoDB: Starting shutdown...
+[32mredis_1    |[0m 1:M 21 Jun 19:35:48.658 # User requested shutdown...
+[32mredis_1    |[0m 1:M 21 Jun 19:35:48.658 * Saving the final RDB snapshot before exiting.
+[32mredis_1    |[0m 1:M 21 Jun 19:35:48.661 * DB saved on disk
+[32mredis_1    |[0m 1:M 21 Jun 19:35:48.661 # Redis is now ready to exit, bye bye...
+[36mmongo_1    |[0m 2017-06-21T19:35:48.722+0000 I STORAGE  [signalProcessingThread] shutdown: removing fs lock...
+[36mmongo_1    |[0m 2017-06-21T19:35:48.722+0000 I CONTROL  [signalProcessingThread] now exiting
+[36mmongo_1    |[0m 2017-06-21T19:35:48.722+0000 I CONTROL  [signalProcessingThread] shutting down with code:0
+[33mmysql_1    |[0m 2017-06-21T19:35:48.728069Z 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+[33mmysql_1    |[0m 2017-06-21T19:35:48.728229Z 0 [Note] InnoDB: Buffer pool(s) dump completed at 170621 19:35:48
+[32mbackend_redis_1 exited with code 0
+[0m[36mbackend_mongo_1 exited with code 0
+[0m[33mmysql_1    |[0m 2017-06-21T19:35:50.290213Z 0 [Note] InnoDB: Shutdown completed; log sequence number 13885597
+[33mmysql_1    |[0m 2017-06-21T19:35:50.295629Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+[33mmysql_1    |[0m 2017-06-21T19:35:50.295656Z 0 [Note] Shutting down plugin 'MRG_MYISAM'
+[33mmysql_1    |[0m 2017-06-21T19:35:50.295666Z 0 [Note] Shutting down plugin 'MyISAM'
+[33mmysql_1    |[0m 2017-06-21T19:35:50.295679Z 0 [Note] Shutting down plugin 'CSV'
+[33mmysql_1    |[0m 2017-06-21T19:35:50.295683Z 0 [Note] Shutting down plugin 'MEMORY'
+[33mmysql_1    |[0m 2017-06-21T19:35:50.295687Z 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+[33mmysql_1    |[0m 2017-06-21T19:35:50.295712Z 0 [Note] Shutting down plugin 'sha256_password'
+[33mmysql_1    |[0m 2017-06-21T19:35:50.295715Z 0 [Note] Shutting down plugin 'mysql_native_password'
+[33mmysql_1    |[0m 2017-06-21T19:35:50.295848Z 0 [Note] Shutting down plugin 'binlog'
+[33mmysql_1    |[0m 2017-06-21T19:35:50.300629Z 0 [Note] mysqld: Shutdown complete
+[33mmysql_1    |[0m 
+[33mbackend_mysql_1 exited with code 0
+[0m
