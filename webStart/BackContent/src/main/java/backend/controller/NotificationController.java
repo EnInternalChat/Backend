@@ -1,17 +1,21 @@
 package backend.controller;
 
+import backend.mdoel.Notification;
 import backend.service.DatabaseService;
+import backend.util.ResponseJsonObj;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.activiti.engine.impl.util.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by lenovo on 2017/5/2.
@@ -28,9 +32,8 @@ public class NotificationController {
     @ApiImplicitParam(name = "ID", value = "发送者id", required = true, dataType = "Long", paramType = "path")
     @ResponseBody
     @RequestMapping(value = "/sent/{ID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<Map<String,Object>> sentNotifications(@PathVariable("ID") Long id) {
-        List<Map<String,Object>> notifications=new ArrayList<>();
-        return notifications;
+    public Collection<Notification> sentNotifications(@PathVariable("ID") Long id) {
+        return databaseService.getSent(id);
         //TODO fix?
     }
 
@@ -38,9 +41,8 @@ public class NotificationController {
     @ApiImplicitParam(name = "ID", value = "接收者id", required = true, dataType = "Long", paramType = "path")
     @ResponseBody
     @RequestMapping(value = "/received/read/{ID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<Map<String,Object>> rcvdReadNotifications(@PathVariable("ID") Long id) {
-        List<Map<String,Object>> notifications=new ArrayList<>();
-        return notifications;
+    public Collection<Notification> rcvdReadNotifications(@PathVariable("ID") Long id) {
+        return databaseService.getRead(id);
         //TODO fix it
     }
 
@@ -48,9 +50,8 @@ public class NotificationController {
     @ApiImplicitParam(name = "ID", value = "接收者id", required = true, dataType = "Long", paramType = "path")
     @ResponseBody
     @RequestMapping(value = "/received/unread/{ID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<Map<String,Object>> rcvdUnreadReadNotifications(@PathVariable("ID") Long id) {
-        List<Map<String,Object>> notifications=new ArrayList<>();
-        return notifications;
+    public Collection<Notification> rcvdUnreadReadNotifications(@PathVariable("ID") Long id) {
+        return databaseService.getUnread(id);
         //TODO fix it
     }
 
@@ -62,7 +63,12 @@ public class NotificationController {
     })
     @ResponseBody
     @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void sendNotification(@RequestParam("receivers") List<Long> receivers){
+    public void sendNotification(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+                                 @RequestParam("receivers") List<Long> receivers, @RequestParam("title") String title,
+                                 @RequestParam("content") String content){
+        long id=(long) httpServletRequest.getSession().getAttribute("user");
+        JSONObject jsonObject=databaseService.sentTotification(id,receivers,title,content);
+        ResponseJsonObj.write(httpServletResponse,jsonObject);
     }
 
     @ApiOperation(value = "查看通知", notes = "未读通知状态会变为已读")

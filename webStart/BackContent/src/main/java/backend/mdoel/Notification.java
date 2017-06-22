@@ -26,17 +26,27 @@ public class Notification {
     private Collection<Long> rcvSecID;
 
     public Notification() {
+        rcvSecID=new ArrayList<>();
     }
 
     public Collection<Long> getRcvSecID() {
         return rcvSecID;
     }
 
-    public Notification(long ID) {
-        sentTime=System.currentTimeMillis();
-        this.ID=ID;
-        this.sentTime = sentTime;
-        rcvSecID=new ArrayList<>();
+    public Notification(long ID, long companyID, long senderID, String content, String senderName, String title) {
+        this();
+        this.ID = ID;
+        this.companyID = companyID;
+        this.senderID = senderID;
+        this.content = content;
+        this.senderName = senderName;
+        this.title = title;
+    }
+
+    public void addSec(long secID) {
+        if(!rcvSecID.contains(secID)) {
+            rcvSecID.add(secID);
+        }
     }
 
     public String getTitle() {

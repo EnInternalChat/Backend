@@ -13,9 +13,9 @@ import java.util.List;
 
 @Repository
 public interface EmployeeRepository extends MongoRepository<Employee, Long> {
-    List<Employee> findBySectionIDAndCompanyID (long companyID, long sectionID);
+    List<Employee> findByCompanyIDAndSectionID (long companyID, long sectionID);
     List<Employee> findByCompanyID(long companyID);
-    List<Employee> findBySectionIDAndCompanyID (long companyID, long sectionID, Pageable pageable);
+    List<Employee> findByCompanyIDAndSectionID (long companyID, long sectionID, Pageable pageable);
     List<Employee> findByCompanyID(long companyID, Pageable pageable);
     List<Employee> findByCompanyIDAndName(long companyID, String name);
     List<Employee> findByName(String name);

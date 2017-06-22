@@ -173,6 +173,18 @@ public class Employee {
         return notificationsRcvdRead;
     }
 
+    public boolean sendNotification(Notification notification) {
+        if(!notificationsSent.contains(notification)) return false;
+        notificationsSent.add(notification);
+        return true;
+    }
+
+    public boolean rcvdNotification(Notification notification) {
+        if(!notificationsRcvdUnread.contains(notification)) return false;
+        notificationsRcvdUnread.add(notification);
+        return true;
+    }
+
     public Collection<InstanceOfProcess> getInstanceOfProcesses() {
         return instanceOfProcesses;
     }
@@ -187,16 +199,31 @@ public class Employee {
         return true;
     }
 
-    public boolean addPhone(String newPhone) {
-        if(!phone.contains(newPhone)) return false;
-        phone.add(newPhone);
-        return true;
+    private boolean basicUpdateContact(String new1, String new2, boolean type) {
+        boolean update=false;
+        if(type) {
+            phone.clear();
+        } else {
+            email.clear();
+        }
+        if(new1 != null) {
+            update=true;
+            if(type) phone.add(new1);
+            else email.add(new1);
+        }
+        if(new2 != null) {
+            update=true;
+            if(type) phone.add(new2);
+            else email.add(new2);
+        }
+        return update;
+    }
+    public boolean updatePhone(String newPhone1, String newPhone2) {
+        return basicUpdateContact(newPhone1,newPhone2,true);
     }
 
-    public boolean addMail(String newEmail) {
-        if(!email.contains(newEmail)) return false;
-        email.add(newEmail);
-        return true;
+    public boolean updateMail(String newEmail1, String newEmail2) {
+        return basicUpdateContact(newEmail1,newEmail2,false);
     }
 
     @Override

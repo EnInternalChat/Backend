@@ -36,6 +36,38 @@ public class IdManager {
         this.ITaskStage = ITaskStage;
     }
 
+    public void setIChat(long IChat) {
+        this.IChat = IChat;
+    }
+
+    public void setICompany(long ICompany) {
+        this.ICompany = ICompany;
+    }
+
+    public void setIEmployee(long IEmployee) {
+        this.IEmployee = IEmployee;
+    }
+
+    public void setIDeployOfProcess(long IDeployOfProcess) {
+        this.IDeployOfProcess = IDeployOfProcess;
+    }
+
+    public void setIInstanceOfProcess(long IInstanceOfProcess) {
+        this.IInstanceOfProcess = IInstanceOfProcess;
+    }
+
+    public void setINotification(long INotification) {
+        this.INotification = INotification;
+    }
+
+    public void setISection(long ISection) {
+        this.ISection = ISection;
+    }
+
+    public void setITaskStage(long ITaskStage) {
+        this.ITaskStage = ITaskStage;
+    }
+
     public long getIDeployOfProcess() {
         return IDeployOfProcess++;
     }

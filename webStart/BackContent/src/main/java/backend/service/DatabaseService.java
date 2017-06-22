@@ -19,6 +19,7 @@ import cn.jpush.api.push.model.Platform;
 import cn.jpush.api.push.model.PushPayload;
 import cn.jpush.api.push.model.audience.Audience;
 import com.mongodb.DBRef;
+import com.mongodb.WriteResult;
 import org.activiti.engine.impl.util.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -83,15 +84,27 @@ public class DatabaseService {
         jPushClient=new JPushClient(MASTER_SECRET,APP_KEY,null, ClientConfig.getInstance());
         jMessageClient=new JMessageClient(APP_KEY,MASTER_SECRET);
         idManager = idManagerRepository.findOne(0);
+        int ICompany=companyRepository.findAll().size();
+        int IEmployee=employeeRepository.findAll().size();
+        int INotification=notificationRepository.findAll().size();
+        int ISection=sectionRepository.findAll().size();
+        idManager=idManagerRepository.findOne(0);
+        System.out.println(ICompany+" "+IEmployee+" "+INotification+" "+ISection);
         if(idManager == null) {
-            int ICompany=companyRepository.findAll().size();
-            int IEmployee=employeeRepository.findAll().size();
-            int INotification=notificationRepository.findAll().size();
-            int ISection=sectionRepository.findAll().size();
             idManager =new IdManager(0,0,ICompany,IEmployee,0,INotification,ISection,0);
             idManagerRepository.save(idManager);
             //TODO fix all id bug
         }
+        idManager.setICompany(ICompany);
+        idManager.setIEmployee(IEmployee);
+        idManager.setINotification(INotification);
+        idManager.setISection(ISection);
+        idManagerRepository.save(idManager);
+        //initJiguangDel();
+        //initJiguangCreate();
+    }
+
+    private void initJiguangDel() {
         //chat server user set
         try {
             GroupListResult groupListResult=jMessageClient.getGroupListByAppkey(0,100);
@@ -110,11 +123,21 @@ public class DatabaseService {
                 }
                 jMessageClient.deleteUser(info.getUsername());
             }
+
+        } catch (APIConnectionException e) {
+            System.out.println("Connection error, should retry later");
+        } catch (APIRequestException e) {
+            System.out.println("HTTP Status: " + e.getStatus());
+            System.out.println("Error Code: " + e.getErrorCode());
+            System.out.println("Error Message: " + e.getErrorMessage());
+        }
+    }
+
+    private void initJiguangCreate() {
+        try {
             List<Employee> employeeList=employeeRepository.findAll();
             List<RegisterInfo> users = new ArrayList<>();
-            System.out.println(employeeList.size());
             for(Employee employee:employeeList) {
-                System.out.println(employee);
                 RegisterInfo user = RegisterInfo.newBuilder()
                         .setUsername(employee.getName())
                         .setPassword(employee.getPassword())
@@ -124,11 +147,11 @@ public class DatabaseService {
             if(users.size() != 0) {
                 RegisterInfo[] regUsers = new RegisterInfo[users.size()];
                 jMessageClient.registerUsers(users.toArray(regUsers));
-                for(Employee employee:employeeList) {
-                    int avatar=employee.getAvatar();
-                    String username=employee.getName();
-                    int gender=employee.isGender() ? 1 : 0;
-                    jMessageClient.updateUserInfo(username, avatar+"", null, null, gender, null, null);
+                for (Employee employee : employeeList) {
+                    int avatar = employee.getAvatar();
+                    String username = employee.getName();
+                    int gender = employee.isGender() ? 1 : 0;
+                    jMessageClient.updateUserInfo(username, avatar + "", null, null, gender, null, null);
                 }
             }
         } catch (APIConnectionException e) {
@@ -144,6 +167,38 @@ public class DatabaseService {
         return employeeRepository.findAll();
     }
 
+    public JSONObject updateEmployeePersonal(Long companyID, Long sectionID, long id,
+                                             String newPwd, String email1, String email2,
+                                             String phone1, String phone2) {
+        JSONObject jsonObject=new JSONObject();
+        String info="";
+        Employee employee=employeeRepository.findOne(id);
+        if(employee == null) {
+            jsonObject.put("info", "当前用户id不存在");
+            return jsonObject;
+        } else if(employee.getCompanyID() != companyID || employee.getSectionID() != sectionID) {
+            jsonObject.put("info", "当前公司不存在此id用户");
+            return jsonObject;
+        }
+        if(newPwd != null) {
+            employee.setPassword(newPwd);
+            info+="|密码修改成功";
+        }
+        if(employee.updatePhone(phone1,phone2)) {
+            info+="|电话联系方式修改成功";
+        }
+        if(employee.updateMail(email1,email2)){
+            info+="|邮件联系方式修改成功";
+        }
+        if(info == "") {
+            jsonObject.put("info","修改对象: "+employee.getName()+".没有任何信息被修改");
+        } else {
+            jsonObject.put("info", "修改对象: "+employee.getName()+"."+info);
+        }
+        employeeRepository.save(employee);
+        return jsonObject;
+        //TODO update failed
+    }
     public long getIDeployOfProcess() {
         long id= idManager.getIDeployOfProcess();
         idManagerRepository.save(idManager);
@@ -190,6 +245,39 @@ public class DatabaseService {
         long id= idManager.getITaskStage();
         idManagerRepository.save(idManager);
         return id;
+    }
+
+    private Collection<Notification> basicNoteGet(long id, int type) {
+        Employee employee=employeeRepository.findOne(id);
+        if(employee == null) {
+            System.out.println("employee null");
+            return null;
+        }
+        Collection<Notification> notifications;
+        if(type == 0) {
+            notifications=employee.getNotificationsSent();
+        } else if(type == 1) {
+            notifications=employee.getNotificationsRcvdUnread();
+        } else {
+            notifications=employee.getNotificationsRcvdRead();
+        }
+        if(notifications == null) {
+            System.out.println("notifications null");
+            return null;
+        }
+        return notifications;
+    }
+
+    public Collection<Notification> getSent(long id) {
+        return basicNoteGet(id,0);
+    }
+
+    public Collection<Notification> getUnread(long id) {
+        return basicNoteGet(id,1);
+    }
+
+    public Collection<Notification> getRead(long id) {
+        return basicNoteGet(id,2);
     }
 
     public void testChat() {
@@ -284,29 +372,68 @@ public class DatabaseService {
         }
     }
 
-    public void sendAlertNtf() {
+    public JSONObject sentTotification(long senderID, Collection<Long> rcvdSecsID, String title, String content) {
+        JSONObject jsonObject=new JSONObject();
+        Employee employee=activeUserById(senderID);
+        if(employee == null) {
+            jsonObject.put("info","发送用户不在线, 发送失败");
+            return jsonObject;
+        }
+        Notification notification=new Notification(getINotification(), employee.getCompanyID(),
+                senderID, content, employee.getName(), title);
+        for(long rcvdID:rcvdSecsID) {
+            notification.addSec(rcvdID);
+        }
+        notificationRepository.insert(notification);
+        //send
+        employee.sendNotification(notification);
+        String colName=new BasicMongoPersistentEntity<>(ClassTypeInformation.from(Notification.class)).getCollection();
+        DBRef notificationRef=new DBRef(mongoTemplate.getDb(),colName,notification.getID());
+        Query query=Query.query(Criteria.where("_id").is(employee.getID()));
+        Update update=new Update();
+        update.addToSet("notificationsSent",notificationRef);
+        mongoTemplate.updateFirst(query,update,Employee.class);
+        //receive
+        int secTotal=0,rcvTotal=0;
+        for(long secID:rcvdSecsID) {
+            Section section=sectionRepository.findOne(secID);
+            if(section != null) secTotal++;
+            else continue;
+            Collection<Employee> receivers=section.getMembers();
+            if(secID == employee.getSectionID()) receivers.remove(employee);
+            for(Employee receiver:receivers) {
+                receiver.rcvdNotification(notification);
+                query=Query.query(Criteria.where("_id").is(receiver.getID()));
+                update=new Update();
+                update.addToSet("notificationsRcvdUnread",notificationRef);
+                WriteResult writeResult=mongoTemplate.updateFirst(query,update,Employee.class);
+                //TODO writeResult error?
+                System.out.println("id:"+employee.getID()+"|"+writeResult);
+                rcvTotal++;
+                //push
+            }
+            for(Employee receiver:receivers) {
+                pushAlert(receiver.getName(),"您有一条新通知!");
+            }
+        }
+        jsonObject.put("info","通知发送成功!总计发送给"+secTotal+"个部门的"+rcvTotal+"个人!");
+        return jsonObject;
+    }
+
+    private void pushAlert(String target, String content) {
         PushPayload payload = PushPayload.newBuilder()
                 .setPlatform(Platform.all())
-                .setAudience(Audience.alias("testuser"))
-                .setNotification(cn.jpush.api.push.model.notification.Notification.alert("您有一条消息来自服务器后台"))
+                .setAudience(Audience.alias(target))
+                .setNotification(cn.jpush.api.push.model.notification.Notification.alert(content))
                 .build();
         try {
             PushResult result = jPushClient.sendPush(payload);
             System.out.println("Got result - " + result);
         } catch (APIConnectionException e) {
-            // Connection error, should retry later
             System.out.println("Connection error, should retry later");
         } catch (APIRequestException e) {
-            // Should review the error, and fix the request
-            System.out.println("Should review the error, and fix the request");
-            System.out.println("HTTP Status: " + e.getStatus());
-            System.out.println("Error Code: " + e.getErrorCode());
             System.out.println("Error Message: " + e.getErrorMessage());
         }
-    }
-
-    public void updateEmployeeCollectionData(Employee employee, Chat chat) {
-        //TODO
     }
 
     public void updateEmployeeCollectionData(Employee employee, InstanceOfProcess instanceOfProcess) {
@@ -337,20 +464,12 @@ public class DatabaseService {
         }
     }
 
-    public Map<String,Object> colEmployeeData(long companyID) {
-        Map<String,Object> result=new HashMap<>();
-        List<Employee> employees=employeeRepository.findByCompanyID(companyID);
-        result.put("total",employees.size());
-        result.put("employees",employees);
-        return result;//TODO different data
-    }
-
-    public Map<String, Object> colSecEmployeeData(long companyID, long sectionID) {
-        Map<String,Object> result=new HashMap<>();
-        List<Employee> employees=employeeRepository.findBySectionIDAndCompanyID(companyID,sectionID);
-        result.put("total",employees.size());
-        result.put("employees",employees);//TODO frontend different data
-        return result;
+    public Collection<Employee> employeesSection(long companyID, long sectionID, Pageable pageable) {
+        if(pageable != null) {
+            return employeeRepository.findByCompanyIDAndSectionID(companyID,sectionID,pageable);
+        } else {
+            return employeeRepository.findByCompanyIDAndSectionID(companyID, sectionID);
+        }
     }
 
     public boolean addNewProcess(String token, String name, String path) {
