@@ -30,7 +30,6 @@ public class EmployeeSerializer extends StdSerializer<Employee> {
         jsonGenerator.writeNumberField("avatar",employee.getAvatar());
         jsonGenerator.writeNumberField("companyID",employee.getCompanyID());
         jsonGenerator.writeStringField("name",employee.getName());
-        jsonGenerator.writeStringField("password",employee.getPassword());
         jsonGenerator.writeStringField("position",employee.getPosition());
         if(employee.isGender()) {
             jsonGenerator.writeStringField("gender","female");

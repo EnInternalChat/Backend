@@ -94,10 +94,20 @@ public class DatabaseService {
         }
         //chat server user set
         try {
+            GroupListResult groupListResult=jMessageClient.getGroupListByAppkey(0,100);
+            List<GroupInfoResult> groupInfoResultList=groupListResult.getGroups();
+            for(GroupInfoResult info:groupInfoResultList) {
+                if(info.getName().contains("testgroup")) {
+                    continue;
+                }
+                jMessageClient.deleteGroup(info.getGid());
+            }
             UserListResult userList=jMessageClient.getUserList(0,200);//TODO 200?
             UserInfoResult[] userListUsers=userList.getUsers();
             for(UserInfoResult info:userListUsers) {
-                if(info.getUsername().contains("testuser")) continue;
+                if(info.getUsername().contains("testuser")) {
+                    continue;
+                }
                 jMessageClient.deleteUser(info.getUsername());
             }
             List<Employee> employeeList=employeeRepository.findAll();
@@ -114,6 +124,12 @@ public class DatabaseService {
             if(users.size() != 0) {
                 RegisterInfo[] regUsers = new RegisterInfo[users.size()];
                 jMessageClient.registerUsers(users.toArray(regUsers));
+                for(Employee employee:employeeList) {
+                    int avatar=employee.getAvatar();
+                    String username=employee.getName();
+                    int gender=employee.isGender() ? 1 : 0;
+                    jMessageClient.updateUserInfo(username, avatar+"", null, null, gender, null, null);
+                }
             }
         } catch (APIConnectionException e) {
             System.out.println("Connection error, should retry later");

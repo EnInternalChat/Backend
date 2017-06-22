@@ -2,6 +2,7 @@ package backend.controller;
 
 import backend.mdoel.DeployOfProcess;
 import backend.mdoel.Employee;
+import backend.mdoel.InstanceOfProcess;
 import backend.service.ActivitiService;
 import backend.service.DatabaseService;
 import backend.util.ResponseJsonObj;
@@ -133,6 +134,30 @@ public class TaskController {
     @ResponseBody
     @RequestMapping(value = "/all/{companyID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<DeployOfProcess> processes(@PathVariable("companyID") Long companyID) {
+        return null;
+        //TODO list
+    }
+
+    @ApiOperation(value = "用户已完成流程列表", notes = "用户参与且当前已完成的流程实例")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "companyID", value = "公司id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "ID", value = "用户id", required = true, dataType = "Long", paramType = "path")
+    })
+    @ResponseBody
+    @RequestMapping(value = "/over/{companyID}/{ID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<InstanceOfProcess> finishedInstance(@PathVariable("companyID") Long companyID, @PathVariable("ID") Long ID) {
+        return null;
+        //TODO list
+    }
+
+    @ApiOperation(value = "用户未完成流程列表", notes = "用户参与且当前未完成的流程实例")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "companyID", value = "公司id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "ID", value = "用户id", required = true, dataType = "Long", paramType = "path")
+    })
+    @ResponseBody
+    @RequestMapping(value = "/working/{companyID}/{ID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<InstanceOfProcess> workingInstance(@PathVariable("companyID") Long companyID, @PathVariable("ID") Long ID) {
         return null;
         //TODO list
     }
