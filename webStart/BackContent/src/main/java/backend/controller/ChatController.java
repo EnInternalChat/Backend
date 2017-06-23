@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Created by lenovo on 2017/6/9.
- */
 @RestController
 @CrossOrigin
 @Api(description = "聊天数据")
