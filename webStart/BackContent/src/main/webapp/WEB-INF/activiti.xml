@@ -9,7 +9,7 @@
         <property name="password" value="123456" />
 
         <!--<property name="url" value="jdbc:mysql://10.0.0.102:3306/activiti" />-->
-        <!--<property name="username" value="root" />-->
+        <property name="username" value="root" />
         <!--<property name="password" value="sasuke" />-->
     </bean>
 
