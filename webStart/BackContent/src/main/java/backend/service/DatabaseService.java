@@ -280,6 +280,9 @@ public class DatabaseService {
         return basicNoteGet(id,2);
     }
 
+    public Employee findEmployeeById(long id) {
+        return employeeRepository.findOne(id);
+    }
     public void testChat() {
         CreateGroupResult createGroupResult=null;
         try {
@@ -520,6 +523,7 @@ public class DatabaseService {
             jsonObject.put("companyID",employee.getCompanyID());
             jsonObject.put("ID",employee.getID());
             jsonObject.put("sectionID",employee.getSectionID());
+            jsonObject.put("avatar",employee.getAvatar());
         }
         return jsonObject;
     }

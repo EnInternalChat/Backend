@@ -34,10 +34,60 @@ public class CompanyController {
     }
 
     @ApiOperation(value = "获取公司部门信息", notes = "信息以树状结构显示")
-    @ApiImplicitParam(name = "sectionID", value = "部门id", required = true, dataType = "Long", paramType = "path")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "companyID", value = "公司id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "sectionID", value = "部门id", required = true, dataType = "Long", paramType = "path")
+    })
     @ResponseBody
-    @RequestMapping(value = "/sections/{sectionID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Section sectionData(@PathVariable("sectionID") Long sectionID) {
-        return databaseService.findSecByID(sectionID);
+    @RequestMapping(value = "/sections/{companyID}/{sectionID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Section sectionData(@PathVariable("companyID") Long companyID,
+                               @PathVariable("sectionID") Long sectionID) {
+        return databaseService.findSecByID(sectionID);//TODO check if section belong to company
+    }
+
+    @ApiOperation(value = "添加部门", notes = "为某部门添加子部门", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "companyID", value = "公司id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "sectionID", value = "父部门id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "description", value = "部门描述", dataType = "String", paramType = "body"),
+            @ApiImplicitParam(name = "name", value = "部门名称", dataType = "String", paramType = "body")
+    })
+    @ResponseBody
+    @RequestMapping(value = "/{companyID}/{sectionID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void addSection(@PathVariable("companyID") Long companyID, @PathVariable("sectionID") Long sectionID,
+                           @RequestParam("name") String secName,
+                           @RequestParam(value = "description", required = false) String description
+    ) {
+        //TODO
+    }
+
+    @ApiOperation(value = "修改部门信息", notes = "修改部门名称，部长，描述等信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "companyID", value = "公司id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "sectionID", value = "部门id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "leaderID", value = "部长id", dataType = "Long", paramType = "body"),
+            @ApiImplicitParam(name = "description", value = "部门描述", dataType = "String", paramType = "body"),
+            @ApiImplicitParam(name = "name", value = "部门新名称", dataType = "String", paramType = "body")
+    })
+    @ResponseBody
+    @RequestMapping(value = "/sections/{companyID}/{sectionID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void modifySection(@PathVariable("companyID") Long companyID, @PathVariable("sectionID") Long sectionID,
+                              @RequestParam(value = "leaderID", required = false) Long leaderID,
+                              @RequestParam(value = "description", required = false) String description,
+                              @RequestParam(value = "name", required = false) String name
+                              ) {
+        //TODO
+    }
+
+    @ApiOperation(value = "删除部门", notes = "删除公司部门")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "companyID", value = "公司id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "sectionID", value = "部门id", required = true, dataType = "Long", paramType = "path")
+    })
+    @ResponseBody
+    @RequestMapping(value = "/sections/{companyID}/{sectionID}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void delSection(@PathVariable("companyID") Long companyID,
+                               @PathVariable("sectionID") Long sectionID) {
+        //TODO
     }
 }

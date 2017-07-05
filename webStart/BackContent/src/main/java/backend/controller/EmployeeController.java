@@ -100,10 +100,10 @@ public class EmployeeController {
     @ResponseBody
     @RequestMapping(value = "/{companyID}/{sectionID}/{ID}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void delEmployee(@PathVariable("companyID") Long companyID, @PathVariable("sectionID") Long sectionID, @PathVariable("ID") Long ID) {
-
+        //TODO FIX
     }
 
-    @ApiOperation(value = "修改人员信息", notes = "员工修改个人信息")
+    @ApiOperation(value = "修改人员信息", notes = "员工修改私人信息及部门信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "companyID",value = "公司id", required = true, dataType = "Long", paramType = "path"),
             @ApiImplicitParam(name = "sectionID",value = "部门id", required = true, dataType = "Long", paramType = "path"),
@@ -112,20 +112,36 @@ public class EmployeeController {
             @ApiImplicitParam(name = "email1",value = "邮箱1", dataType = "String", paramType = "body"),
             @ApiImplicitParam(name = "email2",value = "邮箱2", dataType = "String", paramType = "body"),
             @ApiImplicitParam(name = "phone1",value = "电话1", dataType = "String", paramType = "body"),
-            @ApiImplicitParam(name = "phone2",value = "电话2", dataType = "String", paramType = "body")
+            @ApiImplicitParam(name = "phone2",value = "电话2", dataType = "String", paramType = "body"),
+            @ApiImplicitParam(name = "newSectionID",value = "新部门id", dataType = "Long", paramType = "body")
     })
     @ResponseBody
     @RequestMapping(value = "/{companyID}/{sectionID}/{ID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void modifyEmployee(@PathVariable("companyID") Long companyID, @PathVariable("sectionID") Long sectionID,
-                                     @PathVariable("ID") Long ID,HttpServletResponse httpServletResponse,
-                                     @RequestParam(value = "newPwd" ,required = false) String newPwd,
-                                     @RequestParam(value = "email1", required = false) String email1,
-                                     @RequestParam(value = "email2", required = false) String email2,
-                                     @RequestParam(value = "phone1", required = false) String phone1,
-                                     @RequestParam(value = "phone2", required = false) String phone2
+                               @PathVariable("ID") Long ID,HttpServletResponse httpServletResponse,
+                               @RequestParam(value = "newSectionID", required = false) Long newSectionID,
+                               @RequestParam(value = "newPwd" ,required = false) String newPwd,
+                               @RequestParam(value = "email1", required = false) String email1,
+                               @RequestParam(value = "email2", required = false) String email2,
+                               @RequestParam(value = "phone1", required = false) String phone1,
+                               @RequestParam(value = "phone2", required = false) String phone2
                                ) {
         JSONObject jsonObject=databaseService.updateEmployeePersonal(companyID, sectionID, ID, newPwd, email1, email2, phone1, phone2);
         ResponseJsonObj.write(httpServletResponse,jsonObject);
         //TODO fix who can modify? admin? himself?
+        //TODO change section
+    }
+
+    @ApiOperation(value = "获取个人信息", notes = "员工获取个人信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "companyID",value = "公司id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "sectionID",value = "部门id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "ID",value = "人员id", required = true, dataType = "Long", paramType = "path")
+    })
+    @ResponseBody
+    @RequestMapping(value = "/{companyID}/{sectionID}/{ID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Employee getPersonal(@PathVariable("companyID") Long companyID, @PathVariable("sectionID") Long sectionID,
+                                @PathVariable("ID") Long ID) {
+        return databaseService.findEmployeeById(ID);
     }
 }

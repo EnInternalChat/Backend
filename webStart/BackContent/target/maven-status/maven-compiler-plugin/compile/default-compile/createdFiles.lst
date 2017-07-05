@@ -10,6 +10,7 @@ backend\mdoel\InstanceOfProcess.class
 backend\repository\EmployeeRepository.class
 backend\controller\NotificationController.class
 backend\serial\EmployeeSerializer.class
+backend\mdoel\RoleType.class
 backend\controller\RootController.class
 backend\serial\CompanySerializer.class
 backend\util\ResponseJsonObj.class

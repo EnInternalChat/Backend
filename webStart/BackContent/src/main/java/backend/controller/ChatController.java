@@ -26,26 +26,11 @@ public class ChatController {
 
     }
 
-    @ApiOperation(value = "获取私聊列表", notes = "未删除的私聊信息")
-    @ApiImplicitParam(name = "personID", value = "对方id", required = true, dataType = "Long", paramType = "body")
-    @ResponseBody
-    @RequestMapping(value = "/single", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void simpleChatGet(@RequestParam("personID") Long ID) {
-
-    }
-
     @ApiOperation(value = "开启群组聊天", notes = "群聊功能")
     @ApiImplicitParam(name = "groupIDList", value = "加入群聊的群组的id集合", required = true, dataType = "List", paramType = "body")
     @ResponseBody
     @RequestMapping(value = "/group", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void groupChatStart(@RequestParam("groupIDList") List<Long> groupIDList) {
-
-    }
-
-    @ApiOperation(value = "获取群聊列表", notes = "未删除的群聊信息")
-    @ResponseBody
-    @RequestMapping(value = "/group", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void groupChatAll() {
 
     }
 
