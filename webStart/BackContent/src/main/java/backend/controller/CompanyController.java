@@ -39,7 +39,7 @@ public class CompanyController {
             @ApiImplicitParam(name = "sectionID", value = "部门id", required = true, dataType = "Long", paramType = "path")
     })
     @ResponseBody
-    @RequestMapping(value = "/sections/{companyID}/{sectionID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/{companyID}/sections/{sectionID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Section sectionData(@PathVariable("companyID") Long companyID,
                                @PathVariable("sectionID") Long sectionID) {
         return databaseService.findSecByID(sectionID);//TODO check if section belong to company
@@ -70,7 +70,7 @@ public class CompanyController {
             @ApiImplicitParam(name = "name", value = "部门新名称", dataType = "String", paramType = "body")
     })
     @ResponseBody
-    @RequestMapping(value = "/sections/{companyID}/{sectionID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/{companyID}/sections/{sectionID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void modifySection(@PathVariable("companyID") Long companyID, @PathVariable("sectionID") Long sectionID,
                               @RequestParam(value = "leaderID", required = false) Long leaderID,
                               @RequestParam(value = "description", required = false) String description,
@@ -85,7 +85,7 @@ public class CompanyController {
             @ApiImplicitParam(name = "sectionID", value = "部门id", required = true, dataType = "Long", paramType = "path")
     })
     @ResponseBody
-    @RequestMapping(value = "/sections/{companyID}/{sectionID}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/{companyID}/sections/{sectionID}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void delSection(@PathVariable("companyID") Long companyID,
                                @PathVariable("sectionID") Long sectionID) {
         //TODO
