@@ -283,6 +283,27 @@ public class DatabaseService {
     public Employee findEmployeeById(long id) {
         return employeeRepository.findOne(id);
     }
+
+    public String groupChatGenerate(long companyID, List<Long> groups) {
+        Collections.sort(groups);
+        String mark="";
+        for(Long id:groups) {
+            mark=mark+id+"+";
+        }
+        mark.substring(0,mark.length()-1);
+        List<Chat> chats=chatRepository.findByMark(mark);
+        Chat chat=null;
+        if(chats.size() == 0) {
+            chat=new Chat(getIChat(),companyID,mark);
+
+            //TODO create;
+            chatRepository.save(chat);
+        } else {
+            chat=chats.get(0);
+        }
+        return chat.getTrdPartyID();
+    }
+
     public void testChat() {
         CreateGroupResult createGroupResult=null;
         try {
