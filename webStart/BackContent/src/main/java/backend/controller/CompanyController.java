@@ -3,13 +3,17 @@ package backend.controller;
 import backend.mdoel.Company;
 import backend.mdoel.Section;
 import backend.service.DatabaseService;
+import backend.util.ResponseJsonObj;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.activiti.engine.impl.util.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by lenovo on 2017/5/26.
@@ -42,7 +46,7 @@ public class CompanyController {
     @RequestMapping(value = "/{companyID}/sections/{sectionID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Section sectionData(@PathVariable("companyID") Long companyID,
                                @PathVariable("sectionID") Long sectionID) {
-        return databaseService.findSecByID(sectionID);//TODO check if section belong to company
+        return databaseService.findSecByID(companyID,sectionID);
     }
 
     @ApiOperation(value = "添加部门", notes = "为某部门添加子部门", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -54,11 +58,13 @@ public class CompanyController {
     })
     @ResponseBody
     @RequestMapping(value = "/{companyID}/{sectionID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void addSection(@PathVariable("companyID") Long companyID, @PathVariable("sectionID") Long sectionID,
+    public void addSection(HttpServletResponse httpServletResponse,
+                           @PathVariable("companyID") Long companyID, @PathVariable("sectionID") Long sectionID,
                            @RequestParam("name") String secName,
                            @RequestParam(value = "description", required = false) String description
     ) {
-        //TODO
+        JSONObject jsonObject=databaseService.addNewSection(companyID,sectionID,secName,description);
+        ResponseJsonObj.write(httpServletResponse,jsonObject);
     }
 
     @ApiOperation(value = "修改部门信息", notes = "修改部门名称，部长，描述等信息")
@@ -71,23 +77,27 @@ public class CompanyController {
     })
     @ResponseBody
     @RequestMapping(value = "/{companyID}/sections/{sectionID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void modifySection(@PathVariable("companyID") Long companyID, @PathVariable("sectionID") Long sectionID,
+    public void modifySection(HttpServletResponse httpServletResponse,
+                              @PathVariable("companyID") Long companyID, @PathVariable("sectionID") Long sectionID,
                               @RequestParam(value = "leaderID", required = false) Long leaderID,
                               @RequestParam(value = "description", required = false) String description,
                               @RequestParam(value = "name", required = false) String name
                               ) {
-        //TODO
+        JSONObject jsonObject=databaseService.modifySectionData(companyID,sectionID,description,name,leaderID);
+        ResponseJsonObj.write(httpServletResponse,jsonObject);
     }
 
     @ApiOperation(value = "删除部门", notes = "删除公司部门")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "companyID", value = "公司id", required = true, dataType = "Long", paramType = "path"),
-            @ApiImplicitParam(name = "sectionID", value = "部门id", required = true, dataType = "Long", paramType = "path")
+            @ApiImplicitParam(name = "sectionID", value = "部门id", required = true, dataType = "Long", paramType = "path"),
     })
     @ResponseBody
     @RequestMapping(value = "/{companyID}/sections/{sectionID}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void delSection(@PathVariable("companyID") Long companyID,
-                               @PathVariable("sectionID") Long sectionID) {
-        //TODO
+    public void delSection(HttpServletResponse httpServletResponse,
+                           @PathVariable("companyID") Long companyID,
+                           @PathVariable("sectionID") Long sectionID) {
+        JSONObject jsonObject=databaseService.delSection(companyID,sectionID);
+        ResponseJsonObj.write(httpServletResponse,jsonObject);
     }
 }

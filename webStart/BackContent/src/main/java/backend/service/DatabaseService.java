@@ -169,7 +169,8 @@ public class DatabaseService {
 
     public JSONObject updateEmployeePersonal(Long companyID, Long sectionID, long id,
                                              String newPwd, String email1, String email2,
-                                             String phone1, String phone2) {
+                                             String phone1, String phone2, Integer avatar,
+                                             Long newSectionID) {
         JSONObject jsonObject=new JSONObject();
         String info="";
         Employee employee=employeeRepository.findOne(id);
@@ -179,6 +180,19 @@ public class DatabaseService {
         } else if(employee.getCompanyID() != companyID || employee.getSectionID() != sectionID) {
             jsonObject.put("info", "当前公司不存在此id用户");
             return jsonObject;
+        }
+        if(newSectionID != null) {
+            Section oldSection=sectionRepository.findOne(employee.getSectionID());
+            Section newSection=sectionRepository.findOne(newSectionID);
+            oldSection.delMember(employee);
+            newSection.addMember(employee);
+            sectionRepository.save(oldSection);
+            sectionRepository.save(newSection);
+            info+="|用户部门修改成功";
+        }
+        if(avatar != null) {
+            employee.setAvatar(avatar);
+            info+="|头像修改成功";
         }
         if(newPwd != null) {
             employee.setPassword(newPwd);
@@ -199,6 +213,51 @@ public class DatabaseService {
         return jsonObject;
         //TODO update failed
     }
+
+    public JSONObject delEmployee(Long companyID, Long sectionID, long id) {
+        JSONObject result=new JSONObject();
+        Company company=companyRepository.findOne(companyID);
+        if(company == null) {
+            result.put("info","当前公司id不存在");
+            return result;
+        }
+        Section section=sectionRepository.findOne(sectionID);
+        if(section == null || section.getCompanyID() != companyID) {
+            result.put("info","当前部门id不存在或当前id部门不属于此公司");
+            return result;
+        }
+        Employee employee=employeeRepository.findOne(id);
+        if(employee == null || employee.getSectionID() !=sectionID) {
+            result.put("info","当前员工id不存在或当前id员工不属于此部门");
+            return result;
+        }
+        section.delMember(employee);
+        sectionRepository.save(section);
+        employeeRepository.delete(id);
+        result.put("info","删除成功");
+        return result;
+    }
+
+    public JSONObject addEmployee(Long companyID, Long sectionID, String name, String password, boolean gender) {
+        JSONObject result=new JSONObject();
+        Company company=companyRepository.findOne(companyID);
+        if(company == null) {
+            result.put("info","当前公司id不存在");
+            return result;
+        }
+        Section section=sectionRepository.findOne(sectionID);
+        if(section == null || section.getCompanyID() != companyID) {
+            result.put("info","当前部门id不存在或当前id部门不属于此公司");
+            return result;
+        }
+        Employee employee=new Employee(getIEmployee(),companyID,sectionID,name,password,gender);
+        employeeRepository.save(employee);
+        section.addMember(employee);
+        sectionRepository.save(section);
+        result.put("info","员工添加成功");
+        return result;
+    }
+
     public long getIDeployOfProcess() {
         long id= idManager.getIDeployOfProcess();
         idManagerRepository.save(idManager);
@@ -282,6 +341,134 @@ public class DatabaseService {
 
     public Employee findEmployeeById(long id) {
         return employeeRepository.findOne(id);
+    }
+
+    public Notification readNotification(long notificationID, long id) {
+        Employee employee=employeeRepository.findOne(id);
+        Notification notification=notificationRepository.findOne(notificationID);
+        employee.readNotification(notification);
+        employeeRepository.save(employee);
+        return notification;
+    }
+
+    public JSONObject logicDelNotification(long notificationID, long id) {
+        JSONObject result=new JSONObject();
+        Employee employee=employeeRepository.findOne(id);
+        Notification notification=notificationRepository.findOne(notificationID);
+        employee.delNotification(notification);
+        employeeRepository.save(employee);
+        result.put("info","删除成功");
+        return result;
+    }
+
+    public JSONObject addNewSection(long companyID, long sectionID, String name, String note) {
+        JSONObject result=new JSONObject();
+        Company company=companyRepository.findOne(companyID);
+        if(company == null) {
+            result.put("info","当前公司id不存在");
+            return result;
+        }
+        if(sectionID == -1) {
+            Section section=new Section(getISection(),companyID,sectionID,name,note);
+            company.setHeadSec(section);
+            companyRepository.save(company);
+            sectionRepository.save(section);
+            result.put("info","添加本公司第一个部门成功");
+            return result;
+        }
+        Section parrentSection=sectionRepository.findOne(sectionID);
+        if(parrentSection == null) {
+            result.put("info","当前部门id不存在");
+            return result;
+        }
+        if(parrentSection.getCompanyID() != companyID) {
+            result.put("info","当前部门不属于此公司");
+            return result;
+        }
+        Section section=new Section(getISection(),companyID,sectionID,name,note);
+        parrentSection.addChildSec(section);
+        sectionRepository.save(parrentSection);
+        sectionRepository.save(section);
+        result.put("info","部门添加成功");
+        return result;
+    }
+
+    public JSONObject delSection(long companyID, long sectionID) {
+        JSONObject result=new JSONObject();
+        Company company=companyRepository.findOne(companyID);
+        if(company == null) {
+            result.put("info","删除失败,当前公司id不存在");
+            return result;
+        }
+        Section section=sectionRepository.findOne(sectionID);
+        if(section == null) {
+            result.put("info",sectionID+": 当前部门id不存在");
+            return result;
+        }
+        if(section.getParrentSecID() != -1) {
+            Section parrentSec=sectionRepository.findOne(section.getParrentSecID());
+            if(parrentSec == null) {
+                result.put("info",section.getParrentSecID()+": 当前部门id不存在");
+                return result;
+            } else {
+                parrentSec.deleteChildSec(section);
+                sectionRepository.save(parrentSec);
+            }
+        } else {
+            company.setHeadSec(null);
+            companyRepository.save(company);
+        }
+        if(section.getCompanyID() != companyID) {
+            result.put("info","删除失败,当前公司不存在此部门id");
+            return result;
+        }
+        sectionRepository.delete(sectionID);
+        result.put("info","删除成功");
+        return result;
+    }
+
+    public JSONObject modifySectionData(long companyID, long sectionID, String description, String name, Long leaderID) {
+        String info="";
+        JSONObject result=new JSONObject();
+        Company company=companyRepository.findOne(companyID);
+        if(company == null) {
+            result.put("info","当前公司id不存在");
+            return result;
+        }
+        Section section=sectionRepository.findOne(sectionID);
+        if(section == null) {
+            result.put("info",sectionID+": 当前部门id不存在");
+            return result;
+        }
+        if(name != null) {
+            section.setName(name);
+            info+="部门名称修改成功|";
+        }
+        if(description != null) {
+            section.setNote(description);
+            info+="部门描述修改成功|";
+        }
+        if(leaderID != null) {
+            Employee newLeader=employeeRepository.findOne(leaderID);
+            if(newLeader == null) {
+                info+="部长设置失败,当前不存在此用户";
+                sectionRepository.save(section);
+                result.put("info",info);
+                return result;
+            } else {
+                Employee oldLeader=section.getLeader();
+                oldLeader.setLeader(false);
+                newLeader.setLeader(true);
+                section.setLeaderID(newLeader);
+                info+="新部长设置成功";
+            }
+        }
+        sectionRepository.save(section);
+        if(info == "") {
+            result.put("info","没有任何信息被修改");
+        }
+        result.put("info",info);
+        return result;
     }
 
     public String groupChatGenerate(long companyID, List<Long> groups) {
@@ -514,8 +701,12 @@ public class DatabaseService {
         employeeRepository.save(employee);
     }
 
-    public Section findSecByID(long id) {
-        return sectionRepository.findOne(id);
+    public Section findSecByID(long companyID, long sectionID) {
+        Company company=companyRepository.findOne(companyID);
+        if(company == null) return null;
+        Section section=sectionRepository.findOne(sectionID);
+        if(section == null || section.getCompanyID() != companyID) return null;
+        return sectionRepository.findOne(sectionID);
     }
 
     public Company findComById(long id) {

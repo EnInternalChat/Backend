@@ -72,18 +72,29 @@ public class NotificationController {
     }
 
     @ApiOperation(value = "查看通知", notes = "未读通知状态会变为已读")
-    @ApiImplicitParam(name = "ID", value = "通知id", required = true, dataType = "Long", paramType = "path")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "ID", value = "通知id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "notificationID", value = "查看者id", required = true, dataType = "Long", paramType = "path")
+    })
     @ResponseBody
-    @RequestMapping(value = "/{ID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void readNotification(@PathVariable("ID") Long ID) {
+    @RequestMapping(value = "/{ID}/{notificationID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Notification readNotification(@PathVariable("ID") Long ID, @PathVariable("notificationID") Long notificationID) {
+        Notification notification=databaseService.readNotification(notificationID,ID);
+        return notification;
         //TODO check ID owner before put
     }
 
     @ApiOperation(value = "删除通知", notes = "通知状态变为逻辑删除")
-    @ApiImplicitParam(name = "ID", value = "通知id", required = true, dataType = "Long", paramType = "path")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "ID", value = "通知id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "notificationID", value = "查看者id", required = true, dataType = "Long", paramType = "path")
+    })
     @ResponseBody
-    @RequestMapping(value = "/{ID}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void delNotification(@PathVariable("ID") Long ID) {
+    @RequestMapping(value = "/{ID}/{notificationID}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void delNotification(HttpServletResponse httpServletResponse,
+                                @PathVariable("ID") Long ID, @PathVariable("notificationID") Long notificationID) {
+        JSONObject jsonObject=databaseService.logicDelNotification(notificationID,ID);
+        ResponseJsonObj.write(httpServletResponse,jsonObject);
         //TODO check ID owner before del
     }
 

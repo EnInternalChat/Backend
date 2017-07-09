@@ -21,6 +21,7 @@ public class Section {
     @Id
     private long ID;
     private long companyID;
+    private long parrentSecID;
     private String chatID;
     @DBRef
     private Employee leader;
@@ -37,11 +38,13 @@ public class Section {
     }
 
     //add new formal
-    public Section(long ID, long companyID, String name) {
+    public Section(long ID, long companyID, long parrentSecID, String name, String note) {
         this();
         this.ID = ID;
         this.companyID = companyID;
         this.name = name;
+        this.note=note;
+        this.parrentSecID=parrentSecID;
     }
 
     public Section(long ID) {
@@ -49,12 +52,8 @@ public class Section {
         this.ID=ID;
     }
 
-    public Section(long ID, long companyID, Employee leader, String name, String note) {
-        this(ID);
-        this.companyID = companyID;
-        this.leader = leader;
-        this.name = name;
-        this.note = note;
+    public long getParrentSecID() {
+        return parrentSecID;
     }
 
     public String getChatID() {
@@ -117,6 +116,10 @@ public class Section {
         return members;
     }
 
+    public boolean delMember(Employee employee) {
+        members.remove(employee);
+        return true;
+    }
     public boolean addMember(Employee employee) {
         members.add(employee);
         return true;

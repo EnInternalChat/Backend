@@ -51,18 +51,22 @@ public class Employee {
         instanceOfProcesses =new ArrayList<>();
     }
 
-    //add new formal
-    public Employee(long ID, long companyID, long sectionID, String name, String password, String position, boolean gender, String mail, String number) {
+    public Employee(long ID, long companyID, long sectionID, String name, String pwd, boolean gender) {
         this();
         this.ID = ID;
         this.companyID = companyID;
         this.sectionID = sectionID;
         this.name = name;
-        this.pwd = password;
-        this.position = position;
+        this.pwd = pwd;
         this.gender = gender;
         active=true;
         leader=false;
+        avatar=1;
+    }
+
+    //add new formal
+    public Employee(long ID, long companyID, long sectionID, String name, String password, String position, boolean gender, String mail, String number) {
+        this(ID,companyID,sectionID,name,password,gender);
         email.add(mail);
         phone.add(number);
     }
@@ -171,6 +175,17 @@ public class Employee {
 
     public Collection<Notification> getNotificationsRcvdRead() {
         return notificationsRcvdRead;
+    }
+
+    public boolean readNotification(Notification notification) {
+        notificationsRcvdUnread.remove(notification);
+        notificationsRcvdRead.add(notification);
+        return true;
+    }
+
+    public boolean delNotification(Notification notification) {
+        notificationsRcvdRead.remove(notification);
+        return true;
     }
 
     public boolean sendNotification(Notification notification) {

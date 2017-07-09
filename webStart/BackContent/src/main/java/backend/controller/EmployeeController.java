@@ -79,16 +79,20 @@ public class EmployeeController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "companyID",value = "公司id", required = true, dataType = "Long", paramType = "path"),
             @ApiImplicitParam(name = "sectionID",value = "部门id", required = true, dataType = "Long", paramType = "path"),
-            @ApiImplicitParam(name = "name", value = "姓名", required = true, dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name = "password", value = "秘密", defaultValue = "123456", dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name = "position",value = "职位名称", required = true, dataType = "String", paramType = "query")
+            @ApiImplicitParam(name = "name", value = "姓名", required = true, dataType = "String", paramType = "body"),
+            @ApiImplicitParam(name = "password", value = "密码", required = true, defaultValue = "123456", dataType = "String", paramType = "body"),
+            @ApiImplicitParam(name = "gender", value = "性别", required = true, dataType = "String", paramType = "body"),
+            @ApiImplicitParam(name = "position",value = "职位名称", required = true, dataType = "String", paramType = "body")
     })
     @ResponseBody
     @RequestMapping(value = "/{companyID}/{sectionID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void addEmployee(@PathVariable("companyID") Long companyID, @PathVariable("sectionID") Long sectionID,
+    public void addEmployee(HttpServletResponse httpServletResponse,
+                            @PathVariable("companyID") Long companyID, @PathVariable("sectionID") Long sectionID,
                             @RequestParam("name") String name, @RequestParam("position") String position,
+                            @RequestParam("gender") boolean gender,
                             @RequestParam(value = "password", required = false) String password) {
-
+        JSONObject jsonObject=databaseService.addEmployee(companyID,sectionID,name,password,gender);
+        ResponseJsonObj.write(httpServletResponse,jsonObject);
     }
 
     @ApiOperation(value = "删除人员", notes = "公司部门删除员工")
@@ -99,8 +103,10 @@ public class EmployeeController {
     })
     @ResponseBody
     @RequestMapping(value = "/{companyID}/{sectionID}/{ID}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void delEmployee(@PathVariable("companyID") Long companyID, @PathVariable("sectionID") Long sectionID, @PathVariable("ID") Long ID) {
-        //TODO FIX
+    public void delEmployee(HttpServletResponse httpServletResponse,
+                            @PathVariable("companyID") Long companyID, @PathVariable("sectionID") Long sectionID, @PathVariable("ID") Long ID) {
+        JSONObject jsonObject=databaseService.delEmployee(companyID,sectionID,ID);
+        ResponseJsonObj.write(httpServletResponse,jsonObject);
     }
 
     @ApiOperation(value = "修改人员信息", notes = "员工修改私人信息及部门信息")
@@ -113,7 +119,8 @@ public class EmployeeController {
             @ApiImplicitParam(name = "email2",value = "邮箱2", dataType = "String", paramType = "body"),
             @ApiImplicitParam(name = "phone1",value = "电话1", dataType = "String", paramType = "body"),
             @ApiImplicitParam(name = "phone2",value = "电话2", dataType = "String", paramType = "body"),
-            @ApiImplicitParam(name = "newSectionID",value = "新部门id", dataType = "Long", paramType = "body")
+            @ApiImplicitParam(name = "newSectionID",value = "新部门id", dataType = "Long", paramType = "body"),
+            @ApiImplicitParam(name = "avatar",value = "头像", dataType = "Integer", paramType = "body")
     })
     @ResponseBody
     @RequestMapping(value = "/{companyID}/{sectionID}/{ID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -124,9 +131,10 @@ public class EmployeeController {
                                @RequestParam(value = "email1", required = false) String email1,
                                @RequestParam(value = "email2", required = false) String email2,
                                @RequestParam(value = "phone1", required = false) String phone1,
-                               @RequestParam(value = "phone2", required = false) String phone2
+                               @RequestParam(value = "phone2", required = false) String phone2,
+                               @RequestParam(value = "avatar", required = false) Integer avatar
                                ) {
-        JSONObject jsonObject=databaseService.updateEmployeePersonal(companyID, sectionID, ID, newPwd, email1, email2, phone1, phone2);
+        JSONObject jsonObject=databaseService.updateEmployeePersonal(companyID, sectionID, ID, newPwd, email1, email2, phone1, phone2, avatar, newSectionID);
         ResponseJsonObj.write(httpServletResponse,jsonObject);
         //TODO fix who can modify? admin? himself?
         //TODO change section
