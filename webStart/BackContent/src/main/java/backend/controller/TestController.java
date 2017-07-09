@@ -2,7 +2,6 @@ package backend.controller;
 
 import backend.mdoel.Company;
 import backend.mdoel.Employee;
-import backend.mdoel.Section;
 import backend.service.DatabaseService;
 import io.swagger.annotations.Api;
 import org.activiti.engine.ProcessEngine;
@@ -81,13 +80,13 @@ public class TestController {
         resMap.put("user","name");
         return resMap;
     }
-
-    @ResponseBody
-    @RequestMapping(value = "/testSerialize1", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Section getSecs(HttpSession session) {
-        System.out.println(session.getAttribute("name"));
-        return databaseService.findSecByID((long) 0);
-    }
+//
+//    @ResponseBody
+//    @RequestMapping(value = "/testSerialize1", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+//    public Section getSecs(HttpSession session) {
+//        System.out.println(session.getAttribute("name"));
+//        return databaseService.findSecByID((long) 0);
+//    }
 
     @ResponseBody
     @RequestMapping(value = "/testSerialize2", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

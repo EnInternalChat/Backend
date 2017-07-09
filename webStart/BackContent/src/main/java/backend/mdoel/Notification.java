@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * Created by lenovo on 2017/5/14.
@@ -26,7 +26,7 @@ public class Notification {
     private Collection<Long> rcvSecID;
 
     public Notification() {
-        rcvSecID=new ArrayList<>();
+        rcvSecID=new HashSet<>();
     }
 
     public Collection<Long> getRcvSecID() {

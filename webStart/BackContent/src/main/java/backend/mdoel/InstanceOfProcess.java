@@ -4,10 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by lenovo on 2017/5/31.
@@ -29,8 +26,8 @@ public class InstanceOfProcess {
 
     public InstanceOfProcess(long ID) {
         this.ID=ID;
-        this.startPerson = new ArrayList<>();
-        this.stages = new ArrayList<>();
+        this.startPerson = new HashSet<>();
+        this.stages = new HashSet<>();
         over=false;
     }
 

@@ -6,8 +6,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * Created by lenovo on 2017/5/14.
@@ -32,7 +32,7 @@ public class Company {
 
     public Company(long ID) {
         this.ID=ID;
-        deployOfProcesses=new ArrayList<>();
+        deployOfProcesses=new HashSet<>();
     }
 
     public Employee getAdmin() {

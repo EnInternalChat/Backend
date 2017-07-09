@@ -735,9 +735,13 @@ public class DatabaseService {
     }
 
     private void delCollectionDataBasic(Class mainType, long mainID, long dataID, String columnName)  {
-        Query query=Query.query(Criteria.where("_id").is(mainID).and(columnName+"._id").is(dataID));
+        Query query=Query.query(Criteria.where("_id").is(mainID).and(columnName+".$id").is(dataID));
         Update update=new Update();
         update.unset(columnName+".$");
+        mongoTemplate.updateFirst(query,update,mainType);
+        query=Query.query(Criteria.where("_id").is(mainID));
+        update=new Update();
+        update.pull(columnName,null);
         mongoTemplate.updateFirst(query,update,mainType);
     }
 
