@@ -36,7 +36,7 @@ public class Swagger2Config extends WebMvcConfigurationSupport {
                 .title("企业内部沟通App")
                 .description("暂无")
                 .termsOfServiceUrl("暂无")
-                .version("2.0")
+                .version("4.0")
                 .build();
     }
 }

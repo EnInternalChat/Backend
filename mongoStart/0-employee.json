@@ -10,6 +10,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":true,
+	"groupChats":[],
 	"notificationsSent":[
 		{ "$ref":"notification", "$id":NumberLong(0) },
 		{ "$ref":"notification", "$id":NumberLong(1) }
@@ -33,6 +34,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":true,
+	"groupChats":[],
 	"notificationsSent":[
 		{ "$ref":"notification", "$id":NumberLong(2) }
 	],
@@ -56,6 +58,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":true,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -79,6 +82,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":true,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -102,6 +106,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":true,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -125,6 +130,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":true,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -148,6 +154,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":true,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -171,6 +178,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":true,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -194,6 +202,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":true,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -217,6 +226,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":true,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -240,6 +250,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":true,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -263,6 +274,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":true,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -286,6 +298,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":true,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -309,6 +322,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":true,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -332,6 +346,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":true,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -355,6 +370,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":false,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -378,6 +394,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":false,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -401,6 +418,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":false,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -424,6 +442,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":false,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -447,6 +466,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":false,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[
@@ -470,6 +490,7 @@
 	"instanceOfProcesses":[],
 	"active":true,
 	"leader":true,
+	"groupChats":[],
 	"notificationsSent":[
 	],
 	"notificationsRcvdUnread":[

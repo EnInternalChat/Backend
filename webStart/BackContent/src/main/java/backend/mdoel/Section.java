@@ -29,12 +29,15 @@ public class Section {
     private Collection<Employee> members;
     @DBRef
     private Collection<Section> childrenSections;
+    @DBRef
+    private Collection<Chat> relatedGroupChats;
     private String name;
     private String note;
 
     public Section() {
         members=new HashSet<>();
         childrenSections=new HashSet<>();
+        relatedGroupChats=new HashSet<>();
     }
 
     //add new formal
@@ -50,6 +53,15 @@ public class Section {
     public Section(long ID) {
         this();
         this.ID=ID;
+    }
+
+    public Collection<Chat> getRelatedGroupChats() {
+        return relatedGroupChats;
+    }
+
+    public boolean addgroupChat(Chat chat) {
+        relatedGroupChats.add(chat);
+        return true;
     }
 
     public long getParrentSecID() {
@@ -107,10 +119,6 @@ public class Section {
     public Employee getLeader() {
         return leader;
     }
-
-//    public long getParrentSectionID() {
-//        return parrentSectionID;
-//    }
 
     public Collection<Employee> getMembers() {
         return members;

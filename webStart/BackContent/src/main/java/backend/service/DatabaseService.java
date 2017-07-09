@@ -234,7 +234,16 @@ public class DatabaseService {
         section.delMember(employee);
         sectionRepository.save(section);
         employeeRepository.delete(id);
-        result.put("info","删除成功");
+        try {
+            jMessageClient.deleteUser(employee.getName());
+            result.put("info","删除成功");
+        } catch (APIConnectionException e) {
+            result.put("info","员工删除成功,极光删除失败");
+            System.out.println("Connection error. Should retry later. ");
+        } catch (APIRequestException | NullPointerException e) {
+            result.put("info","员工删除成功,极光删除失败");
+            System.out.println("Error Message: " + e.getMessage());
+        }
         return result;
     }
 
@@ -254,7 +263,23 @@ public class DatabaseService {
         employeeRepository.save(employee);
         section.addMember(employee);
         sectionRepository.save(section);
-        result.put("info","员工添加成功");
+        try {
+            RegisterInfo registerInfo=RegisterInfo.newBuilder()
+                    .setUsername(name)
+                    .setPassword(password)
+                    .build();
+            List<RegisterInfo> registerInfos=new ArrayList<>();
+            registerInfos.add(registerInfo);
+            RegisterInfo[] regUsers=new RegisterInfo[1];
+            jMessageClient.registerUsers(registerInfos.toArray(regUsers));
+            result.put("info","员工添加成功");
+        } catch (APIConnectionException e) {
+            result.put("info","员工添加成功,极光注册失败");
+            System.out.println("Connection error. Should retry later. ");
+        } catch (APIRequestException | NullPointerException e) {
+            result.put("info","员工添加成功,极光注册失败");
+            System.out.println("Error Message: " + e.getMessage());
+        }
         return result;
     }
 
@@ -347,7 +372,8 @@ public class DatabaseService {
         Employee employee=employeeRepository.findOne(id);
         Notification notification=notificationRepository.findOne(notificationID);
         employee.readNotification(notification);
-        employeeRepository.save(employee);
+        addUpdateNotificationsRcvdRead(employee,notification);
+        delUpdateNotificationsRcvdUnread(employee,notification);
         return notification;
     }
 
@@ -471,19 +497,42 @@ public class DatabaseService {
         return result;
     }
 
-    public String groupChatGenerate(long companyID, List<Long> groups) {
+    public Long groupChatGenerate(long companyID, List<Long> groups) {
+        List<Section> sections=new ArrayList<>();
         Collections.sort(groups);
         String mark="";
         for(Long id:groups) {
             mark=mark+id+"+";
+            Section section=sectionRepository.findOne(id);
+            sections.add(section);
         }
+        Employee owner=sections.get(0).getLeader();
         mark.substring(0,mark.length()-1);
         List<Chat> chats=chatRepository.findByMark(mark);
-        Chat chat=null;
+        Chat chat;
+        CreateGroupResult createGroupResult;
         if(chats.size() == 0) {
             chat=new Chat(getIChat(),companyID,mark);
-
-            //TODO create;
+            try {
+                createGroupResult=jMessageClient.createGroup(owner.getName(),mark,"none",owner.getName());
+                Long Gid=createGroupResult.getGid();
+                chat.setTrdPartyID(Gid);
+                ArrayList<String> addMembers=new ArrayList<>();
+                for(Section section:sections) {
+                    section.addgroupChat(chat);
+                    sectionRepository.save(section);
+                    Collection<Employee> members=section.getMembers();
+                    for(Employee member:members) {
+                        addMembers.add(member.getName());
+                    }
+                }
+                String[] addList=new String[addMembers.size()];
+                jMessageClient.addOrRemoveMembers(Gid,addMembers.toArray(addList),null);
+            } catch (APIConnectionException e) {
+                System.out.println("Connection error. Should retry later. ");
+            } catch (APIRequestException | NullPointerException e) {
+                System.out.println("Error Message: " + e.getMessage());
+            }
             chatRepository.save(chat);
         } else {
             chat=chats.get(0);
@@ -647,14 +696,49 @@ public class DatabaseService {
         }
     }
 
-    public void updateEmployeeCollectionData(Employee employee, InstanceOfProcess instanceOfProcess) {
+    public void addUpdateInstanceOfProcess(Employee employee, InstanceOfProcess instanceOfProcess) {
         employee.addTask(instanceOfProcess);
         String colName=new BasicMongoPersistentEntity<>(ClassTypeInformation.from(InstanceOfProcess.class)).getCollection();
-        DBRef instanceOfProcessRef=new DBRef(mongoTemplate.getDb(),colName,instanceOfProcess.getID());
-        Query query=Query.query(Criteria.where("_id").is(employee.getID()));
+        addCollectionDataBasic(Employee.class,employee.getID(),colName,instanceOfProcess.getID(),"instanceOfProcesses");
+    }
+
+    private void addUpdateNotificationsRcvdRead(Employee employee, Notification notification) {
+        String colName=new BasicMongoPersistentEntity<>(ClassTypeInformation.from(Notification.class)).getCollection();
+        addCollectionDataBasic(Employee.class,employee.getID(),colName,notification.getID(),"notificationsRcvdRead");
+    }
+
+    private void addUpdateNotificationsRcvdUnread(Employee employee, Notification notification) {
+        String colName=new BasicMongoPersistentEntity<>(ClassTypeInformation.from(Notification.class)).getCollection();
+        addCollectionDataBasic(Employee.class,employee.getID(),colName,notification.getID(),"notificationsRcvdUnread");
+    }
+
+    private void addUpdateNotificationsSent(Employee employee, Notification notification) {
+        String colName=new BasicMongoPersistentEntity<>(ClassTypeInformation.from(Notification.class)).getCollection();
+        addCollectionDataBasic(Employee.class,employee.getID(),colName,notification.getID(),"notificationsSent");
+    }
+
+    private void addUpdateChat(Employee employee, Chat chat) {
+        String colName=new BasicMongoPersistentEntity<>(ClassTypeInformation.from(Chat.class)).getCollection();
+        addCollectionDataBasic(Employee.class,employee.getID(),colName,chat.getID(),"groupChats");
+    }
+
+    private void addCollectionDataBasic(Class mainType, long mainID, String colName, long dataID, String columnName) {
+        DBRef dbRef=new DBRef(mongoTemplate.getDb(),colName,dataID);
+        Query query=Query.query(Criteria.where("_id").is(mainID));
         Update update=new Update();
-        update.addToSet("instanceOfProcesses",instanceOfProcessRef);
-        mongoTemplate.updateFirst(query,update,Employee.class);
+        update.addToSet(columnName,dbRef);
+        mongoTemplate.updateFirst(query,update,mainType);
+    }
+
+    private void delUpdateNotificationsRcvdUnread(Employee employee, Notification notification) {
+        delCollectionDataBasic(Employee.class,employee.getID(),notification.getID(),"notificationsRcvdUnread");
+    }
+
+    private void delCollectionDataBasic(Class mainType, long mainID, long dataID, String columnName)  {
+        Query query=Query.query(Criteria.where("_id").is(mainID).and(columnName+"._id").is(dataID));
+        Update update=new Update();
+        update.unset(columnName+".$");
+        mongoTemplate.updateFirst(query,update,mainType);
     }
 
     public InstanceOfProcess saveProcessInstance(String processKey, String processID, String processName, Employee starter) {
@@ -690,15 +774,6 @@ public class DatabaseService {
         //DeployOfProcess processDeploy =new DeployOfProcess(getIDeployOfProcess(),companyID,name,path,timestamp,timestamp,0);
         //deployOfProcessRepository.save(processDeploy);
         return true;
-    }
-
-    public void doWork() {
-        ArrayList<String> test=new ArrayList<>();
-        test.add("1111");
-        test.add("e35564543");
-        Employee employee=employeeRepository.findOne((long) 28);
-        employee.setPassword("sssssssssss");
-        employeeRepository.save(employee);
     }
 
     public Section findSecByID(long companyID, long sectionID) {

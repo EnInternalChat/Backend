@@ -6,9 +6,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
+import java.util.HashSet;
 
 /**
  * Created by lenovo on 2017/5/7.
@@ -28,7 +27,7 @@ public class Employee {
     private Collection<String> phone;
     private Collection<String> email;
     @DBRef
-    private Collection<Map<String,Object>> chats;
+    private Collection<Chat> groupChats;
     @DBRef
     private Collection<Notification> notificationsSent;
     @DBRef
@@ -42,13 +41,13 @@ public class Employee {
     private boolean leader;
 
     public Employee() {
-        phone=new ArrayList<>();
-        email=new ArrayList<>();
-        chats=new ArrayList<>();
-        notificationsSent=new ArrayList<>();
-        notificationsRcvdRead=new ArrayList<>();
-        notificationsRcvdUnread=new ArrayList<>();
-        instanceOfProcesses =new ArrayList<>();
+        phone=new HashSet<>();
+        email=new HashSet<>();
+        groupChats=new HashSet<>();
+        notificationsSent=new HashSet<>();
+        notificationsRcvdRead=new HashSet<>();
+        notificationsRcvdUnread=new HashSet<>();
+        instanceOfProcesses =new HashSet<>();
     }
 
     public Employee(long ID, long companyID, long sectionID, String name, String pwd, boolean gender) {

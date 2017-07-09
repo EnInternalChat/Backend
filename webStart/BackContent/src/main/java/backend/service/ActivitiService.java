@@ -147,7 +147,7 @@ public class ActivitiService {
 
         InstanceOfProcess instanceOfProcess=databaseService
                 .saveProcessInstance(processKey,proId,processInstance.getName(),starter);
-        databaseService.updateEmployeeCollectionData(starter,instanceOfProcess);
+        databaseService.addUpdateInstanceOfProcess(starter,instanceOfProcess);
         return ok(proId);
     }
 

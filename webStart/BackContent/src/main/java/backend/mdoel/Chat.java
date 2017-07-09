@@ -13,7 +13,7 @@ public class Chat {
     private long ID;
     private long companyID;
     private String mark;
-    private String trdPartyID;
+    private Long trdPartyID;
 
     public Chat() {
     }
@@ -32,11 +32,11 @@ public class Chat {
         return mark;
     }
 
-    public String getTrdPartyID() {
+    public Long getTrdPartyID() {
         return trdPartyID;
     }
 
-    public void setTrdPartyID(String trdPartyID) {
+    public void setTrdPartyID(Long trdPartyID) {
         this.trdPartyID = trdPartyID;
     }
 }
