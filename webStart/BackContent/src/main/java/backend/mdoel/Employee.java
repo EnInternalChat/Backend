@@ -112,6 +112,10 @@ public class Employee {
         return sectionID;
     }
 
+    public void setSectionID(long sectionID) {
+        this.sectionID = sectionID;
+    }
+
     public int getAvatar() {
         return avatar;
     }

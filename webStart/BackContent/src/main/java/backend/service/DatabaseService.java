@@ -182,12 +182,14 @@ public class DatabaseService {
             return jsonObject;
         }
         if(newSectionID != null) {
+            employee.setSectionID(newSectionID);
             Section oldSection=sectionRepository.findOne(employee.getSectionID());
             Section newSection=sectionRepository.findOne(newSectionID);
             oldSection.delMember(employee);
             newSection.addMember(employee);
             delUpdateMembers(oldSection,employee);
             addUpdateMembers(newSection,employee);
+            employeeRepository.save(employee);
             info+="|用户部门修改成功";
         }
         if(avatar != null) {
@@ -205,9 +207,9 @@ public class DatabaseService {
             info+="|邮件联系方式修改成功";
         }
         if(info == "") {
-            jsonObject.put("info","修改对象: "+employee.getName()+".没有任何信息被修改");
+            jsonObject.put("info","修改对象: "+employee.getName()+"|没有任何信息被修改");
         } else {
-            jsonObject.put("info", "修改对象: "+employee.getName()+"."+info);
+            jsonObject.put("info", "修改对象: "+employee.getName()+"|"+info);
         }
         employeeRepository.save(employee);
         return jsonObject;
@@ -381,13 +383,23 @@ public class DatabaseService {
         return notification;
     }
 
-    public JSONObject logicDelNotification(long notificationID, long id) {
+    public JSONObject logicDelReadNotification(long notificationID, long id) {
         JSONObject result=new JSONObject();
         Employee employee=employeeRepository.findOne(id);
         Notification notification=notificationRepository.findOne(notificationID);
         employee.delNotification(notification);
         delUpdateNotificationsRcvdRead(employee,notification);
-        result.put("info","删除成功");
+        result.put("info","已读通知删除成功");
+        return result;
+    }
+
+    public JSONObject logicDelSentNotification(long notificationID, long id) {
+        JSONObject result=new JSONObject();
+        Employee employee=employeeRepository.findOne(id);
+        Notification notification=notificationRepository.findOne(notificationID);
+        employee.delNotification(notification);
+        delUpdateNotificationsSent(employee,notification);
+        result.put("info","已发送通知删除成功");
         return result;
     }
 
@@ -662,6 +674,9 @@ public class DatabaseService {
             Section section=sectionRepository.findOne(secID);
             if(section != null) secTotal++;
             else continue;
+            if(section.getID() == employee.getSectionID()) {
+                section.delMember(employee);
+            }
             Collection<Employee> receivers=section.getMembers();
             if(secID == employee.getSectionID()) receivers.remove(employee);
             for(Employee receiver:receivers) {
