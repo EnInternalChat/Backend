@@ -25,7 +25,11 @@ public class SectionSerializer extends StdSerializer<Section> {
         jsonGenerator.writeStartObject();
 
         jsonGenerator.writeNumberField("ID",section.getID());
-        jsonGenerator.writeNumberField("leaderID",section.getLeader().getID());
+        if(section.getLeader() == null) {
+            jsonGenerator.writeNumberField("leaderID",-1);
+        } else {
+            jsonGenerator.writeNumberField("leaderID",section.getLeader().getID());
+        }
 
         jsonGenerator.writeArrayFieldStart("membersID");
         for(Employee employee:section.getMembers()) {

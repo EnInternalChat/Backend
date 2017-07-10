@@ -12,6 +12,7 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/*.xml</param-value>
   </context-param>
+
   <filter>
     <filter-name>springSessionRepositoryFilter</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

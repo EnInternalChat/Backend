@@ -186,8 +186,8 @@ public class DatabaseService {
             Section newSection=sectionRepository.findOne(newSectionID);
             oldSection.delMember(employee);
             newSection.addMember(employee);
-            sectionRepository.save(oldSection);
-            sectionRepository.save(newSection);
+            delUpdateMembers(oldSection,employee);
+            addUpdateMembers(newSection,employee);
             info+="|用户部门修改成功";
         }
         if(avatar != null) {
@@ -232,7 +232,7 @@ public class DatabaseService {
             return result;
         }
         section.delMember(employee);
-        sectionRepository.save(section);
+        delUpdateMembers(section,employee);
         employeeRepository.delete(id);
         try {
             jMessageClient.deleteUser(employee.getName());
@@ -257,6 +257,10 @@ public class DatabaseService {
         Section section=sectionRepository.findOne(sectionID);
         if(section == null || section.getCompanyID() != companyID) {
             result.put("info","当前部门id不存在或当前id部门不属于此公司");
+            return result;
+        }
+        if(name.length() < 4) {
+            result.put("info","用户名不得少于4个字符");
             return result;
         }
         Employee employee=new Employee(getIEmployee(),companyID,sectionID,name,password,gender);
@@ -382,7 +386,7 @@ public class DatabaseService {
         Employee employee=employeeRepository.findOne(id);
         Notification notification=notificationRepository.findOne(notificationID);
         employee.delNotification(notification);
-        employeeRepository.save(employee);
+        delUpdateNotificationsRcvdRead(employee,notification);
         result.put("info","删除成功");
         return result;
     }
@@ -413,8 +417,7 @@ public class DatabaseService {
         }
         Section section=new Section(getISection(),companyID,sectionID,name,note);
         parrentSection.addChildSec(section);
-        sectionRepository.save(parrentSection);
-        sectionRepository.save(section);
+        addUpdateChildrenSecs(parrentSection,section);
         result.put("info","部门添加成功");
         return result;
     }
@@ -438,7 +441,7 @@ public class DatabaseService {
                 return result;
             } else {
                 parrentSec.deleteChildSec(section);
-                sectionRepository.save(parrentSec);
+                delUpdateChildrenSecs(parrentSec,section);
             }
         } else {
             company.setHeadSec(null);
@@ -486,7 +489,7 @@ public class DatabaseService {
                 oldLeader.setLeader(false);
                 newLeader.setLeader(true);
                 section.setLeaderID(newLeader);
-                info+="新部长设置成功";
+                info+="新部长设置成功";//TODO employee belong to section?
             }
         }
         sectionRepository.save(section);
@@ -722,6 +725,21 @@ public class DatabaseService {
         addCollectionDataBasic(Employee.class,employee.getID(),colName,chat.getID(),"groupChats");
     }
 
+    private void addUpdateMembers(Section section, Employee employee) {
+        String colName=new BasicMongoPersistentEntity<>(ClassTypeInformation.from(Employee.class)).getCollection();
+        addCollectionDataBasic(Section.class,section.getID(),colName,employee.getID(),"members");
+    }
+
+    private void addUpdateChildrenSecs(Section section, Section child) {
+        String colName=new BasicMongoPersistentEntity<>(ClassTypeInformation.from(Section.class)).getCollection();
+        addCollectionDataBasic(Section.class,section.getID(),colName,child.getID(),"childrenSections");
+    }
+
+    private void addUpdateRelatedGroupChats(Section section, Chat chat) {
+        String colName=new BasicMongoPersistentEntity<>(ClassTypeInformation.from(Chat.class)).getCollection();
+        addCollectionDataBasic(Section.class,section.getID(),colName,chat.getID(),"relatedGroupChats");
+    }
+
     private void addCollectionDataBasic(Class mainType, long mainID, String colName, long dataID, String columnName) {
         DBRef dbRef=new DBRef(mongoTemplate.getDb(),colName,dataID);
         Query query=Query.query(Criteria.where("_id").is(mainID));
@@ -732,6 +750,30 @@ public class DatabaseService {
 
     private void delUpdateNotificationsRcvdUnread(Employee employee, Notification notification) {
         delCollectionDataBasic(Employee.class,employee.getID(),notification.getID(),"notificationsRcvdUnread");
+    }
+
+    private void delUpdateNotificationsRcvdRead(Employee employee, Notification notification) {
+        delCollectionDataBasic(Employee.class,employee.getID(),notification.getID(),"notificationsRcvdRead");
+    }
+
+    private void delUpdateNotificationsSent(Employee employee, Notification notification) {
+        delCollectionDataBasic(Employee.class,employee.getID(),notification.getID(),"notificationsSent");
+    }
+
+    private void delUpdateChat(Employee employee, Notification notification) {
+        delCollectionDataBasic(Employee.class,employee.getID(),notification.getID(),"groupChats");
+    }
+
+    private void delUpdateMembers(Section section, Employee employee) {
+        delCollectionDataBasic(Section.class,section.getID(),employee.getID(),"members");
+    }
+
+    private void delUpdateChildrenSecs(Section section, Section child) {
+        delCollectionDataBasic(Section.class,section.getID(),child.getID(),"childrenSections");
+    }
+
+    private void delUpdateRelatedGroupChats(Section section, Chat chat) {
+        delCollectionDataBasic(Section.class,section.getID(),chat.getID(),"relatedGroupChats");
     }
 
     private void delCollectionDataBasic(Class mainType, long mainID, long dataID, String columnName)  {

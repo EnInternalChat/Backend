@@ -16,6 +16,8 @@ public class GlobalInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
+        httpServletRequest.setCharacterEncoding("UTF-8");
+        httpServletResponse.setCharacterEncoding("UTF-8");
         System.out.println(httpServletRequest.getMethod()+"|"+httpServletRequest.getPathInfo()+"|"+httpServletRequest.getHeader("x-auth-token"));
         HttpSession httpSession=httpServletRequest.getSession(false);
         if(httpSession != null) {
