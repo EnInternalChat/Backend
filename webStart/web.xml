@@ -394,7 +394,7 @@
 
 
   <!-- ================== Built In Filter Definitions ===================== -->
-  <filter>
+  <!-- <filter>
     <filter-name>CorsFilter</filter-name>
     <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
     <init-param>
@@ -403,7 +403,7 @@
     </init-param>
     <init-param>
       <param-name>cors.allowed.methods</param-name>
-      <param-value>GET,POST,HEAD,OPTIONS,PUT</param-value>
+      <param-value>GET,POST,HEAD,OPTIONS,PUT,DELETE</param-value>
     </init-param>
     <init-param>
       <param-name>cors.allowed.headers</param-name>
@@ -411,7 +411,7 @@
     </init-param>
       <init-param>
         <param-name>cors.exposed.headers</param-name>
-      <param-value>Access-Control-Allow-Origin,Access-Control-Allow-Credentials</param-value>
+      <param-value>Access-Control-Allow-Origin,Accept,Last-Modified,Origin,X-Requested-With,Content-Type,Platform,x-auth-token</param-value>
     </init-param>
       <init-param>
         <param-name>cors.support.credentials</param-name>
@@ -421,7 +421,7 @@
 <filter-mapping>
   <filter-name>CorsFilter</filter-name>
   <url-pattern>/*</url-pattern>
-</filter-mapping>
+</filter-mapping> -->
 
   <!-- A filter that sets various security related HTTP Response headers.   -->
   <!-- This filter supports the following initialization parameters         -->

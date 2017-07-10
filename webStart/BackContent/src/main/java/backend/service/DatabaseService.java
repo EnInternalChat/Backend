@@ -189,7 +189,6 @@ public class DatabaseService {
             newSection.addMember(employee);
             delUpdateMembers(oldSection,employee);
             addUpdateMembers(newSection,employee);
-            employeeRepository.save(employee);
             info+="|用户部门修改成功";
         }
         if(avatar != null) {
@@ -864,6 +863,17 @@ public class DatabaseService {
             jsonObject.put("status",false);
             jsonObject.put("info","用户名或密码错误");
         } else {
+            if(httpServletRequest.getHeader("Platform") == "web") {
+                if(!employee.isLeader()) {
+                    jsonObject.put("info","您不是部长或管理员, 无法登陆web端");
+                    return jsonObject;
+                }
+            } else if(httpServletRequest.getHeader("Platform") == "app") {
+                if(employee.getSectionID() == -1) {
+                    jsonObject.put("info","管理员无法登陆app端");
+                    return jsonObject;
+                }
+            }
             HttpSession httpSession=httpServletRequest.getSession();
             httpSession.setAttribute("user",employee.getID());
             userActive.put(employee.getID(),employee);
