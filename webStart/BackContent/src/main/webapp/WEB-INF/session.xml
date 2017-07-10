@@ -12,6 +12,37 @@
           <!--class="org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory"-->
           <!--p:host-name="10.0.0.102" p:port="6379"/>-->
 
+    <bean id="corsFilter" class="org.springframework.web.filter.CorsFilter">
+        <constructor-arg index="0">
+            <bean class="org.springframework.web.cors.UrlBasedCorsConfigurationSource">
+                <property name="corsConfigurations">
+                    <map>
+                        <entry key="/**">
+                            <bean class="org.springframework.web.cors.CorsConfiguration">
+                                <property name="allowedOrigins" value="*" />
+                                <property name="allowedMethods" value="*" />
+                                <property name="allowedHeaders" value="*" />
+                                <property name="exposedHeaders">
+                                    <list>
+                                        <value>Accept</value>
+                                        <value>Origin</value>
+                                        <value>X-Requested-With</value>
+                                        <value>Content-Type</value>
+                                        <value>Last-Modified</value>
+                                        <value>Platform</value>
+                                        <value>x-auth-token</value>
+                                    </list>
+                                </property>
+                                <property name="allowCredentials" value="true" />
+                                <property name="maxAge" value="3600" />
+                            </bean>
+                        </entry>
+                    </map>
+                </property>
+            </bean>
+        </constructor-arg>
+    </bean>
+
     <bean id="redisHttpSessionConfiguration"  class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
         <property name="httpSessionListeners">
             <list>
