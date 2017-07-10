@@ -35,6 +35,7 @@ public class ChatController {
         Long chatID=databaseService.groupChatGenerate(companyID,groupIDList);
         jsonObject.put("chatID",chatID);
         ResponseJsonObj.write(httpServletResponse,jsonObject);
+        //TODO check if leader
     }
 
     @ApiOperation(value = "删除聊天", notes = "从列表中移除(逻辑删除)")

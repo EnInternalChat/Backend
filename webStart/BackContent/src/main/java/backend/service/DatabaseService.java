@@ -522,7 +522,7 @@ public class DatabaseService {
             sections.add(section);
         }
         Employee owner=sections.get(0).getLeader();
-        mark.substring(0,mark.length()-1);
+        mark=mark.substring(0,mark.length()-1);
         List<Chat> chats=chatRepository.findByMark(mark);
         Chat chat;
         CreateGroupResult createGroupResult;
@@ -535,12 +535,14 @@ public class DatabaseService {
                 ArrayList<String> addMembers=new ArrayList<>();
                 for(Section section:sections) {
                     section.addgroupChat(chat);
-                    sectionRepository.save(section);
+                    addUpdateRelatedGroupChats(section,chat);
                     Collection<Employee> members=section.getMembers();
                     for(Employee member:members) {
                         addMembers.add(member.getName());
+                        System.out.println(member.getName());
                     }
                 }
+                addMembers.remove(owner.getName());
                 String[] addList=new String[addMembers.size()];
                 jMessageClient.addOrRemoveMembers(Gid,addMembers.toArray(addList),null);
             } catch (APIConnectionException e) {

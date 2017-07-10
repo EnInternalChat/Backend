@@ -18,6 +18,9 @@ public class GlobalInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         httpServletRequest.setCharacterEncoding("UTF-8");
         httpServletResponse.setCharacterEncoding("UTF-8");
+        httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
+        httpServletResponse.setHeader("Access-Control-Allow-Methods", "*");
+        httpServletResponse.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         System.out.println(httpServletRequest.getMethod()+"|"+httpServletRequest.getPathInfo()+"|"+httpServletRequest.getHeader("x-auth-token"));
         HttpSession httpSession=httpServletRequest.getSession(false);
         if(httpSession != null) {
