@@ -76,7 +76,10 @@ public class TaskController {
     }
 
     @ApiOperation(value = "部署流程", notes = "上传合法xml文件")
-    @ApiImplicitParam(name = "newTaskFile", value = "流程文件", required = true, dataType = "CommonsMultipartFile", paramType = "body")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "newTaskFile", value = "流程文件", required = true, dataType = "CommonsMultipartFile", paramType = "body"),
+            @ApiImplicitParam(name = "name", value = "流程名称", required = true, dataType = "String", paramType = "body")
+    })
     @ResponseBody
     @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Map<String, Object> uploadProcess(@RequestParam("newTaskFile")CommonsMultipartFile file, HttpServletRequest request) {

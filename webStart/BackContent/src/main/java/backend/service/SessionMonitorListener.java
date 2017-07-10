@@ -12,6 +12,7 @@ public class SessionMonitorListener implements HttpSessionListener {
     @Override
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
         HttpSession session=httpSessionEvent.getSession();
+        System.out.println("session created:"+session);
     }
 
     @Override
