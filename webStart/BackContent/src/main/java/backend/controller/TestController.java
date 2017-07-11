@@ -2,6 +2,7 @@ package backend.controller;
 
 import backend.mdoel.Company;
 import backend.mdoel.Employee;
+import backend.service.ActivitiService;
 import backend.service.DatabaseService;
 import io.swagger.annotations.Api;
 import org.activiti.engine.ProcessEngine;
@@ -38,6 +39,8 @@ public class TestController {
 
     @Autowired
     private DatabaseService databaseService;
+    @Autowired
+    private ActivitiService activitiService;
 
     public TestController() {
         ProcessEngineConfiguration cfg = new StandaloneProcessEngineConfiguration()
@@ -56,7 +59,7 @@ public class TestController {
         processDefinition=repositoryService.createProcessDefinitionQuery()
                 .deploymentId(deployment.getId()).singleResult();
         String diagramName=processDefinition.getDiagramResourceName();
-        InputStream resourceAsStream=repositoryService.getResourceAsStream(processDefinition.getDeploymentId(), diagramName);
+        InputStream resourceAsStream=activitiService.modelDiagram(processDefinition);
         try {
             byte[] b=new byte[resourceAsStream.available()];
             resourceAsStream.read(b, 0, b.length);

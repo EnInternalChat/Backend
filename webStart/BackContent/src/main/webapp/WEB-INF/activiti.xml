@@ -6,13 +6,13 @@
     <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource" >
         <property name="driverClass" value="com.mysql.jdbc.Driver" />
 
-        <!--<property name="username" value="root" />-->
-        <!--<property name="url" value="jdbc:mysql://mysql:3306/activiti" />-->
-        <!--<property name="password" value="123456" />-->
-
-        <property name="url" value="jdbc:mysql://10.0.0.102:3306/activiti" />
         <property name="username" value="root" />
-        <property name="password" value="sasuke" />
+        <property name="url" value="jdbc:mysql://mysql:3306/activiti" />
+        <property name="password" value="123456" />
+
+        <!--<property name="url" value="jdbc:mysql://10.0.0.102:3306/activiti" />-->
+        <!--<property name="username" value="root" />-->
+        <!--<property name="password" value="sasuke" />-->
     </bean>
 
     <bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
@@ -22,6 +22,9 @@
         <property name="databaseSchemaUpdate" value="true" />
         <property name="transactionManager" ref="transactionManager" />
         <property name="jobExecutorActivate" value="false" />
+        <property name="activityFontName" value="宋体"/>
+        <property name="labelFontName" value="宋体"/>
+        <property name="annotationFontName" value="宋体"/>
 
         <property name="deploymentResources" value="classpath*:bpmn/*.bpmn20.xml" />
     </bean>

@@ -1,6 +1,7 @@
 {
 	"_id":0,
 	"companyID":0,
+	"label":"",
 	"parrentSecID":-1,
 	"name":"董事会",
 	"leader":{
@@ -19,8 +20,9 @@
 {
 	"_id":1,
 	"companyID":0,
+	"label":"manager",
 	"parrentSecID":0,
-	"name":"理事会",
+	"name":"总经理",
 	"leader":{
 		"$ref":"employee",
 		"$id":NumberLong(1)
@@ -40,6 +42,7 @@
 {
 	"_id":2,
 	"companyID":0,
+	"label":"",
 	"parrentSecID":1,
 	"name":"分公司",
 	"leader":{
@@ -56,6 +59,7 @@
 {
 	"_id":3,
 	"companyID":0,
+	"label":"workcenter",
 	"parrentSecID":1,
 	"name":"功能部门",
 	"leader":{
@@ -76,6 +80,7 @@
 {
 	"_id":4,
 	"companyID":0,
+	"label":"devcenter",
 	"parrentSecID":1,
 	"name":"研发中心",
 	"leader":{
@@ -96,6 +101,7 @@
 {
 	"_id":5,
 	"companyID":0,
+	"label":"usercenter",
 	"parrentSecID":1,
 	"name":"人事中心",
 	"leader":{
@@ -115,6 +121,7 @@
 {
 	"_id":6,
 	"companyID":0,
+	"label":"market",
 	"parrentSecID":3,
 	"name":"市场部",
 	"leader":{
@@ -130,6 +137,7 @@
 {
 	"_id":7,
 	"companyID":0,
+	"label":"design",
 	"parrentSecID":3,
 	"name":"设计部",
 	"leader":{
@@ -145,6 +153,7 @@
 {
 	"_id":8,
 	"companyID":0,
+	"label":"business",
 	"parrentSecID":3,
 	"name":"业务部",
 	"leader":{
@@ -160,6 +169,7 @@
 {
 	"_id":9,
 	"companyID":0,
+	"label":"net",
 	"parrentSecID":4,
 	"name":"网络部",
 	"leader":{
@@ -175,6 +185,7 @@
 {
 	"_id":10,
 	"companyID":0,
+	"label":"develop",
 	"parrentSecID":4,
 	"name":"开发部",
 	"leader":{
@@ -190,6 +201,7 @@
 {
 	"_id":11,
 	"companyID":0,
+	"label":"tech",
 	"parrentSecID":4,
 	"name":"技术部",
 	"leader":{
@@ -205,6 +217,7 @@
 {
 	"_id":12,
 	"companyID":0,
+	"label":"finance",
 	"parrentSecID":5,
 	"name":"财务部",
 	"leader":{
@@ -220,6 +233,7 @@
 {
 	"_id":13,
 	"companyID":0,
+	"label":"service",
 	"parrentSecID":5,
 	"name":"客服部",
 	"leader":{
@@ -235,6 +249,7 @@
 {
 	"_id":14,
 	"companyID":0,
+	"label":"politic",
 	"parrentSecID":5,
 	"name":"行政部",
 	"leader":{
@@ -250,6 +265,7 @@
 {
 	"_id":15,
 	"companyID":0,
+	"label":"hr",
 	"parrentSecID":5,
 	"name":"人力资源部",
 	"leader":{

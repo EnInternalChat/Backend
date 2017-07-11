@@ -18,7 +18,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,16 +39,10 @@ public class TaskController {
         this.activitiService = activitiService;
     }
 
-    private Map<String, Object> infoType() {
-        Map<String, Object> deployResult=new HashMap<>();
-        deployResult.put("upload",false);
-        deployResult.put("deploy",false);
-        deployResult.put("info","非法操作!用户状态存在问题!");
-        return deployResult;
-    }
-
-    private Map<String, Object> infoType(int type, String name) {
-        Map<String, Object> deployResult=new HashMap<>();
+    private JSONObject infoType(Map<String,Object> typeMap) {
+        JSONObject deployResult=new JSONObject();
+        int type=(int) typeMap.get("type");
+        String name=(String) typeMap.get("name");
         switch (type) {
             case 0:
                 deployResult.put("upload",false);
@@ -67,9 +60,12 @@ public class TaskController {
                 deployResult.put("info",name+": 流程部署失败，请检查流程文件内容、格式、命名是否合法");
                 return deployResult;
             case 3:
+                String data=(String) typeMap.get("data");
                 deployResult.put("upload",true);
                 deployResult.put("deploy",true);
+                deployResult.put("data",data);
                 deployResult.put("info",name+"流程部署成功");
+                return deployResult;
             default:
                 return null;
         }
@@ -78,21 +74,18 @@ public class TaskController {
     @ApiOperation(value = "部署流程", notes = "上传合法xml文件")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "newTaskFile", value = "流程文件", required = true, dataType = "CommonsMultipartFile", paramType = "body"),
-            @ApiImplicitParam(name = "name", value = "流程名称", required = true, dataType = "String", paramType = "body")
+            @ApiImplicitParam(name = "name", value = "流程名称", required = true, dataType = "String", paramType = "body"),
+            @ApiImplicitParam(name = "companyID",value = "公司id", required = true, dataType = "Long", paramType = "path")
     })
     @ResponseBody
-    @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Map<String, Object> uploadProcess(@RequestParam("newTaskFile")CommonsMultipartFile file, HttpServletRequest request) {
-        Employee employee=(Employee) request.getSession().getAttribute("user");
-        if(employee == null) {
-            return infoType();
-        }
+    @RequestMapping(value = "/upload/{companyId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void uploadProcess(@RequestParam("newTaskFile")CommonsMultipartFile file, @PathVariable("companyId") Long companyId,
+                              HttpServletResponse response) {
+        JSONObject jsonObject;
         //TODO cirfirm role
-        long companyId=employee.getCompanyID();
-        Map<String, Object> typeMap=activitiService.deployProcess(file, companyId);
-        int type=(int) typeMap.get("type");
-        String name=typeMap.get("name").toString();
-        return infoType(type,name);
+        Map<String,Object> typeMap=activitiService.deployProcess(file, companyId);
+        jsonObject=infoType(typeMap);
+        ResponseJsonObj.write(response,jsonObject);
     }
 
     @ApiOperation(value = "启动流程", notes = "启动指定类型的流程")
@@ -105,7 +98,7 @@ public class TaskController {
     public void process(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
                         @PathVariable("processKey") String processKey,
                         @RequestParam(value = "content", required = false) String content) {
-        //TODO content
+        //TODO content,tytle,reason
         long id=(long) httpServletRequest.getSession().getAttribute("user");
         Employee starter=databaseService.activeUserById(id);
         JSONObject jsonObject=activitiService.processStart(processKey,content,starter);
@@ -150,8 +143,8 @@ public class TaskController {
     @RequestMapping(value = "/over/{companyID}/{ID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<InstanceOfProcess> finishedInstance(@PathVariable("companyID") Long companyID, @PathVariable("ID") Long ID) {
         return null;
+}
         //TODO list
-    }
 
     @ApiOperation(value = "用户未完成流程列表", notes = "用户参与且当前未完成的流程实例")
     @ApiImplicitParams({

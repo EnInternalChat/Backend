@@ -3,6 +3,7 @@ package backend.service;
 import backend.mdoel.Employee;
 import backend.mdoel.InstanceOfProcess;
 import org.activiti.bpmn.exceptions.XMLException;
+import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.engine.*;
 import org.activiti.engine.form.FormData;
 import org.activiti.engine.form.FormProperty;
@@ -11,23 +12,25 @@ import org.activiti.engine.impl.form.DateFormType;
 import org.activiti.engine.impl.form.EnumFormType;
 import org.activiti.engine.impl.form.StringFormType;
 import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
+import org.activiti.engine.impl.pvm.PvmTransition;
 import org.activiti.engine.impl.pvm.process.ActivityImpl;
 import org.activiti.engine.impl.util.json.JSONObject;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
+import org.activiti.image.impl.DefaultProcessDiagramGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import sun.misc.BASE64Encoder;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by lenovo on 2017/5/29.
@@ -44,6 +47,8 @@ public class ActivitiService {
     RuntimeService runtimeService;
     FormService formService;
 
+    Set<String> keywords;
+
     @Autowired
     public ActivitiService(DatabaseService databaseService, ProcessEngineConfiguration cfg,
                            RepositoryService repositoryService, HistoryService historyService,
@@ -57,6 +62,27 @@ public class ActivitiService {
         this.identityService = identityService;
         this.runtimeService=runtimeService;
         this.formService=formService;
+        keywords=new HashSet<>();
+        keyWordsSet();
+    }
+
+    private void keyWordsSet() {
+        keywords.add("leader");
+        keywords.add("hr");
+        keywords.add("modify");
+        keywords.add("applyUserId");
+        keywords.add("manager");
+        keywords.add("finance");
+        keywords.add("design");
+        keywords.add("tech");
+        keywords.add("market");
+        keywords.add("net");
+        keywords.add("develop");
+        keywords.add("service");
+        keywords.add("politic");
+        keywords.add("usercenter");
+        keywords.add("devcenter");
+        keywords.add("servicecenter");
     }
 
     private JSONObject ok(String proId) {
@@ -71,6 +97,28 @@ public class ActivitiService {
         jsonObject.put("done",false);
         jsonObject.put("info","操作失败，流程不存在或已结束，流程id: "+proId);
         return jsonObject;
+    }
+
+    private boolean getProcessLabel(ProcessDefinition processDefinition, Set<String> labels) {
+        ProcessDefinitionEntity def = (ProcessDefinitionEntity) ((RepositoryServiceImpl)repositoryService).getDeployedProcessDefinition(processDefinition.getId());
+        List<ActivityImpl> activitiList = def.getActivities();
+        System.out.println("size: "+activitiList.size());
+        for(ActivityImpl activity:activitiList) {
+            String id=activity.getId();
+            System.out.print(id+" out: ");
+            id=id.toLowerCase();
+            for(String word:keywords) {
+                if(id.contains(word)) {
+                    labels.add(word);
+                }
+            }
+            List<PvmTransition> outTransitions=activity.getOutgoingTransitions();
+            for(PvmTransition pvmTransition:outTransitions) {
+                System.out.print("【"+pvmTransition.getDestination().getId()+"】");
+            }
+            System.out.println();
+        }
+        return true;
     }
 
     private List<ActivityImpl> activityImplList(String processInstanceId) {
@@ -95,15 +143,6 @@ public class ActivitiService {
 //            }
 //        }
 //    }
-
-    public void test() {
-        ProcessInstance processInstance=runtimeService.startProcessInstanceByKey("timerExample");
-        String proId=processInstance.getId();
-        System.out.println("def id: "+proId);
-        processInstance=runtimeService.startProcessInstanceByKey("leave");
-        proId=processInstance.getId();
-        System.out.println("def id: "+proId);
-    }
 
     //TODO role comfirm
     public JSONObject processStart(String processKey, String content, Employee starter) {
@@ -199,16 +238,16 @@ public class ActivitiService {
 
     public Map<String, Object> deployProcess(CommonsMultipartFile file, long companyId) {
         Map<String, Object> result=new HashMap<>();
-        result.put("name",file.getName());
+        result.put("name",file.getOriginalFilename());
         if(file.isEmpty()) {
             result.put("type",0);
             return result;
         }
-        String path= this.getClass().getResource("/").getPath()+ File.separator+"tmp"+File.separator;
+        String path= this.getClass().getResource("/").getPath()+"upload"+File.separator;
         File dir=new File(path);
         if(!dir.isDirectory()) dir.mkdir();
-        System.out.println(path);
-        File processFile=new File(path, file.getName());
+        System.out.println("path:"+path);
+        File processFile=new File(path, file.getOriginalFilename());
         if(processFile.exists()) {
             result.put("type",1);
             return result;
@@ -219,7 +258,7 @@ public class ActivitiService {
             file.transferTo(processFile);
             Deployment deployment;
             try {
-                deployment = repositoryService.createDeployment().addClasspathResource("tmp"+File.separator+processFile.getName()).deploy();
+                deployment = repositoryService.createDeployment().addClasspathResource("upload"+File.separator+processFile.getName()).deploy();
                 processDefinition=repositoryService.createProcessDefinitionQuery()
                         .deploymentId(deployment.getId()).singleResult();
             } catch (XMLException e) {
@@ -233,8 +272,29 @@ public class ActivitiService {
         System.out.println("Found process definition ["
                 + processDefinition.getName() + "] with id ["
                 + processDefinition.getId() + "]");
-        //TODO add operation to mongo
         result.put("type",3);
+        try {
+            InputStream resourceAsStream=modelDiagram(processDefinition);
+            byte[] b=new byte[resourceAsStream.available()];
+            resourceAsStream.read(b, 0, b.length);
+            BASE64Encoder encoder=new BASE64Encoder();
+            String data=encoder.encode(b);
+            result.put("data",data);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return result;
+    }
+
+    public InputStream modelDiagram(ProcessDefinition processDefinition) {
+        ProcessDefinitionEntity entity=(ProcessDefinitionEntity) processDefinition;
+        BpmnModel bpmnModel=repositoryService.getBpmnModel(entity.getId());
+        List  activeActivityIds = new ArrayList<>(0);
+        List highLightedFlows=new ArrayList<>(0);
+        InputStream in = new DefaultProcessDiagramGenerator().generateDiagram(bpmnModel, "png", activeActivityIds,
+                highLightedFlows,"宋体","宋体","宋体",null, 1.0);
+        return in;
     }
 }

@@ -314,6 +314,7 @@ public class DatabaseService {
             registerInfos.add(registerInfo);
             RegisterInfo[] regUsers=new RegisterInfo[1];
             jMessageClient.registerUsers(registerInfos.toArray(regUsers));
+            jMessageClient.updateUserInfo(name,"1",null,null,1,null,null);
             result.put("info","员工添加成功");
             result.put("id",employee.getID());
         } catch (APIConnectionException e) {
@@ -397,8 +398,8 @@ public class DatabaseService {
         Collections.sort(notificationList, new Comparator<Notification>() {
             @Override
             public int compare(Notification o1, Notification o2) {
-                if(o1.getSentTime()<o2.getSentTime()) return -1;
-                else if(o1.getSentTime()>o2.getSentTime()) return 1;
+                if(o1.getSentTime()<o2.getSentTime()) return 1;
+                else if(o1.getSentTime()>o2.getSentTime()) return -1;
                 else return 0;
             }
         });
@@ -578,6 +579,7 @@ public class DatabaseService {
         CreateGroupResult createGroupResult;
         if(chats.size() == 0) {
             chat=new Chat(getIChat(),companyID,mark);
+            chat.setTrdPartyID(new Long(-1));
             try {
                 createGroupResult=jMessageClient.createGroup(owner.getName(),mark,"none",owner.getName());
                 Long Gid=createGroupResult.getGid();
@@ -595,12 +597,12 @@ public class DatabaseService {
                 addMembers.remove(owner.getName());
                 String[] addList=new String[addMembers.size()];
                 jMessageClient.addOrRemoveMembers(Gid,addMembers.toArray(addList),null);
+                chatRepository.save(chat);
             } catch (APIConnectionException e) {
                 System.out.println("Connection error. Should retry later. ");
             } catch (APIRequestException | NullPointerException e) {
                 System.out.println("Error Message: " + e.getMessage());
             }
-            chatRepository.save(chat);
         } else {
             chat=chats.get(0);
         }
@@ -727,7 +729,7 @@ public class DatabaseService {
             Section section=sectionRepository.findOne(secID);
             if(section != null) secTotal++;
             else continue;
-            if(section.getID() == employee.getSectionID()) {
+            if(secID == employee.getSectionID()) {
                 section.delMember(employee);
             }
             Collection<Employee> receivers=section.getMembers();
@@ -741,7 +743,6 @@ public class DatabaseService {
                 //TODO writeResult error?
                 System.out.println("id:"+employee.getID()+"|"+writeResult);
                 rcvTotal++;
-                //TODO push
             }
             for(Employee receiver:receivers) {
                 pushAlert(receiver.getName(),"您有一条新通知!");

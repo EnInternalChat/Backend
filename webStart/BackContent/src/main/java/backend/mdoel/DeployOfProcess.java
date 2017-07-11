@@ -5,6 +5,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Collection;
+import java.util.HashSet;
+
 /**
  * Created by lenovo on 2017/5/14.
  */
@@ -19,11 +22,13 @@ public class DeployOfProcess {
     private long uploadTime;
     private long updateTime;
     private long count;
+    private Collection<String> labels;
 
     public DeployOfProcess() {
+        labels=new HashSet<>();
     }
 
-    public DeployOfProcess(long ID,long companyID, String name, long uploadTime, long updateTime, long count) {
+    public DeployOfProcess(long ID, long companyID, String name, long uploadTime, long updateTime, long count) {
         this();
         this.ID=ID;
         this.companyID = companyID;
@@ -31,6 +36,10 @@ public class DeployOfProcess {
         this.uploadTime = uploadTime;
         this.updateTime = updateTime;
         this.count = count;
+    }
+
+    public Collection<String> getLabels() {
+        return labels;
     }
 
     public long getUploadTime() {

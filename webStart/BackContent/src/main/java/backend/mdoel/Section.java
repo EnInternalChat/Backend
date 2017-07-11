@@ -33,6 +33,7 @@ public class Section {
     private Collection<Chat> relatedGroupChats;
     private String name;
     private String note;
+    private String label;
 
     public Section() {
         members=new HashSet<>();
@@ -53,6 +54,11 @@ public class Section {
     public Section(long ID) {
         this();
         this.ID=ID;
+        label="";
+    }
+
+    public String getLabel() {
+        return label;
     }
 
     public Collection<Chat> getRelatedGroupChats() {

@@ -9,8 +9,8 @@
     </startEvent>
     <userTask id="financeAudit" name="财务审批">
       <extensionElements>
-        <activiti:formProperty id="date" name="日期" type="string" required="true"></activiti:formProperty>
-        <activiti:formProperty id="reason" name="原因" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="date" name="日期" type="string"></activiti:formProperty>
+        <activiti:formProperty id="reason" name="原因" type="string"></activiti:formProperty>
         <activiti:formProperty id="treasurePass" name="审批结果" type="enum" required="true">
           <activiti:value id="none" name="不予报销"></activiti:value>
           <activiti:value id="half" name="待复审"></activiti:value>
@@ -22,7 +22,7 @@
     <exclusiveGateway id="exclusivegateway1"></exclusiveGateway>
     <userTask id="managerAudit" name="总经理审批">
       <extensionElements>
-        <activiti:formProperty id="date" name="日期" type="date" datePattern="MM-dd-yyyy hh:mm" required="true"></activiti:formProperty>
+        <activiti:formProperty id="date" name="日期" type="date" datePattern="MM-dd-yyyy hh:mm"></activiti:formProperty>
         <activiti:formProperty id="reason" name="原因" type="string"></activiti:formProperty>
         <activiti:formProperty id="result" name="审批结果" type="enum" required="true">
           <activiti:value id="ok" name="通过"></activiti:value>
@@ -33,20 +33,15 @@
     </userTask>
     <userTask id="payfor" name="付款">
       <extensionElements>
-        <activiti:formProperty id="date" name="日期" type="date" datePattern="MM-dd-yyyy hh:mm" required="true"></activiti:formProperty>
-        <activiti:formProperty id="reason" name="原因" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="date" name="日期" type="date" datePattern="MM-dd-yyyy hh:mm"></activiti:formProperty>
+        <activiti:formProperty id="reason" name="原因" type="string"></activiti:formProperty>
         <activiti:formProperty id="pay" name="付款" type="enum" required="true">
           <activiti:value id="paynow" name="立刻支付"></activiti:value>
         </activiti:formProperty>
       </extensionElements>
     </userTask>
     <endEvent id="endEvent2" name="endEvent"></endEvent>
-    <sequenceFlow id="sid-67D2B9FE-FCA8-425A-B69C-67E47C0FE4F3" sourceRef="financeAudit" targetRef="exclusivegateway1"></sequenceFlow>
     <exclusiveGateway id="exclusivegateway2"></exclusiveGateway>
-    <sequenceFlow id="sid-B7D928DB-BB49-4336-AEEF-74137CF9096F" name="待复审" sourceRef="exclusivegateway1" targetRef="managerAudit">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${treasurePass == 'half'}]]></conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="sid-D73AC471-D0C5-4FB6-AABC-ED9C8BD1ED69" sourceRef="managerAudit" targetRef="exclusivegateway2"></sequenceFlow>
     <sequenceFlow id="sid-2CB5BC0B-7F56-4D60-9A18-FF7E9B7F2C8B" sourceRef="payfor" targetRef="endEvent2">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pay == 'paynow'}]]></conditionExpression>
     </sequenceFlow>
@@ -56,6 +51,11 @@
     <sequenceFlow id="sid-6BDCCD91-10D4-4C07-A15D-C74410D08006" name="全额报销" sourceRef="exclusivegateway1" targetRef="payfor">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${treasurePass == 'all'}]]></conditionExpression>
     </sequenceFlow>
+    <sequenceFlow id="sid-D73AC471-D0C5-4FB6-AABC-ED9C8BD1ED69" sourceRef="managerAudit" targetRef="exclusivegateway2"></sequenceFlow>
+    <sequenceFlow id="sid-B7D928DB-BB49-4336-AEEF-74137CF9096F" name="待复审" sourceRef="exclusivegateway1" targetRef="managerAudit">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${treasurePass == 'half'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-67D2B9FE-FCA8-425A-B69C-67E47C0FE4F3" sourceRef="financeAudit" targetRef="exclusivegateway1"></sequenceFlow>
     <sequenceFlow id="sid-09E8F6C2-EE44-46F1-8E21-10525CF6C1E2" name="重申" sourceRef="exclusivegateway2" targetRef="financeAudit">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${result == 'reApply'}]]></conditionExpression>
     </sequenceFlow>
@@ -95,14 +95,6 @@
         <omgdi:waypoint x="629.0" y="222.0"></omgdi:waypoint>
         <omgdi:waypoint x="629.0" y="255.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="sid-D73AC471-D0C5-4FB6-AABC-ED9C8BD1ED69" id="BPMNEdge_sid-D73AC471-D0C5-4FB6-AABC-ED9C8BD1ED69">
-        <omgdi:waypoint x="625.0" y="119.14450867052022"></omgdi:waypoint>
-        <omgdi:waypoint x="727.9420289855072" y="119.44202898550725"></omgdi:waypoint>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="sid-396B3C06-935B-4D90-92A9-8FA38A04F22F" id="BPMNEdge_sid-396B3C06-935B-4D90-92A9-8FA38A04F22F">
-        <omgdi:waypoint x="767.0863636363637" y="119.41363636363636"></omgdi:waypoint>
-        <omgdi:waypoint x="810.0" y="119.21945701357465"></omgdi:waypoint>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-AB493F4D-2384-4BBD-AF47-CF9E155A5318" id="BPMNEdge_sid-AB493F4D-2384-4BBD-AF47-CF9E155A5318">
         <omgdi:waypoint x="748.0" y="138.5"></omgdi:waypoint>
         <omgdi:waypoint x="748.0" y="269.0"></omgdi:waypoint>
@@ -112,6 +104,14 @@
         <omgdi:waypoint x="400.0" y="138.5"></omgdi:waypoint>
         <omgdi:waypoint x="400.0" y="269.0"></omgdi:waypoint>
         <omgdi:waypoint x="615.0" y="269.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-D73AC471-D0C5-4FB6-AABC-ED9C8BD1ED69" id="BPMNEdge_sid-D73AC471-D0C5-4FB6-AABC-ED9C8BD1ED69">
+        <omgdi:waypoint x="625.0" y="119.14450867052022"></omgdi:waypoint>
+        <omgdi:waypoint x="727.9420289855072" y="119.44202898550725"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-396B3C06-935B-4D90-92A9-8FA38A04F22F" id="BPMNEdge_sid-396B3C06-935B-4D90-92A9-8FA38A04F22F">
+        <omgdi:waypoint x="767.0863636363637" y="119.41363636363636"></omgdi:waypoint>
+        <omgdi:waypoint x="810.0" y="119.21945701357465"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-67D2B9FE-FCA8-425A-B69C-67E47C0FE4F3" id="BPMNEdge_sid-67D2B9FE-FCA8-425A-B69C-67E47C0FE4F3">
         <omgdi:waypoint x="295.0" y="119.16129032258064"></omgdi:waypoint>

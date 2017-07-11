@@ -13,6 +13,7 @@ public class ResponseJsonObj {
     public static void write(HttpServletResponse httpServletResponse, JSONObject jsonObject) {
         httpServletResponse.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
         try {
+            if(jsonObject == null) return;
             httpServletResponse.getWriter().write(jsonObject.toString());
         } catch (IOException e) {
             e.printStackTrace();
