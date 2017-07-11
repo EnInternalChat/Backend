@@ -2,6 +2,7 @@ backend\serial\DeployOfProcessSerializer.class
 backend\util\StandardTimeFormat.class
 backend\service\DatabaseService.class
 backend\repository\TaskStageRepository.class
+backend\service\DatabaseService$1.class
 backend\repository\DeployOfProcessRepository.class
 backend\repository\ChatRepository.class
 backend\mdoel\Employee.class

@@ -152,4 +152,17 @@ public class EmployeeController {
                                 @PathVariable("ID") Long ID) {
         return databaseService.findEmployeeById(ID);
     }
+
+    @ApiOperation(value = "状态变更", notes = "改变员工当前状态")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "companyID",value = "公司id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "sectionID",value = "部门id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "ID",value = "人员id", required = true, dataType = "Long", paramType = "path")
+    })
+    @ResponseBody
+    @RequestMapping(value = "/status/{companyID}/{sectionID}/{ID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void statusChange(@PathVariable("companyID") Long companyID, @PathVariable("sectionID") Long sectionID,
+                             @PathVariable("ID") Long ID, HttpServletResponse httpServletResponse) {
+
+    }
 }

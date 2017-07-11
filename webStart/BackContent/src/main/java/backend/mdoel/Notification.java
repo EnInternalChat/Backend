@@ -33,7 +33,7 @@ public class Notification {
         return rcvSecID;
     }
 
-    public Notification(long ID, long companyID, long senderID, String content, String senderName, String title) {
+    public Notification(long ID, long companyID, long senderID, String content, String senderName, String title, long sentTime) {
         this();
         this.ID = ID;
         this.companyID = companyID;
@@ -41,6 +41,7 @@ public class Notification {
         this.content = content;
         this.senderName = senderName;
         this.title = title;
+        this.sentTime=sentTime;
     }
 
     public void addSec(long secID) {

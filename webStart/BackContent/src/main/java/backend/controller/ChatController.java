@@ -22,6 +22,17 @@ public class ChatController {
     @Autowired
     DatabaseService databaseService;
 
+    @ApiOperation(value = "开启私人聊天", notes = "私聊功能")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "personID1",value = "聊天对象id1", required = true, dataType = "Long", paramType = "body"),
+            @ApiImplicitParam(name = "personID2",value = "聊天对象id2", required = true, dataType = "Long", paramType = "body")
+    })
+    @ResponseBody
+    @RequestMapping(value = "/single", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void singleChatStart(HttpServletResponse httpServletResponse,
+                               @RequestParam("ID") List<Long> groupIDList) {
+
+    }
     @ApiOperation(value = "开启群组聊天", notes = "群聊功能")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "companyID",value = "公司id", required = true, dataType = "Long", paramType = "path"),

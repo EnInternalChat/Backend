@@ -55,6 +55,7 @@ public class DatabaseService {
     private final IdManagerRepository idManagerRepository;
 
     private final Map<Long,Employee> userActive;
+    private final Map<Long,HttpSession> sessionActive;
     private IdManager idManager;
 
     private static String APP_KEY="f784911007eb5e69ef4a773f";
@@ -70,6 +71,7 @@ public class DatabaseService {
                            InstanceOfProcessRepository instanceOfProcessRepository, IdManagerRepository idManagerRepository,
                            MongoTemplate mongoTemplate) {
         userActive=new HashMap<>();
+        sessionActive=new HashMap<>();
         this.employeeRepository = employeeRepository;
         this.notificationRepository = notificationRepository;
         this.deployOfProcessRepository = deployOfProcessRepository;
@@ -165,6 +167,41 @@ public class DatabaseService {
 
     public Collection<Employee> em() {
         return employeeRepository.findAll();
+    }
+
+    public JSONObject statusSet(long companyID, long sectionID, long id) {
+        JSONObject jsonObject=new JSONObject();
+        Company company=companyRepository.findOne(companyID);
+        if(company == null) {
+            jsonObject.put("info","当前公司id不存在");
+            return jsonObject;
+        }
+        Section section=sectionRepository.findOne(sectionID);
+        if(section == null || section.getCompanyID() != companyID) {
+            jsonObject.put("info","当前部门id不存在或当前id部门不属于此公司");
+            return jsonObject;
+        }
+        Employee employee=employeeRepository.findOne(id);
+        if(employee == null || employee.getSectionID() !=sectionID) {
+            jsonObject.put("info","当前员工id不存在或当前id员工不属于此部门");
+            return jsonObject;
+        }
+        boolean status=employee.isActive();
+        employee.setActive(!status);
+        employeeRepository.save(employee);
+        if(employee == userActive.get(id)) {
+            HttpSession httpSession=sessionActive.get(id);
+            httpSession.invalidate();
+            sessionRepository.delete(httpSession.getId());
+            userActive.remove(id);
+            sessionActive.remove(id);
+        }
+        if(status) {
+            jsonObject.put("info","用户已被禁用");
+        } else {
+            jsonObject.put("info","用户已被激活");
+        }
+        return jsonObject;
     }
 
     public JSONObject updateEmployeePersonal(Long companyID, Long sectionID, long id,
@@ -267,7 +304,7 @@ public class DatabaseService {
         Employee employee=new Employee(getIEmployee(),companyID,sectionID,name,password,gender);
         employeeRepository.save(employee);
         section.addMember(employee);
-        sectionRepository.save(section);
+        addUpdateMembers(section,employee);
         try {
             RegisterInfo registerInfo=RegisterInfo.newBuilder()
                     .setUsername(name)
@@ -278,6 +315,7 @@ public class DatabaseService {
             RegisterInfo[] regUsers=new RegisterInfo[1];
             jMessageClient.registerUsers(registerInfos.toArray(regUsers));
             result.put("info","员工添加成功");
+            result.put("id",employee.getID());
         } catch (APIConnectionException e) {
             result.put("info","员工添加成功,极光注册失败");
             System.out.println("Connection error. Should retry later. ");
@@ -336,7 +374,7 @@ public class DatabaseService {
         return id;
     }
 
-    private Collection<Notification> basicNoteGet(long id, int type) {
+    private List<Notification> basicNoteGet(long id, int type) {
         Employee employee=employeeRepository.findOne(id);
         if(employee == null) {
             System.out.println("employee null");
@@ -354,18 +392,28 @@ public class DatabaseService {
             System.out.println("notifications null");
             return null;
         }
-        return notifications;
+        List<Notification> notificationList=new ArrayList<>();
+        notificationList.addAll(notifications);
+        Collections.sort(notificationList, new Comparator<Notification>() {
+            @Override
+            public int compare(Notification o1, Notification o2) {
+                if(o1.getSentTime()<o2.getSentTime()) return -1;
+                else if(o1.getSentTime()>o2.getSentTime()) return 1;
+                else return 0;
+            }
+        });
+        return notificationList;
     }
 
-    public Collection<Notification> getSent(long id) {
+    public List<Notification> getSent(long id) {
         return basicNoteGet(id,0);
     }
 
-    public Collection<Notification> getUnread(long id) {
+    public List<Notification> getUnread(long id) {
         return basicNoteGet(id,1);
     }
 
-    public Collection<Notification> getRead(long id) {
+    public List<Notification> getRead(long id) {
         return basicNoteGet(id,2);
     }
 
@@ -428,6 +476,7 @@ public class DatabaseService {
         }
         Section section=new Section(getISection(),companyID,sectionID,name,note);
         parrentSection.addChildSec(section);
+        sectionRepository.save(section);
         addUpdateChildrenSecs(parrentSection,section);
         result.put("info","部门添加成功");
         return result;
@@ -497,7 +546,9 @@ public class DatabaseService {
                 return result;
             } else {
                 Employee oldLeader=section.getLeader();
-                oldLeader.setLeader(false);
+                if(oldLeader != null) {
+                    oldLeader.setLeader(false);
+                }
                 newLeader.setLeader(true);
                 section.setLeaderID(newLeader);
                 info+="新部长设置成功";//TODO employee belong to section?
@@ -656,7 +707,8 @@ public class DatabaseService {
             return jsonObject;
         }
         Notification notification=new Notification(getINotification(), employee.getCompanyID(),
-                senderID, content, employee.getName(), title);
+                senderID, content, employee.getName(),
+                title, System.currentTimeMillis());
         for(long rcvdID:rcvdSecsID) {
             notification.addSec(rcvdID);
         }
@@ -689,7 +741,7 @@ public class DatabaseService {
                 //TODO writeResult error?
                 System.out.println("id:"+employee.getID()+"|"+writeResult);
                 rcvTotal++;
-                //push
+                //TODO push
             }
             for(Employee receiver:receivers) {
                 pushAlert(receiver.getName(),"您有一条新通知!");
@@ -874,9 +926,14 @@ public class DatabaseService {
                     return jsonObject;
                 }
             }
+            if(!employee.isActive()) {
+                jsonObject.put("info","您的账号已被禁用，请联系管理员");
+                return jsonObject;
+            }
             HttpSession httpSession=httpServletRequest.getSession();
             httpSession.setAttribute("user",employee.getID());
             userActive.put(employee.getID(),employee);
+            sessionActive.put(employee.getID(),httpSession);
             System.out.println("employee: "+employee.hashCode()+" "+activeUserById(employee.getID()).hashCode());
             jsonObject.put("status",true);
             jsonObject.put("info","登陆成功");
@@ -896,8 +953,19 @@ public class DatabaseService {
         httpSession.invalidate();
         sessionRepository.delete(httpSession.getId());
         userActive.remove(id);
+        sessionActive.remove(id);
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("info",name+":退出成功！");
+        logStatusCheck();
         return jsonObject;
+    }
+
+    private void logStatusCheck() {
+        Collection<Employee> activeEmployees=userActive.values();
+        System.out.println("---------------");
+        for(Employee employee:activeEmployees) {
+            System.out.println("id:"+employee.getID()+"|name:"+employee.getName());
+        }
+        System.out.println("---------------");
     }
 }

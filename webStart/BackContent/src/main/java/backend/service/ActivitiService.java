@@ -24,7 +24,10 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lenovo on 2017/5/29.
@@ -119,13 +122,14 @@ public class ActivitiService {
         }
         ProcessInstance processInstance=formService.submitStartFormData(processDefinition.getId(),variables);
         String proId=processInstance.getId();
+//
 //        identityService.setAuthenticatedUserId(String.valueOf(starter.getID()));
 //        List<Task> tasks = taskService.createTaskQuery().processInstanceId(proId).list();
 //        for (Task task:tasks) {
-//            Map<String, Object> variables=taskService.getVariables(task.getId());
+//            Map<String, Object> vars=taskService.getVariables(task.getId());
 //            task.setAssignee(String.valueOf(starter.getID()));
-//            System.out.println(variables);
-//            System.out.println(processInstance.getActivityId());
+//            System.out.println("vars:"+vars);
+//            System.out.println("ActivityId"+processInstance.getActivityId());
 //        }
 //        ProcessDefinitionEntity def = (ProcessDefinitionEntity) ((RepositoryServiceImpl)repositoryService).getDeployedProcessDefinition(processInstance.getProcessDefinitionId());
 //        List<ActivityImpl> activitiList = def.getActivities();
@@ -135,13 +139,11 @@ public class ActivitiService {
 //            System.out.print(id+" out: ");
 //            List<PvmTransition> outTransitions=activity.getOutgoingTransitions();
 //            for(PvmTransition pvmTransition:outTransitions) {
-//                    System.out.print("("+pvmTransition.getSkipExpression()+")");
+//                    System.out.print("【("+pvmTransition.getSkipExpression()+")");
 //                    System.out.print("("+pvmTransition.getProperty("type")+")");
-//                    System.out.print("("+pvmTransition.getProperty("conditionText")+")");
-//
-//                System.out.print(pvmTransition.getDestination().getId()+" ");
+//                    System.out.print("("+pvmTransition.getProperty("conditionText")+")|-");
+//                    System.out.print(pvmTransition.getDestination().getId()+"】");
 //            }
-//
 //            System.out.println();
 //        }
 

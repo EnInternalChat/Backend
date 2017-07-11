@@ -20,7 +20,7 @@
 	"_id":1,
 	"companyID":0,
 	"parrentSecID":0,
-	"name":"总经理",
+	"name":"理事会",
 	"leader":{
 		"$ref":"employee",
 		"$id":NumberLong(1)
@@ -57,7 +57,7 @@
 	"_id":3,
 	"companyID":0,
 	"parrentSecID":1,
-	"name":"副总经理1",
+	"name":"功能部门",
 	"leader":{
 		"$ref":"employee",
 		"$id":NumberLong(3)
@@ -77,7 +77,7 @@
 	"_id":4,
 	"companyID":0,
 	"parrentSecID":1,
-	"name":"副总经理2",
+	"name":"研发中心",
 	"leader":{
 		"$ref":"employee",
 		"$id":NumberLong(4)
@@ -97,7 +97,7 @@
 	"_id":5,
 	"companyID":0,
 	"parrentSecID":1,
-	"name":"副总经理3",
+	"name":"人事中心",
 	"leader":{
 		"$ref":"employee",
 		"$id":NumberLong(5)
@@ -243,6 +243,21 @@
 	},
 	"members":[
 		{"$ref":"employee", "$id":NumberLong(14)}
+	],
+	"note":"It's core production developing center.",
+	"childrenSections":[]
+}
+{
+	"_id":15,
+	"companyID":0,
+	"parrentSecID":5,
+	"name":"人力资源部",
+	"leader":{
+		"$ref":"employee",
+		"$id":NumberLong(21)
+	},
+	"members":[
+		{"$ref":"employee", "$id":NumberLong(21)}
 	],
 	"note":"It's core production developing center.",
 	"childrenSections":[]

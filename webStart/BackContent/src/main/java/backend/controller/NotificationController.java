@@ -13,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -31,7 +30,7 @@ public class NotificationController {
     @ApiImplicitParam(name = "ID", value = "发送者id", required = true, dataType = "Long", paramType = "path")
     @ResponseBody
     @RequestMapping(value = "/sent/{ID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Collection<Notification> sentNotifications(@PathVariable("ID") Long id) {
+    public List<Notification> sentNotifications(@PathVariable("ID") Long id) {
         return databaseService.getSent(id);
         //TODO fix?
     }
@@ -40,7 +39,7 @@ public class NotificationController {
     @ApiImplicitParam(name = "ID", value = "接收者id", required = true, dataType = "Long", paramType = "path")
     @ResponseBody
     @RequestMapping(value = "/received/read/{ID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Collection<Notification> rcvdReadNotifications(@PathVariable("ID") Long id) {
+    public List<Notification> rcvdReadNotifications(@PathVariable("ID") Long id) {
         return databaseService.getRead(id);
         //TODO fix it
     }
@@ -49,7 +48,7 @@ public class NotificationController {
     @ApiImplicitParam(name = "ID", value = "接收者id", required = true, dataType = "Long", paramType = "path")
     @ResponseBody
     @RequestMapping(value = "/received/unread/{ID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Collection<Notification> rcvdUnreadReadNotifications(@PathVariable("ID") Long id) {
+    public List<Notification> rcvdUnreadReadNotifications(@PathVariable("ID") Long id) {
         return databaseService.getUnread(id);
         //TODO fix it
     }

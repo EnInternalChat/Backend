@@ -8,9 +8,9 @@
                 <activiti:formProperty id="reason" name="请假原因" type="string" required="true" readable="true" writable="true"></activiti:formProperty>
             </extensionElements>
         </startEvent>
-        <userTask id="deptLeaderAudit" name="部门领导审批" activiti:candidateGroups="deptLeader">
+        <userTask id="deptLeaderAudit" name="部门领导审批" activiti:candidateGroups="deptLeader" >
             <extensionElements>
-                <activiti:formProperty id="date" name="日期" type="date" value="${endDAte}" datePattern="yyyy-MM-dd" readable="true" writable="false"></activiti:formProperty>
+                <activiti:formProperty id="date" name="日期" type="date" value="${endDate}" datePattern="yyyy-MM-dd" readable="true" writable="false"></activiti:formProperty>
                 <activiti:formProperty id="reason" name="请假原因" type="string" value="${reason}" readable="true" writable="false"></activiti:formProperty>
                 <activiti:formProperty id="deptLeaderPass" name="审批意见" type="enum" required="true" writable="true">
                     <activiti:value id="true" name="同意"></activiti:value>

@@ -502,3 +502,25 @@
 	"phone":["13838472290","026-33324444"],
 	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
 }
+{
+	"_id":21,
+	"name":"mayun",
+	"pwd":"392e26f6b5c48e3cc04e1dad5d03cc06",
+	"sectionID":15,
+	"position":"A product manager",
+	"companyID":0,
+	"gender":true,
+	"avatar":1,
+	"instanceOfProcesses":[],
+	"active":true,
+	"leader":false,
+	"groupChats":[],
+	"notificationsSent":[
+	],
+	"notificationsRcvdUnread":[
+		{ "$ref":"notification", "$id":NumberLong(0) }
+	],
+	"notificationsRcvdRead":[],
+	"phone":["13838472290","026-33324444"],
+	"mail":["394859210@qq.com","dsdsfas@hotmail.com"]
+}
