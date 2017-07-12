@@ -211,8 +211,8 @@ public class Employee {
         return instanceOfProcesses;
     }
 
-    public boolean addTask(InstanceOfProcess newProcessDeploy) {
-        instanceOfProcesses.add(newProcessDeploy);
+    public boolean addTask(InstanceOfProcess newInstance) {
+        instanceOfProcesses.add(newInstance);
         System.out.println(instanceOfProcesses.size());
         return true;
     }

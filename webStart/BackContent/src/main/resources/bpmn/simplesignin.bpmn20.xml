@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
-  <process id="simplesignin" name="会签" isExecutable="true">
+  <process id="simpleSignin" name="会签" isExecutable="true">
     <startEvent id="sid-30746958-D4A4-46D5-BC5A-AE742E3CED28">
       <extensionElements>
         <activiti:formProperty id="date" name="日期" type="string"></activiti:formProperty>
         <activiti:formProperty id="reason" name="time" type="string"></activiti:formProperty>
       </extensionElements>
     </startEvent>
-    <userTask id="write" name="拟稿">
+    <userTask id="modifyWrite" name="拟稿">
       <extensionElements>
         <activiti:formProperty id="date" name="日期" type="date" datePattern="MM-dd-yyyy hh:mm"></activiti:formProperty>
         <activiti:formProperty id="content" name="内容" type="string"></activiti:formProperty>
@@ -16,7 +16,7 @@
         </activiti:formProperty>
       </extensionElements>
     </userTask>
-    <sequenceFlow id="sid-BF664935-D3B5-4A6B-9AFF-432183ED0E65" sourceRef="sid-30746958-D4A4-46D5-BC5A-AE742E3CED28" targetRef="write"></sequenceFlow>
+    <sequenceFlow id="sid-BF664935-D3B5-4A6B-9AFF-432183ED0E65" sourceRef="sid-30746958-D4A4-46D5-BC5A-AE742E3CED28" targetRef="modifyWrite"></sequenceFlow>
     <userTask id="leaderAudit" name="部长审核">
       <extensionElements>
         <activiti:formProperty id="date" name="日期" type="date" datePattern="MM-dd-yyyy hh:mm"></activiti:formProperty>
@@ -28,7 +28,7 @@
       </extensionElements>
     </userTask>
     <exclusiveGateway id="sid-4B0FBD5D-6AB2-4712-9BEF-507B8C4EE64B"></exclusiveGateway>
-    <userTask id="signin" name="会签">
+    <userTask id="usercenterSignin" name="会签">
       <extensionElements>
         <activiti:formProperty id="date" name="日期" type="date" datePattern="MM-dd-yyyy hh:mm"></activiti:formProperty>
         <activiti:formProperty id="content" name="内容" type="string"></activiti:formProperty>
@@ -38,26 +38,26 @@
       </extensionElements>
     </userTask>
     <endEvent id="sid-E86E3335-4884-479A-B651-198AE5210633"></endEvent>
-    <sequenceFlow id="sid-2753666A-17D5-45F0-9F46-E048064BE029" name="优秀" sourceRef="sid-4B0FBD5D-6AB2-4712-9BEF-507B8C4EE64B" targetRef="signin">
+    <sequenceFlow id="sid-2753666A-17D5-45F0-9F46-E048064BE029" name="优秀" sourceRef="sid-4B0FBD5D-6AB2-4712-9BEF-507B8C4EE64B" targetRef="usercenterSignin">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${back == 'good'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-B6C979C0-7D87-4416-8C80-1F8518AB78AC" sourceRef="leaderAudit" targetRef="sid-4B0FBD5D-6AB2-4712-9BEF-507B8C4EE64B"></sequenceFlow>
-    <sequenceFlow id="sid-3946D00C-6B6C-4499-9647-CB06630414A2" sourceRef="write" targetRef="leaderAudit">
+    <sequenceFlow id="sid-3946D00C-6B6C-4499-9647-CB06630414A2" sourceRef="modifyWrite" targetRef="leaderAudit">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${process == 'finished'}]]></conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="sid-8CC09C8F-C457-47FF-8122-5F75E2D2A4E0" sourceRef="signin" targetRef="sid-E86E3335-4884-479A-B651-198AE5210633">
+    <sequenceFlow id="sid-8CC09C8F-C457-47FF-8122-5F75E2D2A4E0" sourceRef="usercenterSignin" targetRef="sid-E86E3335-4884-479A-B651-198AE5210633">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${back == 'over'}]]></conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="sid-83B898B7-75E8-48DD-941E-DCE4AE8F6123" name="打回" sourceRef="sid-4B0FBD5D-6AB2-4712-9BEF-507B8C4EE64B" targetRef="write">
+    <sequenceFlow id="sid-83B898B7-75E8-48DD-941E-DCE4AE8F6123" name="打回" sourceRef="sid-4B0FBD5D-6AB2-4712-9BEF-507B8C4EE64B" targetRef="modifyWrite">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${back == 'bad'}]]></conditionExpression>
     </sequenceFlow>
   </process>
-  <bpmndi:BPMNDiagram id="BPMNDiagram_simplesignin">
-    <bpmndi:BPMNPlane bpmnElement="simplesignin" id="BPMNPlane_simplesignin">
+  <bpmndi:BPMNDiagram id="BPMNDiagram_simpleSignin">
+    <bpmndi:BPMNPlane bpmnElement="simpleSignin" id="BPMNPlane_simpleSignin">
       <bpmndi:BPMNShape bpmnElement="sid-30746958-D4A4-46D5-BC5A-AE742E3CED28" id="BPMNShape_sid-30746958-D4A4-46D5-BC5A-AE742E3CED28">
         <omgdc:Bounds height="30.0" width="30.0" x="45.0" y="30.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="write" id="BPMNShape_write">
+      <bpmndi:BPMNShape bpmnElement="modifyWrite" id="BPMNShape_modifyWrite">
         <omgdc:Bounds height="48.0" width="99.0" x="120.0" y="21.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="leaderAudit" id="BPMNShape_leaderAudit">
@@ -66,7 +66,7 @@
       <bpmndi:BPMNShape bpmnElement="sid-4B0FBD5D-6AB2-4712-9BEF-507B8C4EE64B" id="BPMNShape_sid-4B0FBD5D-6AB2-4712-9BEF-507B8C4EE64B">
         <omgdc:Bounds height="40.0" width="40.0" x="414.0" y="25.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="signin" id="BPMNShape_signin">
+      <bpmndi:BPMNShape bpmnElement="usercenterSignin" id="BPMNShape_usercenterSignin">
         <omgdc:Bounds height="48.0" width="99.0" x="510.0" y="21.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="sid-E86E3335-4884-479A-B651-198AE5210633" id="BPMNShape_sid-E86E3335-4884-479A-B651-198AE5210633">

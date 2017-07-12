@@ -34,6 +34,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.util.*;
 
 /**
@@ -204,6 +205,21 @@ public class DatabaseService {
         return jsonObject;
     }
 
+    public Employee getLeaderFromLabel(long companyID, String label) {
+        Company company=companyRepository.findOne(companyID);
+        if(company == null) {
+            System.out.println("当前公司id不存在");
+            return null;
+        }
+        List<Section> sections=sectionRepository.findByCompanyIDAndLabel(companyID,label);
+        if(sections.size() == 0 || sections.get(0).getCompanyID() != companyID) {
+            System.out.println("当前部门id不存在或当前id部门不属于此公司");
+            return null;
+        }
+        Employee leader=sections.get(0).getLeader();
+        return leader;
+    }
+
     public JSONObject updateEmployeePersonal(Long companyID, Long sectionID, long id,
                                              String newPwd, String email1, String email2,
                                              String phone1, String phone2, Integer avatar,
@@ -316,7 +332,7 @@ public class DatabaseService {
             jMessageClient.registerUsers(registerInfos.toArray(regUsers));
             jMessageClient.updateUserInfo(name,"1",null,null,1,null,null);
             result.put("info","员工添加成功");
-            result.put("id",employee.getID());
+            result.put("ID",employee.getID());
         } catch (APIConnectionException e) {
             result.put("info","员工添加成功,极光注册失败");
             System.out.println("Connection error. Should retry later. ");
@@ -335,6 +351,40 @@ public class DatabaseService {
         return true;
     }
 
+    public String delDeployOfProcess(long companyID, long ID) {
+        DeployOfProcess deployOfProcess=deployOfProcessRepository.findOne(ID);
+        if(deployOfProcess == null) return null;
+        String processKey=deployOfProcess.getProcessKey();
+        Company company=companyRepository.findOne(companyID);
+        deployOfProcessRepository.delete(deployOfProcess);
+        delUpdateDeployOfProcess(company,deployOfProcess);
+        File file=new File(deployOfProcess.getPath()+File.separator+deployOfProcess.getName()+".bpmn20.xml");
+        if(file.exists()) {
+            if(file.delete()) {
+                System.out.println("delete:"+file.getName());
+            }
+        }
+        return processKey;
+    }
+
+    public JSONObject updateProcessName(long companyID, long ID, String newName) {
+        JSONObject jsonObject=new JSONObject();
+        DeployOfProcess deployOfProcess=deployOfProcessRepository.findOne(ID);
+        deployOfProcess.setName(newName);
+        deployOfProcessRepository.save(deployOfProcess);
+        String newFileName=deployOfProcess.getPath()+File.separator+newName+".bpmn20.xml";
+        File newFile=new File(newFileName);
+        if(newFile.exists()) {
+            jsonObject.put("info","修改失败, 已存在此流程文件");
+            return jsonObject;
+        } else {
+            File file=new File(deployOfProcess.getPath()+File.separator+deployOfProcess.getName()+File.separator+".bpmn20.xml");
+            file.renameTo(newFile);
+        }
+        jsonObject.put("info","修改成功");
+        return jsonObject;
+    }
+
     public List<DeployOfProcess> findDeployOfProcess(long companyID) {
         List<DeployOfProcess> deployOfProcesses=deployOfProcessRepository.findByCompanyID(companyID);
         Collections.sort(deployOfProcesses, new Comparator<DeployOfProcess>() {
@@ -346,6 +396,70 @@ public class DatabaseService {
             }
         });
         return deployOfProcesses;
+    }
+
+    public JSONObject getProcessDiagram(long companyID, long ID) {
+        JSONObject jsonObject=new JSONObject();
+        DeployOfProcess deployOfProcess=deployOfProcessRepository.findOne(ID);
+        jsonObject.put("data",deployOfProcess.getData());
+        return jsonObject;
+    }
+
+    public boolean participantsGetInstance(long companyID, DeployOfProcess deployOfProcess, String processID, Employee applyer) {
+        Collection<String> labels=deployOfProcess.getLabels();
+        String processName=deployOfProcess.getName();
+        InstanceOfProcess instance;
+        instance=new InstanceOfProcess(getIInstanceOfProcess(),companyID,processID,processName,applyer);
+        instanceOfProcessRepository.save(instance);
+        for(String label:labels) {
+            Map<String,Object> participantData=new HashMap<>();
+            Employee participant=getLeaderFromLabel(companyID, label);
+            if(participant != null) {
+                participantData.put("ID",participant.getID());
+                participantData.put("name",participant.getName());
+            }
+            addUpdateInstanceOfProcess(participant,instance);
+        }
+        return true;
+    }
+
+    public boolean thisTaskStageSet(String processID, String activityID, String content, Employee participant) {
+        List<TaskStage> taskStages=taskStageRepository
+                .findByProcessIDAndActivityID(processID,activityID);
+        if(taskStages.size() == 0 || taskStages.size() > 1) {
+            System.out.println("taskStages Count Error:"+taskStages.size());
+            return false;
+        }
+        TaskStage taskStage=taskStages.get(0);
+        taskStage.setFinishTime(System.currentTimeMillis());
+        taskStage.setContent(content);
+        taskStageRepository.save(taskStage);
+        return true;
+    }
+
+    public boolean nextTaskStageSet(long companyID, String processID, String title,
+                                    String activityID, Collection<Map<String, String>> choices) {
+        TaskStage taskStage=new TaskStage(getITaskStage(),activityID,processID,
+                System.currentTimeMillis(),title,choices);
+        List<InstanceOfProcess> instanceOfProcesses=instanceOfProcessRepository
+                .findByCompanyIDAndAndProcessID(companyID,processID);
+        if(instanceOfProcesses.size() == 0) return false;
+        InstanceOfProcess instance=instanceOfProcesses.get(0);
+        taskStageRepository.save(taskStage);
+        instance.addStage(taskStage);
+        addUpdateTaskStage(instance,taskStage);
+        return true;
+    }
+
+    public boolean nextEndSet(long companyID, String processID, String title, String activityID) {
+        TaskStage taskStage=new TaskStage(getITaskStage(),activityID,title,processID,System.currentTimeMillis());
+        List<InstanceOfProcess> instanceOfProcesses=instanceOfProcessRepository
+                .findByCompanyIDAndAndProcessID(companyID,processID);
+        if(instanceOfProcesses.size() == 0) return false;
+        InstanceOfProcess instance=instanceOfProcesses.get(0);
+        instance.addStage(taskStage);
+        addUpdateTaskStage(instance,taskStage);
+        return true;
     }
 
     public long getIDeployOfProcess() {
@@ -584,7 +698,8 @@ public class DatabaseService {
         return result;
     }
 
-    public Long groupChatGenerate(long companyID, long sectionID, long ID, List<Long> groups) {
+    public JSONObject groupChatGenerate(long companyID, long sectionID, long ID, List<Long> groups) {
+        JSONObject result=new JSONObject();
         List<Section> sections=new ArrayList<>();
         String mark="";
         for(Long id:groups) {
@@ -598,15 +713,18 @@ public class DatabaseService {
             }
         }
         mark=mark.substring(0,mark.length()-1);
+        result.put("name",mark);
         Employee owner=employeeRepository.findOne(ID);
         Chat chat=new Chat(getIChat(),companyID,mark,System.currentTimeMillis());
         chat.setTrdPartyID((long) -1);
+        result.put("chatID",-1);
         CreateGroupResult createGroupResult;
         try {
             createGroupResult=jMessageClient.createGroup(owner.getName(),mark,"none",owner.getName());
             if(createGroupResult.isResultOK()) {
                 Long Gid=createGroupResult.getGid();
                 chat.setTrdPartyID(Gid);
+                result.put("chatID",Gid);
                 ArrayList<String> addMembers=new ArrayList<>();
                 for(Section section:sections) {
                     section.addgroupChat(chat);
@@ -627,7 +745,7 @@ public class DatabaseService {
         } catch (APIRequestException | NullPointerException e) {
             System.out.println("Error Message: " + e.getMessage());
         }
-        return chat.getTrdPartyID();
+        return result;
     }
 
     public void testChat() {
@@ -835,6 +953,11 @@ public class DatabaseService {
         addCollectionDataBasic(Company.class,company.getID(),colName,deployOfProcess.getID(),"deployOfProcesses");
     }
 
+    private void addUpdateTaskStage(InstanceOfProcess instanceOfProcess, TaskStage taskStage) {
+        String colName=new BasicMongoPersistentEntity<>(ClassTypeInformation.from(InstanceOfProcess.class)).getCollection();
+        addCollectionDataBasic(InstanceOfProcess.class,instanceOfProcess.getID(),colName,taskStage.getID(),"stages");
+    }
+
     private void addCollectionDataBasic(Class mainType, long mainID, String colName, long dataID, String columnName) {
         DBRef dbRef=new DBRef(mongoTemplate.getDb(),colName,dataID);
         Query query=Query.query(Criteria.where("_id").is(mainID));
@@ -871,6 +994,10 @@ public class DatabaseService {
         delCollectionDataBasic(Section.class,section.getID(),chat.getID(),"relatedGroupChats");
     }
 
+    private void delUpdateDeployOfProcess(Company company, DeployOfProcess deployOfProcess) {
+        delCollectionDataBasic(Company.class,company.getID(),deployOfProcess.getID(),"deployOfProcesses");
+    }
+
     private void delCollectionDataBasic(Class mainType, long mainID, long dataID, String columnName)  {
         Query query=Query.query(Criteria.where("_id").is(mainID).and(columnName+".$id").is(dataID));
         Update update=new Update();
@@ -880,12 +1007,6 @@ public class DatabaseService {
         update=new Update();
         update.pull(columnName,null);
         mongoTemplate.updateFirst(query,update,mainType);
-    }
-
-    public InstanceOfProcess saveProcessInstance(String processKey, String processID, String processName, Employee starter) {
-        InstanceOfProcess instanceOfProcess=new InstanceOfProcess(getIInstanceOfProcess(),processKey,processID,processName,starter);
-        instanceOfProcessRepository.insert(instanceOfProcess);
-        return instanceOfProcess;
     }
 
     public Employee activeUserById(long id) {
@@ -906,15 +1027,6 @@ public class DatabaseService {
         } else {
             return employeeRepository.findByCompanyIDAndSectionID(companyID, sectionID);
         }
-    }
-
-    public boolean addNewProcess(String token, String name, String path) {
-        long timestamp=System.currentTimeMillis();
-        long companyID=0;
-        //TODO getid and fixed
-        //DeployOfProcess processDeploy =new DeployOfProcess(getIDeployOfProcess(),companyID,name,path,timestamp,timestamp,0);
-        //deployOfProcessRepository.save(processDeploy);
-        return true;
     }
 
     public Section findSecByID(long companyID, long sectionID) {

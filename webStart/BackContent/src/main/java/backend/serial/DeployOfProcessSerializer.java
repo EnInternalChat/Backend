@@ -31,10 +31,10 @@ public class DeployOfProcessSerializer extends StdSerializer<DeployOfProcess> {
         jsonGenerator.writeStartObject();
 
         jsonGenerator.writeNumberField("ID",deployOfProcess.getID());
-        jsonGenerator.writeStringField("processKey",deployOfProcess.getName());
+        jsonGenerator.writeStringField("name",deployOfProcess.getName());
+        jsonGenerator.writeStringField("processKey",deployOfProcess.getProcessKey());
         jsonGenerator.writeStringField("uploadTime", StandardTimeFormat.parse(deployOfProcess.getUploadTime()));
         jsonGenerator.writeStringField("updateTime",StandardTimeFormat.parse(deployOfProcess.getUpdateTime()));
-        //TODO activiti xmldata
 
         jsonGenerator.writeEndObject();
     }

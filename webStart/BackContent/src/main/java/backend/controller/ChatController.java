@@ -35,8 +35,7 @@ public class ChatController {
                                @PathVariable("companyID") Long companyID, @PathVariable("sectionID") Long sectionID, @PathVariable("ID") Long ID,
                                @RequestParam("groupIDList") List<Long> groupIDList) {
         JSONObject jsonObject=new JSONObject();
-        Long chatID=databaseService.groupChatGenerate(companyID,sectionID,ID,groupIDList);
-        jsonObject.put("chatID",chatID);
+        jsonObject=databaseService.groupChatGenerate(companyID,sectionID,ID,groupIDList);
         ResponseJsonObj.write(httpServletResponse,jsonObject);
         //TODO check if leader
     }

@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by lenovo on 2017/5/14.
@@ -19,25 +19,35 @@ public class DeployOfProcess {
     private long ID;
     private long companyID;
     private String name;
+    private String processKey;
     private String path;
+    private String data;
     private long uploadTime;
     private long updateTime;
     private long count;
     private Collection<String> labels;
 
-    public DeployOfProcess() {
-        labels=new HashSet<>();
-    }
-
-    public DeployOfProcess(long ID, long companyID, String name, String path, long uploadTime, long updateTime, long count) {
-        this();
+    public DeployOfProcess(long ID, long companyID, String name, String processKey,
+                           String path, String data, long uploadTime,
+                           long updateTime, long count, Set<String> labels) {
         this.ID=ID;
         this.companyID = companyID;
         this.name = name;
+        this.processKey=processKey;
         this.path=path;
         this.uploadTime = uploadTime;
         this.updateTime = updateTime;
         this.count = count;
+        this.data=data;
+        this.labels=labels;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public String getProcessKey() {
+        return processKey;
     }
 
     public Collection<String> getLabels() {

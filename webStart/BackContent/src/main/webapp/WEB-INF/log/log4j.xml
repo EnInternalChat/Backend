@@ -8,12 +8,12 @@
         </layout>
         <filter class="org.apache.log4j.varia.LevelRangeFilter">
             <param name="LevelMax" value="ERROR" />
-            <param name="LevelMin" value="DEBUG" />
+            <param name="LevelMin" value="INFO" />
         </filter>
     </appender>
 
     <root>
-        <priority value="debug" />
+        <priority value="info" />
         <appender-ref ref="CONSOLE" />
     </root>
 

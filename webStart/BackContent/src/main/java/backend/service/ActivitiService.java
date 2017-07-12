@@ -3,6 +3,7 @@ package backend.service;
 import backend.mdoel.DeployOfProcess;
 import backend.mdoel.Employee;
 import backend.mdoel.InstanceOfProcess;
+import backend.util.StandardTimeFormat;
 import org.activiti.bpmn.exceptions.XMLException;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.engine.*;
@@ -122,27 +123,27 @@ public class ActivitiService {
         return true;
     }
 
-    private List<ActivityImpl> activityImplList(String processInstanceId) {
-        ProcessInstance processInstance=runtimeService.createProcessInstanceQuery()
-                .processInstanceId(processInstanceId).singleResult();
-        String definitionId=processInstance.getProcessDefinitionId();
-        ProcessDefinitionEntity def = (ProcessDefinitionEntity) ((RepositoryServiceImpl)repositoryService)
-                .getDeployedProcessDefinition(definitionId);
-        List<ActivityImpl> activitiList = def.getActivities();
-        return activitiList;
+    private void participantsGetInstance(long companyID, Collection<String> labels, Employee applyer) {
+        Collection<Map<String,Object>> participants=new HashSet<>();
+        for(String label:labels) {
+            Map<String,Object> participantData=new HashMap<>();
+            Employee participant=databaseService.getLeaderFromLabel(companyID, label);
+            if(participant != null) {
+                participantData.put("ID",participant.getID());
+                participantData.put("name",participant.getName());
+            }
+            participants.add(participantData);
+        }
     }
 
-//    private List<Map<String,String>> nextOperationChoice(String processInstanceId) {
-//        List<Map<String,String>> choice=new ArrayList<>();
-//        choice.add(new HashMap<String, String>());
-//        choice.add(new HashMap<String, String>());
-//        List<ActivityImpl> activitiList=activityImplList(processInstanceId);
-//        for (ActivityImpl activity:activitiList) {
-//            if(processInstanceId.equals(activity.getId())) {
-//
-//                break;
-//            }
-//        }
+//    private List<ActivityImpl> activityImplList(String processInstanceId) {
+//        ProcessInstance processInstance=runtimeService.createProcessInstanceQuery()
+//                .processInstanceId(processInstanceId).singleResult();
+//        String definitionId=processInstance.getProcessDefinitionId();
+//        ProcessDefinitionEntity def = (ProcessDefinitionEntity) ((RepositoryServiceImpl)repositoryService)
+//                .getDeployedProcessDefinition(definitionId);
+//        List<ActivityImpl> activitiList = def.getActivities();
+//        return activitiList;
 //    }
 
     //TODO role comfirm
@@ -193,7 +194,37 @@ public class ActivitiService {
         return ok(proId);
     }
 
-    public JSONObject processOperation(String processKey, String processID, String operationID, String content, Employee operator) {
+    private JSONObject operationTaskStage(String processID, String thisActivityID, String nextActivityID, String title,
+                                       String content, Map<String,String> nextChoices, Employee nextParticipant,
+                                       long companyID, Employee thisParticipant) {
+        JSONObject jsonObject=new JSONObject();
+        databaseService.thisTaskStageSet(processID, thisActivityID, content, thisParticipant);//content for this, title for next
+        if(nextActivityID == null) {
+            jsonObject.put("activityID","endEvent");
+            jsonObject.put("title",title);
+            jsonObject.put("overTime", StandardTimeFormat.parse(System.currentTimeMillis()));
+            databaseService.nextEndSet(companyID,processID,title,"endEvent");
+        } else {
+            jsonObject.put("activityID",nextActivityID);
+            jsonObject.put("title",title);
+            jsonObject.put("participant",nextParticipant);
+            jsonObject.put("startTime",StandardTimeFormat.parse(System.currentTimeMillis()));
+            Collection<Map<String,String>> choices=new HashSet<>();
+            Iterator<String> iter=nextChoices.keySet().iterator();
+            while (iter.hasNext()) {
+                Map<String,String> choice=new HashMap<>();
+                String operationID=iter.next();
+                choice.put("operationID",operationID);
+                choice.put("operationName",nextChoices.get(operationID));
+                choices.add(choice);
+            }
+            jsonObject.put("exclusiveGateway",choices);
+            databaseService.nextTaskStageSet(companyID,processID,title,nextActivityID,choices);
+        }
+        return jsonObject;
+    }
+
+    public JSONObject processOperation(String processID, String operationID, String content, Employee operator) {
         ProcessInstance processInstance=runtimeService.createProcessInstanceQuery()
                 .processInstanceId(processID).singleResult();
         if(processInstance == null || processInstance.isEnded()) {
@@ -237,14 +268,14 @@ public class ActivitiService {
         return jsonObject;
     }
 
-    private boolean processToSave(String path, String name, long companyId, ProcessDefinition processDefinition) {
+    private long processToSave(String path, String name, long companyId, ProcessDefinition processDefinition, String data) {
         Set<String> labels=new HashSet<>();
         getProcessLabel(processDefinition,labels);
         DeployOfProcess deployOfProcess=new DeployOfProcess(databaseService.getIDeployOfProcess(),
-                companyId,name,path,System.currentTimeMillis(),
-                System.currentTimeMillis(),0);
+                companyId,name,processDefinition.getKey(),path,data,System.currentTimeMillis(),
+                System.currentTimeMillis(),0,labels);
         databaseService.saveDeployOfProcess(deployOfProcess);
-        return true;
+        return deployOfProcess.getID();
     }
 
     public Map<String, Object> deployProcess(CommonsMultipartFile file, long companyId, String name) {
@@ -291,20 +322,39 @@ public class ActivitiService {
                 + processDefinition.getName() + "] with id ["
                 + processDefinition.getId() + "]");
         result.put("type",3);
-        processToSave(processFile.getAbsolutePath(),name,companyId,processDefinition);
         try {
             InputStream resourceAsStream=modelDiagram(processDefinition);
             byte[] b=new byte[resourceAsStream.available()];
             resourceAsStream.read(b, 0, b.length);
             BASE64Encoder encoder=new BASE64Encoder();
             String data=encoder.encode(b);
+            long ID=processToSave(path,name,companyId,processDefinition,data);
             result.put("data",data);
+            result.put("ID",ID);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public JSONObject delProcess(long ID, long companyID) {
+        JSONObject jsonObject=new JSONObject();
+        String processKey=databaseService.delDeployOfProcess(companyID,ID);
+        if(processKey == null) {
+            jsonObject.put("info","删除失败");
+            return jsonObject;
+        }
+        //若删除key，则其他同key流程无法使用
+//        try {
+//            repositoryService.deleteDeployment(processKey);
+//        } catch (ActivitiObjectNotFoundException e) {
+//            e.printStackTrace();
+//            System.out.println("引擎不存在此id的流程");
+//        }
+        jsonObject.put("info","删除成功");
+        return jsonObject;
     }
 
     public InputStream modelDiagram(ProcessDefinition processDefinition) {

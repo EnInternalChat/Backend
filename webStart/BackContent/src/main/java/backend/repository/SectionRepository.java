@@ -11,5 +11,4 @@ import java.util.List;
 public interface SectionRepository extends MongoRepository<Section, Long> {
     List<Section> findByCompanyID(long companyID);
     List<Section> findByCompanyIDAndLabel(long companyID, String label);
-    List<Section> findByLabel(String label);
 }

@@ -40,7 +40,7 @@
             </extensionElements>
         </userTask>
         <exclusiveGateway id="exclusivegateway6" name="Exclusive Gateway"></exclusiveGateway>
-        <userTask id="reportBack" name="销假" activiti:assignee="${applyUserId}">
+        <userTask id="modifyBack" name="销假" activiti:assignee="${applyUserId}">
             <extensionElements>
                 <activiti:formProperty id="date" name="结束日期" type="date" value="${endDAte}" datePattern="yyyy-MM-dd" readable="true" writable="false"></activiti:formProperty>
                 <activiti:formProperty id="reason" name="请假原因" type="string" value="${reason}" readable="true" writable="false"></activiti:formProperty>
@@ -60,10 +60,10 @@
             <conditionExpression xsi:type="tFormalExpression"><![CDATA[${deptLeaderPass == 'true'}]]></conditionExpression>
         </sequenceFlow>
         <sequenceFlow id="flow6" name="" sourceRef="hrAudit" targetRef="exclusivegateway6"></sequenceFlow>
-        <sequenceFlow id="flow7" name="同意" sourceRef="exclusivegateway6" targetRef="reportBack">
+        <sequenceFlow id="flow7" name="同意" sourceRef="exclusivegateway6" targetRef="modifyBack">
             <conditionExpression xsi:type="tFormalExpression"><![CDATA[${hrPass == 'true'}]]></conditionExpression>
         </sequenceFlow>
-        <sequenceFlow id="flow8" name="" sourceRef="reportBack" targetRef="endevent1"></sequenceFlow>
+        <sequenceFlow id="flow8" name="" sourceRef="modifyBack" targetRef="endevent1"></sequenceFlow>
         <sequenceFlow id="flow9" name="不同意" sourceRef="exclusivegateway6" targetRef="modifyApply">
             <conditionExpression xsi:type="tFormalExpression"><![CDATA[${hrPass == 'false'}]]></conditionExpression>
         </sequenceFlow>
@@ -95,7 +95,7 @@
             <bpmndi:BPMNShape bpmnElement="exclusivegateway6" id="BPMNShape_exclusivegateway6">
                 <omgdc:Bounds height="40" width="40" x="495" y="87"></omgdc:Bounds>
             </bpmndi:BPMNShape>
-            <bpmndi:BPMNShape bpmnElement="reportBack" id="BPMNShape_reportBack">
+            <bpmndi:BPMNShape bpmnElement="modifyBack" id="BPMNShape_modifyBack">
                 <omgdc:Bounds height="55" width="105" x="590" y="80"></omgdc:Bounds>
             </bpmndi:BPMNShape>
             <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">

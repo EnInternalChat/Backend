@@ -25,6 +25,7 @@ backend\controller\ChatController.class
 backend\repository\SectionRepository.class
 backend\repository\InstanceOfProcessRepository.class
 backend\repository\NotificationRepository.class
+backend\service\DatabaseService$2.class
 backend\mdoel\IdManager.class
 backend\mdoel\Section.class
 backend\repository\CompanyRepository.class

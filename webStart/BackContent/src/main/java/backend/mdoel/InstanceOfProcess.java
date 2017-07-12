@@ -13,33 +13,28 @@ import java.util.*;
 public class InstanceOfProcess {
     @Id
     private long ID;
-    private String processKey;
+    private long companyID;
     private String processID;
     private String processName;
-    private Collection<Map<String, Object>> startPerson;
+    private Map<String, Object> startPerson;
     private boolean over;
     @DBRef
     private Collection<TaskStage> stages;
 
     public InstanceOfProcess() {
-    }
-
-    public InstanceOfProcess(long ID) {
-        this.ID=ID;
-        this.startPerson = new HashSet<>();
-        this.stages = new HashSet<>();
+        startPerson=new HashMap<>();
+        stages=new ArrayList<>();
         over=false;
     }
 
-    public InstanceOfProcess(long ID, String processKey, String processID, String processName, Employee starter) {
-        this(ID);
-        this.processKey = processKey;
+    public InstanceOfProcess(long ID, long companyID, String processID, String processName, Employee starter) {
+        this();
+        this.ID=ID;
+        this.companyID=companyID;
         this.processID = processID;
         this.processName = processName;
-        HashMap<String,Object> starterMap=new HashMap<>();
-        starterMap.put("ID",starter.getID());
-        starterMap.put("name",starter.getName());
-        startPerson.add(starterMap);
+        startPerson.put("ID", starter.getID());
+        startPerson.put("name", starter.getName());
     }
 
     public boolean addStage(TaskStage taskStage) {

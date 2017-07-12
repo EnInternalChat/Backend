@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface DeployOfProcessRepository extends MongoRepository<DeployOfProcess, Long> {
     List<DeployOfProcess> findByCompanyID(long companyID);
+    List<DeployOfProcess> findByCompanyIDAndName(long companyID, String name);
 }

@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -16,26 +17,83 @@ public class TaskStage {
     @Id
     private long ID;
     private String activityID;
+    private String title;
     private String content;
+    private String processID;
     private long startTime;
     private long finishTime;
     @DBRef
-    private Collection<Employee> person;
+    private Map<String,Object> personData;
     private Collection<Map<String,String>> choices;
 
     public TaskStage() {
-    }
-
-    public TaskStage(long ID) {
         this.ID=ID;
-        person=new ArrayList<>();
+        personData=new HashMap<>();
         choices=new ArrayList<>();
     }
 
-    public TaskStage(long ID, String activityID, long startTime, Collection<Map<String, String>> choices) {
-        this(ID);
+    public TaskStage(long ID, String activityID, String title, String processID, long startTime) {
+        this.ID = ID;
         this.activityID = activityID;
+        this.title = title;
+        this.processID = processID;
         this.startTime = startTime;
+    }
+
+    public TaskStage(long ID, String activityID, String processID,
+                     long startTime, String title,
+                     Collection<Map<String, String>> choices) {
+        this();
+        this.ID=ID;
+        this.activityID = activityID;
+        this.processID=processID;
+        this.startTime = startTime;
+        this.title=title;
         this.choices = choices;
+    }
+
+    public long getID() {
+        return ID;
+    }
+
+    public long getFinishTime() {
+        return finishTime;
+    }
+
+    public void setFinishTime(long finishTime) {
+        this.finishTime = finishTime;
+    }
+
+    public String getActivityID() {
+        return activityID;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public String getProcessID() {
+        return processID;
+    }
+
+    public Collection<Map<String, String>> getChoices() {
+        return choices;
+    }
+
+    public void setPersonData(Employee person) {
+        personData.put("ID",person.getID());
+        personData.put("name",person.getName());
     }
 }

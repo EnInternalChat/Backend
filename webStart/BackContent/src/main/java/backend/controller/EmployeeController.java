@@ -163,6 +163,7 @@ public class EmployeeController {
     @RequestMapping(value = "/status/{companyID}/{sectionID}/{ID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void statusChange(@PathVariable("companyID") Long companyID, @PathVariable("sectionID") Long sectionID,
                              @PathVariable("ID") Long ID, HttpServletResponse httpServletResponse) {
-
+        JSONObject jsonObject=databaseService.statusSet(companyID,sectionID,ID);
+        ResponseJsonObj.write(httpServletResponse,jsonObject);
     }
 }
