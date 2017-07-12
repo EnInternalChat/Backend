@@ -79,11 +79,13 @@ public class TaskController {
     })
     @ResponseBody
     @RequestMapping(value = "/upload/{companyId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void uploadProcess(@RequestParam("newTaskFile")CommonsMultipartFile file, @PathVariable("companyId") Long companyId,
+    public void uploadProcess(@RequestParam("newTaskFile")CommonsMultipartFile file, @RequestParam("name") String name,
+                              @PathVariable("companyId") Long companyId,
                               HttpServletResponse response) {
         JSONObject jsonObject;
         //TODO cirfirm role
-        Map<String,Object> typeMap=activitiService.deployProcess(file, companyId);
+        Map<String,Object> typeMap=activitiService.deployProcess(file, companyId, name);
+        System.out.println(file);
         jsonObject=infoType(typeMap);
         ResponseJsonObj.write(response,jsonObject);
     }
@@ -130,8 +132,7 @@ public class TaskController {
     @ResponseBody
     @RequestMapping(value = "/all/{companyID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<DeployOfProcess> processes(@PathVariable("companyID") Long companyID) {
-        return null;
-        //TODO list
+        return databaseService.findDeployOfProcess(companyID);
     }
 
     @ApiOperation(value = "用户已完成流程列表", notes = "用户参与且当前已完成的流程实例")

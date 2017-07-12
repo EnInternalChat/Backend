@@ -74,4 +74,13 @@ public class Company {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Collection<DeployOfProcess> getDeployOfProcesses() {
+        return deployOfProcesses;
+    }
+
+    public boolean addDeployOfProcess(DeployOfProcess deployOfProcess) {
+        deployOfProcesses.add(deployOfProcess);
+        return true;
+    }
 }

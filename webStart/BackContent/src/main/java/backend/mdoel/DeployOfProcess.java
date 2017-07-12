@@ -19,6 +19,7 @@ public class DeployOfProcess {
     private long ID;
     private long companyID;
     private String name;
+    private String path;
     private long uploadTime;
     private long updateTime;
     private long count;
@@ -28,11 +29,12 @@ public class DeployOfProcess {
         labels=new HashSet<>();
     }
 
-    public DeployOfProcess(long ID, long companyID, String name, long uploadTime, long updateTime, long count) {
+    public DeployOfProcess(long ID, long companyID, String name, String path, long uploadTime, long updateTime, long count) {
         this();
         this.ID=ID;
         this.companyID = companyID;
         this.name = name;
+        this.path=path;
         this.uploadTime = uploadTime;
         this.updateTime = updateTime;
         this.count = count;
@@ -40,6 +42,10 @@ public class DeployOfProcess {
 
     public Collection<String> getLabels() {
         return labels;
+    }
+
+    public String getPath() {
+        return path;
     }
 
     public long getUploadTime() {

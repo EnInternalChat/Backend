@@ -25,14 +25,17 @@ public class ChatController {
     @ApiOperation(value = "开启群组聊天", notes = "群聊功能")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "companyID",value = "公司id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "sectionID", value = "部门id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "ID",value = "人员id", required = true, dataType = "Long", paramType = "path"),
             @ApiImplicitParam(name = "groupIDList", value = "加入群聊的群组的id集合", required = true, dataType = "List", paramType = "body"),
     })
     @ResponseBody
-    @RequestMapping(value = "/group/{companyID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/group/{companyID}/{sectionID}/{ID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void groupChatStart(HttpServletResponse httpServletResponse,
-                               @PathVariable("companyID") Long companyID, @RequestParam("groupIDList") List<Long> groupIDList) {
+                               @PathVariable("companyID") Long companyID, @PathVariable("sectionID") Long sectionID, @PathVariable("ID") Long ID,
+                               @RequestParam("groupIDList") List<Long> groupIDList) {
         JSONObject jsonObject=new JSONObject();
-        Long chatID=databaseService.groupChatGenerate(companyID,groupIDList);
+        Long chatID=databaseService.groupChatGenerate(companyID,sectionID,ID,groupIDList);
         jsonObject.put("chatID",chatID);
         ResponseJsonObj.write(httpServletResponse,jsonObject);
         //TODO check if leader

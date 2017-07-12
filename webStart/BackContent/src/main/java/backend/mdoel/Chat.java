@@ -12,16 +12,22 @@ public class Chat {
     @Id
     private long ID;
     private long companyID;
+    private long startTime;
     private String mark;
     private Long trdPartyID;
 
     public Chat() {
     }
 
-    public Chat(long ID, long companyID, String mark) {
+    public Chat(long ID, long companyID, String mark, long startTime) {
         this.ID=ID;
         this.companyID=companyID;
         this.mark=mark;
+        this.startTime=startTime;
+    }
+
+    public long getStartTime() {
+        return startTime;
     }
 
     public long getID() {

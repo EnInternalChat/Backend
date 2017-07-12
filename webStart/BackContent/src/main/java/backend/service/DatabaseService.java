@@ -327,6 +327,27 @@ public class DatabaseService {
         return result;
     }
 
+    public boolean saveDeployOfProcess(DeployOfProcess deployOfProcess) {
+        deployOfProcessRepository.save(deployOfProcess);
+        Company company=companyRepository.findOne(deployOfProcess.getCompanyID());
+        company.addDeployOfProcess(deployOfProcess);
+        addUpdateDeployOfProcess(company,deployOfProcess);
+        return true;
+    }
+
+    public List<DeployOfProcess> findDeployOfProcess(long companyID) {
+        List<DeployOfProcess> deployOfProcesses=deployOfProcessRepository.findByCompanyID(companyID);
+        Collections.sort(deployOfProcesses, new Comparator<DeployOfProcess>() {
+            @Override
+            public int compare(DeployOfProcess o1, DeployOfProcess o2) {
+                if(o1.getUpdateTime()<o2.getUpdateTime()) return 1;
+                else if(o1.getUpdateTime()>o2.getUpdateTime()) return -1;
+                else return 0;
+            }
+        });
+        return deployOfProcesses;
+    }
+
     public long getIDeployOfProcess() {
         long id= idManager.getIDeployOfProcess();
         idManagerRepository.save(idManager);
@@ -563,25 +584,27 @@ public class DatabaseService {
         return result;
     }
 
-    public Long groupChatGenerate(long companyID, List<Long> groups) {
+    public Long groupChatGenerate(long companyID, long sectionID, long ID, List<Long> groups) {
         List<Section> sections=new ArrayList<>();
-        Collections.sort(groups);
         String mark="";
         for(Long id:groups) {
-            mark=mark+id+"+";
             Section section=sectionRepository.findOne(id);
             sections.add(section);
+            if(mark.length()<16) {
+                for(Employee member:section.getMembers()) {
+                    mark+=member.getName()+"、";
+                    if(mark.length()>16) break;
+                }
+            }
         }
-        Employee owner=sections.get(0).getLeader();
         mark=mark.substring(0,mark.length()-1);
-        List<Chat> chats=chatRepository.findByMark(mark);
-        Chat chat;
+        Employee owner=employeeRepository.findOne(ID);
+        Chat chat=new Chat(getIChat(),companyID,mark,System.currentTimeMillis());
+        chat.setTrdPartyID((long) -1);
         CreateGroupResult createGroupResult;
-        if(chats.size() == 0) {
-            chat=new Chat(getIChat(),companyID,mark);
-            chat.setTrdPartyID(new Long(-1));
-            try {
-                createGroupResult=jMessageClient.createGroup(owner.getName(),mark,"none",owner.getName());
+        try {
+            createGroupResult=jMessageClient.createGroup(owner.getName(),mark,"none",owner.getName());
+            if(createGroupResult.isResultOK()) {
                 Long Gid=createGroupResult.getGid();
                 chat.setTrdPartyID(Gid);
                 ArrayList<String> addMembers=new ArrayList<>();
@@ -598,13 +621,11 @@ public class DatabaseService {
                 String[] addList=new String[addMembers.size()];
                 jMessageClient.addOrRemoveMembers(Gid,addMembers.toArray(addList),null);
                 chatRepository.save(chat);
-            } catch (APIConnectionException e) {
-                System.out.println("Connection error. Should retry later. ");
-            } catch (APIRequestException | NullPointerException e) {
-                System.out.println("Error Message: " + e.getMessage());
             }
-        } else {
-            chat=chats.get(0);
+        } catch (APIConnectionException e) {
+            System.out.println("Connection error. Should retry later. ");
+        } catch (APIRequestException | NullPointerException e) {
+            System.out.println("Error Message: " + e.getMessage());
         }
         return chat.getTrdPartyID();
     }
@@ -807,6 +828,11 @@ public class DatabaseService {
     private void addUpdateRelatedGroupChats(Section section, Chat chat) {
         String colName=new BasicMongoPersistentEntity<>(ClassTypeInformation.from(Chat.class)).getCollection();
         addCollectionDataBasic(Section.class,section.getID(),colName,chat.getID(),"relatedGroupChats");
+    }
+
+    private void addUpdateDeployOfProcess(Company company, DeployOfProcess deployOfProcess) {
+        String colName=new BasicMongoPersistentEntity<>(ClassTypeInformation.from(DeployOfProcess.class)).getCollection();
+        addCollectionDataBasic(Company.class,company.getID(),colName,deployOfProcess.getID(),"deployOfProcesses");
     }
 
     private void addCollectionDataBasic(Class mainType, long mainID, String colName, long dataID, String columnName) {

@@ -1,5 +1,6 @@
 package backend.service;
 
+import backend.mdoel.DeployOfProcess;
 import backend.mdoel.Employee;
 import backend.mdoel.InstanceOfProcess;
 import org.activiti.bpmn.exceptions.XMLException;
@@ -236,9 +237,19 @@ public class ActivitiService {
         return jsonObject;
     }
 
-    public Map<String, Object> deployProcess(CommonsMultipartFile file, long companyId) {
+    private boolean processToSave(String path, String name, long companyId, ProcessDefinition processDefinition) {
+        Set<String> labels=new HashSet<>();
+        getProcessLabel(processDefinition,labels);
+        DeployOfProcess deployOfProcess=new DeployOfProcess(databaseService.getIDeployOfProcess(),
+                companyId,name,path,System.currentTimeMillis(),
+                System.currentTimeMillis(),0);
+        databaseService.saveDeployOfProcess(deployOfProcess);
+        return true;
+    }
+
+    public Map<String, Object> deployProcess(CommonsMultipartFile file, long companyId, String name) {
         Map<String, Object> result=new HashMap<>();
-        result.put("name",file.getOriginalFilename());
+        result.put("name",name+".bpmn20.xml");
         if(file.isEmpty()) {
             result.put("type",0);
             return result;
@@ -247,7 +258,7 @@ public class ActivitiService {
         File dir=new File(path);
         if(!dir.isDirectory()) dir.mkdir();
         System.out.println("path:"+path);
-        File processFile=new File(path, file.getOriginalFilename());
+        File processFile=new File(path, name+".bpmn20.xml");
         if(processFile.exists()) {
             result.put("type",1);
             return result;
@@ -263,16 +274,24 @@ public class ActivitiService {
                         .deploymentId(deployment.getId()).singleResult();
             } catch (XMLException e) {
                 result.put("type",2);
+                processFile.delete();
                 return result;
             }
         } catch (IOException e) {
             result.put("type",2);
+            processFile.delete();
+            return result;
+        }
+        if(processDefinition == null) {
+            result.put("type",2);
+            processFile.delete();
             return result;
         }
         System.out.println("Found process definition ["
                 + processDefinition.getName() + "] with id ["
                 + processDefinition.getId() + "]");
         result.put("type",3);
+        processToSave(processFile.getAbsolutePath(),name,companyId,processDefinition);
         try {
             InputStream resourceAsStream=modelDiagram(processDefinition);
             byte[] b=new byte[resourceAsStream.available()];
