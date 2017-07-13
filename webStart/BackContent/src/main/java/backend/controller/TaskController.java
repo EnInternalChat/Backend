@@ -120,12 +120,11 @@ public class TaskController {
     })
     @ResponseBody
     @RequestMapping(value = "/operate/{companyID}/{ID}/{processID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void operateProcess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+    public void operateProcess(HttpServletResponse httpServletResponse,
                                @PathVariable("processID") Long processID, @PathVariable("companyID") Long companyID,
                                @RequestParam("operationID") String operationID, @PathVariable("ID") Long ID,
                                @RequestParam(value = "content", required = false) String content) {
-        long id=(long) httpServletRequest.getSession().getAttribute("user");
-        Employee operator=databaseService.activeUserById(id);
+        Employee operator=databaseService.activeUserById(ID);
         JSONObject jsonObject=activitiService.processOperation(processID.toString(),operationID,content,operator);
         ResponseJsonObj.write(httpServletResponse,jsonObject);
     }

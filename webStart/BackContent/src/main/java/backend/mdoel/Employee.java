@@ -35,7 +35,7 @@ public class Employee {
     @DBRef
     private Collection<Notification> notificationsRcvdRead;
     @DBRef
-    private Collection<InstanceOfProcess> instanceOfProcesses;
+    private Collection<InstanceOfProcess> workingInstance;
     private boolean gender;
     private boolean active;
     private boolean leader;
@@ -47,7 +47,7 @@ public class Employee {
         notificationsSent=new HashSet<>();
         notificationsRcvdRead=new HashSet<>();
         notificationsRcvdUnread=new HashSet<>();
-        instanceOfProcesses =new HashSet<>();
+        workingInstance =new HashSet<>();
     }
 
     public Employee(long ID, long companyID, long sectionID, String name, String pwd, boolean gender) {
@@ -203,17 +203,13 @@ public class Employee {
         return true;
     }
 
-    public Collection<InstanceOfProcess> getInstanceOfProcesses() {
-        return instanceOfProcesses;
+    public Collection<InstanceOfProcess> getWorkingInstance() {
+        return workingInstance;
     }
 
-    public Collection<InstanceOfProcess> getProcessDeploys() {
-        return instanceOfProcesses;
-    }
-
-    public boolean addTask(InstanceOfProcess newInstance) {
-        instanceOfProcesses.add(newInstance);
-        System.out.println(instanceOfProcesses.size());
+    public boolean addInstanceWorking(InstanceOfProcess newInstance) {
+        workingInstance.add(newInstance);
+        System.out.println(workingInstance.size());
         return true;
     }
 

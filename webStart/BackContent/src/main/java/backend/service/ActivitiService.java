@@ -70,8 +70,6 @@ public class ActivitiService {
     private void keyWordsSet() {
         keywords.add("leader");
         keywords.add("hr");
-        keywords.add("modify");
-        keywords.add("applyUserId");
         keywords.add("manager");
         keywords.add("finance");
         keywords.add("design");
@@ -96,7 +94,7 @@ public class ActivitiService {
     private JSONObject error(String proId) {
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("done",false);
-        jsonObject.put("info","操作失败，流程不存在或已结束，流程id: "+proId);
+        jsonObject.put("info","操作失败，流程不存、已结束或是此流程不属于您的操作阶段，流程id: "+proId);
         return jsonObject;
     }
 
@@ -137,7 +135,11 @@ public class ActivitiService {
         DeployOfProcess deployOfProcess=databaseService.getDeployOfProcess(processDefID);
         Collection<String> labels=deployOfProcess.getLabels();
         String processKey=deployOfProcess.getProcessKey();
-        ProcessDefinition processDefinition=repositoryService.createProcessDefinitionQuery().processDefinitionKey(processKey).singleResult();
+        List<ProcessDefinition> processDefinitions=repositoryService.createProcessDefinitionQuery().processDefinitionKey(processKey).list();
+        if(processDefinitions.size() == 0) {
+            return error(processKey);
+        }
+        ProcessDefinition processDefinition=processDefinitions.get(0);
         FormData formData=formService.getStartFormData(processDefinition.getId());
         Map<String,String> variables=new HashMap<>();
         for(FormProperty formProperty:formData.getFormProperties()) {
@@ -151,7 +153,12 @@ public class ActivitiService {
         }
         ProcessInstance processInstance=formService.submitStartFormData(processDefinition.getId(),variables);
         String proId=processInstance.getId();
-        databaseService.participantsGetInstance(companyID,deployOfProcess,proId,starter);
+        boolean status=databaseService.participantsGetInstance(companyID,deployOfProcess,proId,starter);
+        if(!status) {
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("info","当前公司缺乏执行相应流程的部门或人员");
+            return jsonObject;
+        }
         Task task = taskService.createTaskQuery().processInstanceId(proId).singleResult();
         Map<String,String> choices=new HashMap<>();
         formData=formService.getTaskFormData(task.getId());
@@ -207,7 +214,9 @@ public class ActivitiService {
             return error(processID);
         }
         Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
-        task.setAssignee(operator.getName());
+        if(!task.getAssignee().equals(operator.getName())) {
+            return error(processID);
+        }
         Map<String, Object> variables=new HashMap<>();
         FormData formData=formService.getTaskFormData(task.getId());
         for(FormProperty formProperty:formData.getFormProperties()) {
@@ -222,6 +231,7 @@ public class ActivitiService {
             } else System.out.println("<form type not supported>");
         }
         taskService.complete(task.getId(),variables);
+        operationTaskStage()
         JSONObject jsonObject=ok(processID);
         processInstance=runtimeService.createProcessInstanceQuery()
                 .processInstanceId(processID).singleResult();

@@ -1,7 +1,6 @@
 package backend.mdoel;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
@@ -22,7 +21,6 @@ public class TaskStage {
     private String processID;
     private long startTime;
     private long finishTime;
-    @DBRef
     private Map<String,Object> personData;
     private Collection<Map<String,String>> choices;
 

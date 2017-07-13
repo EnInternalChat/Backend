@@ -220,6 +220,7 @@ public class DatabaseService {
         List<Section> sections=sectionRepository.findByCompanyIDAndLabel(companyID,label);
         if(sections.size() == 0 || sections.get(0).getCompanyID() != companyID) {
             System.out.println("当前部门id不存在或当前id部门不属于此公司");
+            System.out.println("size:"+sections.size());
             return null;
         }
         leader=sections.get(0).getLeader();
@@ -422,13 +423,22 @@ public class DatabaseService {
         InstanceOfProcess instance;
         instance=new InstanceOfProcess(getIInstanceOfProcess(),companyID,processID,processName,applyer);
         instanceOfProcessRepository.save(instance);
+        Set<Employee> participants=new HashSet<>();
         for(String label:labels) {
-            Map<String,Object> participantData=new HashMap<>();
-            Employee participant=getLeaderFromLabel(companyID, label, null);
-            if(participant != null) {
-                participantData.put("ID",participant.getID());
-                participantData.put("name",participant.getName());
+            Employee participant;
+            if(label.equals("modify") || label.equals("apply")) {
+                participant=applyer;
+            } else {
+                participant=getLeaderFromLabel(companyID, label, applyer);
             }
+            if(participant != null) {
+                participants.add(participant);
+            } else {
+                instanceOfProcessRepository.delete(instance);
+                return false;
+            }
+        }
+        for(Employee participant:participants) {
             addUpdateInstanceOfProcess(participant,instance);
         }
         return true;
@@ -921,7 +931,7 @@ public class DatabaseService {
     }
 
     public void addUpdateInstanceOfProcess(Employee employee, InstanceOfProcess instanceOfProcess) {
-        employee.addTask(instanceOfProcess);
+        employee.addInstanceWorking(instanceOfProcess);
         String colName=new BasicMongoPersistentEntity<>(ClassTypeInformation.from(InstanceOfProcess.class)).getCollection();
         addCollectionDataBasic(Employee.class,employee.getID(),colName,instanceOfProcess.getID(),"instanceOfProcesses");
     }
@@ -967,7 +977,7 @@ public class DatabaseService {
     }
 
     private void addUpdateTaskStage(InstanceOfProcess instanceOfProcess, TaskStage taskStage) {
-        String colName=new BasicMongoPersistentEntity<>(ClassTypeInformation.from(InstanceOfProcess.class)).getCollection();
+        String colName=new BasicMongoPersistentEntity<>(ClassTypeInformation.from(TaskStage.class)).getCollection();
         addCollectionDataBasic(InstanceOfProcess.class,instanceOfProcess.getID(),colName,taskStage.getID(),"stages");
     }
 
