@@ -46,8 +46,8 @@
     </bean>
 
     <mongo:repositories base-package="backend.repository" />
-    <!--<mongo:mongo host="mongo" port="27017"/>-->
-    <mongo:mongo host="106.15.186.180" port="27017"/>
+    <mongo:mongo host="mongo" port="27017"/>
+    <!--<mongo:mongo host="106.15.186.180" port="27017"/>-->
     <bean id="defaultMongoTypeMapper" class="org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper">
         <constructor-arg name="typeKey"> <null /> </constructor-arg>
     </bean>
