@@ -94,33 +94,36 @@ public class TaskController {
 
     @ApiOperation(value = "启动流程", notes = "启动指定类型的流程")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "processKey", value = "流程id", required = true, dataType = "String", paramType = "path"),
+            @ApiImplicitParam(name = "companyID",value = "公司id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "ID",value = "发起者id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "processDefID", value = "流程定义id", required = true, dataType = "Long", paramType = "path"),
             @ApiImplicitParam(name = "content", value = "备注信息", dataType = "String", paramType = "body")
     })
     @ResponseBody
-    @RequestMapping(value = "/start/{processKey}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void process(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
-                        @PathVariable("processKey") String processKey,
-                        @RequestParam(value = "content", required = false) String content) {
-        //TODO content,tytle,reason
-        long id=(long) httpServletRequest.getSession().getAttribute("user");
-        Employee starter=databaseService.activeUserById(id);
-        JSONObject jsonObject=activitiService.processStart(processKey,content,starter);
+    @RequestMapping(value = "/start/{companyID}/{ID}/{processDefID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void startProcess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+                             @PathVariable("processDefID") Long processDefID, @PathVariable("companyID") Long companyID,
+                             @PathVariable("ID") Long ID,
+                             @RequestParam(value = "content", required = false) String content) {
+        Employee starter=databaseService.activeUserById(ID);
+        JSONObject jsonObject=activitiService.processStart(companyID,processDefID,content,starter);
         ResponseJsonObj.write(httpServletResponse,jsonObject);
     }
 
     @ApiOperation(value = "处理任务", notes = "对任务进行操作处理")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "processID", value = "流程实例id", required = true, dataType = "String", paramType = "body"),
-            @ApiImplicitParam(name = "operationID", value = "操作id(对此步骤的操作)", required = true, dataType = "String", paramType = "path"),
+            @ApiImplicitParam(name = "companyID",value = "公司id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "ID",value = "发起者id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "processID", value = "流程实例id", required = true, dataType = "String", paramType = "path"),
+            @ApiImplicitParam(name = "operationID", value = "操作id(对此步骤的操作)", required = true, dataType = "String", paramType = "body"),
             @ApiImplicitParam(name = "content", value = "备注信息json数组", dataType = "String", paramType = "body")
     })
     @ResponseBody
-    @RequestMapping(value = "/operate/{processID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void process(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
-                        @PathVariable("processID") Long processID,
-                        @RequestParam("operationID") String operationID,
-                        @RequestParam(value = "content", required = false) String content) {
+    @RequestMapping(value = "/operate/{companyID}/{ID}/{processID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void operateProcess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+                               @PathVariable("processID") Long processID, @PathVariable("companyID") Long companyID,
+                               @RequestParam("operationID") String operationID, @PathVariable("ID") Long ID,
+                               @RequestParam(value = "content", required = false) String content) {
         long id=(long) httpServletRequest.getSession().getAttribute("user");
         Employee operator=databaseService.activeUserById(id);
         JSONObject jsonObject=activitiService.processOperation(processID.toString(),operationID,content,operator);

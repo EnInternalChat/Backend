@@ -45,4 +45,32 @@ public class InstanceOfProcess {
     public long getID() {
         return ID;
     }
+
+    public long getCompanyID() {
+        return companyID;
+    }
+
+    public String getProcessID() {
+        return processID;
+    }
+
+    public String getProcessName() {
+        return processName;
+    }
+
+    public Map<String, Object> getStartPerson() {
+        return startPerson;
+    }
+
+    public void setOver() {
+        this.over = false;
+    }
+
+    public boolean isOver() {
+        return over;
+    }
+
+    public Collection<TaskStage> getStages() {
+        return stages;
+    }
 }

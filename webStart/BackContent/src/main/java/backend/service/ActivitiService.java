@@ -2,8 +2,6 @@ package backend.service;
 
 import backend.mdoel.DeployOfProcess;
 import backend.mdoel.Employee;
-import backend.mdoel.InstanceOfProcess;
-import backend.util.StandardTimeFormat;
 import org.activiti.bpmn.exceptions.XMLException;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.engine.*;
@@ -13,6 +11,7 @@ import org.activiti.engine.impl.RepositoryServiceImpl;
 import org.activiti.engine.impl.form.DateFormType;
 import org.activiti.engine.impl.form.EnumFormType;
 import org.activiti.engine.impl.form.StringFormType;
+import org.activiti.engine.impl.persistence.entity.ExecutionEntity;
 import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
 import org.activiti.engine.impl.pvm.PvmTransition;
 import org.activiti.engine.impl.pvm.process.ActivityImpl;
@@ -123,32 +122,21 @@ public class ActivitiService {
         return true;
     }
 
-    private void participantsGetInstance(long companyID, Collection<String> labels, Employee applyer) {
-        Collection<Map<String,Object>> participants=new HashSet<>();
-        for(String label:labels) {
-            Map<String,Object> participantData=new HashMap<>();
-            Employee participant=databaseService.getLeaderFromLabel(companyID, label);
-            if(participant != null) {
-                participantData.put("ID",participant.getID());
-                participantData.put("name",participant.getName());
-            }
-            participants.add(participantData);
-        }
+    private List<ActivityImpl> activityImplList(String processInstanceId) {
+        ProcessInstance processInstance=runtimeService.createProcessInstanceQuery()
+                .processInstanceId(processInstanceId).singleResult();
+        String definitionId=processInstance.getProcessDefinitionId();
+        ProcessDefinitionEntity def = (ProcessDefinitionEntity) ((RepositoryServiceImpl)repositoryService)
+                .getDeployedProcessDefinition(definitionId);
+        List<ActivityImpl> activitiList = def.getActivities();
+        return activitiList;
     }
 
-//    private List<ActivityImpl> activityImplList(String processInstanceId) {
-//        ProcessInstance processInstance=runtimeService.createProcessInstanceQuery()
-//                .processInstanceId(processInstanceId).singleResult();
-//        String definitionId=processInstance.getProcessDefinitionId();
-//        ProcessDefinitionEntity def = (ProcessDefinitionEntity) ((RepositoryServiceImpl)repositoryService)
-//                .getDeployedProcessDefinition(definitionId);
-//        List<ActivityImpl> activitiList = def.getActivities();
-//        return activitiList;
-//    }
-
     //TODO role comfirm
-    public JSONObject processStart(String processKey, String content, Employee starter) {
-        System.out.println("employee: "+starter.hashCode());
+    public JSONObject processStart(long companyID, long processDefID, String content, Employee starter) {
+        DeployOfProcess deployOfProcess=databaseService.getDeployOfProcess(processDefID);
+        Collection<String> labels=deployOfProcess.getLabels();
+        String processKey=deployOfProcess.getProcessKey();
         ProcessDefinition processDefinition=repositoryService.createProcessDefinitionQuery().processDefinitionKey(processKey).singleResult();
         FormData formData=formService.getStartFormData(processDefinition.getId());
         Map<String,String> variables=new HashMap<>();
@@ -163,52 +151,41 @@ public class ActivitiService {
         }
         ProcessInstance processInstance=formService.submitStartFormData(processDefinition.getId(),variables);
         String proId=processInstance.getId();
-//
-//        identityService.setAuthenticatedUserId(String.valueOf(starter.getID()));
-//        List<Task> tasks = taskService.createTaskQuery().processInstanceId(proId).list();
-//        for (Task task:tasks) {
-//            Map<String, Object> vars=taskService.getVariables(task.getId());
-//            task.setAssignee(String.valueOf(starter.getID()));
-//            System.out.println("vars:"+vars);
-//            System.out.println("ActivityId"+processInstance.getActivityId());
-//        }
-//        ProcessDefinitionEntity def = (ProcessDefinitionEntity) ((RepositoryServiceImpl)repositoryService).getDeployedProcessDefinition(processInstance.getProcessDefinitionId());
-//        List<ActivityImpl> activitiList = def.getActivities();
-//        System.out.println(activitiList.size());
-//        for(ActivityImpl activity:activitiList) {
-//            String id=activity.getId();
-//            System.out.print(id+" out: ");
-//            List<PvmTransition> outTransitions=activity.getOutgoingTransitions();
-//            for(PvmTransition pvmTransition:outTransitions) {
-//                    System.out.print("【("+pvmTransition.getSkipExpression()+")");
-//                    System.out.print("("+pvmTransition.getProperty("type")+")");
-//                    System.out.print("("+pvmTransition.getProperty("conditionText")+")|-");
-//                    System.out.print(pvmTransition.getDestination().getId()+"】");
-//            }
-//            System.out.println();
-//        }
-
-        InstanceOfProcess instanceOfProcess=databaseService
-                .saveProcessInstance(processKey,proId,processInstance.getName(),starter);
-        databaseService.addUpdateInstanceOfProcess(starter,instanceOfProcess);
+        databaseService.participantsGetInstance(companyID,deployOfProcess,proId,starter);
+        Task task = taskService.createTaskQuery().processInstanceId(proId).singleResult();
+        Map<String,String> choices=new HashMap<>();
+        formData=formService.getTaskFormData(task.getId());
+        for(FormProperty formProperty:formData.getFormProperties()) {
+            if(EnumFormType.class.isInstance(formProperty.getType())) {
+                choices=(Map<String,String>) formProperty.getType().getInformation("values");
+                break;
+            }
+        }
+        String excID=task.getExecutionId();
+        ExecutionEntity execution = (ExecutionEntity) runtimeService.createExecutionQuery().executionId(excID).singleResult();
+        String nextActivityID=execution.getActivityId();
+        String nextLabel="";
+        for(String label:labels) {
+            if(label.equals(nextActivityID.toLowerCase())) {
+                nextLabel=label;
+                break;
+            }
+        }
+        Employee nextParticipant=databaseService.getLeaderFromLabel(companyID,nextLabel,starter);
+        task.setAssignee(nextParticipant.getName());
+        operationTaskStage(proId,null,nextActivityID,execution.getName(),content,choices,nextParticipant,companyID,starter);
         return ok(proId);
     }
 
-    private JSONObject operationTaskStage(String processID, String thisActivityID, String nextActivityID, String title,
+    private boolean operationTaskStage(String processID, String thisActivityID, String nextActivityID, String title,
                                        String content, Map<String,String> nextChoices, Employee nextParticipant,
                                        long companyID, Employee thisParticipant) {
-        JSONObject jsonObject=new JSONObject();
-        databaseService.thisTaskStageSet(processID, thisActivityID, content, thisParticipant);//content for this, title for next
+        if(thisActivityID != null) {
+            databaseService.thisTaskStageSet(processID, thisActivityID, content, thisParticipant);//content for this, title for next
+        }
         if(nextActivityID == null) {
-            jsonObject.put("activityID","endEvent");
-            jsonObject.put("title",title);
-            jsonObject.put("overTime", StandardTimeFormat.parse(System.currentTimeMillis()));
             databaseService.nextEndSet(companyID,processID,title,"endEvent");
         } else {
-            jsonObject.put("activityID",nextActivityID);
-            jsonObject.put("title",title);
-            jsonObject.put("participant",nextParticipant);
-            jsonObject.put("startTime",StandardTimeFormat.parse(System.currentTimeMillis()));
             Collection<Map<String,String>> choices=new HashSet<>();
             Iterator<String> iter=nextChoices.keySet().iterator();
             while (iter.hasNext()) {
@@ -218,10 +195,9 @@ public class ActivitiService {
                 choice.put("operationName",nextChoices.get(operationID));
                 choices.add(choice);
             }
-            jsonObject.put("exclusiveGateway",choices);
-            databaseService.nextTaskStageSet(companyID,processID,title,nextActivityID,choices);
+            databaseService.nextTaskStageSet(companyID,processID,title,nextParticipant,nextActivityID,choices);
         }
-        return jsonObject;
+        return true;
     }
 
     public JSONObject processOperation(String processID, String operationID, String content, Employee operator) {
@@ -346,7 +322,7 @@ public class ActivitiService {
             jsonObject.put("info","删除失败");
             return jsonObject;
         }
-        //若删除key，则其他同key流程无法使用
+//        若删除key，则其他同key流程无法使用
 //        try {
 //            repositoryService.deleteDeployment(processKey);
 //        } catch (ActivitiObjectNotFoundException e) {

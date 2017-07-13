@@ -27,12 +27,12 @@ public class TaskStage {
     private Collection<Map<String,String>> choices;
 
     public TaskStage() {
-        this.ID=ID;
         personData=new HashMap<>();
         choices=new ArrayList<>();
     }
 
     public TaskStage(long ID, String activityID, String title, String processID, long startTime) {
+        this();
         this.ID = ID;
         this.activityID = activityID;
         this.title = title;
@@ -41,7 +41,7 @@ public class TaskStage {
     }
 
     public TaskStage(long ID, String activityID, String processID,
-                     long startTime, String title,
+                     long startTime, String title, Employee person,
                      Collection<Map<String, String>> choices) {
         this();
         this.ID=ID;
@@ -50,6 +50,12 @@ public class TaskStage {
         this.startTime = startTime;
         this.title=title;
         this.choices = choices;
+        personData.put("ID",person.getID());
+        personData.put("name",person.getName());
+    }
+
+    public Map<String, Object> getPersonData() {
+        return personData;
     }
 
     public long getID() {

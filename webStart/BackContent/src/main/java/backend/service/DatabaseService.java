@@ -205,18 +205,24 @@ public class DatabaseService {
         return jsonObject;
     }
 
-    public Employee getLeaderFromLabel(long companyID, String label) {
+    public Employee getLeaderFromLabel(long companyID, String label, Employee finder) {
         Company company=companyRepository.findOne(companyID);
+        Employee leader;
         if(company == null) {
             System.out.println("当前公司id不存在");
             return null;
+        }
+        if(label.equals("leader")) {
+            Section section=sectionRepository.findOne(finder.getSectionID());
+            leader=section.getLeader();
+            return leader;
         }
         List<Section> sections=sectionRepository.findByCompanyIDAndLabel(companyID,label);
         if(sections.size() == 0 || sections.get(0).getCompanyID() != companyID) {
             System.out.println("当前部门id不存在或当前id部门不属于此公司");
             return null;
         }
-        Employee leader=sections.get(0).getLeader();
+        leader=sections.get(0).getLeader();
         return leader;
     }
 
@@ -343,6 +349,11 @@ public class DatabaseService {
         return result;
     }
 
+    public DeployOfProcess getDeployOfProcess(long ID) {
+        DeployOfProcess deployOfProcess=deployOfProcessRepository.findOne(ID);
+        return deployOfProcess;
+    }
+
     public boolean saveDeployOfProcess(DeployOfProcess deployOfProcess) {
         deployOfProcessRepository.save(deployOfProcess);
         Company company=companyRepository.findOne(deployOfProcess.getCompanyID());
@@ -413,7 +424,7 @@ public class DatabaseService {
         instanceOfProcessRepository.save(instance);
         for(String label:labels) {
             Map<String,Object> participantData=new HashMap<>();
-            Employee participant=getLeaderFromLabel(companyID, label);
+            Employee participant=getLeaderFromLabel(companyID, label, null);
             if(participant != null) {
                 participantData.put("ID",participant.getID());
                 participantData.put("name",participant.getName());
@@ -437,10 +448,10 @@ public class DatabaseService {
         return true;
     }
 
-    public boolean nextTaskStageSet(long companyID, String processID, String title,
+    public boolean nextTaskStageSet(long companyID, String processID, String title, Employee employee,
                                     String activityID, Collection<Map<String, String>> choices) {
         TaskStage taskStage=new TaskStage(getITaskStage(),activityID,processID,
-                System.currentTimeMillis(),title,choices);
+                System.currentTimeMillis(),title,employee,choices);
         List<InstanceOfProcess> instanceOfProcesses=instanceOfProcessRepository
                 .findByCompanyIDAndAndProcessID(companyID,processID);
         if(instanceOfProcesses.size() == 0) return false;
@@ -457,7 +468,9 @@ public class DatabaseService {
                 .findByCompanyIDAndAndProcessID(companyID,processID);
         if(instanceOfProcesses.size() == 0) return false;
         InstanceOfProcess instance=instanceOfProcesses.get(0);
+        instance.setOver();
         instance.addStage(taskStage);
+        instanceOfProcessRepository.save(instance);
         addUpdateTaskStage(instance,taskStage);
         return true;
     }

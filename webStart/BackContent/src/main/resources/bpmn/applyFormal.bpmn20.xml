@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="applyFormal" name="实习生转正申请" isExecutable="true">
+    <startEvent id="sid-504C16A3-6FBA-4905-BE02-A687416E49D4"></startEvent>
+    <userTask id="apply" name="申请转正">
+      <extensionElements>
+        <activiti:formProperty id="date" name="日期" type="string"></activiti:formProperty>
+        <activiti:formProperty id="content" name="申请内容" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="applyComfirm" name="提出申请" type="enum" required="true">
+          <activiti:value id="ok" name="申请"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sid-5671E156-BBFB-4B3E-B6BC-CA0B816DF592" sourceRef="sid-504C16A3-6FBA-4905-BE02-A687416E49D4" targetRef="apply"></sequenceFlow>
+    <userTask id="leaderCheck" name="部门考核">
+      <extensionElements>
+        <activiti:formProperty id="date" name="日期" type="string"></activiti:formProperty>
+        <activiti:formProperty id="content" name="考核结果" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="showResult" name="公布结果" type="enum" required="true">
+          <activiti:value id="yes" name="考核通过"></activiti:value>
+          <activiti:value id="no" name="不通过"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="sid-8FCEB9B7-49DE-4A92-99CC-0B8EAAF02854"></exclusiveGateway>
+    <endEvent id="endEvent1" name="endEvent"></endEvent>
+    <exclusiveGateway id="sid-F344F383-A898-43CE-8C25-163F00977CF5"></exclusiveGateway>
+    <userTask id="politicCheck" name="行政复审">
+      <extensionElements>
+        <activiti:formProperty id="date" name="日期" type="string"></activiti:formProperty>
+        <activiti:formProperty id="content" name="原因" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="showResult21" name="提出申请" type="enum" required="true">
+          <activiti:value id="ok" name="无误"></activiti:value>
+          <activiti:value id="no" name="否决"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="sid-9E0F41F1-FA0F-41B9-9673-EB3260555F67"></exclusiveGateway>
+    <sequenceFlow id="sid-ABCC8157-DF69-43B5-90FA-ACC1D9B85F7B" sourceRef="politicCheck" targetRef="sid-9E0F41F1-FA0F-41B9-9673-EB3260555F67"></sequenceFlow>
+    <endEvent id="endEvent2" name="endEvent"></endEvent>
+    <exclusiveGateway id="sid-793016B8-DFE5-4321-9822-F2BEAC2B44DE"></exclusiveGateway>
+    <sequenceFlow id="sid-16CF7692-3B41-4C68-9663-46885C32FCB8" sourceRef="financeCheck" targetRef="sid-793016B8-DFE5-4321-9822-F2BEAC2B44DE"></sequenceFlow>
+    <userTask id="hrAudit" name="人事审批">
+      <extensionElements>
+        <activiti:formProperty id="date" name="日期" type="string"></activiti:formProperty>
+        <activiti:formProperty id="content" name="原因" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="showResult3" name="提出申请" type="enum" required="true">
+          <activiti:value id="ok" name="符合标准"></activiti:value>
+          <activiti:value id="no" name="不符"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="sid-C814ECEB-02B4-4E4D-9F3E-E31D4DAD109A"></exclusiveGateway>
+    <userTask id="managerAudit" name="总经理审批">
+      <extensionElements>
+        <activiti:formProperty id="date" name="日期" type="string"></activiti:formProperty>
+        <activiti:formProperty id="content" name="原因" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="showResult4" name="审批操作" type="enum" required="true">
+          <activiti:value id="yes" name="否决"></activiti:value>
+          <activiti:value id="no" name="批准"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="sid-C33AA0F8-4868-45DA-89E9-E64156DD4C39"></exclusiveGateway>
+    <sequenceFlow id="sid-88995A36-5ED6-4970-B13D-BCB40881EA09" sourceRef="managerAudit" targetRef="sid-C33AA0F8-4868-45DA-89E9-E64156DD4C39"></sequenceFlow>
+    <userTask id="modifyComfirm" name="转正确认">
+      <extensionElements>
+        <activiti:formProperty id="date" name="日期" type="string"></activiti:formProperty>
+        <activiti:formProperty id="content" name="备注" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="finalCheck" name="操作" type="enum" required="true">
+          <activiti:value id="comfirmFinal" name="确认转正"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="politicalCheck" name="行政考核">
+      <extensionElements>
+        <activiti:formProperty id="date" name="日期" type="string"></activiti:formProperty>
+        <activiti:formProperty id="content" name="考核结果" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="showResult1" name="公布结果" type="enum" required="true">
+          <activiti:value id="yes" name="考核通过"></activiti:value>
+          <activiti:value id="no" name="不通过"></activiti:value>
+          <activiti:value id="half" name="存疑"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sid-13F64108-FDF5-43E8-BB3B-CA7B37329C7A" sourceRef="leaderCheck" targetRef="sid-8FCEB9B7-49DE-4A92-99CC-0B8EAAF02854"></sequenceFlow>
+    <sequenceFlow id="sid-2E95482C-86DB-42F7-8C91-4F7B27FA970B" sourceRef="apply" targetRef="leaderCheck"></sequenceFlow>
+    <sequenceFlow id="sid-071CD50F-DCE4-4143-8339-C967AAB02D9B" sourceRef="politicalCheck" targetRef="sid-F344F383-A898-43CE-8C25-163F00977CF5"></sequenceFlow>
+    <userTask id="financeCheck" name="财政考核">
+      <extensionElements>
+        <activiti:formProperty id="date" name="日期" type="string"></activiti:formProperty>
+        <activiti:formProperty id="content" name="原因" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="showResult2" name="考核结果" type="enum" required="true">
+          <activiti:value id="ok" name="通过"></activiti:value>
+          <activiti:value id="no" name="否决"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sid-ADF2700C-F5ED-4B0C-B39F-0A5BF66B34E8" sourceRef="hrAudit" targetRef="sid-C814ECEB-02B4-4E4D-9F3E-E31D4DAD109A"></sequenceFlow>
+    <sequenceFlow id="sid-55952AFA-74BE-4B36-8F1A-6A569A693B1B" sourceRef="modifyComfirm" targetRef="endEvent2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${finalCheck == 'comfirmFinal'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-FD9ADFC7-FFE1-4176-A9BB-8AAD5292A456" sourceRef="sid-8FCEB9B7-49DE-4A92-99CC-0B8EAAF02854" targetRef="endEvent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${showResult == 'no'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-89BCEA29-4885-44C8-980B-201BB146A72D" sourceRef="sid-8FCEB9B7-49DE-4A92-99CC-0B8EAAF02854" targetRef="politicalCheck">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${showResult == 'yes'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-E7A58CA7-8DFF-4F0F-B9E7-51FACF422305" sourceRef="sid-F344F383-A898-43CE-8C25-163F00977CF5" targetRef="financeCheck">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${showResult1 == 'yes'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-96B3298F-BF16-4DFC-BCF8-528D126B66C1" sourceRef="sid-F344F383-A898-43CE-8C25-163F00977CF5" targetRef="politicCheck">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${showResult1 == 'half'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-82F9EB6F-150C-4100-AAEA-5D7C1DAEB68F" sourceRef="sid-F344F383-A898-43CE-8C25-163F00977CF5" targetRef="endEvent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${showResult1 == 'no'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-C6217BEB-06C7-4A2A-BF01-E6260CF1246A" sourceRef="sid-9E0F41F1-FA0F-41B9-9673-EB3260555F67" targetRef="endEvent2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${showResult21 == 'no'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-5864FB8B-F559-4311-BA9A-D9C7C41E4A89" sourceRef="sid-9E0F41F1-FA0F-41B9-9673-EB3260555F67" targetRef="financeCheck">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${showResult21 == 'ok'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-746D4139-5D21-46C3-A2F8-60F3536D5618" sourceRef="sid-793016B8-DFE5-4321-9822-F2BEAC2B44DE" targetRef="endEvent2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${showResult2 == 'no'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-D36AF77A-E916-4721-8FA9-28FA1CFB1CED" sourceRef="sid-793016B8-DFE5-4321-9822-F2BEAC2B44DE" targetRef="hrAudit">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${showResult2 == 'ok'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-2570CA75-47F9-47CB-9616-2D81F25DF950" sourceRef="sid-C814ECEB-02B4-4E4D-9F3E-E31D4DAD109A" targetRef="endEvent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${showResult3 == 'no'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-7A105778-2296-4FB9-9987-F53C184BC170" sourceRef="sid-C33AA0F8-4868-45DA-89E9-E64156DD4C39" targetRef="modifyComfirm">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${showResult4 == 'yes'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-DA37FC0E-384A-4949-9556-F9371C2B82B9" sourceRef="sid-C814ECEB-02B4-4E4D-9F3E-E31D4DAD109A" targetRef="managerAudit">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${showResult3 == 'ok'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-3CCB6FAF-9346-46AA-A51D-CF22FFA6494D" sourceRef="sid-C33AA0F8-4868-45DA-89E9-E64156DD4C39" targetRef="endEvent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${showResult4 == 'no'}]]></conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_applyFormal">
+    <bpmndi:BPMNPlane bpmnElement="applyFormal" id="BPMNPlane_applyFormal">
+      <bpmndi:BPMNShape bpmnElement="sid-504C16A3-6FBA-4905-BE02-A687416E49D4" id="BPMNShape_sid-504C16A3-6FBA-4905-BE02-A687416E49D4">
+        <omgdc:Bounds height="30.0" width="30.0" x="15.0" y="117.81818264575043"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="apply" id="BPMNShape_apply">
+        <omgdc:Bounds height="54.0" width="98.0" x="90.0" y="105.81818264575043"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="leaderCheck" id="BPMNShape_leaderCheck">
+        <omgdc:Bounds height="53.999999999999986" width="98.0" x="233.86363015687186" y="105.81818264575044"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-8FCEB9B7-49DE-4A92-99CC-0B8EAAF02854" id="BPMNShape_sid-8FCEB9B7-49DE-4A92-99CC-0B8EAAF02854">
+        <omgdc:Bounds height="39.999999999999986" width="40.0" x="376.86363015687186" y="112.81818264575044"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endEvent1" id="BPMNShape_endEvent1">
+        <omgdc:Bounds height="28.0" width="28.0" x="382.86363015687186" y="210.45454230190316"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-F344F383-A898-43CE-8C25-163F00977CF5" id="BPMNShape_sid-F344F383-A898-43CE-8C25-163F00977CF5">
+        <omgdc:Bounds height="40.0" width="40.0" x="608.68180695053" y="112.81818264575043"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="politicCheck" id="BPMNShape_politicCheck">
+        <omgdc:Bounds height="53.99999999999997" width="98.0" x="579.68180695053" y="15.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-9E0F41F1-FA0F-41B9-9673-EB3260555F67" id="BPMNShape_sid-9E0F41F1-FA0F-41B9-9673-EB3260555F67">
+        <omgdc:Bounds height="39.99999999999997" width="40.0" x="740.1363470849916" y="22.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endEvent2" id="BPMNShape_endEvent2">
+        <omgdc:Bounds height="27.99999999999997" width="28.0" x="860.1363470849916" y="28.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-793016B8-DFE5-4321-9822-F2BEAC2B44DE" id="BPMNShape_sid-793016B8-DFE5-4321-9822-F2BEAC2B44DE">
+        <omgdc:Bounds height="40.0" width="40.0" x="854.1363470849916" y="112.81818264575045"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="hrAudit" id="BPMNShape_hrAudit">
+        <omgdc:Bounds height="54.00000000000003" width="98.0" x="825.1363470849916" y="197.45454230190316"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-C814ECEB-02B4-4E4D-9F3E-E31D4DAD109A" id="BPMNShape_sid-C814ECEB-02B4-4E4D-9F3E-E31D4DAD109A">
+        <omgdc:Bounds height="40.0" width="40.0" x="854.1363470849916" y="285.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="managerAudit" id="BPMNShape_managerAudit">
+        <omgdc:Bounds height="54.0" width="98.0" x="825.1363470849916" y="375.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-C33AA0F8-4868-45DA-89E9-E64156DD4C39" id="BPMNShape_sid-C33AA0F8-4868-45DA-89E9-E64156DD4C39">
+        <omgdc:Bounds height="40.0" width="40.0" x="705.0" y="382.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="modifyComfirm" id="BPMNShape_modifyComfirm">
+        <omgdc:Bounds height="54.0" width="98.0" x="676.0" y="450.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="politicalCheck" id="BPMNShape_politicalCheck">
+        <omgdc:Bounds height="54.0" width="98.00000000000006" x="466.66664812300013" y="105.81818264575043"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="financeCheck" id="BPMNShape_financeCheck">
+        <omgdc:Bounds height="54.0" width="98.0" x="711.1363470849916" y="105.81818264575045"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-FD9ADFC7-FFE1-4176-A9BB-8AAD5292A456" id="BPMNEdge_sid-FD9ADFC7-FFE1-4176-A9BB-8AAD5292A456">
+        <omgdi:waypoint x="397.25881570893904" y="152.42299709368325"></omgdi:waypoint>
+        <omgdi:waypoint x="396.9404369843683" y="210.45475299237248"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-D36AF77A-E916-4721-8FA9-28FA1CFB1CED" id="BPMNEdge_sid-D36AF77A-E916-4721-8FA9-28FA1CFB1CED">
+        <omgdi:waypoint x="874.5315326370588" y="152.42299709368328"></omgdi:waypoint>
+        <omgdi:waypoint x="874.2844767672714" y="197.45454230190316"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-746D4139-5D21-46C3-A2F8-60F3536D5618" id="BPMNEdge_sid-746D4139-5D21-46C3-A2F8-60F3536D5618">
+        <omgdi:waypoint x="874.5262369758849" y="113.20807253664371"></omgdi:waypoint>
+        <omgdi:waypoint x="874.2130009875445" y="55.999790147685175"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-3CCB6FAF-9346-46AA-A51D-CF22FFA6494D" id="BPMNEdge_sid-3CCB6FAF-9346-46AA-A51D-CF22FFA6494D">
+        <omgdi:waypoint x="705.5" y="402.5"></omgdi:waypoint>
+        <omgdi:waypoint x="355.5" y="402.5"></omgdi:waypoint>
+        <omgdi:waypoint x="355.5" y="224.45454230190316"></omgdi:waypoint>
+        <omgdi:waypoint x="382.86363015687186" y="224.45454230190316"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-96B3298F-BF16-4DFC-BCF8-528D126B66C1" id="BPMNEdge_sid-96B3298F-BF16-4DFC-BCF8-528D126B66C1">
+        <omgdi:waypoint x="629.0716968414233" y="113.20807253664368"></omgdi:waypoint>
+        <omgdi:waypoint x="628.8296416928438" y="68.99999999999997"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-89BCEA29-4885-44C8-980B-201BB146A72D" id="BPMNEdge_sid-89BCEA29-4885-44C8-980B-201BB146A72D">
+        <omgdi:waypoint x="416.44427325213394" y="133.23753955048838"></omgdi:waypoint>
+        <omgdi:waypoint x="466.66664812300013" y="133.02527795423202"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-7A105778-2296-4FB9-9987-F53C184BC170" id="BPMNEdge_sid-7A105778-2296-4FB9-9987-F53C184BC170">
+        <omgdi:waypoint x="725.3716216216217" y="421.6283783783784"></omgdi:waypoint>
+        <omgdi:waypoint x="725.1812080536913" y="450.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-ADF2700C-F5ED-4B0C-B39F-0A5BF66B34E8" id="BPMNEdge_sid-ADF2700C-F5ED-4B0C-B39F-0A5BF66B34E8">
+        <omgdi:waypoint x="874.3029202697627" y="251.4545423019032"></omgdi:waypoint>
+        <omgdi:waypoint x="874.5121935909798" y="285.3758465059882"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-ABCC8157-DF69-43B5-90FA-ACC1D9B85F7B" id="BPMNEdge_sid-ABCC8157-DF69-43B5-90FA-ACC1D9B85F7B">
+        <omgdi:waypoint x="677.68180695053" y="42.185670004041036"></omgdi:waypoint>
+        <omgdi:waypoint x="740.560275159368" y="42.423928074376335"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-2570CA75-47F9-47CB-9616-2D81F25DF950" id="BPMNEdge_sid-2570CA75-47F9-47CB-9616-2D81F25DF950">
+        <omgdi:waypoint x="854.6363470849916" y="305.5"></omgdi:waypoint>
+        <omgdi:waypoint x="396.86363015687186" y="305.5"></omgdi:waypoint>
+        <omgdi:waypoint x="396.86363015687186" y="238.45454230190316"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-071CD50F-DCE4-4143-8339-C967AAB02D9B" id="BPMNEdge_sid-071CD50F-DCE4-4143-8339-C967AAB02D9B">
+        <omgdi:waypoint x="564.6666481230002" y="132.81818264575043"></omgdi:waypoint>
+        <omgdi:waypoint x="608.68180695053" y="132.81818264575043"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-16CF7692-3B41-4C68-9663-46885C32FCB8" id="BPMNEdge_sid-16CF7692-3B41-4C68-9663-46885C32FCB8">
+        <omgdi:waypoint x="809.1363470849916" y="133.0321564448771"></omgdi:waypoint>
+        <omgdi:waypoint x="854.548627786746" y="133.23046334750484"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-88995A36-5ED6-4970-B13D-BCB40881EA09" id="BPMNEdge_sid-88995A36-5ED6-4970-B13D-BCB40881EA09">
+        <omgdi:waypoint x="825.1363470849916" y="402.1648318226362"></omgdi:waypoint>
+        <omgdi:waypoint x="744.5641301084233" y="402.43586989157666"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-13F64108-FDF5-43E8-BB3B-CA7B37329C7A" id="BPMNEdge_sid-13F64108-FDF5-43E8-BB3B-CA7B37329C7A">
+        <omgdi:waypoint x="331.86363015687186" y="133.03215644487707"></omgdi:waypoint>
+        <omgdi:waypoint x="377.2759108586263" y="133.2304633475048"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-2E95482C-86DB-42F7-8C91-4F7B27FA970B" id="BPMNEdge_sid-2E95482C-86DB-42F7-8C91-4F7B27FA970B">
+        <omgdi:waypoint x="188.0" y="132.81818264575043"></omgdi:waypoint>
+        <omgdi:waypoint x="233.86363015687186" y="132.81818264575043"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-5864FB8B-F559-4311-BA9A-D9C7C41E4A89" id="BPMNEdge_sid-5864FB8B-F559-4311-BA9A-D9C7C41E4A89">
+        <omgdi:waypoint x="760.530577855197" y="61.60576922979466"></omgdi:waypoint>
+        <omgdi:waypoint x="760.2858186487956" y="105.81818264575045"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-5671E156-BBFB-4B3E-B6BC-CA0B816DF592" id="BPMNEdge_sid-5671E156-BBFB-4B3E-B6BC-CA0B816DF592">
+        <omgdi:waypoint x="45.0" y="132.81818264575043"></omgdi:waypoint>
+        <omgdi:waypoint x="90.0" y="132.81818264575043"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-E7A58CA7-8DFF-4F0F-B9E7-51FACF422305" id="BPMNEdge_sid-E7A58CA7-8DFF-4F0F-B9E7-51FACF422305">
+        <omgdi:waypoint x="648.2546292531514" y="133.24536034312908"></omgdi:waypoint>
+        <omgdi:waypoint x="711.1363470849916" y="133.00527047008126"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-DA37FC0E-384A-4949-9556-F9371C2B82B9" id="BPMNEdge_sid-DA37FC0E-384A-4949-9556-F9371C2B82B9">
+        <omgdi:waypoint x="874.5373887516582" y="324.5989583333333"></omgdi:waypoint>
+        <omgdi:waypoint x="874.2762434580486" y="375.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-82F9EB6F-150C-4100-AAEA-5D7C1DAEB68F" id="BPMNEdge_sid-82F9EB6F-150C-4100-AAEA-5D7C1DAEB68F">
+        <omgdi:waypoint x="629.18180695053" y="152.31818264575043"></omgdi:waypoint>
+        <omgdi:waypoint x="629.18180695053" y="224.45454230190316"></omgdi:waypoint>
+        <omgdi:waypoint x="410.86363015687186" y="224.45454230190316"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-C6217BEB-06C7-4A2A-BF01-E6260CF1246A" id="BPMNEdge_sid-C6217BEB-06C7-4A2A-BF01-E6260CF1246A">
+        <omgdi:waypoint x="779.7204178814518" y="42.41592920353981"></omgdi:waypoint>
+        <omgdi:waypoint x="860.1364829288487" y="42.06167341037948"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-55952AFA-74BE-4B36-8F1A-6A569A693B1B" id="BPMNEdge_sid-55952AFA-74BE-4B36-8F1A-6A569A693B1B">
+        <omgdi:waypoint x="774.0" y="477.0"></omgdi:waypoint>
+        <omgdi:waypoint x="951.6666527765772" y="477.0"></omgdi:waypoint>
+        <omgdi:waypoint x="951.6666527765772" y="41.999999999999986"></omgdi:waypoint>
+        <omgdi:waypoint x="888.1363470849916" y="41.999999999999986"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

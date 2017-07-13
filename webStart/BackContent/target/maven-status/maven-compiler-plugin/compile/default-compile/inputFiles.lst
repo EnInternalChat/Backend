@@ -6,6 +6,7 @@ G:\RANDOM\SoftwareEngineering\EnInternalChat\webStart\BackContent\src\main\java\
 G:\RANDOM\SoftwareEngineering\EnInternalChat\webStart\BackContent\src\main\java\backend\serial\CompanySerializer.java
 G:\RANDOM\SoftwareEngineering\EnInternalChat\webStart\BackContent\src\main\java\backend\repository\CompanyRepository.java
 G:\RANDOM\SoftwareEngineering\EnInternalChat\webStart\BackContent\src\main\java\backend\controller\TestController.java
+G:\RANDOM\SoftwareEngineering\EnInternalChat\webStart\BackContent\src\main\java\backend\serial\InstanceOfProcessSerializer.java
 G:\RANDOM\SoftwareEngineering\EnInternalChat\webStart\BackContent\src\main\java\backend\util\ResponseJsonObj.java
 G:\RANDOM\SoftwareEngineering\EnInternalChat\webStart\BackContent\src\main\java\backend\config\Swagger2Config.java
 G:\RANDOM\SoftwareEngineering\EnInternalChat\webStart\BackContent\src\main\java\backend\mdoel\Notification.java
@@ -19,6 +20,7 @@ G:\RANDOM\SoftwareEngineering\EnInternalChat\webStart\BackContent\src\main\java\
 G:\RANDOM\SoftwareEngineering\EnInternalChat\webStart\BackContent\src\main\java\backend\security\GlobalInterceptor.java
 G:\RANDOM\SoftwareEngineering\EnInternalChat\webStart\BackContent\src\main\java\backend\controller\EmployeeController.java
 G:\RANDOM\SoftwareEngineering\EnInternalChat\webStart\BackContent\src\main\java\backend\serial\EmployeeSerializer.java
+G:\RANDOM\SoftwareEngineering\EnInternalChat\webStart\BackContent\src\main\java\backend\serial\TaskStageSerializer.java
 G:\RANDOM\SoftwareEngineering\EnInternalChat\webStart\BackContent\src\main\java\backend\service\ActivitiService.java
 G:\RANDOM\SoftwareEngineering\EnInternalChat\webStart\BackContent\src\main\java\backend\mdoel\Employee.java
 G:\RANDOM\SoftwareEngineering\EnInternalChat\webStart\BackContent\src\main\java\backend\serial\NotificationSerializer.java
