@@ -23,11 +23,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DatabaseService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DatabaseService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/backend/service/DatabaseService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="207" column="87" lean-forward="false" selection-start-line="207" selection-start-column="87" selection-end-line="207" selection-end-column="87" />
+            <state relative-caret-position="114">
+              <caret line="477" column="0" lean-forward="false" selection-start-line="477" selection-start-column="0" selection-end-line="477" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#initJiguangDel#0;class#DatabaseService#0" expanded="false" />
@@ -39,17 +39,8 @@
                 <element signature="method#saveDeployOfProcess#0;class#DatabaseService#0" expanded="false" />
                 <element signature="method#delDeployOfProcess#0;class#DatabaseService#0" expanded="false" />
                 <element signature="method#updateProcessName#0;class#DatabaseService#0" expanded="false" />
-                <element signature="e#17559#17886#0" expanded="true" />
-                <element signature="e#17885#17886#0" expanded="true" />
                 <element signature="method#getProcessDiagram#0;class#DatabaseService#0" expanded="false" />
-                <element signature="method#getIDeployOfProcess#0;class#DatabaseService#0" expanded="false" />
-                <element signature="method#getIChat#0;class#DatabaseService#0" expanded="false" />
-                <element signature="method#getICompany#0;class#DatabaseService#0" expanded="false" />
-                <element signature="method#getIEmployee#0;class#DatabaseService#0" expanded="false" />
-                <element signature="method#getIInstanceOfProcess#0;class#DatabaseService#0" expanded="false" />
-                <element signature="method#getINotification#0;class#DatabaseService#0" expanded="false" />
-                <element signature="method#getISection#0;class#DatabaseService#0" expanded="false" />
-                <element signature="method#getITaskStage#0;class#DatabaseService#0" expanded="false" />
+                <element signature="method#thisTaskStageSet#0;class#DatabaseService#0" expanded="false" />
                 <element signature="method#basicNoteGet#0;class#DatabaseService#0" expanded="false" />
                 <element signature="method#readNotification#0;class#DatabaseService#0" expanded="false" />
                 <element signature="method#logicDelReadNotification#0;class#DatabaseService#0" expanded="false" />
@@ -66,38 +57,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TaskStage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/TaskStage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-150">
-              <caret line="22" column="28" lean-forward="false" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InstanceOfProcess.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/InstanceOfProcess.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="861">
-              <caret line="64" column="24" lean-forward="false" selection-start-line="64" selection-start-column="24" selection-end-line="64" selection-end-column="24" />
-              <folding>
-                <element signature="e#1521#1522#0" expanded="true" />
-                <element signature="e#1554#1555#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActivitiService.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ActivitiService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/backend/service/ActivitiService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="155" column="54" lean-forward="true" selection-start-line="155" selection-start-column="54" selection-end-line="155" selection-end-column="54" />
+            <state relative-caret-position="114">
+              <caret line="247" column="0" lean-forward="false" selection-start-line="247" selection-start-column="0" selection-end-line="247" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#ActivitiService#0;class#ActivitiService#0" expanded="false" />
-                <element signature="method#ok#0;class#ActivitiService#0" expanded="false" />
                 <element signature="method#activityImplList#0;class#ActivitiService#0" expanded="false" />
                 <element signature="method#processToSave#0;class#ActivitiService#0" expanded="false" />
                 <element signature="method#deployProcess#0;class#ActivitiService#0" expanded="false" />
@@ -108,11 +75,55 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Employee.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Employee.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-759">
+              <caret line="150" column="16" lean-forward="false" selection-start-line="150" selection-start-column="16" selection-end-line="150" selection-end-column="16" />
+              <folding>
+                <element signature="e#3598#3599#0" expanded="true" />
+                <element signature="e#3623#3624#0" expanded="true" />
+                <element signature="method#basicUpdateContact#0;class#Employee#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EmployeeController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/EmployeeController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="245">
+              <caret line="93" column="49" lean-forward="true" selection-start-line="93" selection-start-column="49" selection-end-line="93" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RootController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/RootController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="37" column="54" lean-forward="false" selection-start-line="37" selection-start-column="54" selection-end-line="37" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TaskStageRepository.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/repository/TaskStageRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="TaskController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/TaskController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="127" column="53" lean-forward="false" selection-start-line="127" selection-start-column="53" selection-end-line="127" selection-end-column="53" />
+            <state relative-caret-position="219">
+              <caret line="129" column="52" lean-forward="false" selection-start-line="129" selection-start-column="52" selection-end-line="129" selection-end-column="52" />
               <folding>
                 <element signature="method#infoType#0;class#TaskController#0" expanded="false" />
               </folding>
@@ -120,22 +131,65 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InstanceOfProcessRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/backend/repository/InstanceOfProcessRepository.java">
+      <file leaf-file-name="GlobalInterceptor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/security/GlobalInterceptor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="11" column="93" lean-forward="true" selection-start-line="11" selection-start-column="93" selection-end-line="11" selection-end-column="93" />
+            <state relative-caret-position="-129">
+              <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="session.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/session.xml">
+      <file leaf-file-name="spring-mvc.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mvc.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="7" column="4" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="9" selection-end-column="52" />
+            <state relative-caret-position="182">
+              <caret line="50" column="53" lean-forward="true" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IdManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/IdManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="77">
+              <caret line="19" column="26" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="20" selection-end-column="28" />
+              <folding>
+                <element signature="e#1053#1054#0" expanded="true" />
+                <element signature="e#1081#1082#0" expanded="true" />
+                <element signature="e#1121#1122#0" expanded="true" />
+                <element signature="e#1155#1156#0" expanded="true" />
+                <element signature="e#1188#1189#0" expanded="true" />
+                <element signature="e#1219#1220#0" expanded="true" />
+                <element signature="e#1265#1266#0" expanded="true" />
+                <element signature="e#1305#1306#0" expanded="true" />
+                <element signature="e#1339#1340#0" expanded="true" />
+                <element signature="e#1371#1372#0" expanded="true" />
+                <element signature="e#1419#1420#0" expanded="true" />
+                <element signature="e#1461#1462#0" expanded="true" />
+                <element signature="e#1502#1503#0" expanded="true" />
+                <element signature="e#1541#1542#0" expanded="true" />
+                <element signature="e#1603#1604#0" expanded="true" />
+                <element signature="e#1659#1660#0" expanded="true" />
+                <element signature="e#1702#1703#0" expanded="true" />
+                <element signature="e#1743#1744#0" expanded="true" />
+                <element signature="e#1809#1810#0" expanded="true" />
+                <element signature="e#1869#1870#0" expanded="true" />
+                <element signature="e#1907#1908#0" expanded="true" />
+                <element signature="e#1943#1944#0" expanded="true" />
+                <element signature="e#1999#2000#0" expanded="true" />
+                <element signature="e#2049#2050#0" expanded="true" />
+                <element signature="e#2082#2083#0" expanded="true" />
+                <element signature="e#2113#2114#0" expanded="true" />
+                <element signature="e#2159#2160#0" expanded="true" />
+                <element signature="e#2199#2200#0" expanded="true" />
+                <element signature="e#2234#2235#0" expanded="true" />
+                <element signature="e#2267#2268#0" expanded="true" />
+                <element signature="e#2317#2318#0" expanded="true" />
+                <element signature="e#2361#2362#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -154,10 +208,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>jdbc</find>
-      <find>activi</find>
-      <find>users</find>
-      <find>countersignUsers</find>
       <find>redis</find>
       <find>mongo</find>
       <find>jpu</find>
@@ -184,6 +234,10 @@
       <find>updateDe</find>
       <find>addUpdateInstanceOfProcess</find>
       <find>leader</find>
+      <find>getI</find>
+      <find>getI</find>
+      <find>ITas</find>
+      <find>modify</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -197,7 +251,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/IdMange.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/repository/IdMangerRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/IdManger.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/controller/RootController.java" />
@@ -206,12 +259,10 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/backend/util/StandardTimeFormat.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/serial/EmployeeSerializer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/IdManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/RoleType.java" />
         <option value="$PROJECT_DIR$/src/main/resources/global.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/property/production.properties" />
         <option value="$PROJECT_DIR$/src/main/java/backend/repository/ChatRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/controller/CompanyController.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/config/Swagger2Config.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/serial/SectionSerializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/repository/EmployeeRepository.java" />
@@ -228,7 +279,6 @@
         <option value="$PROJECT_DIR$/src/main/java/backend/controller/TestController.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/Chat.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/Company.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/controller/EmployeeController.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/controller/ChatController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/log/log4j.xml" />
         <option value="$PROJECT_DIR$/src/main/java/backend/repository/DeployOfProcessRepository.java" />
@@ -241,13 +291,17 @@
         <option value="$PROJECT_DIR$/src/main/java/backend/serial/InstanceOfProcessSerializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/InstanceOfProcess.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/Employee.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/activiti.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/session.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" />
         <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/TaskStage.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/session.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/activiti.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" />
         <option value="$PROJECT_DIR$/src/main/java/backend/controller/TaskController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/service/ActivitiService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/controller/CompanyController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/controller/EmployeeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/repository/IdManagerRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/mdoel/IdManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/service/DatabaseService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/service/ActivitiService.java" />
       </list>
     </option>
   </component>
@@ -617,6 +671,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="security" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1302,7 +1360,7 @@
       <workItem from="1497439062929" duration="14791000" />
       <workItem from="1497870766394" duration="30644000" />
       <workItem from="1498119607340" duration="21362000" />
-      <workItem from="1499256978287" duration="168364000" />
+      <workItem from="1499256978287" duration="192994000" />
     </task>
     <servers />
   </component>
@@ -1312,7 +1370,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="608921000" />
+    <option name="totallyTimeSpent" value="633551000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1349,7 +1407,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25409836" sideWeight="0.4750378" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2708018" sideWeight="0.48292682" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2839721" sideWeight="0.51707315" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27868852" sideWeight="0.4795764" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27704918" sideWeight="0.4795764" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1415,7 +1473,7 @@
           <properties />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="11" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1424,64 +1482,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/repository/NotificationRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/repository/ChatRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="11" column="39" lean-forward="true" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/config/Swagger2Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="16" column="67" lean-forward="true" selection-start-line="16" selection-start-column="67" selection-end-line="16" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/RootController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="48" column="5" lean-forward="true" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/security/GlobalInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/activiti/activiti-engine/5.22.0/activiti-engine-5.22.0.jar!/org/activiti/engine/impl/persistence/deploy/DeploymentManager.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="20" column="18" lean-forward="false" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.3.8.RELEASE/spring-beans-4.3.8.RELEASE.jar!/org/springframework/beans/factory/support/FactoryBeanRegistrySupport.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -1495,17 +1495,6 @@
         <state relative-caret-position="115">
           <caret line="134" column="28" lean-forward="false" selection-start-line="134" selection-start-column="28" selection-end-line="134" selection-end-column="28" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Notification.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-516">
-          <caret line="23" column="30" lean-forward="true" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
-          <folding>
-            <element signature="e#2084#2085#0" expanded="false" />
-            <element signature="e#2115#2116#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1576,17 +1565,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Section.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="132" column="19" lean-forward="false" selection-start-line="132" selection-start-column="19" selection-end-line="132" selection-end-column="19" />
-          <folding>
-            <element signature="e#1495#1496#0" expanded="true" />
-            <element signature="e#1523#1524#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/service/ServiceKeyWord.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
@@ -1619,47 +1597,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Chat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="25" column="33" lean-forward="false" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
-          <folding>
-            <element signature="e#598#599#0" expanded="true" />
-            <element signature="e#630#631#0" expanded="true" />
-            <element signature="e#858#859#0" expanded="true" />
-            <element signature="e#902#903#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/CompanyController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="54" column="123" lean-forward="true" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="123" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/log/log4j.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="16" column="27" lean-forward="false" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/ChatController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="321">
           <caret line="39" column="30" lean-forward="true" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Company.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="27" column="57" lean-forward="false" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="57" />
           <folding />
         </state>
       </provider>
@@ -1680,42 +1621,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/DeployOfProcess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="41" column="27" lean-forward="false" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1291#1292#0" expanded="true" />
-            <element signature="e#1318#1319#0" expanded="true" />
-            <element signature="e#1355#1356#0" expanded="true" />
-            <element signature="e#1388#1389#0" expanded="true" />
-            <element signature="e#1493#1494#0" expanded="true" />
-            <element signature="e#1520#1521#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/NotificationController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-756">
           <caret line="67" column="53" lean-forward="false" selection-start-line="67" selection-start-column="53" selection-end-line="67" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/EmployeeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="101" column="113" lean-forward="true" selection-start-line="101" selection-start-column="12" selection-end-line="101" selection-end-column="113" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/repository/EmployeeRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1754,42 +1663,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2730">
-          <caret line="207" column="5" lean-forward="false" selection-start-line="207" selection-start-column="5" selection-end-line="207" selection-end-column="5" />
-          <folding>
-            <element signature="e#5052#5053#0" expanded="true" />
-            <element signature="e#5090#5091#0" expanded="true" />
-            <element signature="method#basicUpdateContact#0;class#Employee#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/activiti.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="14" column="51" lean-forward="true" selection-start-line="14" selection-start-column="51" selection-end-line="14" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/session.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="7" column="4" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="9" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mvc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="51" column="44" lean-forward="true" selection-start-line="51" selection-start-column="44" selection-end-line="51" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/serial/InstanceOfProcessSerializer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -1808,17 +1681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/InstanceOfProcess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="861">
-          <caret line="64" column="24" lean-forward="false" selection-start-line="64" selection-start-column="24" selection-end-line="64" selection-end-column="24" />
-          <folding>
-            <element signature="e#1521#1522#0" expanded="true" />
-            <element signature="e#1554#1555#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/repository/SectionRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -1827,53 +1689,239 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/repository/TaskStageRepository.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/activiti.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="18" />
+        <state relative-caret-position="63">
+          <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/log/log4j.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="16" column="27" lean-forward="false" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/activiti/activiti-engine/5.22.0/activiti-engine-5.22.0.jar!/org/activiti/engine/TaskService.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/session.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="4" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="9" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/CompanyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="56" column="78" lean-forward="false" selection-start-line="56" selection-start-column="78" selection-end-line="56" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/RoleType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/repository/EmployeeRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Chat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="25" column="33" lean-forward="false" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Company.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="27" column="57" lean-forward="false" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/DeployOfProcess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="41" column="27" lean-forward="false" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/InstanceOfProcess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="924">
+          <caret line="64" column="24" lean-forward="false" selection-start-line="64" selection-start-column="24" selection-end-line="64" selection-end-column="24" />
+          <folding>
+            <element signature="e#1521#1522#0" expanded="true" />
+            <element signature="e#1554#1555#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Notification.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="23" column="30" lean-forward="true" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Section.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1557">
+          <caret line="132" column="19" lean-forward="false" selection-start-line="132" selection-start-column="19" selection-end-line="132" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/TaskStage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-150">
-          <caret line="22" column="28" lean-forward="false" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
+        <state relative-caret-position="-98">
+          <caret line="82" column="16" lean-forward="false" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="16" />
+          <folding>
+            <element signature="e#2037#2038#0" expanded="true" />
+            <element signature="e#2075#2076#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/repository/IdManagerRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="8" column="76" lean-forward="false" selection-start-line="8" selection-start-column="76" selection-end-line="8" selection-end-column="76" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/TaskController.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-mongodb/1.10.3.RELEASE/spring-data-mongodb-1.10.3.RELEASE.jar!/org/springframework/data/mongodb/repository/MongoRepository.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="127" column="53" lean-forward="false" selection-start-line="127" selection-start-column="53" selection-end-line="127" selection-end-column="53" />
+        <state relative-caret-position="144">
+          <caret line="17" column="29" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/repository/TaskStageRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/IdManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="19" column="26" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="20" selection-end-column="28" />
           <folding>
-            <element signature="method#infoType#0;class#TaskController#0" expanded="false" />
+            <element signature="e#1053#1054#0" expanded="true" />
+            <element signature="e#1081#1082#0" expanded="true" />
+            <element signature="e#1121#1122#0" expanded="true" />
+            <element signature="e#1155#1156#0" expanded="true" />
+            <element signature="e#1188#1189#0" expanded="true" />
+            <element signature="e#1219#1220#0" expanded="true" />
+            <element signature="e#1265#1266#0" expanded="true" />
+            <element signature="e#1305#1306#0" expanded="true" />
+            <element signature="e#1339#1340#0" expanded="true" />
+            <element signature="e#1371#1372#0" expanded="true" />
+            <element signature="e#1419#1420#0" expanded="true" />
+            <element signature="e#1461#1462#0" expanded="true" />
+            <element signature="e#1502#1503#0" expanded="true" />
+            <element signature="e#1541#1542#0" expanded="true" />
+            <element signature="e#1603#1604#0" expanded="true" />
+            <element signature="e#1659#1660#0" expanded="true" />
+            <element signature="e#1702#1703#0" expanded="true" />
+            <element signature="e#1743#1744#0" expanded="true" />
+            <element signature="e#1809#1810#0" expanded="true" />
+            <element signature="e#1869#1870#0" expanded="true" />
+            <element signature="e#1907#1908#0" expanded="true" />
+            <element signature="e#1943#1944#0" expanded="true" />
+            <element signature="e#1999#2000#0" expanded="true" />
+            <element signature="e#2049#2050#0" expanded="true" />
+            <element signature="e#2082#2083#0" expanded="true" />
+            <element signature="e#2113#2114#0" expanded="true" />
+            <element signature="e#2159#2160#0" expanded="true" />
+            <element signature="e#2199#2200#0" expanded="true" />
+            <element signature="e#2234#2235#0" expanded="true" />
+            <element signature="e#2267#2268#0" expanded="true" />
+            <element signature="e#2317#2318#0" expanded="true" />
+            <element signature="e#2361#2362#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/service/ActivitiService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/EmployeeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="155" column="54" lean-forward="true" selection-start-line="155" selection-start-column="54" selection-end-line="155" selection-end-column="54" />
+        <state relative-caret-position="245">
+          <caret line="93" column="49" lean-forward="true" selection-start-line="93" selection-start-column="49" selection-end-line="93" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mvc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="50" column="53" lean-forward="true" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/security/GlobalInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-129">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/mdoel/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-759">
+          <caret line="150" column="16" lean-forward="false" selection-start-line="150" selection-start-column="16" selection-end-line="150" selection-end-column="16" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#ActivitiService#0;class#ActivitiService#0" expanded="false" />
-            <element signature="method#ok#0;class#ActivitiService#0" expanded="false" />
-            <element signature="method#activityImplList#0;class#ActivitiService#0" expanded="false" />
-            <element signature="method#processToSave#0;class#ActivitiService#0" expanded="false" />
-            <element signature="method#deployProcess#0;class#ActivitiService#0" expanded="false" />
-            <element signature="method#delProcess#0;class#ActivitiService#0" expanded="false" />
-            <element signature="method#modelDiagram#0;class#ActivitiService#0" expanded="false" />
+            <element signature="e#3598#3599#0" expanded="true" />
+            <element signature="e#3623#3624#0" expanded="true" />
+            <element signature="method#basicUpdateContact#0;class#Employee#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/RootController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="37" column="54" lean-forward="false" selection-start-line="37" selection-start-column="54" selection-end-line="37" selection-end-column="54" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/service/DatabaseService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="207" column="87" lean-forward="false" selection-start-line="207" selection-start-column="87" selection-end-line="207" selection-end-column="87" />
+        <state relative-caret-position="114">
+          <caret line="477" column="0" lean-forward="false" selection-start-line="477" selection-start-column="0" selection-end-line="477" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#initJiguangDel#0;class#DatabaseService#0" expanded="false" />
@@ -1885,17 +1933,8 @@
             <element signature="method#saveDeployOfProcess#0;class#DatabaseService#0" expanded="false" />
             <element signature="method#delDeployOfProcess#0;class#DatabaseService#0" expanded="false" />
             <element signature="method#updateProcessName#0;class#DatabaseService#0" expanded="false" />
-            <element signature="e#17559#17886#0" expanded="true" />
-            <element signature="e#17885#17886#0" expanded="true" />
             <element signature="method#getProcessDiagram#0;class#DatabaseService#0" expanded="false" />
-            <element signature="method#getIDeployOfProcess#0;class#DatabaseService#0" expanded="false" />
-            <element signature="method#getIChat#0;class#DatabaseService#0" expanded="false" />
-            <element signature="method#getICompany#0;class#DatabaseService#0" expanded="false" />
-            <element signature="method#getIEmployee#0;class#DatabaseService#0" expanded="false" />
-            <element signature="method#getIInstanceOfProcess#0;class#DatabaseService#0" expanded="false" />
-            <element signature="method#getINotification#0;class#DatabaseService#0" expanded="false" />
-            <element signature="method#getISection#0;class#DatabaseService#0" expanded="false" />
-            <element signature="method#getITaskStage#0;class#DatabaseService#0" expanded="false" />
+            <element signature="method#thisTaskStageSet#0;class#DatabaseService#0" expanded="false" />
             <element signature="method#basicNoteGet#0;class#DatabaseService#0" expanded="false" />
             <element signature="method#readNotification#0;class#DatabaseService#0" expanded="false" />
             <element signature="method#logicDelReadNotification#0;class#DatabaseService#0" expanded="false" />
@@ -1907,6 +1946,32 @@
             <element signature="method#testChat#0;class#DatabaseService#0" expanded="false" />
             <element signature="method#sentTotification#0;class#DatabaseService#0" expanded="false" />
             <element signature="method#pushAlert#0;class#DatabaseService#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/controller/TaskController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="129" column="52" lean-forward="false" selection-start-line="129" selection-start-column="52" selection-end-line="129" selection-end-column="52" />
+          <folding>
+            <element signature="method#infoType#0;class#TaskController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/service/ActivitiService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="247" column="0" lean-forward="false" selection-start-line="247" selection-start-column="0" selection-end-line="247" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#ActivitiService#0;class#ActivitiService#0" expanded="false" />
+            <element signature="method#activityImplList#0;class#ActivitiService#0" expanded="false" />
+            <element signature="method#processToSave#0;class#ActivitiService#0" expanded="false" />
+            <element signature="method#deployProcess#0;class#ActivitiService#0" expanded="false" />
+            <element signature="method#delProcess#0;class#ActivitiService#0" expanded="false" />
+            <element signature="method#modelDiagram#0;class#ActivitiService#0" expanded="false" />
           </folding>
         </state>
       </provider>

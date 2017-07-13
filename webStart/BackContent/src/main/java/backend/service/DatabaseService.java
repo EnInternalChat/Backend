@@ -53,11 +53,9 @@ public class DatabaseService {
     private final TaskStageRepository taskStageRepository;
     private final InstanceOfProcessRepository instanceOfProcessRepository;
     private final MongoTemplate mongoTemplate;
-    private final IdManagerRepository idManagerRepository;
 
     private final Map<Long,Employee> userActive;
     private final Map<Long,HttpSession> sessionActive;
-    private IdManager idManager;
 
     private static String APP_KEY="f784911007eb5e69ef4a773f";
     private static String MASTER_SECRET="d4c4f6da868458e48f4de0e8";
@@ -69,8 +67,7 @@ public class DatabaseService {
                            DeployOfProcessRepository deployOfProcessRepository, ChatRepository chatRepository,
                            CompanyRepository companyRepository, SectionRepository sectionRepository,
                            SessionRepository sessionRepository, TaskStageRepository taskStageRepository,
-                           InstanceOfProcessRepository instanceOfProcessRepository, IdManagerRepository idManagerRepository,
-                           MongoTemplate mongoTemplate) {
+                           InstanceOfProcessRepository instanceOfProcessRepository, MongoTemplate mongoTemplate) {
         userActive=new HashMap<>();
         sessionActive=new HashMap<>();
         this.employeeRepository = employeeRepository;
@@ -83,26 +80,13 @@ public class DatabaseService {
         this.taskStageRepository=taskStageRepository;
         this.instanceOfProcessRepository=instanceOfProcessRepository;
         this.mongoTemplate=mongoTemplate;
-        this.idManagerRepository = idManagerRepository;
         jPushClient=new JPushClient(MASTER_SECRET,APP_KEY,null, ClientConfig.getInstance());
         jMessageClient=new JMessageClient(APP_KEY,MASTER_SECRET);
-        idManager = idManagerRepository.findOne(0);
         int ICompany=companyRepository.findAll().size();
         int IEmployee=employeeRepository.findAll().size();
         int INotification=notificationRepository.findAll().size();
         int ISection=sectionRepository.findAll().size();
-        idManager=idManagerRepository.findOne(0);
         System.out.println(ICompany+" "+IEmployee+" "+INotification+" "+ISection);
-        if(idManager == null) {
-            idManager =new IdManager(0,0,ICompany,IEmployee,0,INotification,ISection,0);
-            idManagerRepository.save(idManager);
-            //TODO fix all id bug
-        }
-        idManager.setICompany(ICompany);
-        idManager.setIEmployee(IEmployee);
-        idManager.setINotification(INotification);
-        idManager.setISection(ISection);
-        idManagerRepository.save(idManager);
         //initJiguangDel();
         //initJiguangCreate();
     }
@@ -205,7 +189,7 @@ public class DatabaseService {
         return jsonObject;
     }
 
-    public Employee getLeaderFromLabel(long companyID, String label, Employee finder) {
+    public Employee getSectionLeaderFromLabel(long companyID, String label, Employee finder) {
         Company company=companyRepository.findOne(companyID);
         Employee leader;
         if(company == null) {
@@ -216,6 +200,8 @@ public class DatabaseService {
             Section section=sectionRepository.findOne(finder.getSectionID());
             leader=section.getLeader();
             return leader;
+        } else if(label.equals("modify") || label.equals("apply")){
+            return finder;
         }
         List<Section> sections=sectionRepository.findByCompanyIDAndLabel(companyID,label);
         if(sections.size() == 0 || sections.get(0).getCompanyID() != companyID) {
@@ -429,7 +415,7 @@ public class DatabaseService {
             if(label.equals("modify") || label.equals("apply")) {
                 participant=applyer;
             } else {
-                participant=getLeaderFromLabel(companyID, label, applyer);
+                participant= getSectionLeaderFromLabel(companyID, label, applyer);
             }
             if(participant != null) {
                 participants.add(participant);
@@ -444,7 +430,7 @@ public class DatabaseService {
         return true;
     }
 
-    public boolean thisTaskStageSet(String processID, String activityID, String content, Employee participant) {
+    public boolean thisTaskStageSet(String processID, String activityID, String content) {
         List<TaskStage> taskStages=taskStageRepository
                 .findByProcessIDAndActivityID(processID,activityID);
         if(taskStages.size() == 0 || taskStages.size() > 1) {
@@ -486,51 +472,60 @@ public class DatabaseService {
     }
 
     public long getIDeployOfProcess() {
-        long id= idManager.getIDeployOfProcess();
-        idManagerRepository.save(idManager);
-        return id;
+        Query query = new Query(Criteria.where("_id").is(0));
+        Update update = new Update().inc("IDeployOfProcess", 1);
+        IdManager m=mongoTemplate.findAndModify(query, update, IdManager.class);
+        return m.getIDeployOfProcess();
     }
 
     private long getIChat() {
-        long id= idManager.getIChat();
-        idManagerRepository.save(idManager);
-        return id;
+        Query query = new Query(Criteria.where("_id").is(0));
+        Update update = new Update().inc("IChat", 1);
+        IdManager m=mongoTemplate.findAndModify(query, update, IdManager.class);
+        return m.getIChat();
     }
 
     private long getICompany() {
-        long id= idManager.getICompany();
-        idManagerRepository.save(idManager);
-        return id;
+        Query query = new Query(Criteria.where("_id").is(0));
+        Update update = new Update().inc("ICompany", 1);
+        IdManager m=mongoTemplate.findAndModify(query, update, IdManager.class);
+        return m.getICompany();
     }
 
     private long getIEmployee() {
-        long id= idManager.getIEmployee();
-        idManagerRepository.save(idManager);
-        return id;
+        Query query = new Query(Criteria.where("_id").is(0));
+        Update update = new Update().inc("IEmployee", 1);
+        IdManager m=mongoTemplate.findAndModify(query, update, IdManager.class);
+        System.out.println("em:"+m.getIEmployee()+"|"+employeeRepository.findAll().size());
+        return m.getIEmployee();
     }
 
     private long getIInstanceOfProcess() {
-        long id= idManager.getIInstanceOfProcess();
-        idManagerRepository.save(idManager);
-        return id;
+        Query query = new Query(Criteria.where("_id").is(0));
+        Update update = new Update().inc("IInstanceOfProcess", 1);
+        IdManager m=mongoTemplate.findAndModify(query, update, IdManager.class);
+        return m.getIInstanceOfProcess();
     }
 
     private long getINotification() {
-        long id= idManager.getINotification();
-        idManagerRepository.save(idManager);
-        return id;
+        Query query = new Query(Criteria.where("_id").is(0));
+        Update update = new Update().inc("INotification", 1);
+        IdManager m=mongoTemplate.findAndModify(query, update, IdManager.class);
+        return m.getINotification();
     }
 
     private long getISection() {
-        long id= idManager.getISection();
-        idManagerRepository.save(idManager);
-        return id;
+        Query query = new Query(Criteria.where("_id").is(0));
+        Update update = new Update().inc("ISection", 1);
+        IdManager m=mongoTemplate.findAndModify(query, update, IdManager.class);
+        return m.getISection();
     }
 
     private long getITaskStage() {
-        long id= idManager.getITaskStage();
-        idManagerRepository.save(idManager);
-        return id;
+        Query query = new Query(Criteria.where("_id").is(0));
+        Update update = new Update().inc("ITaskStage", 1);
+        IdManager m=mongoTemplate.findAndModify(query, update, IdManager.class);
+        return m.getITaskStage();
     }
 
     private List<Notification> basicNoteGet(long id, int type) {

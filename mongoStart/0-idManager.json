@@ -1,0 +1,11 @@
+{
+	"_id":NumberLong(0),
+	"iChat":NumberLong(0),
+	"iCompany":NumberLong(1),
+	"iEmployee":NumberLong(22),
+	"iDeployOfProcess":NumberLong(0),
+	"iInstanceOfProcess":NumberLong(0),
+	"iNotification":NumberLong(3),
+	"iSection":NumberLong(16),
+	"iTaskStage":NumberLong(0)
+}

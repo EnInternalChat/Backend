@@ -11,14 +11,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class IdManager {
     @Id
     private long ID;
-    private long IChat;
-    private long ICompany;
-    private long IEmployee;
-    private long IDeployOfProcess;
-    private long IInstanceOfProcess;
-    private long INotification;
-    private long ISection;
-    private long ITaskStage;
+    private long iChat;
+    private long iCompany;
+    private long iEmployee;
+    private long iDeployOfProcess;
+    private long iInstanceOfProcess;
+    private long iNotification;
+    private long iSection;
+    private long iTaskStage;
 
     public IdManager() {
         ID=0;
@@ -26,77 +26,77 @@ public class IdManager {
 
     public IdManager(long IDeployOfProcess, int IChat, int ICompany, int IEmployee, int IInstanceOfProcess, int INotification, int ISection, int ITaskStage) {
         this();
-        this.IChat = IChat;
-        this.ICompany = ICompany;
-        this.IEmployee = IEmployee;
-        this.IDeployOfProcess=IDeployOfProcess;
-        this.IInstanceOfProcess = IInstanceOfProcess;
-        this.INotification = INotification;
-        this.ISection = ISection;
-        this.ITaskStage = ITaskStage;
-    }
-
-    public void setIChat(long IChat) {
-        this.IChat = IChat;
-    }
-
-    public void setICompany(long ICompany) {
-        this.ICompany = ICompany;
-    }
-
-    public void setIEmployee(long IEmployee) {
-        this.IEmployee = IEmployee;
-    }
-
-    public void setIDeployOfProcess(long IDeployOfProcess) {
-        this.IDeployOfProcess = IDeployOfProcess;
-    }
-
-    public void setIInstanceOfProcess(long IInstanceOfProcess) {
-        this.IInstanceOfProcess = IInstanceOfProcess;
-    }
-
-    public void setINotification(long INotification) {
-        this.INotification = INotification;
-    }
-
-    public void setISection(long ISection) {
-        this.ISection = ISection;
-    }
-
-    public void setITaskStage(long ITaskStage) {
-        this.ITaskStage = ITaskStage;
-    }
-
-    public long getIDeployOfProcess() {
-        return IDeployOfProcess++;
+        this.iChat = IChat;
+        this.iCompany = ICompany;
+        this.iEmployee = IEmployee;
+        this.iDeployOfProcess=IDeployOfProcess;
+        this.iInstanceOfProcess = IInstanceOfProcess;
+        this.iNotification = INotification;
+        this.iSection = ISection;
+        this.iTaskStage = ITaskStage;
     }
 
     public long getIChat() {
-        return IChat++;
+        return iChat;
+    }
+
+    public void setIChat(long iChat) {
+        this.iChat = iChat;
     }
 
     public long getICompany() {
-        return ICompany++;
+        return iCompany;
+    }
+
+    public void setICompany(long iCompany) {
+        this.iCompany = iCompany;
     }
 
     public long getIEmployee() {
-        return IEmployee++;
+        return iEmployee;
+    }
+
+    public void setIEmployee(long iEmployee) {
+        this.iEmployee = iEmployee;
+    }
+
+    public long getIDeployOfProcess() {
+        return iDeployOfProcess;
+    }
+
+    public void setIDeployOfProcess(long iDeployOfProcess) {
+        this.iDeployOfProcess = iDeployOfProcess;
     }
 
     public long getIInstanceOfProcess() {
-        return IInstanceOfProcess++;
+        return iInstanceOfProcess;
+    }
+
+    public void setIInstanceOfProcess(long iInstanceOfProcess) {
+        this.iInstanceOfProcess = iInstanceOfProcess;
     }
 
     public long getINotification() {
-        return INotification++;
+        return iNotification;
+    }
+
+    public void setINotification(long iNotification) {
+        this.iNotification = iNotification;
     }
 
     public long getISection() {
-        return ISection++;
+        return iSection;
+    }
+
+    public void setISection(long iSection) {
+        this.iSection = iSection;
     }
 
     public long getITaskStage() {
-        return ITaskStage++;
+        return iTaskStage;
+    }
+
+    public void setITaskStage(long iTaskStage) {
+        this.iTaskStage = iTaskStage;
     }
 }

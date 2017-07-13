@@ -114,18 +114,20 @@ public class TaskController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "companyID",value = "公司id", required = true, dataType = "Long", paramType = "path"),
             @ApiImplicitParam(name = "ID",value = "发起者id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "processDefID", value = "流程定义id", required = true, dataType = "Long", paramType = "path"),
             @ApiImplicitParam(name = "processID", value = "流程实例id", required = true, dataType = "String", paramType = "path"),
             @ApiImplicitParam(name = "operationID", value = "操作id(对此步骤的操作)", required = true, dataType = "String", paramType = "body"),
             @ApiImplicitParam(name = "content", value = "备注信息json数组", dataType = "String", paramType = "body")
     })
     @ResponseBody
-    @RequestMapping(value = "/operate/{companyID}/{ID}/{processID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/operate/{companyID}/{ID}/{processDefID}/{processID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void operateProcess(HttpServletResponse httpServletResponse,
-                               @PathVariable("processID") Long processID, @PathVariable("companyID") Long companyID,
+                               @PathVariable("processID") String processID, @PathVariable("companyID") Long companyID,
                                @RequestParam("operationID") String operationID, @PathVariable("ID") Long ID,
-                               @RequestParam(value = "content", required = false) String content) {
+                               @RequestParam(value = "content", required = false) String content,
+                               @PathVariable("processDefID") Long processDefID) {
         Employee operator=databaseService.activeUserById(ID);
-        JSONObject jsonObject=activitiService.processOperation(processID.toString(),operationID,content,operator);
+        JSONObject jsonObject=activitiService.processOperation(companyID,processDefID,processID,operationID,content,operator);
         ResponseJsonObj.write(httpServletResponse,jsonObject);
     }
 

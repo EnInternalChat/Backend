@@ -54,7 +54,7 @@ public class CompanyController {
             @ApiImplicitParam(name = "companyID", value = "公司id", required = true, dataType = "Long", paramType = "path"),
             @ApiImplicitParam(name = "sectionID", value = "父部门id", required = true, dataType = "Long", paramType = "path"),
             @ApiImplicitParam(name = "description", value = "部门描述", dataType = "String", paramType = "body"),
-            @ApiImplicitParam(name = "name", value = "部门名称", dataType = "String", paramType = "body")
+            @ApiImplicitParam(name = "name", value = "部门名称", required = true, dataType = "String", paramType = "body")
     })
     @ResponseBody
     @RequestMapping(value = "/{companyID}/{sectionID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

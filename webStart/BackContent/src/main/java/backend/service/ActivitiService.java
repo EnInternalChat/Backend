@@ -69,6 +69,8 @@ public class ActivitiService {
 
     private void keyWordsSet() {
         keywords.add("leader");
+        keywords.add("modify");
+        keywords.add("apply");
         keywords.add("hr");
         keywords.add("manager");
         keywords.add("finance");
@@ -156,6 +158,7 @@ public class ActivitiService {
         boolean status=databaseService.participantsGetInstance(companyID,deployOfProcess,proId,starter);
         if(!status) {
             JSONObject jsonObject=new JSONObject();
+            jsonObject.put("done",false);
             jsonObject.put("info","当前公司缺乏执行相应流程的部门或人员");
             return jsonObject;
         }
@@ -173,22 +176,26 @@ public class ActivitiService {
         String nextActivityID=execution.getActivityId();
         String nextLabel="";
         for(String label:labels) {
-            if(label.equals(nextActivityID.toLowerCase())) {
+            if(nextActivityID.toLowerCase().contains(label)) {
                 nextLabel=label;
                 break;
             }
         }
-        Employee nextParticipant=databaseService.getLeaderFromLabel(companyID,nextLabel,starter);
-        task.setAssignee(nextParticipant.getName());
+        Employee nextParticipant=databaseService.getSectionLeaderFromLabel(companyID,nextLabel,starter);
+        taskService.setOwner(task.getId(),String.valueOf(nextParticipant.getID()));
+        task.setOwner(String.valueOf(nextParticipant.getID()));
+        System.out.println(task.getOwner()+"|"+nextParticipant.getID());
         operationTaskStage(proId,null,nextActivityID,execution.getName(),content,choices,nextParticipant,companyID,starter);
-        return ok(proId);
+        JSONObject jsonObject=ok(proId);
+        jsonObject.put("next",nextActivityID);
+        return jsonObject;
     }
 
     private boolean operationTaskStage(String processID, String thisActivityID, String nextActivityID, String title,
                                        String content, Map<String,String> nextChoices, Employee nextParticipant,
                                        long companyID, Employee thisParticipant) {
         if(thisActivityID != null) {
-            databaseService.thisTaskStageSet(processID, thisActivityID, content, thisParticipant);//content for this, title for next
+            databaseService.thisTaskStageSet(processID, thisActivityID, content);//content for this, title for next
         }
         if(nextActivityID == null) {
             databaseService.nextEndSet(companyID,processID,title,"endEvent");
@@ -207,16 +214,23 @@ public class ActivitiService {
         return true;
     }
 
-    public JSONObject processOperation(String processID, String operationID, String content, Employee operator) {
+    public JSONObject processOperation(long companyID, long processDefID, String processID, String operationID,
+                                       String content, Employee operator) {
+        JSONObject jsonObject=new JSONObject();
         ProcessInstance processInstance=runtimeService.createProcessInstanceQuery()
                 .processInstanceId(processID).singleResult();
         if(processInstance == null || processInstance.isEnded()) {
+            System.out.println("endornull:"+(processInstance == null)+"|"+processInstance.isEnded());
             return error(processID);
         }
         Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
-        if(!task.getAssignee().equals(operator.getName())) {
+        System.out.println(task+"|"+task.getOwner());
+        if(!task.getOwner().equals(String.valueOf(operator.getID()))) {
             return error(processID);
         }
+        ExecutionEntity execution = (ExecutionEntity) runtimeService.createExecutionQuery()
+                .executionId(task.getExecutionId()).singleResult();
+        String thisActivityID=execution.getActivityId();
         Map<String, Object> variables=new HashMap<>();
         FormData formData=formService.getTaskFormData(task.getId());
         for(FormProperty formProperty:formData.getFormProperties()) {
@@ -231,25 +245,45 @@ public class ActivitiService {
             } else System.out.println("<form type not supported>");
         }
         taskService.complete(task.getId(),variables);
-        operationTaskStage()
-        JSONObject jsonObject=ok(processID);
         processInstance=runtimeService.createProcessInstanceQuery()
                 .processInstanceId(processID).singleResult();
         if(processInstance == null || processInstance.isEnded()) {
-            jsonObject.put("end",true);
+            jsonObject.put("done",true);
+            operationTaskStage(processID,thisActivityID,null,"endEvent",content,null,null,companyID,null);
         } else {
-            jsonObject.put("end",false);
-            System.out.println("same id: "+processID+" "+processInstance.getId());
-            task=taskService.createTaskQuery().processInstanceId(processInstance.getId()).singleResult();
+            DeployOfProcess deployOfProcess=databaseService.getDeployOfProcess(processDefID);
+            Collection<String> labels=deployOfProcess.getLabels();
+            task=taskService.createTaskQuery().processInstanceId(processID).singleResult();
+            execution = (ExecutionEntity) runtimeService.createExecutionQuery()
+                    .executionId(task.getExecutionId()).singleResult();
+            String nextActivityID=execution.getActivityId();
+            String nextLabel="";
+            for(String label:labels) {
+                if(nextActivityID.toLowerCase().contains(label)) {
+                    nextLabel=label;
+                    break;
+                }
+            }
+            Employee nextParticipant=databaseService.getSectionLeaderFromLabel(companyID,nextLabel,operator);
+            if(nextParticipant == null) {
+                jsonObject.put("done",false);
+                jsonObject.put("info","执行失败没有找到下一阶段对应的流程执行人");
+                return jsonObject;
+            }
+            Map<String,String> choices=null;
+            taskService.setOwner(task.getId(),String.valueOf(nextParticipant.getID()));
+            task.setOwner(String.valueOf(nextParticipant.getID()));
             formData=formService.getTaskFormData(task.getId());
             for(FormProperty formProperty:formData.getFormProperties()) {
                 if(EnumFormType.class.isInstance(formProperty.getType())) {
-                    Map<String,String> choices=(Map<String,String>) formProperty.getType().getInformation("values");
-                    System.out.println("enum map: "+choices);
+                    choices=(Map<String,String>) formProperty.getType().getInformation("values");
                     jsonObject.put("next",choices);
                     break;
                 }
             }
+            jsonObject.put("done",true);
+            operationTaskStage(processID,thisActivityID,nextActivityID,
+                    execution.getName(),content,choices,nextParticipant,companyID,operator);
         }
         return jsonObject;
     }

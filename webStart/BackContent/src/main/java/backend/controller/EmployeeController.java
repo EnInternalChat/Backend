@@ -82,7 +82,7 @@ public class EmployeeController {
             @ApiImplicitParam(name = "name", value = "姓名", required = true, dataType = "String", paramType = "body"),
             @ApiImplicitParam(name = "password", value = "密码", required = true, defaultValue = "123456", dataType = "String", paramType = "body"),
             @ApiImplicitParam(name = "gender", value = "性别", required = true, dataType = "String", paramType = "body"),
-            @ApiImplicitParam(name = "position",value = "职位名称", required = true, dataType = "String", paramType = "body")
+            @ApiImplicitParam(name = "position",value = "职位名称", dataType = "String", paramType = "body")
     })
     @ResponseBody
     @RequestMapping(value = "/{companyID}/{sectionID}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
