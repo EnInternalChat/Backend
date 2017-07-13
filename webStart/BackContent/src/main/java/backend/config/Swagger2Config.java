@@ -34,9 +34,9 @@ public class Swagger2Config extends WebMvcConfigurationSupport {
     private ApiInfo getApiInfo() {
         return new ApiInfoBuilder()
                 .title("企业内部沟通App")
-                .description("暂无")
+                .description("任务流程已可以启动")
                 .termsOfServiceUrl("暂无")
-                .version("4.0")
+                .version("5.0")
                 .build();
     }
 }

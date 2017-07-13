@@ -2,6 +2,7 @@ package backend.serial;
 
 import backend.mdoel.InstanceOfProcess;
 import backend.mdoel.TaskStage;
+import backend.util.StandardTimeFormat;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
@@ -27,6 +28,7 @@ public class InstanceOfProcessSerializer extends StdSerializer<InstanceOfProcess
         jsonGenerator.writeNumberField("ID",instanceOfProcess.getID());
         jsonGenerator.writeStringField("processID",instanceOfProcess.getProcessID());
         jsonGenerator.writeStringField("processName",instanceOfProcess.getProcessName());
+        jsonGenerator.writeStringField("updateTime", StandardTimeFormat.parse(instanceOfProcess.getUpdateTime()));
         jsonGenerator.writeBooleanField("over",instanceOfProcess.isOver());
         jsonGenerator.writeObjectField("startPerson",instanceOfProcess.getStartPerson());
         jsonGenerator.writeArrayFieldStart("stages");

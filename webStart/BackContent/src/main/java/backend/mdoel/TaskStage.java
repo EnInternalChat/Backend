@@ -1,5 +1,7 @@
 package backend.mdoel;
 
+import backend.serial.TaskStageSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,6 +14,7 @@ import java.util.Map;
  * Created by lenovo on 2017/5/31.
  */
 @Document
+@JsonSerialize(using = TaskStageSerializer.class)
 public class TaskStage {
     @Id
     private long ID;

@@ -139,19 +139,7 @@ public class TaskController {
         return databaseService.findDeployOfProcess(companyID);
     }
 
-    @ApiOperation(value = "用户已完成流程列表", notes = "用户参与且当前已完成的流程实例")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "companyID", value = "公司id", required = true, dataType = "Long", paramType = "path"),
-            @ApiImplicitParam(name = "ID", value = "用户id", required = true, dataType = "Long", paramType = "path")
-    })
-    @ResponseBody
-    @RequestMapping(value = "/over/{companyID}/{ID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<InstanceOfProcess> finishedInstance(@PathVariable("companyID") Long companyID, @PathVariable("ID") Long ID) {
-        return null;
-}
-        //TODO list
-
-    @ApiOperation(value = "用户未完成流程列表", notes = "用户参与且当前未完成的流程实例")
+    @ApiOperation(value = "用户参与的流程列表", notes = "用户参当前参与过程的流程实例")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "companyID", value = "公司id", required = true, dataType = "Long", paramType = "path"),
             @ApiImplicitParam(name = "ID", value = "用户id", required = true, dataType = "Long", paramType = "path")
@@ -159,8 +147,7 @@ public class TaskController {
     @ResponseBody
     @RequestMapping(value = "/working/{companyID}/{ID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<InstanceOfProcess> workingInstance(@PathVariable("companyID") Long companyID, @PathVariable("ID") Long ID) {
-        return null;
-        //TODO list
+        return databaseService.getInstances(companyID,ID);
     }
 
     @ApiOperation(value = "删除流程部署", notes = "根据id删除流程")

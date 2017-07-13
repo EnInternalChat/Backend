@@ -471,6 +471,27 @@ public class DatabaseService {
         return true;
     }
 
+    public List<InstanceOfProcess> getInstances(long companyID, long ID) {
+        Company company=companyRepository.findOne(companyID);
+        if(company == null) {
+            return null;
+        }
+        Employee employee=employeeRepository.findOne(ID);
+        Collection<InstanceOfProcess> instanceOfProcessList=employee.getInstanceOfProcesses();
+        List<InstanceOfProcess> instanceOfProcesses=new ArrayList<>();
+        instanceOfProcesses.addAll(instanceOfProcessList);
+        Collections.sort(instanceOfProcesses, new Comparator<InstanceOfProcess>() {
+            @Override
+            public int compare(InstanceOfProcess o1, InstanceOfProcess o2) {
+                long o1t=o1.getUpdateTime(), o2t=o2.getUpdateTime();
+                if(o1t<o2t) return 1;
+                else if (o1t>o2t)return -1;
+                else return 0;
+            }
+        });
+        return instanceOfProcesses;
+    }
+
     public long getIDeployOfProcess() {
         Query query = new Query(Criteria.where("_id").is(0));
         Update update = new Update().inc("IDeployOfProcess", 1);
