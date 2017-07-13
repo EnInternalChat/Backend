@@ -185,7 +185,7 @@ public class ActivitiService {
         taskService.setOwner(task.getId(),String.valueOf(nextParticipant.getID()));
         task.setOwner(String.valueOf(nextParticipant.getID()));
         System.out.println(task.getOwner()+"|"+nextParticipant.getID());
-        operationTaskStage(proId,null,nextActivityID,execution.getName(),content,choices,nextParticipant,companyID,starter);
+        operationTaskStage(proId,null,nextActivityID,task.getName(),content,choices,nextParticipant,companyID,starter);
         JSONObject jsonObject=ok(proId);
         jsonObject.put("next",nextActivityID);
         return jsonObject;
@@ -194,6 +194,7 @@ public class ActivitiService {
     private boolean operationTaskStage(String processID, String thisActivityID, String nextActivityID, String title,
                                        String content, Map<String,String> nextChoices, Employee nextParticipant,
                                        long companyID, Employee thisParticipant) {
+        System.out.println("title"+title);
         if(thisActivityID != null) {
             databaseService.thisTaskStageSet(processID, thisActivityID, content);//content for this, title for next
         }
@@ -283,7 +284,7 @@ public class ActivitiService {
             }
             jsonObject.put("done",true);
             operationTaskStage(processID,thisActivityID,nextActivityID,
-                    execution.getName(),content,choices,nextParticipant,companyID,operator);
+                    task.getName(),content,choices,nextParticipant,companyID,operator);
         }
         return jsonObject;
     }
