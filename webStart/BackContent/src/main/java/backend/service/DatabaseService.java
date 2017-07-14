@@ -1123,10 +1123,6 @@ public class DatabaseService {
                 jsonObject.put("info","您的账号已被禁用，请联系管理员");
                 return jsonObject;
             }
-            if(activeUserById(employee.getID()) != null) {
-                jsonObject.put("info","您已经在web或者app端登陆，请勿重复登录");
-                return jsonObject;
-            }
             HttpSession httpSession=httpServletRequest.getSession();
             httpSession.setAttribute("user",employee.getID());
             userActive.put(employee.getID(),employee);
