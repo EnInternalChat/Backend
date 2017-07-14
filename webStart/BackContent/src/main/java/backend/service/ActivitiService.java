@@ -266,7 +266,8 @@ public class ActivitiService {
                     break;
                 }
             }
-            Employee nextParticipant=databaseService.getSectionLeaderFromLabel(companyID,nextLabel,operator);
+            Employee starter=databaseService.findInstanceStarter(companyID,processID);
+            Employee nextParticipant=databaseService.getSectionLeaderFromLabel(companyID,nextLabel,starter);
             if(nextParticipant == null) {
                 jsonObject.put("done",false);
                 jsonObject.put("info","执行失败没有找到下一阶段对应的流程执行人");
