@@ -407,7 +407,7 @@ public class DatabaseService {
         Collection<String> labels=deployOfProcess.getLabels();
         String processName=deployOfProcess.getName();
         InstanceOfProcess instance;
-        instance=new InstanceOfProcess(getIInstanceOfProcess(),companyID,processID,processName,applyer);
+        instance=new InstanceOfProcess(getIInstanceOfProcess(),companyID,deployOfProcess.getID(),processID,processName,applyer);
         instanceOfProcessRepository.save(instance);
         Set<Employee> participants=new HashSet<>();
         for(String label:labels) {
@@ -469,6 +469,16 @@ public class DatabaseService {
         instanceOfProcessRepository.save(instance);
         addUpdateTaskStage(instance,taskStage);
         return true;
+    }
+
+    public Employee findInstanceStarter(long companyID, String processID) {
+        List<InstanceOfProcess> instanceOfProcesses=instanceOfProcessRepository
+                .findByCompanyIDAndAndProcessID(companyID,processID);
+        if(instanceOfProcesses.size() == 0) return null;
+        InstanceOfProcess instance=instanceOfProcesses.get(0);
+        long starterID=(long)instance.getStartPerson().get("ID");
+        Employee starter=employeeRepository.findOne(starterID);
+        return starter;
     }
 
     public List<InstanceOfProcess> getInstances(long companyID, long ID) {
@@ -654,6 +664,7 @@ public class DatabaseService {
         sectionRepository.save(section);
         addUpdateChildrenSecs(parrentSection,section);
         result.put("info","部门添加成功");
+        result.put("sectionID",section.getID());
         return result;
     }
 
@@ -930,7 +941,7 @@ public class DatabaseService {
         return jsonObject;
     }
 
-    private void pushAlert(String target, String content) {
+    public void pushAlert(String target, String content) {
         PushPayload payload = PushPayload.newBuilder()
                 .setPlatform(Platform.all())
                 .setAudience(Audience.alias(target))

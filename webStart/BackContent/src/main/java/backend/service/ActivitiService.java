@@ -171,6 +171,7 @@ public class ActivitiService {
                 break;
             }
         }
+        System.out.println("choice:"+choices);
         String excID=task.getExecutionId();
         ExecutionEntity execution = (ExecutionEntity) runtimeService.createExecutionQuery().executionId(excID).singleResult();
         String nextActivityID=execution.getActivityId();
@@ -248,11 +249,11 @@ public class ActivitiService {
         taskService.complete(task.getId(),variables);
         processInstance=runtimeService.createProcessInstanceQuery()
                 .processInstanceId(processID).singleResult();
+        DeployOfProcess deployOfProcess=databaseService.getDeployOfProcess(processDefID);
         if(processInstance == null || processInstance.isEnded()) {
             jsonObject.put("done",true);
             operationTaskStage(processID,thisActivityID,null,"endEvent",content,null,null,companyID,null);
         } else {
-            DeployOfProcess deployOfProcess=databaseService.getDeployOfProcess(processDefID);
             Collection<String> labels=deployOfProcess.getLabels();
             task=taskService.createTaskQuery().processInstanceId(processID).singleResult();
             execution = (ExecutionEntity) runtimeService.createExecutionQuery()
@@ -285,6 +286,7 @@ public class ActivitiService {
             jsonObject.put("done",true);
             operationTaskStage(processID,thisActivityID,nextActivityID,
                     task.getName(),content,choices,nextParticipant,companyID,operator);
+            databaseService.pushAlert(nextParticipant.getName(),"您有一个新的任务待处理");
         }
         return jsonObject;
     }

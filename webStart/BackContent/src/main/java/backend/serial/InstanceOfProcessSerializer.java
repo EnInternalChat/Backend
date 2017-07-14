@@ -27,6 +27,7 @@ public class InstanceOfProcessSerializer extends StdSerializer<InstanceOfProcess
 
         jsonGenerator.writeNumberField("ID",instanceOfProcess.getID());
         jsonGenerator.writeStringField("processID",instanceOfProcess.getProcessID());
+        jsonGenerator.writeNumberField("processDefID",instanceOfProcess.getProcessDefID());
         jsonGenerator.writeStringField("processName",instanceOfProcess.getProcessName());
         jsonGenerator.writeStringField("updateTime", StandardTimeFormat.parse(instanceOfProcess.getUpdateTime()));
         jsonGenerator.writeBooleanField("over",instanceOfProcess.isOver());

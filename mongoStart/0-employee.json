@@ -49,7 +49,7 @@
 {
 	"_id":2,
 	"name":"dogli",
-	"pwd":"b5ab92e1947c3c81559ead9fd8aa523f",
+	"pwd":"b663d6be51f8d00dd05b27a17568bc8b",
 	"sectionID":2,
 	"position":"A product manager",
 	"companyID":0,
@@ -505,7 +505,7 @@
 {
 	"_id":21,
 	"name":"mayun",
-	"pwd":"392e26f6b5c48e3cc04e1dad5d03cc06",
+	"pwd":"01fd6df0f81ee0491eb32d4c05babeef",
 	"sectionID":15,
 	"position":"A product manager",
 	"companyID":0,

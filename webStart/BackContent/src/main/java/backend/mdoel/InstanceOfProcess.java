@@ -21,6 +21,7 @@ public class InstanceOfProcess {
     private long ID;
     private long companyID;
     private long updateTime;
+    private long processDefID;
     private String processID;
     private String processName;
     private Map<String, Object> startPerson;
@@ -35,10 +36,11 @@ public class InstanceOfProcess {
         updateTime=System.currentTimeMillis();
     }
 
-    public InstanceOfProcess(long ID, long companyID, String processID, String processName, Employee starter) {
+    public InstanceOfProcess(long ID, long companyID, long processDefID, String processID, String processName, Employee starter) {
         this();
         this.ID=ID;
         this.companyID=companyID;
+        this.processDefID=processDefID;
         this.processID = processID;
         this.processName = processName;
         startPerson.put("ID", starter.getID());
@@ -47,6 +49,10 @@ public class InstanceOfProcess {
 
     public long getUpdateTime() {
         return updateTime;
+    }
+
+    public long getProcessDefID() {
+        return processDefID;
     }
 
     public void reNewUpdateTime() {
@@ -79,7 +85,7 @@ public class InstanceOfProcess {
     }
 
     public void setOver() {
-        this.over = false;
+        this.over = true;
     }
 
     public boolean isOver() {
