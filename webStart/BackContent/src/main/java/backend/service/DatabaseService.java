@@ -464,9 +464,11 @@ public class DatabaseService {
                 .findByCompanyIDAndAndProcessID(companyID,processID);
         if(instanceOfProcesses.size() == 0) return false;
         InstanceOfProcess instance=instanceOfProcesses.get(0);
+        Query query = new Query(Criteria.where("_id").is(instance.getID()));
+        Update update = new Update().set("over",true);
+        mongoTemplate.updateFirst(query,update,InstanceOfProcess.class);
         instance.setOver();
         instance.addStage(taskStage);
-        instanceOfProcessRepository.save(instance);
         addUpdateTaskStage(instance,taskStage);
         return true;
     }
@@ -737,7 +739,9 @@ public class DatabaseService {
                 }
                 newLeader.setLeader(true);
                 section.setLeaderID(newLeader);
-                info+="新部长设置成功";//TODO employee belong to section?
+                info+="新部长设置成功";
+                employeeRepository.save(newLeader);
+                employeeRepository.save(oldLeader);
             }
         }
         sectionRepository.save(section);
@@ -1117,6 +1121,10 @@ public class DatabaseService {
             }
             if(!employee.isActive()) {
                 jsonObject.put("info","您的账号已被禁用，请联系管理员");
+                return jsonObject;
+            }
+            if(activeUserById(employee.getID()) != null) {
+                jsonObject.put("info","您已经在web或者app端登陆，请勿重复登录");
                 return jsonObject;
             }
             HttpSession httpSession=httpServletRequest.getSession();
