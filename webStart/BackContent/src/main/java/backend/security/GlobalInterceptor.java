@@ -49,7 +49,7 @@ public class GlobalInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
-
+        System.out.println(httpServletResponse);
     }
 
     @Override

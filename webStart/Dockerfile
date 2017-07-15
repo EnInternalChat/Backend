@@ -1,4 +1,7 @@
 FROM freedomkk/tomcat-maven
+ADD ./simsun.ttc /usr/share/fonts/truetype/
+RUN fc-cache
+RUN fc-list
 ADD ./BackContent/ /usr/local/tomcat/
 RUN cd /usr/local/tomcat
 RUN rm -f ./conf/server.xml ./conf/web.xml
