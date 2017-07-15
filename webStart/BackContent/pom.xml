@@ -14,6 +14,7 @@
     <springdata.version>1.10.3.RELEASE</springdata.version>
     <swaggerVersion>2.4.0</swaggerVersion>
     <activiti.version>5.22.0</activiti.version>
+    <security.Version>4.2.0.RELEASE</security.Version>
   </properties>
   <dependencies>
 
@@ -43,6 +44,12 @@
 
     <dependency>
       <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
       <version>${spring.version}</version>
     </dependency>
@@ -66,17 +73,16 @@
       <type>pom</type>
     </dependency>
 
-    <!--<dependency>-->
-      <!--<groupId>org.springframework.security</groupId>-->
-      <!--<artifactId>spring-security-config</artifactId>-->
-      <!--<version>${springSecurityVersion}</version>-->
-    <!--</dependency>-->
-
-    <!--<dependency>-->
-      <!--<groupId>org.springframework.security</groupId>-->
-      <!--<artifactId>spring-security-web</artifactId>-->
-      <!--<version>${springSecurityVersion}</version>-->
-    <!--</dependency>-->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>${security.Version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-test</artifactId>
+      <version>${security.Version}</version>
+    </dependency>
 
     <dependency>
       <groupId>org.apache.tomcat</groupId>
@@ -102,11 +108,11 @@
       <version>${spring.version}</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-test</artifactId>-->
+      <!--<version>${spring.version}</version>-->
+    <!--</dependency>-->
 
     <dependency>
       <groupId>org.springframework</groupId>
@@ -217,7 +223,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.2</version>
+      <version>4.12</version>
     </dependency>
 
     <dependency>

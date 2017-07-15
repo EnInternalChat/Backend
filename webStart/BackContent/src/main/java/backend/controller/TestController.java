@@ -83,6 +83,14 @@ public class TestController {
         resMap.put("user","name");
         return resMap;
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/postTest", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Map<String,Object> testSpring(@RequestParam("test") String test) {
+        Map<String,Object> resMap = new HashMap<>();
+        resMap.put("res",test+" post");
+        return resMap;
+    }
 //
 //    @ResponseBody
 //    @RequestMapping(value = "/testSerialize1", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -125,6 +133,14 @@ public class TestController {
     @RequestMapping(value = "/testEmployee", method = RequestMethod.GET)
     public Collection<Employee> testEmployee() {
         return databaseService.em();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/testDel", method = RequestMethod.DELETE)
+    public Map<String,Object> testDel() {
+        Map<String,Object> maps=new HashMap<>();
+        maps.put("success","yes");
+        return maps;
     }
 
 }

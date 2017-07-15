@@ -26,7 +26,7 @@
         <property name="labelFontName" value="宋体"/>
         <property name="annotationFontName" value="宋体"/>
 
-        <property name="deploymentResources" value="classpath*:bpmn/*.bpmn20.xml" />
+        <property name="deploymentResources" value="classpath*:bpmn/realpayment.bpmn20.xml" />
     </bean>
     <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
         <property name="processEngineConfiguration" ref="processEngineConfiguration" />
