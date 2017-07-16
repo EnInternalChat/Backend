@@ -1,10 +1,18 @@
 version: '2'
 services:
+  nginx:
+    build: ./nginxStart
+    ports:
+     - "80:80"
+     - "443:443"
+    links:
+     - web
+
   web:
     build: ./webStart
-    ports:
-     - "8080:8080"
-     - "443:443"
+    #ports:
+     #- "8080:8080"
+     #- "443:443"
     volumes:
      - ./repository:/root/.m2/repository
     depends_on:
