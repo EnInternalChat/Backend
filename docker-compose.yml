@@ -2,6 +2,8 @@ version: '2'
 services:
   nginx:
     build: ./nginxStart
+    volumes:
+     - ./encrypt:/etc/nginx/certs
     ports:
      - "80:80"
      - "443:443"
