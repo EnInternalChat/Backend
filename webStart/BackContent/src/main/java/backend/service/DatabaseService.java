@@ -242,6 +242,15 @@ public class DatabaseService {
             info+="|头像修改成功";
         }
         if(newPwd != null) {
+            try {
+                jMessageClient.updateUserPassword(employee.getName(),newPwd);
+            } catch (APIConnectionException e) {
+                System.out.println("Connection error, should retry later");
+            } catch (APIRequestException e) {
+                System.out.println("HTTP Status: " + e.getStatus());
+                System.out.println("Error Code: " + e.getErrorCode());
+                System.out.println("Error Message: " + e.getErrorMessage());
+            }
             employee.setPassword(newPwd);
             info+="|密码修改成功";
         }
@@ -323,6 +332,7 @@ public class DatabaseService {
             registerInfos.add(registerInfo);
             RegisterInfo[] regUsers=new RegisterInfo[1];
             jMessageClient.registerUsers(registerInfos.toArray(regUsers));
+            jMessageClient.registerAdmins(name,password);
             jMessageClient.updateUserInfo(name,"1",null,null,1,null,null);
             result.put("info","员工添加成功");
             result.put("ID",employee.getID());
