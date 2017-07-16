@@ -3,7 +3,7 @@ services:
   nginx:
     build: ./nginxStart
     volumes:
-     - ./encrypt:/etc/nginx/certs
+     - ./encrypt:/etc/letsencrypt
     ports:
      - "80:80"
      - "443:443"
